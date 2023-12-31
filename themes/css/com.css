@@ -1,0 +1,80 @@
+* {
+    --main-color: #516ca9;
+    --second-color: #f16583;
+}
+
+.company_navbar .rd-navbar-main-inner {
+    background-color: #fff !important;
+}
+
+
+
+.company_navbar .banner_top_add li {
+    background: #516ca9;
+}
+
+.company_navbar .rd-navbar-aside-outer a:hover {
+    color: #f16583;
+}
+
+.company_navbar .rd-navbar-info i {
+    color: #516ca9;
+}
+
+.company .swiper-slide .section_data a {
+    color: #516ca9;
+}
+
+.company .button-secondary-text:hover {
+    background-color: #516ca9;
+    border-color: #516ca9;
+}
+
+.company .swiper-slide .section_data a:hover {
+    color: #fff;
+}
+
+.company .btn-play {
+    background: #516ca9
+}
+
+.company .btn-play:before {
+    background: #516ca9
+}
+
+.company .btn-play span {
+    border-left: 16px solid #516ca9;
+}
+
+.company .list-marked-2>li::before {
+    color: #516ca9;
+}
+.company .accordion .content p::before{
+    border-color: transparent #516ca9 transparent transparent;
+}
+.company .quote-bordered .quote-open>svg{
+    fill:#516ca9
+}
+.company .owl-nav-classic .owl-nav .owl-prev:hover,.company .owl-nav-classic .owl-nav .owl-next:hover{
+    background: #516ca9;
+}
+
+/* START START PAGE*/
+.company .breadcrumb-item a{
+    color: #516ca9;
+}
+.company .star_person .data .info button{
+    color: #516ca9;
+    border-color: #516ca9;
+}
+.company .star_person .data .info button:hover{
+background-color: #516ca9;
+}
+.company .contact_us .address_section span i{
+    color: #516ca9;
+    margin-left: 10px;
+}
+.company .contact_us .address_section p a{
+    color: #516ca9;
+}
+ 
