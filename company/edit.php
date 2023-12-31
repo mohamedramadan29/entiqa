@@ -5,7 +5,6 @@ session_start();
 $com_navbar = 'com';
 if (isset($_SESSION['com_id'])) {
     include 'init.php';
-
 ?>
     <div class="profile_hero">
         <div class="overlay">
@@ -59,12 +58,24 @@ if (isset($_SESSION['com_id'])) {
             } elseif (!filter_var($com_email, FILTER_VALIDATE_EMAIL)) {
                 $formerror[] = " يجب إدخال عنوان بريد إلكتروني صالح ";
             }
+            if (strlen($com_phone) > 20) {
+                $formerror[] = ' من فضلك ادخل رقم هاتف بشكل صحيح ';
+            }
             $stmt = $connect->prepare("SELECT * FROM company_register WHERE com_email=? AND com_id !=?");
             $stmt->execute(array($com_email, $_SESSION['com_id']));
             $count_mails = $stmt->rowCount();
             if ($count_mails > 0) {
                 $formerror[] = 'البريد الألكتروني مستخدم من قبل من فضلك ادخل بريد الكتروني جديد';
             }
+
+            $stmt = $connect->prepare("SELECT * FROM company_register WHERE com_phone=? AND com_id !=?");
+            $stmt->execute(array($com_phone, $_SESSION['com_id']));
+            $count_mails = $stmt->rowCount();
+            if ($count_mails > 0) {
+                $formerror[] = 'رقم الهاتف مستخدم من قبل ';
+            }
+
+
             $stmt = $connect->prepare("SELECT * FROM company_register WHERE com_num=? AND com_id !=?");
             $stmt->execute(array($com_num, $_SESSION['com_id']));
             $data = $stmt->fetch();
@@ -209,15 +220,15 @@ if (isset($_SESSION['com_id'])) {
                                             <div class="data2">
                                                 <div class="box">
                                                     <label for=""> سنة التاسيس <span> * </span> </label>
-                                                    <input required oninvalid="setCustomValidityArabic(this,'ادخل سنة التأسيس')" oninput="resetCustomValidity(this)" class="form-control" id="com_founded" type="text" name="com_founded" placeholder="سنة التاسيس" value="<?php echo $com_data['com_founded']; ?>">
+                                                    <input min="1980" required oninvalid="setCustomValidityArabic(this,'ادخل سنة التأسيس')" oninput="resetCustomValidity(this)" class="form-control" id="com_founded" type="number" name="com_founded" placeholder="سنة التاسيس" value="<?php echo $com_data['com_founded']; ?>">
                                                 </div>
                                                 <div class="box">
                                                     <label for=""> عدد الشفتات <span> * </span> </label>
-                                                    <input required oninvalid="setCustomValidityArabic(this,'من فضلك ادخل عدد الشفتات')" oninput="resetCustomValidity(this)" class="form-control" id="com_work_libs" type="text" name="com_work_libs" placeholder="عدد الشفتات " value="<?php echo $com_data['com_work_libs']; ?>">
+                                                    <input min="1" required oninvalid="setCustomValidityArabic(this,'من فضلك ادخل عدد الشفتات')" oninput="resetCustomValidity(this)" class="form-control" id="com_work_libs" type="number" name="com_work_libs" placeholder="عدد الشفتات " value="<?php echo $com_data['com_work_libs']; ?>">
                                                 </div>
                                                 <div class="box">
                                                     <label for=""> عدد أيام الأجازة الأسبوعية <span> * </span> </label>
-                                                    <input required oninvalid="setCustomValidityArabic(this,'من فضلك حدد ايام الأجازة الأسبوعية')" oninput="resetCustomValidity(this)" class="form-control" id="com_weekend_num" type="text" placeholder="عدد أيام الأجازة الأسبوعية " name="com_weekend_num" value="<?php echo $com_data['com_weekend_num']; ?>">
+                                                    <input min="0" required oninvalid="setCustomValidityArabic(this,'من فضلك حدد ايام الأجازة الأسبوعية')" oninput="resetCustomValidity(this)" class="form-control" id="com_weekend_num" type="number" placeholder="عدد أيام الأجازة الأسبوعية " name="com_weekend_num" value="<?php echo $com_data['com_weekend_num']; ?>">
                                                 </div>
                                                 <div class="box">
                                                     <label for=""> نوع العمل <span> * </span> </label>
@@ -229,33 +240,27 @@ if (isset($_SESSION['com_id'])) {
                                                 </div>
                                                 <div class="box">
                                                     <label for=""> الراتب المقدر <span> * </span></label>
-                                                    <input required oninvalid="setCustomValidityArabic(this,'من فضلك ادخل الراتب المقدر ')" oninput="resetCustomValidity(this)" class="form-control" id="com_salary" type="text" placeholder="الراتب المقدر " name="com_salary" value="<?php echo $com_data['com_salary']; ?>">
+                                                    <input min="1" required oninvalid="setCustomValidityArabic(this,'من فضلك ادخل الراتب المقدر ')" oninput="resetCustomValidity(this)" class="form-control" id="com_salary" type="number" placeholder="الراتب المقدر " name="com_salary" value="<?php echo $com_data['com_salary']; ?>">
                                                 </div>
                                                 <div class="box">
                                                     <label for=""> العمولة المقدرة <span> * </span></label>
-                                                    <input required oninvalid="setCustomValidityArabic(this,'من فضلك ادخل العمولة المقدرة')" oninput="resetCustomValidity(this)" class="form-control" id="com_commission" type="text" placeholder="العمولة المقدرة " name="com_commission" value="<?php echo $com_data['com_commission']; ?>">
+                                                    <input min="0" required oninvalid="setCustomValidityArabic(this,'من فضلك ادخل العمولة المقدرة')" oninput="resetCustomValidity(this)" class="form-control" id="com_commission" type="number" placeholder="العمولة المقدرة " name="com_commission" value="<?php echo $com_data['com_commission']; ?>">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
-
                                     <div class="box text-center">
                                         <button class="btn btn-primary" type="submit" name="send_message"> تعديل <i class="fa fa-edit"></i> </button>
                                     </div>
-
                             </div>
                         </div>
-
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 <?php
-
     include  $tem . "footer.php";
 } else {
     header('Location:index.php');

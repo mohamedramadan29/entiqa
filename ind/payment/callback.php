@@ -20,7 +20,7 @@
                     CURLOPT_CUSTOMREQUEST => "GET",
                     CURLOPT_POSTFIELDS => "{}",
                     CURLOPT_HTTPHEADER => array(
-                        "authorization: Bearer sk_test_XKokBfNWv6FIYuTMg5sLPjhJ" // مفتاح الواجهة السري
+                        "authorization: Bearer sk_test_nsgFzA1ulL5432S8YfeENq9U" // مفتاح الواجهة السري
                     ),
                 )
             );
@@ -35,18 +35,17 @@
                 $ind_id = $_SESSION['ind_id'];
                 $stmt = $connect->prepare("UPDATE ind_register SET ind_payment_charge = 'CAPTURED' WHERE ind_id=?");
                 $stmt->execute(array($ind_id));
-                ?>
+        ?>
                 <div class='alert alert-success'> تم الدفع والاشتراك بنجاح في منصة انتقاء </div>
-                <?php
+            <?php
                 header("refresh:2;URL=../profile");
             } else {
-                ?>
+            ?>
                 <div class='alert alert-danger'> لم تتم عملية الدفع بنجاح من فضلك حاول في وقت لاحق </div>
 
-                <?php
+        <?php
                 header("refresh:2;URL=../profile");
             }
-
         } ?>
     </div>
 </div>

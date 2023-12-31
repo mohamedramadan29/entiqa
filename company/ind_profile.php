@@ -5,6 +5,17 @@ session_start();
 $com_navbar = 'com';
 include 'init.php';
 if (isset($_SESSION['com_id'])) {
+
+    // check if this company active or not active 
+    $stmt = $connect->prepare("SELECT * FROM company_register WHERE com_id = ?");
+    $stmt->execute(array($_SESSION['com_id']));
+    $company_data = $stmt->fetch();
+    $active_status = $company_data['com_status'];
+    $com_balance = $company_data['com_balance'];
+    if($active_status == 0 || $com_balance == 0){
+        header('Location:index');
+        exit();
+    }
     if (isset($_GET['username'])) {
         $username = $_GET['username'];
 ?>

@@ -256,14 +256,11 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                                 <?php
                                 if ($ind_data['ind_payment_charge'] == null) {
                                 ?>
-                                    <p class='alert alert-danger'> تنوية : أنت غير مشترك بعد , يرجى قراءة العقد والتوقيع مع كامل البيانات الصحيحة قبل الدفع
-                                        ويرجى تحميل نسخة ملف العقد بعد التوقيع في صفحتك لأستكمال اجراء توثيق عضويتك
+                                    <p class='alert alert-danger'> تنوية : أنت غير مشترك بعد , يرجى قراءة العقد  واتمام عملية الدفع
+                                    
                                     </p>
-                                    <a href="../uploads/file.docx" class='btn btn-primary' style='background: var(--main-color);border-color: var(--main-color);'>تنزيل العقد</a>
 
-                                    <a href="" class='btn btn-primary' style='background: var(--main-color);border-color: var(--main-color);'>أدراج العقد </a>
-
-                                    <a href="payment/payment" class='btn btn-primary' style='background: var(--main-color);border-color: var(--main-color);'>الدفع<i class='fa fa-paypal'></i></a>
+                                    <a href="payment_terms" class='btn btn-primary' style='background: var(--main-color);border-color: var(--main-color);'>الدفع<i class='fa fa-paypal'></i></a>
                                 <?php
                                 } elseif ($ind_data['ind_payment_charge'] === 'CAPTURED') {
                                 ?>

@@ -57,7 +57,7 @@ if (isset($_SESSION['ind_id'])) {
                 ]
             ],
             'headers' => [
-                'Authorization' => 'Bearer sk_test_XKokBfNWv6FIYuTMg5sLPjhJ',
+                'Authorization' => 'Bearer sk_test_nsgFzA1ulL5432S8YfeENq9U',
                 'accept' => 'application/json',
                 'content-type' => 'application/json',
             ],

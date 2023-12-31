@@ -20,17 +20,14 @@
                     CURLOPT_CUSTOMREQUEST => "GET",
                     CURLOPT_POSTFIELDS => "{}",
                     CURLOPT_HTTPHEADER => array(
-                        "authorization: Bearer sk_test_XKokBfNWv6FIYuTMg5sLPjhJ" // مفتاح الواجهة السري
+                        "authorization: Bearer sk_test_nsgFzA1ulL5432S8YfeENq9U" // مفتاح الواجهة السري
                     ),
                 )
             );
             $response = curl_exec($curl);
             $err = curl_error($curl);
-
             curl_close($curl);
-
             $responseTap = json_decode($response);
-
             if ($responseTap->status == 'CAPTURED') {
                 $stmt = $connect->prepare("SELECT * FROM subscribe LIMIT 1");
                 $stmt->execute();
@@ -41,7 +38,7 @@
                 $stmt->execute(array($_SESSION['com_id']));
                 $com_info = $stmt->fetch();
                 $com_balance = $com_info['com_balance'];
-                
+
                 $price = $ind_sub_amount + $com_balance;
                 $stmt = $connect->prepare("UPDATE company_register SET com_balance=? WHERE com_id=?");
                 $stmt->execute(
@@ -50,18 +47,17 @@
                         $com_id
                     )
                 );
-                ?>
+        ?>
                 <div class='alert alert-success'> تم الدفع والاشتراك بنجاح في منصة انتقاء </div>
-                <?php
+            <?php
                 header("refresh:2;URL=../profile");
             } else {
-                ?>
+            ?>
                 <div class='alert alert-danger'> حدث خطا !! من فضلك اعد المحااولة مرة اخري </div>
 
-                <?php
+        <?php
                 header("refresh:2;URL=../profile");
             }
-
         } ?>
     </div>
 </div>

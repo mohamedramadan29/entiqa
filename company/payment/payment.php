@@ -55,7 +55,7 @@ if (isset($_SESSION['com_id'])) {
                 ]
             ],
             'headers' => [
-                'Authorization' => 'Bearer sk_test_XKokBfNWv6FIYuTMg5sLPjhJ',
+                'Authorization' => 'Bearer sk_test_nsgFzA1ulL5432S8YfeENq9U',
                 'accept' => 'application/json',
                 'content-type' => 'application/json',
             ],
@@ -72,5 +72,3 @@ if (isset($_SESSION['com_id'])) {
 } else {
     header('Location:../index');
 }
-
-?>

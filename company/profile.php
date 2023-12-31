@@ -88,12 +88,12 @@ if (isset($_SESSION['com_id'])) {
 
                     <div class="col-lg-5">
                         <div class="document_section" style="background-color: #F3F3F3; border-radius: 20px;">
-                            <?php
-                            if ($com_data['com_confirm'] == 0) { ?>
+                            <!-- <?php
+                                    if ($com_data['com_confirm'] == 0) { ?>
                                 <a href="../uploads/file.docx" target="_blank" class="document_button btn btn-primary"> مشاهدة
                                     العقد </a>
                             <?php
-                            } ?>
+                                    } ?> -->
 
                             <?php
                             if (isset($_POST['confirm'])) {
@@ -118,7 +118,7 @@ if (isset($_SESSION['com_id'])) {
                                         <h2></h2>
 
                                     </div>
-                                    <div class="info_data" style="background: #f16583;padding: 15px;border-radius: 30px;">
+                                    <div class="info_data" style="background: #f16583;padding: 15px;border-radius: 5px;">
                                         <ul class="list-unstyled">
                                             <li> <span>
                                                     <?php echo $com_data['com_balance']; ?> <strong> ريال </strong>
@@ -134,7 +134,7 @@ if (isset($_SESSION['com_id'])) {
                                     <input type="hidden" name="payment_mode" value="COD">
                                 </form>
                                 <div class="send_money">
-                                    <a href="payment/payment" class='btn btn-primary' style='background: var(--main-color);border-color: var(--main-color);'> شحن الرصيد <i class='fa fa-paypal'></i></a>
+                                    <a href="payment_terms" class='btn btn-primary' style='background: var(--main-color);border-color: var(--main-color);'> الشروط وشحن  الرصيد <i class='fa fa-paypal'></i></a>
                                 </div>
                             <?php
                             } else { ?>

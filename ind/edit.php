@@ -48,6 +48,9 @@ if (isset($_SESSION['ind_id'])) {
             if (empty($ind_name)) {
                 $formerror[] = "  من فضلك ادخل الاسم الخاص بك ";
             }
+            if(strlen($ind_phone) > 20){
+                $formerror[] = ' من فضلك ادخل رقم هاتف بشكل صحيح ';
+            }
             if (empty($ind_email)) {
                 $formerror[] = " يجب اضافة البريد الالكتروني  ";
             } elseif (!filter_var($ind_email, FILTER_VALIDATE_EMAIL)) {
@@ -58,6 +61,13 @@ if (isset($_SESSION['ind_id'])) {
             $count_mails = $stmt->rowCount();
             if ($count_mails > 0) {
                 $formerror[] = 'البريد الألكتروني مستخدم من قبل من فضلك ادخل بريد الكتروني جديد';
+            }
+
+            $stmt = $connect->prepare("SELECT * FROM ind_register WHERE ind_phone=? AND ind_id !=?");
+            $stmt->execute(array($ind_phone, $_SESSION['ind_id']));
+            $count_phones = $stmt->rowCount();
+            if ($count_phones > 0) {
+                $formerror[] = ' رقم الهاتف مستخدم من قبل  ';
             }
             if (empty($formerror)) {
                 $stmt = $connect->prepare("UPDATE ind_register SET
