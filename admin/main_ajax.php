@@ -28,11 +28,11 @@ include 'init.php';
         }
         // END individual WEB SITE ///////////////////////////////////////
         // START Coashes
-        if ($dir == 'coashes' && $page == 'add') {
-            include 'coashes/add.php';
-        } elseif ($dir == 'coashes' && $page == 'edit') {
-            include 'coashes/edit.php';
-        } 
+        // if ($dir == 'coashes' && $page == 'add') {
+        //     include 'coashes/add.php';
+        // } elseif ($dir == 'coashes' && $page == 'edit') {
+        //     include 'coashes/edit.php';
+        // } 
         // Start Services Section
         if ($dir == 'services_section' && $page == 'add') {
             include 'services_section/add.php';
