@@ -7,24 +7,27 @@
                 </ol>
             </nav>
         </div>
-
         <div class="card">
             <div class="card-body">
                 <?php if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                    if (isset($_POST['add_car'])) {
-                        if (isset($_SESSION['coash_id'])) {
-                            $coash_id = $_SESSION['coash_id'];
-                        } else {
-                            $coash_id = null;
-                        }
+                
+
                         $ex_title = sanitizeInput($_POST['ex_title']);
                         $ex_total_question = sanitizeInput($_POST['ex_total_question']);
                         $ex_time = $_POST["ex_time"];
                         $ex_date_publish = $_POST["ex_date_publish"];
 
                         $ex_type = $_POST["ex_type"];
-                        $ex_batch_num =  '-- اختر رقم الدفعه --';
+                        $ex_batch_num =  $_POST['ex_batch_num'];
 
+                        if (isset($_SESSION['coash_id'])) {
+                            $coash_id = $_SESSION['coash_id'];
+                        } else {
+                            $stmt = $connect->prepare("SELECT * FROM batches WHERE batch_id = ?");
+                            $stmt->execute(array($ex_batch_num));
+                            $batch_data = $stmt->fetch();
+                            $coash_id = $batch_data['batch_coach'];
+                        }
                         /// More Validation To Show Error
                         $formerror = [];
                         if (empty($ex_title)) {
@@ -35,11 +38,11 @@
                         }
                         if (empty($formerror)) {
                             $stmt = $connect->prepare("INSERT INTO exam (ex_title,ex_total_question,
-                ex_time,ex_date_publish,
-                ex_type,ex_batch_num,coash_id)
-                VALUES (:zex_title,:zex_total_question,
-                :zex_time,:zex_date_publish,
-                :zex_type,:zex_batch_num,:zcoash_id)");
+                                ex_time,ex_date_publish,
+                                ex_type,ex_batch_num,coash_id)
+                                VALUES (:zex_title,:zex_total_question,
+                                :zex_time,:zex_date_publish,
+                                :zex_type,:zex_batch_num,:zcoash_id)");
                             $stmt->execute([
                                 'zex_title' => $ex_title,
                                 'zex_total_question' => $ex_total_question,
@@ -76,11 +79,11 @@
                 <?php
                             }
                         }
-                    }
+                 
                 }
                 ?>
                 <div class="myform">
-                    <form class="form-group insert ajax_form" action="" method="POST" autocomplete="off" enctype="multipart/form-data">
+                    <form class="form-group insert" id="insert_new" action="" method="POST" autocomplete="off" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="box2">
@@ -113,8 +116,31 @@
                                     </select>
                                 </div>
 
+                                <div class="box2">
+                                    <label id="name_en"> اختر الدفعه <span> * </span></label>
+                                    <select required class="form-control" name="ex_batch_num">
+                                        <option> -- اختر الدفعه -- </option>
+                                        <?php
+                                        if (isset($_SESSION['coash_id'])) {
+                                            $stmt = $connect->prepare("SELECT * FROM batches WHERE batch_coach=? AND batch_status !='تم التأهيل بنجاح'");
+                                            $stmt->execute(array($_SESSION['coash_id']));
+                                        } else {
+                                            $stmt = $connect->prepare("SELECT * FROM batches WHERE batch_status !='تم التأهيل بنجاح'");
+                                            $stmt->execute();
+                                        }
+                                        $allcoa = $stmt->fetchAll();
+                                        foreach ($allcoa as $coa) {
+                                        ?>
+                                            <option <?php if ($type['ex_batch_num'] == $coa['batch_id']) echo "selected"; ?> value="<?php echo $coa['batch_id'] ?>"><?php echo $coa['batch_name']; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                        <option> </option>
+                                    </select>
+                                </div>
+
                                 <div class="box submit_box">
-                                    <input class="btn btn-outline-primary btn-sm" name="add_car" type="submit" value=" اضافه اختبار جديد ">
+                                    <input class="btn btn-outline-primary btn-sm" name="add_car" type="submit" id="submit_button" value=" اضافه اختبار جديد ">
                                 </div>
                             </div>
                         </div>
@@ -128,3 +154,18 @@
 
     </div>
 </div>
+
+
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var form = document.getElementById('insert_new');
+
+        form.addEventListener('submit', function() {
+            var submitButton = document.getElementById('submit_button');
+            submitButton.setAttribute('disabled', 'disabled');
+        });
+    });
+</script>

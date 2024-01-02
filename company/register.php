@@ -46,6 +46,9 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                     if (strlen($com_username) > 16) {
                         $formerror[] = 'اسم المستخدم يجب ان يكون اقل من 16 حرف';
                     }
+                    if (!preg_match('/^[a-zA-Z]+$/', $com_username)) {
+                        $formerror[] = ' يجب ان تكون الحروف المستخدمة فى اسم المتخدم حروف انجليزية فقط ';
+                    }
                     if (empty($com_name)) {
                         $formerror[] = " يجب اضافة اسم الشركه  ";
                     }
@@ -65,6 +68,10 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                     }
                     if (strlen($password) < 8) {
                         $formerror[] = "كلمة المرور يجب أن تكون أكثر من 8 أحرف وأرقام";
+                    }
+                    // يسمح بالأحرف الإنجليزية (كبيرة وصغيرة) والأرقام
+                    if (!preg_match('/^[a-zA-Z0-9]+$/', $password)) {
+                        $formerror[] = 'كلمة المرور يجب أن تحتوي على الأحرف الإنجليزية والأرقام فقط.';
                     }
                     if ($password !== $confirm_password) {
                         $formerror[] = 'تاكيد كلمة المرور غير متطابق ';
@@ -230,9 +237,9 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                                 <div class="row row-10">
                                     <div class="col-lg-6">
                                         <div class="box">
-                                            <input minlength="5" maxlength="16" required oninvalid="setCustomValidityArabic(this,'من فضلك ادخل اسم المستخدم')" oninput="resetCustomValidity(this)" class="form-input" id="com_username" type="text" placeholder="   اسم المستخدم  (مطابق لاسم الشركه)  *   " name="com_username" value="<?php if (isset($_REQUEST['com_username'])) {
-                                                                                                                                                                                                                                                                                                                                            echo $_REQUEST['com_username'];
-                                                                                                                                                                                                                                                                                                                                        } ?>">
+                                            <input pattern="[a-zA-Z]+" minlength="5" maxlength="16" required oninvalid="setCustomValidityArabic(this,'يجب ان تكون الحروف المستخدمة فى اسم المتخدم حروف انجليزية فقط')" oninput="resetCustomValidity(this)" class="form-input" id="com_username" type="text" placeholder="   اسم المستخدم  (مطابق لاسم الشركه)  *   " name="com_username" value="<?php if (isset($_REQUEST['com_username'])) {
+                                                                                                                                                                                                                                                                                                                                                                                                    echo $_REQUEST['com_username'];
+                                                                                                                                                                                                                                                                                                                                                                                                } ?>">
                                         </div>
                                         <div class="box">
                                             <input required oninvalid="setCustomValidityArabic(this,'من فضلك ادخل البريد الألكتروني')" oninput="resetCustomValidity(this)" autocomplete="off" class="form-control" id="contact-email" placeholder="البريد الالكتروني * " type="email" name="com_email" value="<?php if (isset($_REQUEST['com_email'])) {
@@ -246,9 +253,9 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                                                                                                                                                                                                                                                                                                             } ?>">
                                         </div>
                                         <div class="box">
-                                            <input required oninvalid="setCustomValidityArabic(this,'أدخل كلمة المرور')" oninput="resetCustomValidity(this)" class="form-input" id="password" type="password" placeholder="كلمة المرور * " name="password" value="<?php if (isset($_REQUEST['password'])) {
-                                                                                                                                                                                                                                                                        echo $_REQUEST['password'];
-                                                                                                                                                                                                                                                                    } ?>">
+                                            <input required pattern="[a-zA-Z0-9]+" oninvalid="setCustomValidityArabic(this,' كلمه المرور يحب الا تحتوي علي احرف عربيه ')" oninput="resetCustomValidity(this)" class="form-input" id="password" type="password" placeholder="كلمة المرور * " name="password" value="<?php if (isset($_REQUEST['password'])) {
+                                                                                                                                                                                                                                                                                                                        echo $_REQUEST['password'];
+                                                                                                                                                                                                                                                                                                                    } ?>">
                                         </div>
                                         <div class="box">
                                             <input required oninvalid="setCustomValidityArabic(this,'اكد كلمة المرور')" oninput="resetCustomValidity(this)" class="form-input" id="confirm_password" type="password" placeholder=" تاكيد كلمة المرور * " name="confirm_password" value="<?php if (isset($_REQUEST['confirm_password'])) {

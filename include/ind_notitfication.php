@@ -43,25 +43,39 @@ $ind_data = $stmt->fetch();
 $batch_id = $ind_data['ind_batch'];
 
 // check if has exam in this day
-$date_now = date("Y-m-d");
-$stmt = $connect->prepare("SELECT * FROM exam WHERE ex_batch_num=? AND ex_date_publish=?");
-$stmt->execute(array($batch_id, $date_now));
-$allexam = $stmt->fetchAll();
-$exam_data = $stmt->fetch();
-if ($allexam > 0) {
-    $exam_count = 0;
-    foreach ($allexam as $exam) {
-        $exam_type = $exam['ex_type'];
-        // check if it examination or not 
-        $stmt = $connect->prepare("SELECT * FROM question_answer WHERE user_id =? AND exam_id = ?");
-        $stmt->execute(array($_SESSION['ind_id'], $exam['ex_id']));
-        $alluserexam = $stmt->fetchAll();
-        $countexam = $stmt->rowCount();
-        if ($countexam > 0) {
-            $exam_count = 0;
-        } else {
-            $exam_count = 1;
-        }
+// $date_now = date("Y-m-d");
+// $stmt = $connect->prepare("SELECT * FROM exam WHERE ex_batch_num=? AND ex_date_publish=?");
+// $stmt->execute(array($batch_id, $date_now));
+// $allexam = $stmt->fetchAll();
+// $exam_data = $stmt->fetch();
+// if ($allexam > 0) {
+//     $exam_count = 0;
+//     foreach ($allexam as $exam) {
+//         $exam_type = $exam['ex_type'];
+//         // check if it examination or not 
+//         $stmt = $connect->prepare("SELECT * FROM question_answer WHERE user_id =? AND exam_id = ?");
+//         $stmt->execute(array($_SESSION['ind_id'], $exam['ex_id']));
+//         $alluserexam = $stmt->fetchAll();
+//         $countexam = $stmt->rowCount();
+//         if ($countexam > 0) {
+//             $exam_count = 0;
+//         } else {
+//             $exam_count = 1;
+//         }
+//     }
+// }
+$stmt = $connect->prepare("SELECT * FROM exam_noti WHERE ind_id = ? AND status = 0 ");
+$stmt->execute(array($_SESSION['ind_id']));
+$allexamnoti = $stmt->fetchAll();
+$countexamnoti = $stmt->rowCount();
+if ($countexamnoti > 0) {
+    $exam_count2 = 1;
+    foreach ($allexamnoti as $examnoti) {
+        $stmt = $connect->prepare("SELECT * FROM exam WHERE ex_id=?");
+        $stmt->execute(array($examnoti['ex_id']));
+        //$allexam = $stmt->fetchAll();
+        $exam_data = $stmt->fetch();
+        $exam_type = $exam_data['ex_type'];
     }
 }
 // تغير حالة المتدرب سواء كان متاهل او افضل المؤهلين او تم التعين 

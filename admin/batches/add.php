@@ -69,7 +69,7 @@
                                     })
                                 </script>
                                 <?php
-                                header('refresh:2000;url=main.php?dir=batches&page=add');
+                                // header('refresh:2000;url=main.php?dir=batches&page=add');
                                 ?>
 
                 <?php }

@@ -12,6 +12,9 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
     if (isset($_GET['ind_id'])) {
         $ind_id = $_GET['ind_id'];
     }
+
+    $stmt = $connect->prepare("UPDATE exam_noti SET status = 1 WHERE ind_id = ?");
+    $stmt->execute(array($_SESSION['ind_id']));
 ?>
     <div class="profile_hero" style="background-image: url(../images/exam.jpeg);">
         <div class="overlay" style="background-color: rgba(0, 0, 0, 0.4);">
@@ -50,12 +53,12 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                         $count = $stmt->rowCount();
                         if ($count > 0) {
                             foreach ($allexam as $exam) {
-
                                 $start_date = $exam['ex_date_publish'];
+                                $exam_question_num = $exam['ex_total_question'];
                                 $stmt = $connect->prepare("SELECT * FROM question WHERE exam_id = ?");
                                 $stmt->execute(array($exam['ex_id']));
                                 $allquestion = $stmt->rowCount();
-                                if ($allquestion > 0) {
+                                if ($allquestion == $exam_question_num) {
                         ?>
                                     <div class="col-lg-4">
                                         <div class="info" style="position: relative;">

@@ -49,6 +49,10 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                             if (strlen($ind_username) > 16) {
                                 $formerror[] = 'اسم المستخدم يجب ان يكون اقل من 16 حرف';
                             }
+                            
+                            if (!preg_match('/^[a-zA-Z]+$/', $ind_username)) {
+                                $formerror[] = ' يجب ان تكون الحروف المستخدمة فى اسم المتخدم حروف انجليزية فقط ';
+                            }
                             if (empty($ind_email)) {
                                 $formerror[] = " يجب إدخال البريد الإلكتروني ";
                             } elseif (!filter_var($ind_email, FILTER_VALIDATE_EMAIL)) {
@@ -60,7 +64,11 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                             if (strlen($ind_password) < 8) {
                                 $formerror[] = " كلمة المرور يجب ان تكون اكثر من 8 احرف وارقام ";
                             }
-                            
+                            // يسمح بالأحرف الإنجليزية (كبيرة وصغيرة) والأرقام
+                            if (!preg_match('/^[a-zA-Z0-9]+$/', $ind_password)) {
+                                $formerror[] = 'كلمة المرور يجب أن تحتوي على الأحرف الإنجليزية والأرقام فقط.';
+                            }
+
                             if ($ind_password !== $confirm_password) {
                                 $formerror[] = 'تاكيد كلمة المرور غير متطابق ';
                             }
@@ -212,9 +220,9 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                                 <h2> حساب فرد جديد </h2>
                                 <div class="col-lg-6">
                                     <div class="box">
-                                        <input minlength="5" maxlength="16" oninvalid="setCustomValidityArabic(this,'من فضلك ادخل اسم المستخدم')" oninput="resetCustomValidity(this)" placeholder="اسم المستخدم * " required class="form-control" id="ind_username" type="text" name="ind_username" value="<?php if (isset($_REQUEST['ind_username'])) {
-                                                                                                                                                                                                                                                                                                                echo $_REQUEST['ind_username'];
-                                                                                                                                                                                                                                                                                                            } ?>">
+                                        <input pattern="[a-zA-Z]+" minlength="5" maxlength="16" oninvalid="setCustomValidityArabic(this,'يجب ان تكون الحروف المستخدمة فى اسم المتخدم حروف انجليزية فقط')" oninput="resetCustomValidity(this)" placeholder="اسم المستخدم * " required class="form-control" id="ind_username" type="text" name="ind_username" value="<?php if (isset($_REQUEST['ind_username'])) {
+                                                                                                                                                                                                                                                                                                                                                                        echo $_REQUEST['ind_username'];
+                                                                                                                                                                                                                                                                                                                                                                    } ?>">
                                         <small class="ind_username text-danger"> </small>
                                     </div>
                                     <div class="box">
@@ -225,9 +233,9 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                                         <small class="ind_email text-danger"> </small>
                                     </div>
                                     <div class="box">
-                                        <input oninvalid="setCustomValidityArabic(this,'أدخل كلمة المرور')" oninput="resetCustomValidity(this)" placeholder="كلمة المرور * " required class="form-control" id="ind_password" type="password" name="ind_password" value="<?php if (isset($_REQUEST['ind_password'])) {
-                                                                                                                                                                                                                                                                            echo $_REQUEST['ind_password'];
-                                                                                                                                                                                                                                                                        } ?>">
+                                        <input pattern="[a-zA-Z0-9]+" oninvalid="setCustomValidityArabic(this,' كلمه المرور يحب الا تحتوي علي احرف عربيه ')" oninput="resetCustomValidity(this)" placeholder="كلمة المرور * " required class="form-control" id="ind_password" type="password" name="ind_password" value="<?php if (isset($_REQUEST['ind_password'])) {
+                                                                                                                                                                                                                                                                                                                                echo $_REQUEST['ind_password'];
+                                                                                                                                                                                                                                                                                                                            } ?>">
                                         <small class="ind_password text-danger"> </small>
                                     </div>
                                     <div class="box">
@@ -237,7 +245,7 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                                         <small class="ind_password text-danger"> </small>
                                     </div>
                                     <div class="box">
-                                        <?php  $tenYearsAgo = date('Y-m-d', strtotime('-15 years')); ?>
+                                        <?php $tenYearsAgo = date('Y-m-d', strtotime('-15 years')); ?>
                                         <input required placeholder="تاريخ الميلاد *" class="form-control" id="ind_birthdate" type="date" name="ind_birthdate" min="1900-01-01" max="<?php echo $tenYearsAgo; ?>" value="<?php if (isset($_REQUEST['ind_birthdate'])) {
                                                                                                                                                                                                                                 echo $_REQUEST['ind_birthdate'];
                                                                                                                                                                                                                             } ?>" oninvalid="setCustomValidityArabic(this,'ادخل تاريخ الميلاد')" oninput="resetCustomValidity(this)">

@@ -62,7 +62,7 @@ if (isset($_SESSION['admin_session'])) {
         } elseif ($dir == 'services_section' && $page == 'report') {
             include 'services_section/report.php';
         }
-        // START Coashes Section
+        // START Coashes Sectionfff
         if ($dir == 'coashes' && $page == 'add') {
             include 'coashes/add.php';
         } elseif ($dir == 'coashes' && $page == 'edit') {

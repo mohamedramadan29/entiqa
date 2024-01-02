@@ -42,10 +42,13 @@
             $stmt = $connect->prepare("SELECT * FROM exam WHERE ex_id=?");
             $stmt->execute(array($exam_id));
             $exam_data = $stmt->fetch();
+            $ex_batch_num = $exam_data['ex_batch_num'];
             $question_number_in_exam = $exam_data['ex_total_question'];
             if ($question_number >= $question_number_in_exam) {
                 $formerror[] = 'لا يمكن اضافة عدد اسئلة اخري لهذا الأختبار ';
             }
+
+
             if (empty($formerror)) {
                 $stmt = $connect->prepare("INSERT INTO question (exam_id,ques_ques)
                 VALUES (:zexam_id,:zques_ques)");
@@ -72,15 +75,58 @@
                         ));
                     }
                     $_SESSION['success_message'] = " تمت الأضافة بنجاح  ";
+
+
+
+                    // check if the number question equal the numbers in exam question 
+                    $stmt = $connect->prepare("SELECT * FROM question WHERE exam_id = ?");
+                    $stmt->execute(array($exam_id));
+                    $question_number = $stmt->rowCount();
+
+
+                    if ($question_number == $question_number_in_exam) {
+
+                        echo "Gooood";
+
+                        // send notification to traineer
+                        $stmt = $connect->prepare("SELECT * FROM ind_register WHERE ind_batch=?");
+                        $stmt->execute(array($ex_batch_num));
+                        $allind = $stmt->fetchAll();
+                        $countallind = $stmt->rowCount();
+                        if ($countallind > 0) {
+                            echo "Neww Goood";
+                        } else {
+                            echo "noot";
+                        }
+                        foreach ($allind as $inddata) {
+                            // insert new exam noti in exam notification 
+                            $stmt = $connect->prepare("INSERT INTO exam_noti (ex_id,ind_id) VALUES(:zex_id,:zind_id)");
+                            $stmt->execute(array(
+                                "zex_id" => $exam_id,
+                                'zind_id' => $inddata['ind_id'],
+                            ));
+
+                            // send mails
+
+                            $to_email = $inddata['ind_email'];
+                            $subject = "   اختبار جديد لك علي منصة انتقاء   ";
+                            $body = " اهلا بك  " . $inddata['ind_username'] . " لديك اختبار جديد علي منصة انتقاء  ";
+                            $body .= " في تاريخ  " . $ex_date_publish;
+                            $headers = "From: test@entiqa.online";
+                            mail($to_email, $subject, $body, $headers);
+                        }
+                    }
+
                     header('LOCATION:main.php?dir=question&page=report&ex_id=' . $exam_id);
     ?>
-
                  <div class="alert-success ">
                      تم اضافة سوال جديد بنجاح
                      <?php
-                        header('LOCATION:main.php?dir=question&page=report&ex_id=' . $exam_id);
+                        // header('LOCATION:main.php?dir=question&page=report&ex_id=' . $exam_id);
                         ?>
                  </div>
+
+
              <?php
                 }
             } else {

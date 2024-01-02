@@ -14,7 +14,6 @@ if (isset($_POST['add_car'])) {
     $formerror = [];
     $ex_id = sanitizeInput($_POST['ex_id']);
     $ex_title = sanitizeInput($_POST['ex_title']);
-
     $ex_total_question = sanitizeInput($_POST['ex_total_question']);
     $ex_time = sanitizeInput($_POST["ex_time"]);
     $ex_date_publish = sanitizeInput($_POST["ex_date_publish"]);
@@ -35,28 +34,27 @@ if (isset($_POST['add_car'])) {
     if (!preg_match("/^[\p{Arabic}\p{Latin}\s]+$/u", $ex_title)) {
         $formerror[] = ' من فضلك ادخل العنوان بالشكل الصحيح ';
     }
+
+    if (isset($_SESSION['coash_id'])) {
+        $coash_id = $_SESSION['coash_id'];
+    } else {
+        $stmt = $connect->prepare("SELECT * FROM batches WHERE batch_id = ?");
+        $stmt->execute(array($ex_batch_num));
+        $batch_data = $stmt->fetch();
+        $coash_id = $batch_data['batch_coach'];
+    }
     if (empty($formerror)) {
         $stmt = $connect->prepare("UPDATE exam SET ex_title=?,ex_total_question=?,
         ex_time=?,ex_date_publish=?,
-        ex_type=?,ex_batch_num=? WHERE ex_id =?");
+        ex_type=?,ex_batch_num=?,coash_id=? WHERE ex_id =?");
         $stmt->execute([
             $ex_title, $ex_total_question,
             $ex_time, $ex_date_publish,
-            $ex_type, $ex_batch_num, $ex_id
+            $ex_type, $ex_batch_num, $coash_id, $ex_id
         ]);
         if ($stmt) { ?>
             <?php
-            $stmt = $connect->prepare("SELECT * FROM ind_register WHERE ind_batch=?");
-            $stmt->execute(array($ex_batch_num));
-            $allind = $stmt->fetchAll();
-            foreach ($allind as $inddata) {
-                $to_email = $inddata['ind_email'];
-                $subject = "   اختبار جديد لك علي منصة انتقاء   ";
-                $body = " اهلا بك  " . $inddata['ind_username'] . " لديك اختبار جديد علي منصة انتقاء  ";
-                $body .= " في تاريخ  " . $ex_date_publish;
-                $headers = "From: info@entiqa.online";
-                mail($to_email, $subject, $body, $headers);
-            }
+
             // header('refresh:2;url=main.php?dir=exam&page=edit&exam_id=' . $exam_id);
             header('refresh:2000;url=main.php?dir=exam&page=report');
 

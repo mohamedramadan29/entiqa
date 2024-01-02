@@ -117,12 +117,12 @@
                                                         if (
                                                             $interview_noti_count == 0 &&
                                                             $end_contract_noti_count == 0 && $compelete_contract_noti_count == 0 &&
-                                                            $exam_count == 0 && $batch_noti == 0 && $ind_status_count == 0 && $congrate_status_count == 0
+                                                            $exam_count2 == 0 && $batch_noti == 0 && $ind_status_count == 0 && $congrate_status_count == 0
                                                         ) {
                                                             $new_count_notification = "";
                                                         } else {
                                                             $new_count_notification = $interview_noti_count + $end_contract_noti_count +
-                                                                $compelete_contract_noti_count + $exam_count + $batch_noti + $ind_status_count + $congrate_status_count;
+                                                                $compelete_contract_noti_count + $exam_count2 + $batch_noti + $ind_status_count + $congrate_status_count;
                                                         }
                                                         echo $new_count_notification ?>
                                                     </span>
@@ -169,7 +169,8 @@
                                                     <?php
                                                     }
 
-                                                    if ($exam_count > 0) {
+
+                                                    if ($exam_count2 > 0) {
                                                     ?>
                                                         <li> <a class="dropdown-item" href="exam"> لديك اختبار جديد اليوم علي المنصة [<?php echo $exam_type; ?>]
                                                             </a> </li>
