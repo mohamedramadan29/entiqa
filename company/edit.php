@@ -53,6 +53,7 @@ if (isset($_SESSION['com_id'])) {
             if (empty($com_num)) {
                 $formerror[] = "    فضلك ادخل  رقم السجل التجاري     ";
             }
+           
             if (empty($com_email)) {
                 $formerror[] = " يجب اضافة البريد الالكتروني  ";
             } elseif (!filter_var($com_email, FILTER_VALIDATE_EMAIL)) {
