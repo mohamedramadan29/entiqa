@@ -54,3 +54,16 @@ function formatTimeDifference($dateTime)
         return "منذ $minutes $minutesText";
     }
 }
+
+
+if(isset($_SESSION['com_id'])){
+    $com_id = $_SESSION['com_id'];
+    $stmt = $connect->prepare("SELECT * FROM company_register WHERE com_id = ? LIMIT 1");
+    $stmt->execute(array($com_id));
+    $count = $stmt->rowCount();
+    if($count > 0){
+
+    }else{
+        header("Location:logout");
+    }
+}

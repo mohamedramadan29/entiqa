@@ -57,7 +57,7 @@ include 'init.php'; ?>
             button: "اغلاق",
           });
         </script>
-        <?php header('refresh:3;url=contact'); ?>
+        <?php header('refresh:1;url=contact'); ?>
         <!-- <div class="alert alert-success"> تم ارسال رسالتك بنجاح ,
           سوف نتواصل معك في اقرب وقت ممكن </div> -->
         <?php

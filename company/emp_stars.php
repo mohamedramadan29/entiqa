@@ -81,10 +81,10 @@ include 'init.php'; ?>
                         $count = $stmt->rowCount();
                         if ($count > 0) {
                         ?>
-                            <form action="stars" method="get">
+                            <form action="emp_stars" method="get">
                                 <div class="row">
                                     <div class="col-5">
-                                        <select class="form-control select2" name="ind_gender">
+                                        <select required class="form-control select2" name="ind_gender">
                                             <option value=""> -- اختر الجنس-- </option>
                                             <option <?php if (isset($_GET['ind_gender']) && $_GET['ind_gender'] == 'الكل') echo 'selected'; ?> value="الكل">الكل</option>
                                             <option <?php if (isset($_GET['ind_gender']) && $_GET['ind_gender'] == 'ذكر') echo 'selected'; ?> value="ذكر">ذكر</option>
@@ -92,7 +92,7 @@ include 'init.php'; ?>
                                         </select>
                                     </div>
                                     <div class="col-5">
-                                        <select id="ind_address" class="form-control select2" name="ind_address">
+                                        <select required id="ind_address" class="form-control select2" name="ind_address">
                                             <option value=""> -- منطقة السكن الحالي -- </option>
                                             <option <?php if (isset($_GET['ind_address']) && $_GET['ind_address'] == 'الكل') echo 'selected'; ?> value="الكل">الكل</option>
                                             <option <?php if (isset($_GET['ind_address']) && $_GET['ind_address'] == 'الرياض') echo 'selected'; ?> value="الرياض">الرياض</option>

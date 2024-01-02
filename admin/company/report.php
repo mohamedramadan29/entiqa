@@ -102,6 +102,7 @@
                         <th> التفاوضات المكتملة </th>
                         <th> التفاوضات لم تكتمل </th>
                         <th> الرصيد </th>
+                        <th> الحاله </th>
                         <th> </th>
                     </tr>
                 </thead>
@@ -145,6 +146,17 @@
                                 ?>
                             </td>
                             <td> <?php echo $type['com_balance']; ?> </td>
+                            <td> <?php
+                                    if ($type['com_status'] == 1) {
+                                    ?>
+                                    <span class="badge badge-success"> نشطه </span>
+                                <?php
+                                    } else {
+                                ?>
+                                    <span class="badge badge-danger"> غير نشطه </span>
+                                <?php
+                                    } ?>
+                            </td>
                             <td>
                                 <!-- <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#viewrecord<?php echo $type['com_id']; ?>">
                                     <i class="fa fa-eye"></i>
@@ -154,11 +166,13 @@
                                 </button>
                                 <?php
                                 if (isset($_SESSION['admin_session'])) {
+                                    if ($type['com_status'] != 1) {
                                 ?>
-                                    <a class="confirm btn btn-danger btn-sm" href="main.php?dir=company&page=delete&com_id=<?php echo $type['com_id']; ?> ">
-                                        <i class="fa fa-trash"></i>
-                                    </a>
+                                        <a class="confirm btn btn-danger btn-sm" href="main.php?dir=company&page=delete&com_id=<?php echo $type['com_id']; ?> ">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
                                 <?php
+                                    }
                                 }
                                 ?>
                                 <a class="btn btn-info btn-sm" href="main.php?dir=com_chat&page=chat&com_username=<?php echo $type['com_username']; ?> ">
