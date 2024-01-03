@@ -12,7 +12,7 @@ if (isset($_SESSION['com_id'])) {
     $company_data = $stmt->fetch();
     $active_status = $company_data['com_status'];
     $com_balance = $company_data['com_balance'];
-    if($active_status == 0 || $com_balance == 0){
+    if ($active_status == 0 || $com_balance == 0) {
         header('Location:index');
         exit();
     }
@@ -142,6 +142,18 @@ company_id=? AND ind_id=?");
                                                 <tr>
                                                     <th> امكانية التنقل </th>
                                                     <th> <?php echo $ind_data['ind_transfer']; ?> </th>
+                                                </tr>
+                                                <tr>
+                                                    <th> مهارة اللغه الأنجليزية </th>
+                                                    <th>
+                                                        <?php echo $ind_data['ind_english']; ?>
+                                                    </th>
+                                                </tr>
+                                                <tr>
+                                                    <th> الجنس </th>
+                                                    <th>
+                                                        <?php echo $ind_data['ind_gender']; ?>
+                                                    </th>
                                                 </tr>
                                             </table>
                                         </div>

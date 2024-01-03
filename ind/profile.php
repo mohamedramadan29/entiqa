@@ -201,12 +201,7 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                                                 ?>
                                             </th>
                                         </tr>
-                                        <tr>
-                                            <th> رقم الهاتف </th>
-                                            <th style="color:rgba(0, 0, 0, 0.5);">
-                                                <?php echo $ind_data['ind_phone']; ?>
-                                            </th>
-                                        </tr>
+                                       
                                         <tr>
                                             <th> تاريخ الميلاد </th>
                                             <th style="color:rgba(0, 0, 0, 0.5);">

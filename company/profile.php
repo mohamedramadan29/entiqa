@@ -4,8 +4,14 @@ session_start();
 $pagetitle = ' حساب الشركة   ';
 $com_navbar = 'com';
 if (isset($_SESSION['com_id'])) {
+
+
     $price_amount = 100;
-    include 'init.php'; ?>
+    include 'init.php';
+    $stmt = $connect->prepare("UPDATE company_status_notification SET status_show = 1 WHERE com_id = ? AND status_show = 0");
+    $stmt->execute(array($_SESSION['com_id']));
+
+?>
     <div class="profile_hero">
         <div class="overlay">
             <div class="container">
@@ -134,7 +140,7 @@ if (isset($_SESSION['com_id'])) {
                                     <input type="hidden" name="payment_mode" value="COD">
                                 </form>
                                 <div class="send_money">
-                                    <a href="payment_terms" class='btn btn-primary' style='background: var(--main-color);border-color: var(--main-color);'> الشروط وشحن  الرصيد <i class='fa fa-paypal'></i></a>
+                                    <a href="payment_terms" class='btn btn-primary' style='background: var(--main-color);border-color: var(--main-color);'> الشروط وشحن الرصيد <i class='fa fa-paypal'></i></a>
                                 </div>
                             <?php
                             } else { ?>
@@ -250,7 +256,7 @@ if (isset($_SESSION['com_id'])) {
                                             <tr>
                                                 <th> أوقات ساعات العمل</th>
                                                 <th>
-                                                    <?php echo $com_data['com_work_h']; ?>  
+                                                    <?php echo $com_data['com_work_h']; ?>
                                                 </th>
                                             </tr>
                                             <tr>

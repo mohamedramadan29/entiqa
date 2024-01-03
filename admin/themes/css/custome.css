@@ -2455,3 +2455,7 @@
  .custom-file-label::after {
    display: none;
  }
+
+ .swal2-container .select2-container{
+  display: none !important;
+ }
