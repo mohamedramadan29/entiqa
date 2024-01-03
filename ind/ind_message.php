@@ -69,14 +69,14 @@ if (isset($_SESSION['ind_id'])) {
                                     <?php
                                     }
                                     ?>
-                                    <textarea oninvalid="setCustomValidityArabic(this,'من فضلك ادخل رسالتك ')" oninput="resetCustomValidity(this)" required name="message_data" id="msg"></textarea>
+                                    <textarea name="message_data" id="msg"></textarea>
 
                                     <input type="file" name="message_attachment[]" multiple class="form-control" id="customFile" onchange="checkFileSize()">
                                     <div class="send_message_button">
                                         <?php
                                         if ($other_person == 'admin' || $other_person == 'coash') {
                                         ?>
-                                            <button class="send_attachment btn btn-primary"> ارسال مرفقات <i class="fa fa-file"></i> </button>
+                                            <p class="send_attachment btn btn-primary"> رفع المرفقات  <i class="fa fa-file"></i> </p>
                                         <?php
                                         }
                                         ?>

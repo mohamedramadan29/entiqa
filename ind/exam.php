@@ -47,8 +47,8 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                         <h2>جدول الاختبارات </h2>
                         <?php
                         $date_now = date("Y-m-d");
-                        $stmt = $connect->prepare("SELECT * FROM exam WHERE ex_batch_num=?");
-                        $stmt->execute(array($batch_id));
+                        $stmt = $connect->prepare("SELECT * FROM exam WHERE ex_batch_num=? AND ex_date_publish <= ?");
+                        $stmt->execute(array($batch_id, $date_now));
                         $allexam = $stmt->fetchAll();
                         $count = $stmt->rowCount();
                         if ($count > 0) {
@@ -59,21 +59,16 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                                 $stmt->execute(array($exam['ex_id']));
                                 $allquestion = $stmt->rowCount();
                                 if ($allquestion == $exam_question_num) {
-
                                     // check if this exam opened or not 
-
                                     $stmt = $connect->prepare("SELECT * FROM ind_exams_login WHERE ind_id = ? AND exam_id = ?");
                                     $stmt->execute(array($_SESSION['ind_id'], $exam['ex_id']));
                                     $countregister = $stmt->rowCount();
-
-
                         ?>
                                     <div class="col-lg-4">
                                         <div class="info" style="position: relative;">
                                             <div class="image">
                                                 <img src="../images/exam.jpeg" alt="" style="max-width:100%;border-radius: 10px 10px 0 0;position: relative;">
                                                 <?php
-
                                                 $stmt = $connect->prepare("SELECT * FROM question_answer WHERE user_id =? AND exam_id = ?");
                                                 $stmt->execute(array($_SESSION['ind_id'], $exam['ex_id']));
                                                 $alluserexam = $stmt->fetchAll();

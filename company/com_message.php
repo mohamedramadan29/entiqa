@@ -40,13 +40,13 @@ if (isset($_SESSION['com_id'])) {
                             <form action="javascript:void(0)" class="form-group insert ajax_form" id="ajax-form" method="POST" autocomplete="on" enctype="multipart/form-data">
                                 <div class="message_text">
                                     <input type="hidden" id="other_person" name="to_person" value="<?php echo $other_person ?>">
-                                    <textarea oninvalid="setCustomValidityArabic(this,'من فضلك ادخل رسالتك ')" oninput="resetCustomValidity(this)" required name="message_data" id="msg"></textarea>
-                                    <input type="file" name="message_attachment[]" multiple class="form-control" accept="application/pdf" id="customFile" onchange="checkFileSize()">
+                                    <textarea name="message_data" id="msg"></textarea>
+                                    <input type="file" name="message_attachment[]" multiple class="form-control" accept="*" id="customFile" onchange="checkFileSize()">
                                     <div class="send_message_button">
                                         <?php
                                         if ($other_person == 'admin' || $other_person == 'coash') {
                                         ?>
-                                            <button class="send_attachment btn btn-primary"> ارسال مرفقات <i class="fa fa-file"></i> </button>
+                                            <p class="send_attachment btn btn-primary"> ارسال مرفقات <i class="fa fa-file"></i> </p>
                                         <?php
                                         }
                                         ?>

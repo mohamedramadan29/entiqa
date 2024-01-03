@@ -250,7 +250,7 @@ if (isset($_SESSION['com_id'])) {
                                             <tr>
                                                 <th> أوقات ساعات العمل</th>
                                                 <th>
-                                                    <?php echo $com_data['com_work_h']; ?> ساعة
+                                                    <?php echo $com_data['com_work_h']; ?>  
                                                 </th>
                                             </tr>
                                             <tr>

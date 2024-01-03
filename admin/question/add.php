@@ -76,20 +76,17 @@
                     }
                     $_SESSION['success_message'] = " تمت الأضافة بنجاح  ";
 
-
-
                     // check if the number question equal the numbers in exam question 
                     $stmt = $connect->prepare("SELECT * FROM question WHERE exam_id = ?");
                     $stmt->execute(array($exam_id));
                     $question_number = $stmt->rowCount();
-
 
                     if ($question_number == $question_number_in_exam) {
 
                         echo "Gooood";
 
                         // send notification to traineer
-                        $stmt = $connect->prepare("SELECT * FROM ind_register WHERE ind_batch=?");
+                        $stmt = $connect->prepare("SELECT * FROM ind_register WHERE ind_batch=? AND NOT (ind_status != 1 OR ind_status !=2 OR ind_status != 3)");
                         $stmt->execute(array($ex_batch_num));
                         $allind = $stmt->fetchAll();
                         $countallind = $stmt->rowCount();

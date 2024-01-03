@@ -3,7 +3,7 @@
         <div class="bread">
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    
+
                     <li class="breadcrumb-item active" aria-current="page"> مشاهدة رسائل تواصل معنا </li>
                 </ol>
             </nav>
@@ -22,17 +22,17 @@
             <table id="tableone" class="table table-light table-striped table-hover table-bordered">
                 <thead>
                     <tr>
-                        <th> id </th>
+                        <th> # </th>
                         <th> الاسم الاول </th>
                         <th>الاسم الاخير</th>
                         <th>البريد الالكروني</th>
                         <th> رقم الهاتف </th>
-                        <th> الاجراءات  </th>
+                        <th> الاجراءات </th>
                     </tr>
                 </thead>
                 <tbody> <?php
                         $i = 1;
-                        $stmt = $connect->prepare('SELECT * FROM contact');
+                        $stmt = $connect->prepare('SELECT * FROM contact ORDER BY con_id DESC');
                         $stmt->execute();
                         $alltype = $stmt->fetchAll();
                         foreach ($alltype as $type) { ?> <tr>

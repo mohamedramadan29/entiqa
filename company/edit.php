@@ -212,7 +212,7 @@ if (isset($_SESSION['com_id'])) {
                                                     <input required type="text" class="form-control" name="com_braches" value="<?php echo $com_data['com_braches']; ?>">
                                                 </div>
                                                 <div class="box">
-                                                    <label for=""> عدد ساعات العمل <span> * </span></label>
+                                                    <label for=""> أوقات ساعات العمل <span> * </span></label>
                                                     <input required minlength="5" min="1" type="text" class="form-control" name="com_work_h" value="<?php echo $com_data['com_work_h']; ?>">
                                                 </div>
                                             </div>
