@@ -6,7 +6,7 @@ if (isset($_SESSION['ind_id'])) {
     $ind_navabar = 'ind';
 }
 if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
-    include 'init.php';
+    include 'init_prevent.php';
     $ind_id = $_SESSION['ind_id'];
     if (isset($_GET['ind_id'])) {
         $ind_id = $_GET['ind_id'];
@@ -15,6 +15,18 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
     <?php
     if (isset($_GET['exam_id'])) {
         $exam_id = $_GET['exam_id'];
+        $stmt = $connect->prepare("SELECT * FROM ind_exams_login WHERE ind_id = ? AND exam_id = ?");
+        $stmt->execute(array($ind_id, $exam_id));
+        $countregister = $stmt->rowCount();
+        if ($countregister > 0) {
+            header("Location:exam");
+        } else {
+            $stmt = $connect->prepare("INSERT INTO ind_exams_login (ind_id,exam_id) VALUES (:zind_id,:zexam_id)");
+            $stmt->execute(array(
+                "zind_id" => $ind_id,
+                "zexam_id" => $exam_id,
+            ));
+        }
     }
     /************** GET EXAM INFORMATION ***********************/
     $stmt = $connect->prepare("SELECT * FROM exam WHERE  ex_id = ?");
@@ -30,13 +42,14 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                     <br>
                     <br>
                     <br>
+
                     <h2 style="color: #000;"> بداية الاختبار </h2>
                     <div class="examination_timer">
                         <?php
                         $time = 60 * $exam_time;
                         ?>
                         <div id="CountDownTimer" data-timer="<?php echo $time; ?>" style="width: 500px; height: 250px;"></div>
-                        <p class="notes"> اذا لم يتم الانتهاء من الاختبار في الوقت المحدد لم يحتسب لك نتيجة الاختبار </p>
+                        <!-- <p class="notes"> اذا لم يتم الانتهاء من الاختبار في الوقت المحدد لم يحتسب لك نتيجة الاختبار </p> -->
                     </div>
                 </div>
             </div>
@@ -54,6 +67,8 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
     ?>
     <div class="exam_section">
         <div class="container">
+
+            <?php echo $_SESSION['exam_session']; ?>
             <div class="data">
                 <div class="row">
                     <div class="col-lg-12">
@@ -201,7 +216,6 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
 
     // ابدأ العد التنازلي
     startTimer();
- 
 </script>
 <script>
     window.onload = function() {
@@ -211,4 +225,18 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
             // يمكنك هنا تنفيذ أي شيء تريده عند إعادة تحميل الصفحة
         }
     };
+</script>
+
+
+<script>
+    if (history.pushState) {
+        //Chrome and modern browsers
+        history.pushState(null, document.title, location.href);
+        window.addEventListener('popstate', function(event) {
+            history.pushState(null, document.title, location.href);
+        });
+    } else {
+        //IE
+        history.forward();
+    }
 </script>

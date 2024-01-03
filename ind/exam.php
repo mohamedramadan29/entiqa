@@ -59,12 +59,21 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                                 $stmt->execute(array($exam['ex_id']));
                                 $allquestion = $stmt->rowCount();
                                 if ($allquestion == $exam_question_num) {
+
+                                    // check if this exam opened or not 
+
+                                    $stmt = $connect->prepare("SELECT * FROM ind_exams_login WHERE ind_id = ? AND exam_id = ?");
+                                    $stmt->execute(array($_SESSION['ind_id'], $exam['ex_id']));
+                                    $countregister = $stmt->rowCount();
+
+
                         ?>
                                     <div class="col-lg-4">
                                         <div class="info" style="position: relative;">
                                             <div class="image">
                                                 <img src="../images/exam.jpeg" alt="" style="max-width:100%;border-radius: 10px 10px 0 0;position: relative;">
                                                 <?php
+
                                                 $stmt = $connect->prepare("SELECT * FROM question_answer WHERE user_id =? AND exam_id = ?");
                                                 $stmt->execute(array($_SESSION['ind_id'], $exam['ex_id']));
                                                 $alluserexam = $stmt->fetchAll();
@@ -72,7 +81,11 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                                                 if ($countexam > 0) { ?>
                                                     <button class="exam_done btn" style="color:#fff;background-color: #F16583;position:absolute;top: 30%;left: 36%;"> تم الاختبار بنجاح </button>
                                                 <?php
+                                                } elseif ($countregister > 0) { ?>
+                                                    <button class="exam_done btn" style="color:#fff;background-color: #F16583;position:absolute;top: 30%;left: 36%;"> تم مشاهده الاختبار من قبل </button>
+                                                <?php
                                                 } else {
+
                                                 ?>
                                                     <button class="btn" style="color:#fff;background-color: #F16583;position:absolute;top: 30%;left: 36%;">
                                                         <a style="color: #fff;" href="start_exam.php?exam_id=<?php echo $exam['ex_id'];  ?>"> بدء الاختبار <i class="fa fa-play"></i></a>

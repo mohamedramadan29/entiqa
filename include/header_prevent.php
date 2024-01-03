@@ -26,6 +26,11 @@
   <link href="<?php echo $css; ?>new_custome.css" rel="stylesheet">
   <link href="<?php echo $css; ?>TimeCircles.css" rel="stylesheet">
 
+
+  <script type="text/javascript">
+    window.history.forward();
+  </script>
+
 </head>
 
 <body>
