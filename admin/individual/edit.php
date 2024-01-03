@@ -3,6 +3,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $ind_id = $_POST['ind_id'];
     $ind_batch = $_POST['ind_batch'];
     $ind_status = $_POST['ind_status'];
+    $date_now = date("Y-m-d");
     if (!empty($_FILES['ind_certificate']['name'])) {
         $ind_certificate_name = $_FILES['ind_certificate']['name'];
         $ind_certificate_temp = $_FILES['ind_certificate']['tmp_name'];
@@ -19,8 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user_data = $stmt->fetch();
     $user_batch = $user_data['ind_batch'];
     if ($user_batch != $ind_batch) {
-        $stmt = $connect->prepare("UPDATE ind_register SET ind_batch=?,ind_status=? WHERE ind_id=?");
-        $stmt->execute([$ind_batch, $ind_status, $ind_id]);
+        $stmt = $connect->prepare("UPDATE ind_register SET ind_batch=?,ind_status=?,date_change_status=? WHERE ind_id=?");
+        $stmt->execute([$ind_batch, $ind_status,$date_now, $ind_id]);
         // باقي انقص واحد من الدفعه القديمة 
         $stmt = $connect->prepare("SELECT * FROM batches WHERE batch_id=?");
         $stmt->execute(array($user_batch));
@@ -37,8 +38,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt = $connect->prepare("UPDATE batches SET ind_num=? WHERE batch_id=?");
         $stmt->execute(array($ind_num, $ind_batch));
     } else {
-        $stmt = $connect->prepare("UPDATE ind_register SET ind_status=? WHERE ind_id=?");
-        $stmt->execute([$ind_status, $ind_id]);
+        $stmt = $connect->prepare("UPDATE ind_register SET ind_status=?,date_change_status=? WHERE ind_id=?");
+        $stmt->execute([$ind_status,$date_now, $ind_id]);
     }
 
     if (!empty($_FILES['ind_certificate']['tmp_name'])) {

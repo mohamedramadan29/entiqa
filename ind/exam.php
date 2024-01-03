@@ -13,6 +13,14 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
         $ind_id = $_GET['ind_id'];
     }
 
+    // check if this user is graduate or not 
+
+    $stmt = $connect->prepare("SELECT ind_id,ind_status,date_change_status FROM ind_register WHERE ind_id = ?");
+    $stmt->execute(array($ind_id));
+    $user_data = $stmt->fetch();
+    $user_status = $user_data['ind_status'];
+    $user_status_grad_date = $user_data['date_change_status'];
+
     $stmt = $connect->prepare("UPDATE exam_noti SET status = 1 WHERE ind_id = ?");
     $stmt->execute(array($_SESSION['ind_id']));
 ?>
@@ -47,8 +55,14 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                         <h2>جدول الاختبارات </h2>
                         <?php
                         $date_now = date("Y-m-d");
-                        $stmt = $connect->prepare("SELECT * FROM exam WHERE ex_batch_num=? AND ex_date_publish <= ?");
-                        $stmt->execute(array($batch_id, $date_now));
+                        if ($user_status == null || $user_status == -1 || $user_status == 0) {
+                            $stmt = $connect->prepare("SELECT * FROM exam WHERE ex_batch_num=? AND ex_date_publish <= ?");
+                            $stmt->execute(array($batch_id, $date_now));
+                        } else {
+                            $stmt = $connect->prepare("SELECT * FROM exam WHERE ex_batch_num=? AND ex_date_publish <= ? AND exam_date <= ?");
+                            $stmt->execute(array($batch_id, $date_now, $user_status_grad_date));
+                        }
+
                         $allexam = $stmt->fetchAll();
                         $count = $stmt->rowCount();
                         if ($count > 0) {

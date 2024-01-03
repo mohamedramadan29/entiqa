@@ -10,76 +10,76 @@
         <div class="card">
             <div class="card-body">
                 <?php if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                
 
-                        $ex_title = sanitizeInput($_POST['ex_title']);
-                        $ex_total_question = sanitizeInput($_POST['ex_total_question']);
-                        $ex_time = $_POST["ex_time"];
-                        $ex_date_publish = $_POST["ex_date_publish"];
 
-                        $ex_type = $_POST["ex_type"];
-                        $ex_batch_num =  $_POST['ex_batch_num'];
+                    $ex_title = sanitizeInput($_POST['ex_title']);
+                    $ex_total_question = sanitizeInput($_POST['ex_total_question']);
+                    $ex_time = $_POST["ex_time"];
+                    $ex_date_publish = $_POST["ex_date_publish"];
 
-                        if (isset($_SESSION['coash_id'])) {
-                            $coash_id = $_SESSION['coash_id'];
-                        } else {
-                            $stmt = $connect->prepare("SELECT * FROM batches WHERE batch_id = ?");
-                            $stmt->execute(array($ex_batch_num));
-                            $batch_data = $stmt->fetch();
-                            $coash_id = $batch_data['batch_coach'];
-                        }
-                        /// More Validation To Show Error
-                        $formerror = [];
-                        if (empty($ex_title)) {
-                            $formerror[] = '  من فضلك ادخل عنوان الاختبار  ';
-                        }
-                        if (!preg_match("/^[\p{Arabic}\p{Latin}\s]+$/u", $ex_title)) {
-                            $formerror[] = ' من فضلك ادخل العنوان بالشكل الصحيح ';
-                        }
-                        if (empty($formerror)) {
-                            $stmt = $connect->prepare("INSERT INTO exam (ex_title,ex_total_question,
+                    $ex_type = $_POST["ex_type"];
+                    $ex_batch_num =  $_POST['ex_batch_num'];
+                    $date_now = date("Y-m-d");
+                    if (isset($_SESSION['coash_id'])) {
+                        $coash_id = $_SESSION['coash_id'];
+                    } else {
+                        $stmt = $connect->prepare("SELECT * FROM batches WHERE batch_id = ?");
+                        $stmt->execute(array($ex_batch_num));
+                        $batch_data = $stmt->fetch();
+                        $coash_id = $batch_data['batch_coach'];
+                    }
+                    /// More Validation To Show Error
+                    $formerror = [];
+                    if (empty($ex_title)) {
+                        $formerror[] = '  من فضلك ادخل عنوان الاختبار  ';
+                    }
+                    if (!preg_match("/^[\p{Arabic}\p{Latin}\s]+$/u", $ex_title)) {
+                        $formerror[] = ' من فضلك ادخل العنوان بالشكل الصحيح ';
+                    }
+                    if (empty($formerror)) {
+                        $stmt = $connect->prepare("INSERT INTO exam (ex_title,ex_total_question,
                                 ex_time,ex_date_publish,
-                                ex_type,ex_batch_num,coash_id)
+                                ex_type,ex_batch_num,coash_id,exam_date)
                                 VALUES (:zex_title,:zex_total_question,
                                 :zex_time,:zex_date_publish,
-                                :zex_type,:zex_batch_num,:zcoash_id)");
-                            $stmt->execute([
-                                'zex_title' => $ex_title,
-                                'zex_total_question' => $ex_total_question,
-                                'zex_time' => $ex_time,
-                                'zex_date_publish' => $ex_date_publish,
-                                'zex_type' => $ex_type,
-                                'zex_batch_num' => $ex_batch_num,
-                                'zcoash_id' => $coash_id,
-                            ]);
-                            if ($stmt) {
+                                :zex_type,:zex_batch_num,:zcoash_id,:zexam_date)");
+                        $stmt->execute([
+                            'zex_title' => $ex_title,
+                            'zex_total_question' => $ex_total_question,
+                            'zex_time' => $ex_time,
+                            'zex_date_publish' => $ex_date_publish,
+                            'zex_type' => $ex_type,
+                            'zex_batch_num' => $ex_batch_num,
+                            'zcoash_id' => $coash_id,
+                            "zexam_date" => $date_now
+                        ]);
+                        if ($stmt) {
                 ?>
-                                <?php
-                                ?>
-                                <script src="plugins/jquery/jquery.min.js"></script>
-                                <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
-                                <script>
-                                    $(function() {
-                                        Swal.fire({
-                                            position: 'center',
-                                            icon: 'success',
-                                            title: 'تمت الاضافه بنجاح',
-                                            showConfirmButton: false,
-                                            timer: 2000
-                                        }).then(() => {
-                                            window.location.href = 'main.php?dir=exam&page=report';
-                                        });
-                                    })
-                                </script>
-                            <?php }
-                        } else {
-                            foreach ($formerror as $error) {
+                            <?php
                             ?>
-                                <div class="alert alert-danger"> <?php echo $error; ?> </div>
+                            <script src="plugins/jquery/jquery.min.js"></script>
+                            <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
+                            <script>
+                                $(function() {
+                                    Swal.fire({
+                                        position: 'center',
+                                        icon: 'success',
+                                        title: 'تمت الاضافه بنجاح',
+                                        showConfirmButton: false,
+                                        timer: 2000
+                                    }).then(() => {
+                                        window.location.href = 'main.php?dir=exam&page=report';
+                                    });
+                                })
+                            </script>
+                        <?php }
+                    } else {
+                        foreach ($formerror as $error) {
+                        ?>
+                            <div class="alert alert-danger"> <?php echo $error; ?> </div>
                 <?php
-                            }
                         }
-                 
+                    }
                 }
                 ?>
                 <div class="myform">

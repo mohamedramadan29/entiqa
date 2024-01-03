@@ -86,8 +86,9 @@
                         echo "Gooood";
 
                         // send notification to traineer
-                        $stmt = $connect->prepare("SELECT * FROM ind_register WHERE ind_batch=? AND NOT (ind_status != 1 OR ind_status !=2 OR ind_status != 3)");
+                        $stmt = $connect->prepare("SELECT * FROM ind_register WHERE ind_batch=? AND (ind_status IS NULL OR ind_status = -1 OR ind_status = 0)");
                         $stmt->execute(array($ex_batch_num));
+
                         $allind = $stmt->fetchAll();
                         $countallind = $stmt->rowCount();
                         if ($countallind > 0) {

@@ -3,7 +3,7 @@
         <div class="bread">
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                     
+
                     <li class="breadcrumb-item active" aria-current="page">تعديل نتائج المتدرب </li>
                 </ol>
             </nav>
@@ -18,6 +18,7 @@
         }
         ?>
         <?php
+        $date_now = date("Y-m-d");
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $ind_sub_exam = $_POST["ind_sub_exam"];
             $ind_final_exam = $_POST["ind_final_exam"];
@@ -27,7 +28,7 @@
             $ind_status = $_POST['ind_status'];
             $rating_star = $_POST['rating_star'];
             $stmt = $connect->prepare("UPDATE ind_register SET ind_sub_exam=?,
-    ind_final_exam=?,ind_exer_exam=?,ind_attend=?,ind_degree_percen=?,ind_status=?,rating_star=? WHERE ind_id =?");
+               ind_final_exam=?,ind_exer_exam=?,ind_attend=?,ind_degree_percen=?,ind_status=?,rating_star=? WHERE ind_id =?");
             $stmt->execute([
                 $ind_sub_exam, $ind_final_exam,
                 $ind_exer_exam, $ind_attend,
@@ -35,6 +36,8 @@
             ]);
             if ($stmt) {
                 if ($ind_status == 1) {
+                    $stmt = $connect->prepare("UPDATE ind_register SET date_change_status=? WHERE ind_id =?");
+                    $stmt->execute(array($date_now, $ind_id));
                     $stmt = $connect->prepare("SELECT * FROM ind_congrat WHERE ind_id = ?");
                     $stmt->execute(array($ind_id));
                     $count = $stmt->rowCount();
