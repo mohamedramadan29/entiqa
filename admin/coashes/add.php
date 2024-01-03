@@ -22,12 +22,25 @@
         if (empty($co_name) || empty($co_password) || empty($confirm_password) || empty($co_email) || empty($co_phone) || empty($co_services) || empty($co_exper)) {
             $formerror[] = 'من فضلك ادخل المعلومات كاملة';
         }
+
+        if (!preg_match('/^[a-zA-Z]+$/', $co_name)) {
+            $formerror[] = ' يجب ان تكون الحروف المستخدمة فى  الاسم حروف انجليزية فقط ';
+        }
+
+        // يسمح بالأحرف الإنجليزية (كبيرة وصغيرة) والأرقام
+        if (!preg_match('/^[a-zA-Z0-9]+$/', $co_password)) {
+            $formerror[] = 'كلمة المرور يجب أن تحتوي على الأحرف الإنجليزية والأرقام فقط.';
+        }
+
         if (strlen($co_password) < 8) {
             $formerror[] = 'كلمة المرور يجب ان تكون اكثر من 8 حروف وارقام';
         }
         if ($co_password !== $confirm_password) {
             $formerror[] = 'يجب تاكيد كلمة المرور بشكل صحيح ';
         }
+
+
+
         $stmt = $connect->prepare("SELECT * FROM coshes WHERE co_name=?");
         $stmt->execute(array($co_name));
         $name_count = $stmt->rowCount();
@@ -170,12 +183,12 @@
                                  <div class="box2">
                                      <label id="name"> اسم المستخدم
                                          <span> * </span> </label>
-                                     <input required minlength="5" maxlength="200" class="form-control" type="text" name="co_name">
+                                     <input pattern="[a-zA-Z]+" oninvalid="setCustomValidityArabic(this,'يجب ان تكون الحروف المستخدمة فى اسم المتخدم حروف انجليزية فقط')" oninput="resetCustomValidity(this)" required minlength="5" maxlength="200" class="form-control" type="text" name="co_name">
                                  </div>
                                  <div class="box2">
                                      <label id="name"> كلمة المرور
                                          <span> * </span> </label>
-                                     <input required minlength="8" maxlength="20" class="form-control" type="password" name="co_password">
+                                     <input pattern="[a-zA-Z0-9]+" required oninvalid="setCustomValidityArabic(this,' كلمه المرور يحب الا تحتوي علي احرف عربيه ')" oninput="resetCustomValidity(this)" minlength="8" maxlength="20" class="form-control" type="password" name="co_password">
                                  </div>
                                  <div class="box2">
                                      <label id="name_en"> الهاتف <span> * </span></label>

@@ -80,6 +80,44 @@
         <div class="table-responsive">
 
             <div class="card">
+
+                <?php
+                if (isset($_SESSION['success_message'])) {
+                    $message = $_SESSION['success_message'];
+                    unset($_SESSION['success_message']);
+                ?>
+                    <?php
+                    ?>
+                    <script src="plugins/jquery/jquery.min.js"></script>
+                    <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
+                    <script>
+                        $(function() {
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: '<?php echo $message; ?>',
+                                showConfirmButton: false,
+                                timer: 2000
+                            })
+                        })
+                    </script>
+                    <?php
+                } elseif (isset($_SESSION['error_messages'])) {
+                    $formerror = $_SESSION['error_messages'];
+                    foreach ($formerror as $error) {
+                    ?>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="max-width: 800px; margin:20px">
+                            <?php echo $error; ?>
+                            <button style="font-size: 13px; top:-3px;" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                <?php
+                    }
+                    unset($_SESSION['error_messages']);
+                }
+                ?>
+
+
+
                 <?php
                 if (isset($_SESSION['admin_session'])) {
                 ?>
@@ -165,19 +203,19 @@
                                             </div>
                                             <div class="modal-body">
                                                 <div class="myform">
-                                                    <form class="form-group insert ajax_form" action="main_ajax.php?dir=coashes&page=edit" method="POST" autocomplete="on" enctype="multipart/form-data">
+                                                    <form class="form-group insert ajax_form" action="main.php?dir=coashes&page=edit" method="POST" autocomplete="on" enctype="multipart/form-data">
                                                         <input type="hidden" name="co_id" value="<?php echo $type['co_id'] ?>">
                                                         <div class="row">
                                                             <div class="col-lg-12">
                                                                 <div class="box2">
                                                                     <label id="name"> الاسم
                                                                         <span> * </span> </label>
-                                                                    <input required minlength="5" maxlength="200" class="form-control" type="text" name="co_name" value="<?php echo $type['co_name']; ?>">
+                                                                    <input pattern="[a-zA-Z]+" oninvalid="setCustomValidityArabic(this,'يجب ان تكون الحروف المستخدمة فى اسم المتخدم حروف انجليزية فقط')" oninput="resetCustomValidity(this)" required minlength="5" maxlength="200" class="form-control" type="text" name="co_name" value="<?php echo $type['co_name']; ?>">
                                                                 </div>
                                                                 <div class="box2">
                                                                     <label id="name"> تعديل كلمة المرور
                                                                         <span> * </span> </label>
-                                                                    <input class="form-control" type="password" name="co_password">
+                                                                    <input pattern="[a-zA-Z0-9]+" oninvalid="setCustomValidityArabic(this,' كلمه المرور يحب الا تحتوي علي احرف عربيه ')" oninput="resetCustomValidity(this)" class="form-control" type="password" name="co_password">
                                                                 </div>
                                                                 <div class="box2">
                                                                     <label id="name_en"> الهاتف <span> * </span></label>
@@ -186,7 +224,7 @@
                                                                 <div class="box2">
                                                                     <label id="name"> تأكيد كلمة المرور
                                                                         <span> * </span> </label>
-                                                                    <input class="form-control" type="password" name="confirm_password">
+                                                                    <input pattern="[a-zA-Z0-9]+" oninvalid="setCustomValidityArabic(this,' كلمه المرور يحب الا تحتوي علي احرف عربيه ')" oninput="resetCustomValidity(this)" class="form-control" type="password" name="confirm_password">
                                                                 </div>
                                                                 <div class="box2">
                                                                     <label id="name_en"> البريد الالكتروني <span> * </span></label>
@@ -238,12 +276,12 @@
                                                                 <div class="box2">
                                                                     <label id="name">الاسم
                                                                         <span> * </span> </label>
-                                                                    <input required class="form-control" type="text" name="ind_name" value="<?php echo $type['ind_name'] ?>">
+                                                                    <input pattern="[a-zA-Z]+" oninvalid="setCustomValidityArabic(this,'يجب ان تكون الحروف المستخدمة فى اسم المتخدم حروف انجليزية فقط')" oninput="resetCustomValidity(this)" required class="form-control" type="text" name="ind_name" value="<?php echo $type['ind_name'] ?>">
                                                                 </div>
                                                                 <div class="box2">
                                                                     <label id="name"> كلمة المرور
                                                                         <span> * </span> </label>
-                                                                    <input required class="form-control" type="text" name="co_password" value="<?php echo $type['co_password']; ?>">
+                                                                    <input pattern="[a-zA-Z0-9]+" oninvalid="setCustomValidityArabic(this,' كلمه المرور يحب الا تحتوي علي احرف عربيه ')" oninput="resetCustomValidity(this)" required class="form-control" type="text" name="co_password" value="<?php echo $type['co_password']; ?>">
                                                                 </div>
                                                                 <div class="box2">
                                                                     <label id="name_en"> البريد الالكروني <span> * </span></label>

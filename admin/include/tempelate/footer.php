@@ -7,7 +7,7 @@
   <script src="https://kit.fontawesome.com/588e070751.js" crossorigin="anonymous"></script>
   <!-- Bootstrap -->
   <script src="<?php echo $js; ?>datatables.min.js"></script>
-  <script src="<?php echo $js; ?>select2.min.js"></script> 
+  <script src="<?php echo $js; ?>select2.min.js"></script>
   <script src="<?php echo $js; ?>custome.js"></script>
   <script src="dist/js/adminlte.js"></script>
   <!-- START SEND DATA WITH AJAX -->
@@ -41,6 +41,18 @@
       } else {
         fileLabel.innerHTML = 'اختيار ملفات';
       }
+    }
+  </script>
+
+
+  <!--  Customize Required Message -->
+  <script>
+    function setCustomValidityArabic(element, message) {
+      element.setCustomValidity(message);
+    }
+
+    function resetCustomValidity(element) {
+      element.setCustomValidity('');
     }
   </script>
 

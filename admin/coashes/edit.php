@@ -7,6 +7,8 @@ use PHPMailer\PHPMailer\Exception;
 
 require '../ind/mail/vendor/autoload.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $formerror = [];
     $co_id = $_POST['co_id'];
     $co_name = sanitizeInput($_POST['co_name']);
     $co_email = sanitizeInput($_POST['co_email']);
@@ -22,11 +24,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($co_password !== $confirm_password) {
             $formerror[] = 'يجب تاكيد كلمة المرور بشكل صحيح ';
         }
+
+        // يسمح بالأحرف الإنجليزية (كبيرة وصغيرة) والأرقام
+        if (!preg_match('/^[a-zA-Z0-9]+$/', $co_password)) {
+            $formerror[] = 'كلمة المرور يجب أن تحتوي على الأحرف الإنجليزية والأرقام فقط.';
+        }
     }
-    $formerror = [];
+
     if (empty($co_name) || empty($co_email) || empty($co_phone) || empty($co_services) || empty($co_exper)) {
         $formerror[] = 'من فضلك ادخل المعلومات كاملة';
     }
+
+
+    if (!preg_match('/^[a-zA-Z]+$/', $co_name)) {
+        $formerror[] = ' يجب ان تكون الحروف المستخدمة فى  الاسم حروف انجليزية فقط ';
+    }
+
+
     $stmt = $connect->prepare("SELECT * FROM coshes WHERE co_name=? AND co_id !=?");
     $stmt->execute(array($co_name, $co_id));
     $name_count = $stmt->rowCount();
@@ -111,6 +125,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="alert-success">
                     تم تعديل المدرب بنجاح
                     <?php
+                    $_SESSION['success_message'] = " تمت الأضافة بنجاح  ";
                     header("Location:main.php?dir=coashes&page=report");
 
                     ?>
