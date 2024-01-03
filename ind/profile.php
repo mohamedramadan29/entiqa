@@ -167,6 +167,12 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                                 <div class="data2">
                                     <br>
                                     <table class="table">
+                                    <tr>
+                                            <th> اسم المستخدم </th>
+                                            <th style="color:rgba(0, 0, 0, 0.5);">
+                                                <?php echo $ind_data['ind_username']; ?>
+                                            </th>
+                                        </tr>
                                         <tr>
                                             <th> الأسم بالعربي رباعي </th>
                                             <th style="color:rgba(0, 0, 0, 0.5);">

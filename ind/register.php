@@ -49,7 +49,7 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                             if (strlen($ind_username) > 16) {
                                 $formerror[] = 'اسم المستخدم يجب ان يكون اقل من 16 حرف';
                             }
-                            
+
                             if (!preg_match('/^[a-zA-Z]+$/', $ind_username)) {
                                 $formerror[] = ' يجب ان تكون الحروف المستخدمة فى اسم المتخدم حروف انجليزية فقط ';
                             }
@@ -61,8 +61,8 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                             if (empty($ind_password)) {
                                 $formerror[] = " يجب اضافة  كلمة المرور    ";
                             }
-                            if (strlen($ind_password) < 8) {
-                                $formerror[] = " كلمة المرور يجب ان تكون اكثر من 8 احرف وارقام ";
+                            if (strlen($ind_password) < 8 || !preg_match('/[A-Za-z]/', $ind_password) || !preg_match('/\d/', $ind_password)) {
+                                $formerror[] = "كلمة المرور يجب أن تكون أكثر من 8 أحرف وأرقام وتحتوي على حروف وأرقام";
                             }
                             // يسمح بالأحرف الإنجليزية (كبيرة وصغيرة) والأرقام
                             if (!preg_match('/^[a-zA-Z0-9]+$/', $ind_password)) {
@@ -232,17 +232,20 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
 
                                         <small class="ind_email text-danger"> </small>
                                     </div>
-                                    <div class="box">
-                                        <input pattern="[a-zA-Z0-9]+" oninvalid="setCustomValidityArabic(this,' كلمه المرور يحب الا تحتوي علي احرف عربيه ')" oninput="resetCustomValidity(this)" placeholder="كلمة المرور * " required class="form-control" id="ind_password" type="password" name="ind_password" value="<?php if (isset($_REQUEST['ind_password'])) {
-                                                                                                                                                                                                                                                                                                                                echo $_REQUEST['ind_password'];
-                                                                                                                                                                                                                                                                                                                            } ?>">
+                                    <div class="box password_eye">
+                                        <input pattern="[a-zA-Z0-9]+" oninvalid="setCustomValidityArabic(this,' كلمه المرور يحب الا تحتوي علي احرف عربيه ')" oninput="resetCustomValidity(this)" placeholder="كلمة المرور * " required class="form-control" type="password" id="password" name="ind_password" value="<?php if (isset($_REQUEST['ind_password'])) {
+                                                                                                                                                                                                                                                                                                                            echo $_REQUEST['ind_password'];
+                                                                                                                                                                                                                                                                                                                        } ?>">
+
+                                        <span onclick="togglePasswordVisibility('password', this)" class="fa fa-eye-slash show_eye password_show_icon"></span>
+
                                         <small class="ind_password text-danger"> </small>
                                     </div>
-                                    <div class="box">
-                                        <input oninvalid="setCustomValidityArabic(this,'اكد كلمة المرور')" oninput="resetCustomValidity(this)" placeholder=" تاكيد كلمة المرور * " required class="form-control" id="confirm_password" type="password" name="confirm_password" value="<?php if (isset($_REQUEST['confirm_password'])) {
-                                                                                                                                                                                                                                                                                            echo $_REQUEST['confirm_password'];
-                                                                                                                                                                                                                                                                                        } ?>">
-                                        <small class="ind_password text-danger"> </small>
+                                    <div class="box password_eye">
+                                        <input oninvalid="setCustomValidityArabic(this,'اكد كلمة المرور')" oninput="resetCustomValidity(this)" placeholder=" تاكيد كلمة المرور * " required class="form-control" id="password2" type="password" name="confirm_password" value="<?php if (isset($_REQUEST['confirm_password'])) {
+                                                                                                                                                                                                                                                                                    echo $_REQUEST['confirm_password'];
+                                                                                                                                                                                                                                                                                } ?>">
+                                        <span onclick="togglePasswordVisibility('password2', this)" class="fa fa-eye-slash show_eye password_show_icon"></span>
                                     </div>
                                     <div class="box">
                                         <?php $tenYearsAgo = date('Y-m-d', strtotime('-15 years')); ?>
@@ -494,3 +497,18 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
     header("Location:index");
 }
 ?>
+<script>
+    function togglePasswordVisibility(inputId, iconElement) {
+        var passwordInput = document.getElementById(inputId);
+        var icon = iconElement.classList;
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            icon.remove("fa-eye-slash");
+            icon.add("fa-eye");
+        } else {
+            passwordInput.type = "password";
+            icon.remove("fa-eye");
+            icon.add("fa-eye-slash");
+        }
+    }
+</script>

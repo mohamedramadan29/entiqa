@@ -86,16 +86,18 @@ if (isset($_SESSION['ind_id'])) {
                                 <form action="stars" method="get">
                                     <div class="row">
                                         <div class="col-5">
+                                            <label style="margin-bottom: 15px;" for=""> اختر الجنس </label>
                                             <select required class="form-control select2" name="ind_gender">
-                                                <option value=""> -- اختر الجنس-- </option>
+
                                                 <option <?php if (isset($_GET['ind_gender']) && $_GET['ind_gender'] == 'الكل') echo 'selected'; ?> value="الكل">الكل</option>
                                                 <option <?php if (isset($_GET['ind_gender']) && $_GET['ind_gender'] == 'ذكر') echo 'selected'; ?> value="ذكر">ذكر</option>
                                                 <option <?php if (isset($_GET['ind_gender']) && $_GET['ind_gender'] == 'انثي') echo 'selected'; ?> value="انثي">انثي</option>
                                             </select>
                                         </div>
                                         <div class="col-5">
+                                            <label style="margin-bottom: 15px;" for=""> منطقة السكن الحالي </label>
                                             <select required id="ind_address" class="form-control select2" name="ind_address">
-                                                <option value=""> -- منطقة السكن الحالي -- </option>
+
                                                 <option <?php if (isset($_GET['ind_address']) && $_GET['ind_address'] == 'الكل') echo 'selected'; ?> value="الكل">الكل</option>
                                                 <option <?php if (isset($_GET['ind_address']) && $_GET['ind_address'] == 'الرياض') echo 'selected'; ?> value="الرياض">الرياض</option>
                                                 <option <?php if (isset($_GET['ind_address']) && $_GET['ind_address'] == 'جدة') echo 'selected'; ?> value="جدة">جدة </option>
@@ -147,7 +149,7 @@ if (isset($_SESSION['ind_id'])) {
                                         </div>
                                         <div class="col-2">
                                             <!-- ------------------------------------------------------------------------ -->
-                                            <button type="submit" name="search" class="btn btn-outline-primary search_button"> <i class="fa fa-search"></i></button>
+                                            <button style="margin-top: 40px;" type="submit" name="search" class="btn btn-outline-primary search_button"> <i class="fa fa-search"></i></button>
                                         </div>
                                     </div>
                                 </form>

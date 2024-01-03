@@ -62,9 +62,11 @@ input[type=password] {
     padding: 9px;
     font-size: 18px;
 }
-.swiper-slide .card{
+
+.swiper-slide .card {
     background-color: #fff;
 }
+
 .rd-navbar-static .rd-nav-link {
     font-size: 17px;
     color: #000;
@@ -393,9 +395,11 @@ START SLIDER
     width: 100%;
     height: 100%;
 }
-.contact_hero .container{
+
+.contact_hero .container {
     height: 100%;
 }
+
 .contact_hero .data {
     display: flex;
     align-items: center;
@@ -2418,7 +2422,7 @@ li .notification span {
     bottom: -16px;
     left: calc(100% - 15px);
 }
- 
+
 
 
 .testmonails h2,
@@ -2438,11 +2442,13 @@ li .notification span {
     margin-top: 10px;
     color: #0096FF;
 }
-.testmonails .person_testmon{
-    background-color:#fff;
-    margin:10px;
-    padding:10px;
+
+.testmonails .person_testmon {
+    background-color: #fff;
+    margin: 10px;
+    padding: 10px;
 }
+
 .swiper-button-next,
 .swiper-rtl .swiper-button-prev {
     color: #F16583;
@@ -2469,7 +2475,7 @@ li .notification span {
 }
 
 /* END TESTMONAILS */
- 
+
 
 .register_form2 {
     max-width: 100%;
@@ -2683,13 +2689,13 @@ li .notification span {
     display: -ms-flexbox;
     display: flex;
     -ms-flex-align: center;
-    align-items: center; 
+    align-items: center;
     position: relative;
-  -ms-flex: 1 1 auto;
-  flex: 1 1 auto;
-  width: 1%;
-  min-width: 0;
-  margin-bottom: 0;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    width: 1%;
+    min-width: 0;
+    margin-bottom: 0;
 }
 
 .custom-file-input {
@@ -2745,4 +2751,21 @@ li .notification span {
     -moz-border-radius: 25px;
     -ms-border-radius: 25px;
     -o-border-radius: 25px;
+}
+
+.password_eye {
+    position: relative;
+}
+.password_eye span{
+    position: absolute;
+    top: 6px;
+    left: 10px;
+    cursor: pointer;
+    font-size: 17px;
+}
+.password_eye span i {
+   
+    color: #939393;
+    font-size: 18px;
+    
 }

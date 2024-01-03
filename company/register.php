@@ -66,8 +66,8 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                     if (empty($password)) {
                         $formerror[] = " يجب اضافة  كلمة المرور    ";
                     }
-                    if (strlen($password) < 8) {
-                        $formerror[] = "كلمة المرور يجب أن تكون أكثر من 8 أحرف وأرقام";
+                    if (strlen($password) < 8 || !preg_match('/[A-Za-z]/', $password) || !preg_match('/\d/', $password)) {
+                        $formerror[] = "كلمة المرور يجب أن تكون أكثر من 8 أحرف وأرقام وتحتوي على حروف وأرقام";
                     }
                     // يسمح بالأحرف الإنجليزية (كبيرة وصغيرة) والأرقام
                     if (!preg_match('/^[a-zA-Z0-9]+$/', $password)) {
@@ -252,16 +252,20 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                                                                                                                                                                                                                                                                                                                 echo $_REQUEST['com_phone'];
                                                                                                                                                                                                                                                                                                             } ?>">
                                         </div>
-                                        <div class="box">
+                                        <div class="box password_eye">
                                             <input required pattern="[a-zA-Z0-9]+" oninvalid="setCustomValidityArabic(this,' كلمه المرور يحب الا تحتوي علي احرف عربيه ')" oninput="resetCustomValidity(this)" class="form-input" id="password" type="password" placeholder="كلمة المرور * " name="password" value="<?php if (isset($_REQUEST['password'])) {
                                                                                                                                                                                                                                                                                                                         echo $_REQUEST['password'];
                                                                                                                                                                                                                                                                                                                     } ?>">
+                                            <span onclick="togglePasswordVisibility('password', this)" class="fa fa-eye-slash show_eye password_show_icon"></span>
                                         </div>
-                                        <div class="box">
-                                            <input required oninvalid="setCustomValidityArabic(this,'اكد كلمة المرور')" oninput="resetCustomValidity(this)" class="form-input" id="confirm_password" type="password" placeholder=" تاكيد كلمة المرور * " name="confirm_password" value="<?php if (isset($_REQUEST['confirm_password'])) {
-                                                                                                                                                                                                                                                                                            echo $_REQUEST['confirm_password'];
-                                                                                                                                                                                                                                                                                        } ?>">
+
+                                        <div class="box password_eye ">
+                                            <input required oninvalid="setCustomValidityArabic(this,'اكد كلمة المرور')" oninput="resetCustomValidity(this)" class="form-input" id="password2" type="password" placeholder=" تاكيد كلمة المرور * " name="confirm_password" value="<?php if (isset($_REQUEST['confirm_password'])) {
+                                                                                                                                                                                                                                                                                        echo $_REQUEST['confirm_password'];
+                                                                                                                                                                                                                                                                                    } ?>">
+                                            <span onclick="togglePasswordVisibility('password2', this)" class="fa fa-eye-slash show_eye password_show_icon"></span>
                                         </div>
+
                                         <div class="box">
                                             <input required oninvalid="setCustomValidityArabic(this,'من فضلك ادخل رقم السجل التجاري ')" oninput="resetCustomValidity(this)" class="form-control" id="com_num" type="text" placeholder="رقم السجل التجاري * " name="com_num" value="<?php if (isset($_REQUEST['com_num'])) {
                                                                                                                                                                                                                                                                                         echo $_REQUEST['com_num'];
@@ -522,3 +526,18 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
     header("Location:index");
 }
 ?>
+<script>
+    function togglePasswordVisibility(inputId, iconElement) {
+        var passwordInput = document.getElementById(inputId);
+        var icon = iconElement.classList;
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            icon.remove("fa-eye-slash");
+            icon.add("fa-eye");
+        } else {
+            passwordInput.type = "password";
+            icon.remove("fa-eye");
+            icon.add("fa-eye-slash");
+        }
+    }
+</script>
