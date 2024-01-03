@@ -1,3 +1,4 @@
+
 <?php
 $pagetitle = 'تواصل معنا';
 ob_start();
@@ -63,7 +64,7 @@ $ind_data = $stmt->fetch();*/
             <div class="bread">
                 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                      
+
                         <li class="breadcrumb-item active" aria-current="page"> الرسائل الخاصة بين الفرد والشركة </li>
                     </ol>
                 </nav>
@@ -127,3 +128,4 @@ $ind_data = $stmt->fetch();*/
         </div>
     </div>
 </div>
+ 

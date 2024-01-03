@@ -28,12 +28,12 @@ if (isset($_SESSION['com_id'])) {
         <div class="bread">
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  
+
                     <li class="breadcrumb-item active" aria-current="page"> مشاهدة جميع الرسائل بين الافراد والشركات </li>
                 </ol>
             </nav>
         </div>
-        
+
         <!-- End Update Company View Allllert -->
         <div class="all_message">
             <div class="container">
@@ -117,6 +117,7 @@ if (isset($_SESSION['com_id'])) {
                         if (!empty($indName)) {
                             $stmt->bindParam(':indName', $indName, PDO::PARAM_STR);
                         }
+                        //  header("Location:main.php?dir=all_chats&page=report");
                     } else {
                         $stmt = $connect->prepare("
                         SELECT t1.to_person, t1.from_person, t1.chat_id, t1.msg, t1.send_type, t1.date,t1.admin_noti,
@@ -140,24 +141,24 @@ if (isset($_SESSION['com_id'])) {
                     if ($count > 0) {
                         foreach ($allmessage as $message) {
                             $admin_show = $message['admin_noti'];
-                            if($admin_show == 0){
-                                ?>
+                            if ($admin_show == 0) {
+                    ?>
                                 <i class="fa fa-message" style="color: red;"></i>
-                                <?php 
-                            }else{
-                                ?>
+                            <?php
+                            } else {
+                            ?>
                                 <i class="fa fa-message" style="color: #ccc;"></i>
-                                <?php 
+                            <?php
                             }
                             ?>
-                            
-                            <?php 
+
+                            <?php
                             $c_p = '';
                             $i_p = '';
                             if ($message['send_type'] == 'ind') {
                                 $c_p = $message['to_person'];
                                 $i_p = $message['from_person'];
-                    ?>
+                            ?>
                                 <h6 style="display: inline-block; padding:5px; color:#646363;background-color: #e4e7eb;border-radius: 10px;">
                                     ( المتدرب:<?php echo $message['from_person']; ?>) ( الشركة :<?php echo $message['to_person']; ?>) </h6>
                             <?php
@@ -165,7 +166,7 @@ if (isset($_SESSION['com_id'])) {
                                 $i_p = $message['to_person'];
                                 $c_p = $message['from_person'];
                             ?>
-                                <h6 class='<?php if($admin_show == 0) echo 'bg_red'; ?>' style="display: inline-block; padding:5px; color:#646363;background-color: #e4e7eb;border-radius: 6px;">
+                                <h6 class='<?php if ($admin_show == 0) echo 'bg_red'; ?>' style="display: inline-block; padding:5px; color:#646363;background-color: #e4e7eb;border-radius: 6px;">
                                     ( المتدرب :<?php echo $message['to_person']; ?>) ( الشركة :<?php echo $message['from_person']; ?>) </h6>
                             <?php
                             }
@@ -202,3 +203,9 @@ if (isset($_SESSION['com_id'])) {
         </div>
     </div>
 </div>
+
+<script>
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
+</script>

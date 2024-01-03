@@ -266,20 +266,22 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                                 ?>
                                     <p class="alert alert-info" role="alert">
 
+                                        <?php
+                                        if ($ind_data['ind_status'] == null && $ind_data['ind_batch'] == 0) {
+                                            echo "جاري انضمامك الي دفعة ";
+                                        } elseif ($ind_data['ind_status'] == null && $ind_data['ind_batch'] != 0) {
+                                            $stmt = $connect->prepare("SELECT * FROM batches WHERE batch_id=?");
+                                            $stmt->execute(array($ind_data['ind_batch']));
+                                            $batch_data_name = $stmt->fetch();
+                                        ?>
+                                            <span> اسم دفعتك هو :: <?php echo $batch_data_name['batch_name']; ?> </span>
                                     <?php
-                                    if ($ind_data['ind_status'] == null) {
-                                        echo "جاري انضمامك الي دفعة ";
-                                    } elseif ($ind_data['ind_status'] != null && $ind_data['ind_batch'] != 0) {
-                                        $stmt = $connect->prepare("SELECT * FROM batches WHERE batch_id=?");
-                                        $stmt->execute(array($ind_data['ind_batch']));
-                                        $batch_data_name = $stmt->fetch();
-                                        echo $batch_data_name['batch_name'];
-                                    } elseif ($ind_data['ind_status'] == 0) {
-                                        echo " انت قيد التدريب في الوقت الحالي   ";
-                                    } elseif ($ind_data['ind_status'] == 1) {
-                                        echo " تم تأهيلك  ";
+                                        } elseif ($ind_data['ind_status'] == 0) {
+                                            echo " انت قيد التدريب في الوقت الحالي   ";
+                                        } else {
+                                            echo " تم تأهيلك  ";
+                                        }
                                     }
-                                }
 
                                     ?>
                                     </p>

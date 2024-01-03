@@ -26,7 +26,7 @@
                 </thead>
                 <tbody>
                     <?php
-                    $stmt = $connect->prepare("SELECT * FROM ind_register WHERE ind_batch=0");
+                    $stmt = $connect->prepare("SELECT * FROM ind_register WHERE ind_batch=0 ORDER BY ind_id DESC");
                     $stmt->execute();
                     $alltype = $stmt->fetchAll();
                     foreach ($alltype as $type) { ?> <tr>
