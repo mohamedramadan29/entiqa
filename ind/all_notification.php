@@ -145,6 +145,75 @@ if (isset($_SESSION['ind_id'])) {
                     }
                     ?>
                 <?php
+                } ?>
+
+                <!--//////////////////////// Start cancel Contract //////////////////// -->
+                <?php
+                $stmt = $connect->prepare("SELECT * FROM contract_cancel WHERE ind_id=?");
+                $stmt->execute(array($_SESSION['ind_id']));
+                $alldatacompele_cancel = $stmt->fetchAll();
+                $cancel_contract_noti_count = $stmt->rowCount();
+                if ($cancel_contract_noti_count > 0) {
+                    $message = " تم الغاء الاتفاق مع الشركه  .. ";
+                }
+                if ($cancel_contract_noti_count > 0) {
+                ?>
+                    <h6 style="color: #6a6868;font-size: 19px;padding: 20px;"> الغاء التعاقدات </h6>
+                    <?php
+                    foreach ($alldatacompele_cancel as $contract_compelete) {
+                        $stmt = $connect->prepare("SELECT * FROM company_register WHERE com_id=?");
+                        $stmt->execute(array($contract_compelete['company_id']));
+                        $com_data = $stmt->fetch();
+                    ?>
+                        <a href="company_profile?com_username=<?php echo $com_data['com_username']; ?>" class="message_link">
+                            <div class="message_data">
+                                <div class="image">
+                                    <?php
+                                    if ($com_data['com_image'] != '') {
+                                    ?>
+                                        <img src="../ind_images_upload/<?php echo $com_data['com_image']; ?>" alt="">
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <img src="../images/avatar.png" alt="">
+                                    <?php
+                                    }
+                                    ?>
+                                </div>
+                                <div class="info">
+                                    <p> <?php echo $com_data['com_username']; ?> </p>
+                                    <p> تم الغاء الاتفاق مع الشركه </p>
+                                    <span> <i class="fa fa-clock-o"></i>
+                                        <?php
+                                        // استلام التاريخ والوقت من الداتا بيز أو أي مصدر آخر
+                                        $dateTimeString = $contract_compelete['con_com_date'];
+
+                                        // تحويل السلسلة إلى كائن DateTime
+                                        $dateTime = new DateTime($dateTimeString);
+
+                                        // تحديد تنسيق التاريخ والوقت
+                                        $dateFormat = "Y-m-d";
+                                        $timeFormat = "h:i A";
+
+                                        // الحصول على التاريخ والوقت بالتنسيق المطلوب
+                                        $date = $dateTime->format($dateFormat);
+                                        $time = $dateTime->format($timeFormat);
+
+                                        // تحديد ما إذا كانت الساعة تقع في فترة الصباح أم المساء
+                                        $period = $dateTime->format("A"); // AM أو PM
+
+                                        // تحديد مساءً أو صباحًا
+                                        $amOrPm = ($period == "AM") ? "صباحًا" : "مساءً";
+                                        // عرض التاريخ والوقت والفترة (صباحًا أو مساءًا)
+                                        echo "في تاريخ : $date $time $amOrPm";
+                                        ?> </span>
+                                </div>
+                            </div>
+                        </a>
+                    <?php
+                    }
+                    ?>
+                <?php
                 }
                 /////////////////////////// END COMPELETE CONTRACT  ////////////
                 /////////////////////////// START REGISTER IN NEW NOTIFICATION  ////////////

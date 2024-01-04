@@ -108,6 +108,12 @@ if (isset($_SESSION['com_id'])) {
                                 $stmt = $connect->prepare("SELECT * FROM contract_complete WHERE company_id=? AND ind_id=?");
                                 $stmt->execute(array($_SESSION["com_id"], $user_data['ind_id']));
                                 $count = $stmt->rowCount();
+
+                                // check if this contract canceled before or not 
+
+                                $stmt = $connect->prepare("SELECT * FROM contract_cancel WHERE company_id=? AND ind_id=?");
+                                $stmt->execute(array($_SESSION["com_id"], $user_data['ind_id']));
+                                $count_cancel = $stmt->rowCount();
                                 if ($count > 0) { ?>
                                     <div class="alert alert-info"> تم اتمام التعاقد مع المتدرب من قبل <i class="fa fa-check"></i></div>
                                     <div class="chat_com_option">
@@ -162,6 +168,65 @@ if (isset($_SESSION['com_id'])) {
                                         </div>
                                     </div>
                                 <?php
+                                } elseif ($count_cancel > 0) {
+
+                                    /////////////////////////////// الغائ الاتفاق 
+                                ?>
+                                    <div class="alert alert-danger"> تم الغاء الاتفاق مع المتدرب من قبل  <i class="fa fa-error"></i></div>
+                                    <div class="chat_com_option">
+                                        <div class="company_review">
+                                            <?php
+                                            $stmt = $connect->prepare("SELECT * FROM company_review WHERE com_id=? AND ind_id = ? ORDER BY rev_id DESC LIMIT 1");
+                                            $stmt->execute(array($_SESSION['com_id'], $user_data['ind_id']));
+                                            $review_data = $stmt->fetch();
+                                            $count_review = $stmt->rowCount();
+                                            if ($count_review > 0) {
+                                            ?>
+                                            <p> تقيمك لمنصه انتقاء </p>
+                                                <div class="alert alert-success"> <?php echo $review_data['com_review']; ?> </div>
+                                            <?php
+                                            } else {
+                                            ?>
+                                                <form action="" method="post">
+                                                    <textarea required minlength="5" placeholder="من فضلك اكتب تقيمك للمنصة" name="com_review" id="" class="form-control"></textarea>
+                                                    <input class="btn btn-primary" name="send_review" type="submit" value="   ارسال التقيم  ">
+                                                </form>
+                                                <?php
+                                                if (isset($_POST['send_review'])) {
+                                                    $review = sanitizeInput($_POST['com_review']);
+                                                    $formerror = [];
+                                                    if (empty($review)) {
+                                                        $formerror[] = 'من فضلك اكتب تقيمك اولا ';
+                                                    }
+                                                    if (empty($formerror)) {
+                                                        $stmt = $connect->prepare("INSERT INTO company_review (com_id,ind_id, com_review) VALUES (:zcom_id,:zind_id,:zcom_review)");
+                                                        $stmt->execute(array(
+                                                            "zcom_id" => $_SESSION['com_id'],
+                                                            "zind_id" => $user_data['ind_id'],
+                                                            "zcom_review" => $review,
+                                                        ));
+                                                        if ($stmt) {
+                                                            header("Location:com_message.php?other=" . $other_person);
+                                                ?>
+                                                            <div class="alert alert-success"> شكرا لك علي تقيمك لمنصة انتقاء </div>
+                                                        <?php
+                                                        }
+                                                    } else {
+                                                        foreach ($formerror as $error) {
+                                                        ?>
+                                                            <div class="alert alert-danger"> <?php echo $error; ?> </div>
+                                                <?php
+                                                        }
+                                                    }
+                                                }
+                                                ?>
+                                            <?php
+                                            }
+                                            ?>
+                                        </div>
+                                    </div>
+                                <?php
+
                                 } else { ?>
                                     <div class="chat_com_option">
                                         <?php
@@ -210,7 +275,6 @@ if (isset($_SESSION['com_id'])) {
                                         <button class="btn btn-warning send_con_contract"> اتمام التعاقد مع المتدرب </button>
                                         <!-- Modal -->
                                         <div class="compelete_contract">
-
                                             <div class="com_contract">
                                                 <form action="" method="POST">
                                                     <?php
@@ -257,7 +321,6 @@ if (isset($_SESSION['com_id'])) {
                                                 header("refresh:3;url=profile");
                                             }
                                         }
-
                                         ?>
                                         <?php
                                         $stmt = $connect->prepare("SELECT * FROM contract_complete WHERE ind_id = ? AND company_id = ?");
@@ -268,7 +331,33 @@ if (isset($_SESSION['com_id'])) {
                                         <?php
                                         }
                                         ?>
+                                        <button type="button" class="btn btn-danger " data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            الغاء الاتفاق مع المتدرب
+                                        </button>
 
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel"> الغاء الاتفاق </h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <form action="" method="post">
+                                                        <div class="modal-body">
+                                                            <p> هل انت متاكد من الغاء العرض مع المتدرب </p>
+                                                            <label for=""> من فضلك اكتب سبب الالغاء </label>
+                                                            <textarea required name="cancel_reason" class="form-control"></textarea>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button style="width: auto;" type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"> رجوع </button>
+                                                            <button style="width: auto;" type="submit" class="btn btn-danger btn-sm" name="cancel_contract"> الغاء الاتفاق </button>
+                                                        </div>
+                                                    </form>
+
+                                                </div>
+                                            </div>
+                                        </div>
                                         <?php
                                         if (isset($_POST['cancel_contract'])) {
                                             $cancel_reason = $_POST['cancel_reason'];
@@ -280,12 +369,12 @@ if (isset($_SESSION['com_id'])) {
                                                 'zcancel_reason' => $cancel_reason
                                             ));
                                             if ($stmt) {
-                                                $stmt = $connect->prepare("DELETE FROM interview_notificaion WHERE noti_com_link= ? AND  noti_person_link = ?");
-                                                $stmt->execute(array($_SESSION['com_id'], $user_data['ind_id']));
+                                                // $stmt = $connect->prepare("DELETE FROM interview_notificaion WHERE noti_com_link= ? AND  noti_person_link = ?");
+                                                // $stmt->execute(array($_SESSION['com_id'], $user_data['ind_id']));
 
                                         ?>
                                                 <div class="alert alert-success"> تم الغاء الاتفاق بنجاح </div>
-                                                <?php header("refresh:0;url=profile"); ?>
+                                                <?php header("refresh:1;url=profile"); ?>
                                         <?php
                                             }
                                         }

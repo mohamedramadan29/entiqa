@@ -76,7 +76,7 @@ if (isset($_SESSION['ind_id'])) {
                                         <?php
                                         if ($other_person == 'admin' || $other_person == 'coash') {
                                         ?>
-                                            <p class="send_attachment btn btn-primary"> رفع المرفقات  <i class="fa fa-file"></i> </p>
+                                            <p class="send_attachment btn btn-primary"> رفع المرفقات <i class="fa fa-file"></i> </p>
                                         <?php
                                         }
                                         ?>
@@ -171,12 +171,50 @@ if (isset($_SESSION['ind_id'])) {
                                 $stmt = $connect->prepare("SELECT * FROM contract_complete WHERE ind_id = ? AND company_id = ?");
                                 $stmt->execute(array($_SESSION['ind_id'], $com_data['com_id']));
                                 $count_contract = $stmt->rowCount();
+                                $stmt = $connect->prepare("SELECT * FROM contract_cancel WHERE ind_id = ? AND company_id = ?");
+                                $stmt->execute(array($_SESSION['ind_id'], $com_data['com_id']));
+                                $count_cancel = $stmt->rowCount();
                                 if ($count_contract > 0) {
                                 ?>
+                                    <div class="alert alert-info"> تم اتمام التعاقد مع الشركه <i class="fa fa-check"></i></div>
+                                <?php
+                                } elseif ($count_cancel > 0) {
+                                ?>
+                                    <div class="alert alert-danger">  تم الغاء الاتفاق مع الشركه  <i class="fa fa-xbox"></i></div>
+                                <?php
+                                } else {
+                                ?>
+                                    <button type="button" class="btn btn-danger " data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        الغاء الاتفاق مع الشركه
+                                    </button>
                                 <?php
                                 }
                                 ?>
 
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel"> الغاء الاتفاق </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <form action="" method="post">
+                                                <div class="modal-body">
+                                                    <p> هل انت متاكد من الغاء العرض مع الشركه </p>
+                                                    <label for=""> من فضلك اكتب سبب الالغاء </label>
+                                                    <textarea required name="cancel_reason" class="form-control"></textarea>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button style="width: auto;" type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"> رجوع </button>
+                                                    <button style="width: auto;" type="submit" class="btn btn-danger btn-sm" name="cancel_contract"> الغاء الاتفاق </button>
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
                                 <?php
                                 if (isset($_POST['cancel_contract'])) {
                                     $cancel_reason = $_POST['cancel_reason'];

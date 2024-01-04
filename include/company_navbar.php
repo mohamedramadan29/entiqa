@@ -120,12 +120,16 @@
                                                         <li> <a href="profile"> تم تغير الحاله الخاصه بك الي [ <?php echo $status; ?> ] </a> </li>
                                                     <?php
 
-                                                    } else {
+                                                    }
+                                                    if ($end_contract_noti_count == 0 && $all_count_status == 0) {
                                                     ?>
                                                         <li> <a href="#" class="dropdown-item"> لا يوجد لديك اشعارات جديدة في الوقت الحالي </a> </li>
                                                     <?php
                                                     }
                                                     ?>
+                                                    <hr>
+                                                    <li> <a class="dropdown-item" href="all_notification"> عرض كل الأشعارات </a>
+                                                    </li>
                                                 </ul>
                                             </li>
                                             <li class=" profile_item">
@@ -250,15 +254,16 @@
                                     <!-- START ALL NOTITFICATION -->
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="fa fa-bell"></i> <span style="position: relative;top: -13px;font-size: 18px;font-weight: bold;"> <?php
-                                                                                                                                                        if (
-                                                                                                                                                            $end_contract_noti_count == 0
-                                                                                                                                                        ) {
-                                                                                                                                                            $new_count_notification = "";
-                                                                                                                                                        } else {
-                                                                                                                                                            $end_contract_noti_count;
-                                                                                                                                                        }
-                                                                                                                                                        echo $new_count_notification ?> </span>
+                                            <i class="fa fa-bell"></i> <span style="position: relative;top: -13px;font-size: 18px;font-weight: bold;">
+                                                <?php
+                                                if (
+                                                    $end_contract_noti_count == 0 && $all_count_status == 0
+                                                ) {
+                                                    $new_count_notification = "";
+                                                } else {
+                                                    $new_count_notification = $end_contract_noti_count + $all_count_status;
+                                                }
+                                                echo $new_count_notification ?> </span>
                                         </a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                             <?php
@@ -272,12 +277,23 @@
                                                 ?>
 
                                             <?php
-                                            } else {
+                                            }
+                                            if ($all_count_status > 0) {
+
+                                            ?>
+                                                <li> <a href="profile"> تم تغير الحاله الخاصه بك الي [ <?php echo $status; ?> ] </a> </li>
+                                            <?php
+
+                                            }
+                                            if ($end_contract_noti_count == 0 && $all_count_status == 0) {
                                             ?>
                                                 <li> <a href="#" class="dropdown-item"> لا يوجد لديك اشعارات جديدة في الوقت الحالي </a> </li>
                                             <?php
                                             }
                                             ?>
+                                            <hr>
+                                            <li> <a class="dropdown-item" href="all_notification"> عرض كل الأشعارات </a>
+                                            </li>
                                         </ul>
                                     </li>
                                     <li class=" profile_item">
