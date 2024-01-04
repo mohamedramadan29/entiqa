@@ -50,7 +50,7 @@ if (isset($_SESSION['com_id'])) {
                                         <?php
                                         }
                                         ?>
-                                        <button type="submit" class="btn btn-primary"> ارسال <i class="fa fa-paper-plane"></i></button>
+                                        <button type="submit" class="btn btn-primary" id="submit_button"> ارسال <i class="fa fa-paper-plane"></i></button>
                                     </div>
                                 </div>
                             </form>
@@ -491,6 +491,8 @@ if (isset($_SESSION['com_id'])) {
         let selectedFiles = [];
         $('#ajax-form').submit(function(e) {
             e.preventDefault();
+            var submitButton = document.getElementById('submit_button');
+            submitButton.setAttribute('disabled', 'disabled');
             let formData = new FormData(this);
             $.ajax({
                 type: "POST",
@@ -506,6 +508,7 @@ if (isset($_SESSION['com_id'])) {
                     // إزالة جميع الملفات من القائمة بعد الرفع
                     selectedFiles = [];
                     updateFileList();
+                    submitButton.removeAttribute('disabled');
                     $("#fileDeleteButton").remove();
                 }
             });

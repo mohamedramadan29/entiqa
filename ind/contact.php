@@ -94,33 +94,34 @@ include 'init.php'; ?>
           <form class="" method="post" action="">
             <div class="row row-10">
               <div class="col-md-6">
-                <div class="form-wrap">
-                  <input required minlength="2" maxlength="50" class="form-input form-control" type="text" name="first_name" placeholder="الاسم الاول *">
+                <div class="col-md-6">
+                  <div class="form-wrap">
+                    <input required oninvalid="setCustomValidityArabic(this,'من فضلك ادخل  الاسم الاول ')" oninput="resetCustomValidity(this)" minlength="2" maxlength="50" class="form-input form-control" type="text" name="first_name" placeholder="الاسم الاول *">
+                  </div>
                 </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-wrap">
-                  <input required minlength="2" maxlength="50" class="form-input form-control" type="text" name="last_name" placeholder="الاسم الاخير *">
+                <div class="col-md-6">
+                  <div class="form-wrap">
+                    <input required oninvalid="setCustomValidityArabic(this,'من فضلك ادخل رقم  الاسم الاخير ')" oninput="resetCustomValidity(this)" minlength="2" maxlength="50" class="form-input form-control" type="text" name="last_name" placeholder="الاسم الاخير *">
+                  </div>
                 </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-wrap">
-                  <input required maxlength="50" class="form-input form-control" id="contact-email" type="email" name="email" placeholder="البريد الألكتروني  *">
+                <div class="col-md-6">
+                  <div class="form-wrap">
+                    <input required maxlength="50" class="form-input form-control" id="contact-email" type="email" name="email" placeholder="البريد الألكتروني  *">
+                  </div>
                 </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-wrap">
-                  <input required minlength="8" maxlength="20" class="form-input form-control" id="contact-phone" type="number" name="mobile" placeholder=" رقم الهاتف * ">
+                <div class="col-md-6">
+                  <div class="form-wrap">
+                    <input required minlength="8" maxlength="20" class="form-input form-control" id="contact-phone" type="number" name="mobile" placeholder=" رقم الهاتف * ">
+                  </div>
                 </div>
-              </div>
-              <div class="col-12">
-                <div class="form-wrap">
-                  <textarea required minlength="20" maxlength="400" class="form-input form-control" id="contact-message" name="message" placeholder=" رسالتك *"></textarea>
+                <div class="col-12">
+                  <div class="form-wrap">
+                    <textarea required minlength="20" maxlength="400" class="form-input form-control" id="contact-message" name="message" placeholder=" رسالتك *"></textarea>
+                  </div>
                 </div>
-              </div>
-              <button class="button button-size-1 button-block button-primary" type="submit" name="send_message">ارسال</button>
+                <button class="button button-size-1 button-block button-primary" type="submit" name="send_message">ارسال</button>
 
-            </div>
+              </div>
           </form>
         </div>
       </div>

@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $location = '';
     }
-   
+
     date_default_timezone_set('Asia/Riyadh');
     $currentDateTime = new DateTime();
     $date = $currentDateTime->format("Y-m-d H:i:s");
@@ -41,8 +41,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $formerror[] = 'من فضلك ادخل محتوي الرساله أو قم بتحميل مرفق';
     }
     if (empty($formerror)) {
-        $stmt = $connect->prepare("INSERT INTO chat (from_person,to_person, msg,msg_files,date,send_type,coash_id,batch_id)
-        VALUES(:zfrom_person,:zto_person,:zmessage,:zmsg_files,:zdate,:zsend_type,:zcoash_id,:zbatch_id)");
+        $stmt = $connect->prepare("INSERT INTO chat (from_person,to_person, msg,msg_files,date,send_type,admin_noti,ind_noti,com_noti,coash_id,batch_id)
+        VALUES(:zfrom_person,:zto_person,:zmessage,:zmsg_files,:zdate,:zsend_type,:zadmin_noti,:zind_noti,:zcom_noti,:zcoash_id,:zbatch_id)");
         $stmt->execute(array(
             "zfrom_person" => $from_person,
             "zto_person" => $to_person,
@@ -50,6 +50,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             "zmsg_files" => $location,
             "zdate" => $date,
             "zsend_type" => $send_type,
+            "zadmin_noti" => 0,
+            "zind_noti" => 0,
+            "zcom_noti" => 0,
             "zcoash_id" => $coash_id,
             'zbatch_id' => $batch_id
         ));
@@ -64,6 +67,7 @@ VALUES(:znoti_title,:znoti_perspn,:znoti_com,:zsender)");
             ));
 ?> 
 <?php
+           
         }
     }
 }

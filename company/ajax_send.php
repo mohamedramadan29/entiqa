@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $file = '';
     $file_tmp = '';
     $location = "";
-    $uploadplace = "new_files/";
+    $uploadplace = "../ind_upload_files/";
     if (isset($_FILES['message_attachment']['name'])) {
         foreach ($_FILES['message_attachment']['name'] as $key => $val) {
             $file = $_FILES['message_attachment']['name'][$key];
@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $file_tmp = $_FILES['message_attachment']['tmp_name'][$key];
             move_uploaded_file($file_tmp, $uploadplace . $file);
             $location .= $file . ",";
-            echo  $uploadplace . $file;
+           
         }
     } else {
         $location = '';
@@ -35,8 +35,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $formerror[] = 'من فضلك ادخل محتوي الرساله أو قم بتحميل مرفق';
     }
     if (empty($formerror)) {
-        $stmt = $connect->prepare("INSERT INTO chat (from_person,to_person, msg,msg_files,date,send_type)
-        VALUES(:zfrom_person,:zto_person,:zmessage,:zmsg_files,:zdate,:zsend_type)");
+        $stmt = $connect->prepare("INSERT INTO chat (from_person,to_person, msg,msg_files,date,send_type,admin_noti,ind_noti,com_noti,coash_id,batch_id)
+        VALUES(:zfrom_person,:zto_person,:zmessage,:zmsg_files,:zdate,:zsend_type,:zadmin_noti,:zind_noti,:zcom_noti,:zcoash_id,:zbatch_id)");
         $stmt->execute(array(
             "zfrom_person" => $from_person,
             "zto_person" => $to_person,
@@ -44,6 +44,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             "zmsg_files" => $location,
             "zdate" => $date,
             "zsend_type" => $send_type,
+            "zadmin_noti" => 0,
+            "zind_noti" => 0,
+            "zcom_noti" => 0,
+            "zcoash_id" => 0,
+            'zbatch_id' => null
         ));
         if ($stmt) {
             $stmt = $connect->prepare("INSERT INTO message_notification (noti_title,noti_person_link,noti_com_link,sender)
@@ -55,8 +60,9 @@ VALUES(:znoti_title,:znoti_perspn,:znoti_com,:zsender)");
                 "zsender" => $_SESSION['com_id'],
             ));
 ?>
-            <embed loop="false" hidden="true" src="sound.wav" autoplay="true">
+        
 <?php
+echo "Goood";
         }
     }
 }

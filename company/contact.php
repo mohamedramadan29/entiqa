@@ -95,12 +95,12 @@ include 'init.php'; ?>
             <div class="row row-10">
               <div class="col-md-6">
                 <div class="form-wrap">
-                  <input required minlength="2" maxlength="50" class="form-input form-control" type="text" name="first_name" placeholder="الاسم الاول *">
+                  <input required oninvalid="setCustomValidityArabic(this,'من فضلك ادخل  الاسم الاول ')" oninput="resetCustomValidity(this)" minlength="2" maxlength="50" class="form-input form-control" type="text" name="first_name" placeholder="الاسم الاول *">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-wrap">
-                  <input required minlength="2" maxlength="50" class="form-input form-control" type="text" name="last_name" placeholder="الاسم الاخير *">
+                  <input required oninvalid="setCustomValidityArabic(this,'من فضلك ادخل رقم  الاسم الاخير ')" oninput="resetCustomValidity(this)" minlength="2" maxlength="50" class="form-input form-control" type="text" name="last_name" placeholder="الاسم الاخير *">
                 </div>
               </div>
               <div class="col-md-6">

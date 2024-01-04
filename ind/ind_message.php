@@ -92,7 +92,7 @@ if (isset($_SESSION['ind_id'])) {
                                         });
                                     </script>
                                 </div>
-                                <button type="submit" class="btn btn-primary" name="send_new_message"> ارسال <i class="fa fa-paper-plane"></i></button>
+                                <button type="submit" class="btn btn-primary" name="send_new_message" id="submit_button"> ارسال <i class="fa fa-paper-plane"></i></button>
                         </div>
                         </form>
 
@@ -180,7 +180,7 @@ if (isset($_SESSION['ind_id'])) {
                                 <?php
                                 } elseif ($count_cancel > 0) {
                                 ?>
-                                    <div class="alert alert-danger">  تم الغاء الاتفاق مع الشركه  <i class="fa fa-xbox"></i></div>
+                                    <div class="alert alert-danger"> تم الغاء الاتفاق مع الشركه <i class="fa fa-xbox"></i></div>
                                 <?php
                                 } else {
                                 ?>
@@ -190,8 +190,6 @@ if (isset($_SESSION['ind_id'])) {
                                 <?php
                                 }
                                 ?>
-
-
                                 <!-- Modal -->
                                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
@@ -290,6 +288,8 @@ if (isset($_SESSION['ind_id'])) {
         let selectedFiles = [];
         $('#ajax-form').submit(function(e) {
             e.preventDefault();
+            var submitButton = document.getElementById('submit_button');
+            submitButton.setAttribute('disabled', 'disabled');
             let formData = new FormData(this);
             $.ajax({
                 type: "POST",
@@ -306,6 +306,7 @@ if (isset($_SESSION['ind_id'])) {
                     selectedFiles = [];
                     updateFileList();
                     $("#fileDeleteButton").remove();
+                    submitButton.removeAttribute('disabled');
                 }
             });
         });
