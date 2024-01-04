@@ -71,7 +71,9 @@ if (isset($_SESSION['ind_id'])) {
                                     ?>
                                     <textarea name="message_data" id="msg"></textarea>
 
-                                    <input type="file" name="message_attachment[]" multiple class="form-control" id="customFile" onchange="checkFileSize()">
+                                    <!-- <input type="file" name="message_attachment[]" multiple class="form-control" id="customFile" onchange="checkFileSize()" onchanage='checkFiletype()' accept="image/*, .pdf"> -->
+                                    <input type="file" name="message_attachment[]" multiple class="form-control" id="customFile" onchange="checkFileType(),checkFileSize()" accept="image/*, .pdf">
+
                                     <div class="send_message_button">
                                         <?php
                                         if ($other_person == 'admin' || $other_person == 'coash') {
@@ -380,3 +382,5 @@ if (isset($_SESSION['ind_id'])) {
         }, 1000);
     });
 </script>
+
+

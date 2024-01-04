@@ -100,7 +100,7 @@
         });
     });
 </script> -->
- 
+
 <script>
     $(document).ready(function() {
         $('.testmon').slick({
@@ -126,7 +126,7 @@
     });
 </script>
 <script>
-      $(".select").select2();
+    $(".select").select2();
 </script>
 <!-- Use FlatPicker -->
 <script>
@@ -179,9 +179,34 @@
             fileLabel.innerHTML = 'اختيار ملفات';
         }
     }
-    $(function () {
-  bsCustomFileInput.init();
-});
+
+
+    function checkFileType() {
+        var fileInput = document.getElementById('customFile');
+        var allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/png', 'application/pdf'];
+
+        for (var i = 0; i < fileInput.files.length; i++) {
+            var fileType = fileInput.files[i].type;
+
+            if (allowedTypes.indexOf(fileType) === -1) {
+                // نوع الملف غير مسموح
+                alert('يرجى اختيار ملف صورة أو ملف PDF فقط.');
+
+                // إعادة تعيين قيمة الملف بعد تأخير قصير
+                setTimeout(function() {
+                    fileInput.value = '';
+                }, 100);
+
+                return;
+            }
+        }
+    }
+
+
+
+    $(function() {
+        bsCustomFileInput.init();
+    });
 </script>
 
 </body>

@@ -139,26 +139,47 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                             </form>
 
                             <?php
+
+
+
+
                             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 if (!empty($_FILES['img']['name'])) {
+                                    $allowed_extensions = array('mp4', 'avi', 'mkv', 'mov'); // قائمة بالامتدادات المسموح بها للفيديو
+
                                     $pro_image_name = $_FILES['img']['name'];
                                     $pro_image_name = str_replace(' ', '', $pro_image_name);
                                     $pro_image_temp = $_FILES['img']['tmp_name'];
                                     $pro_image_type = $_FILES['img']['type'];
                                     $pro_image_size = $_FILES['img']['size'];
                                     $pro_image_uploaded = time() . '_' . $pro_image_name;
-                                    move_uploaded_file(
-                                        $pro_image_temp,
-                                        'porfile_videos/' . $pro_image_uploaded
-                                    );
-                                }
-                                $stmt = $connect->prepare("UPDATE ind_register SET video='$pro_image_uploaded' WHERE ind_id = ?");
-                                $stmt->execute(array($_SESSION['ind_id']));
-                                header('location:profile');
-                                //}
-                            }
 
+                                    // حصول على الامتداد
+                                    $file_extension = strtolower(pathinfo($pro_image_uploaded, PATHINFO_EXTENSION));
+
+                                    // التحقق من أن الامتداد مسموح به
+                                    if (in_array($file_extension, $allowed_extensions)) {
+                                        move_uploaded_file(
+                                            $pro_image_temp,
+                                            'porfile_videos/' . $pro_image_uploaded
+                                        );
+
+                                        $stmt = $connect->prepare("UPDATE ind_register SET video='$pro_image_uploaded' WHERE ind_id = ?");
+                                        $stmt->execute(array($_SESSION['ind_id']));
+                                        header('location:profile');
+                                    } else {
                             ?>
+                                        <script>
+                                            alert("  من فضلك اختر الفيديو بشكل صحيح  من نوع [ 'mp4', 'avi', 'mkv', 'mov' ]");
+                                        </script>
+                            <?php
+
+                                    }
+                                }
+                            }
+                            ?>
+
+
                             <br>
                             <!-- -------------------------------------------------------------------------------------------------------------------------->
 
@@ -167,7 +188,7 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                                 <div class="data2">
                                     <br>
                                     <table class="table">
-                                    <tr>
+                                        <tr>
                                             <th> اسم المستخدم </th>
                                             <th style="color:rgba(0, 0, 0, 0.5);">
                                                 <?php echo $ind_data['ind_username']; ?>
@@ -207,7 +228,7 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                                                 ?>
                                             </th>
                                         </tr>
-                                       
+
                                         <tr>
                                             <th> تاريخ الميلاد </th>
                                             <th style="color:rgba(0, 0, 0, 0.5);">

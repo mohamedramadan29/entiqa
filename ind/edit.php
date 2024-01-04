@@ -141,7 +141,7 @@ if (isset($_SESSION['ind_id'])) {
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <div class="custom-file">
-                                                        <input type="file" name="image" accept="image/*" class="custom-file-input form-control" id="exampleInputFile">
+                                                        <input type="file" name="image" accept="image/*" class="custom-file-input form-control" id="customFile" onchange="checkFileTypeIMage()">
                                                         <label class="custom-file-label" for="exampleInputFile"> رفع </label>
                                                     </div>
                                                 </div>
@@ -152,11 +152,16 @@ if (isset($_SESSION['ind_id'])) {
                                     <?php
                                     if (isset($_POST['save_image'])) {
                                         if (!empty($_FILES['image']['name'])) {
+                                            $allowed_extensions = array('jpg', 'png', 'jpeg', 'webp'); // قائمة بالامتدادات المسموح بها للفيديو
+
                                             $pro_image_name = $_FILES['image']['name'];
+                                            $pro_image_name = str_replace(' ', '', $pro_image_name);
                                             $pro_image_temp = $_FILES['image']['tmp_name'];
                                             $pro_image_type = $_FILES['image']['type'];
                                             $pro_image_size = $_FILES['image']['size'];
                                             $pro_image_uploaded = time() . '_' . $pro_image_name;
+                                            // حصول على الامتداد
+                                            $file_extension = strtolower(pathinfo($pro_image_uploaded, PATHINFO_EXTENSION));
                                             move_uploaded_file(
                                                 $pro_image_temp,
                                                 '../ind_images_upload/' . $pro_image_uploaded
@@ -164,10 +169,25 @@ if (isset($_SESSION['ind_id'])) {
                                         } else {
                                             $pro_image_uploaded = '';
                                         }
-                                        $stmt = $connect->prepare("UPDATE ind_register SET ind_image=? WHERE ind_id=?");
-                                        $stmt->execute(array($pro_image_uploaded, $_SESSION['ind_id']));
-                                        if ($stmt) {
-                                            header("Location:edit");
+                                        // التحقق من أن الامتداد مسموح به
+                                        if (in_array($file_extension, $allowed_extensions)) {
+                                            move_uploaded_file(
+                                                $pro_image_temp,
+                                                '../ind_images_upload/' . $pro_image_uploaded
+                                            );
+
+                                            $stmt = $connect->prepare("UPDATE ind_register SET ind_image=? WHERE ind_id=?");
+                                            $stmt->execute(array($pro_image_uploaded, $_SESSION['ind_id']));
+                                            if ($stmt) {
+                                                header("Location:edit");
+                                            }
+                                        } else {
+                                    ?>
+                                            <script>
+                                                alert("  يرجي اختيار صوره فقط من نوع  [ jpg,png,jpeg,webp ] ");
+                                            </script>
+                                    <?php
+
                                         }
                                     }
                                     ?>
@@ -403,3 +423,27 @@ if (isset($_SESSION['ind_id'])) {
 
 
 ?>
+
+<!-- <script>
+    function checkFileTypeIMage() {
+        var fileInput = document.getElementById('customFile');
+        var allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+
+        for (var i = 0; i < fileInput.files.length; i++) {
+            var fileType = fileInput.files[i].type;
+
+            if (allowedTypes.indexOf(fileType) === -1) {
+                // نوع الملف غير مسموح
+                alert(' يرجي اختيار صوره فقط من نوع  [ jpg,png,jpeg,webp ] ');
+
+                // إعادة تعيين قيمة الملف بعد تأخير قصير
+                setTimeout(function() {
+                    fileInput.value = '';
+                }, 100);
+
+                return;
+            }
+        }
+
+    }
+</script> -->

@@ -415,7 +415,7 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
 
                                     <div class="box">
                                         <select required id="ind_transfer2" class="form-control select" name="ind_transfer">
-                                            <option value="">- أمكانية التنقل للعمل في مدينة أخرى ؟ -</option>
+                                            <option value="">- أمكانية التنقل للعمل في مدينة أخرى ؟ * -</option>
                                             <option <?php if (isset($_REQUEST['ind_transfer']) && $_REQUEST['ind_transfer'] == 'نعم')
                                                         echo "selected"; ?> value="نعم">نعم
                                             </option>
@@ -510,5 +510,11 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
             icon.remove("fa-eye");
             icon.add("fa-eye-slash");
         }
+    }
+</script>
+
+<script>
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
     }
 </script>

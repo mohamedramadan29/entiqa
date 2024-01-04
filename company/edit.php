@@ -170,11 +170,16 @@ if (isset($_SESSION['com_id'])) {
                                     <?php
                                     if (isset($_POST['save_image'])) {
                                         if (!empty($_FILES['image']['name'])) {
+                                            $allowed_extensions = array('jpg', 'png', 'jpeg', 'webp'); // قائمة بالامتدادات المسموح بها للفيديو
+
                                             $pro_image_name = $_FILES['image']['name'];
+                                            $pro_image_name = str_replace(' ', '', $pro_image_name);
                                             $pro_image_temp = $_FILES['image']['tmp_name'];
                                             $pro_image_type = $_FILES['image']['type'];
                                             $pro_image_size = $_FILES['image']['size'];
                                             $pro_image_uploaded = time() . '_' . $pro_image_name;
+                                            // حصول على الامتداد
+                                            $file_extension = strtolower(pathinfo($pro_image_uploaded, PATHINFO_EXTENSION));
                                             move_uploaded_file(
                                                 $pro_image_temp,
                                                 '../ind_images_upload/' . $pro_image_uploaded
@@ -182,12 +187,28 @@ if (isset($_SESSION['com_id'])) {
                                         } else {
                                             $pro_image_uploaded = '';
                                         }
-                                        $stmt = $connect->prepare("UPDATE company_register SET com_image=? WHERE com_id=?");
-                                        $stmt->execute(array($pro_image_uploaded, $_SESSION['com_id']));
-                                        if ($stmt) {
-                                            header("Location:edit");
+                                        // التحقق من أن الامتداد مسموح به
+                                        if (in_array($file_extension, $allowed_extensions)) {
+                                            move_uploaded_file(
+                                                $pro_image_temp,
+                                                '../ind_images_upload/' . $pro_image_uploaded
+                                            );
+
+                                            $stmt = $connect->prepare("UPDATE company_register SET com_image=? WHERE com_id=?");
+                                            $stmt->execute(array($pro_image_uploaded, $_SESSION['com_id']));
+                                            if ($stmt) {
+                                                header("Location:edit");
+                                            }
+                                        } else {
+                                    ?>
+                                            <script>
+                                                alert("  يرجي اختيار صوره فقط من نوع  [ jpg,png,jpeg,webp ] ");
+                                            </script>
+                                    <?php
+
                                         }
                                     }
+                                    ?>
                                     ?>
                                 </div>
                                 <form action="" method="POST" class="form-group">

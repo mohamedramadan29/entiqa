@@ -41,7 +41,7 @@ if (isset($_SESSION['com_id'])) {
                                 <div class="message_text">
                                     <input type="hidden" id="other_person" name="to_person" value="<?php echo $other_person ?>">
                                     <textarea name="message_data" id="msg"></textarea>
-                                    <input type="file" name="message_attachment[]" multiple class="form-control" accept="*" id="customFile" onchange="checkFileSize()">
+                                    <input type="file" name="message_attachment[]" multiple class="form-control" id="customFile" onchange="checkFileType(),checkFileSize()" accept="image/*, .pdf">
                                     <div class="send_message_button">
                                         <?php
                                         if ($other_person == 'admin' || $other_person == 'coash') {

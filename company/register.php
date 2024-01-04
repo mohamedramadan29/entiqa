@@ -272,7 +272,7 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                                                                                                                                                                                                                                                                                     } ?>">
                                         </div>
                                         <div class="box">
-                                            <select required class="form-control select2" id="com_work_type" name="com_work_type">
+                                            <select required oninvalid="setCustomValidityArabic(this,' من فضلك حدد نوع العمل ')" oninput="resetCustomValidity(this)" class="form-control" id="com_work_type" name="com_work_type">
                                                 <option value="">-- اختر نوع العمل --</option>
                                                 <option <?php if (isset($_REQUEST['com_work_type']) && $_REQUEST['com_work_type'] == 'عمل ميداني')
                                                             echo "selected"; ?> value="عمل ميداني"> عمل ميداني
@@ -311,144 +311,144 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                                                                                                                                                                                                                                                                                 } ?>">
                                         </div>
                                         <div class="box">
-                                            <select required id="com_place" class="form-control select2" name="com_place">
+                                            <select required oninvalid="setCustomValidityArabic(this,' من فضلك حدد مقر الشركه ')" oninput="resetCustomValidity(this)" id="com_place" class="form-control" name="com_place">
                                                 <option value=""> -- مقر الشركة--*</option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'الرياض')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'الرياض')
                                                             echo "selected"; ?> value="الرياض">الرياض
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'جدة')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'جدة')
                                                             echo "selected"; ?> value="جدة">جدة
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'مكة')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'مكة')
                                                             echo "selected"; ?> value="مكة">مكة
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'المدينة المنورة')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'المدينة المنورة')
                                                             echo "selected"; ?> value="المدينة المنورة">المدينة المنورة
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'الطائف')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'الطائف')
                                                             echo "selected"; ?> value="الطائف">الطائف
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'تبوك')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'تبوك')
                                                             echo "selected"; ?> value="تبوك">تبوك
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'خميس مشيط')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'خميس مشيط')
                                                             echo "selected"; ?> value="خميس مشيط">خميس مشيط
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'عفيف')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'عفيف')
                                                             echo "selected"; ?> value="عفيف">عفيف
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'عرعر')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'عرعر')
                                                             echo "selected"; ?> value="عرعر">عرعر
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'أبها')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'أبها')
                                                             echo "selected"; ?> value="أبها">أبها
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'عسير')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'عسير')
                                                             echo "selected"; ?> value="عسير">عسير
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'بلجرشي')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'بلجرشي')
                                                             echo "selected"; ?> value="بلجرشي">بلجرشي
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'بيشة')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'بيشة')
                                                             echo "selected"; ?> value="بيشة">بيشة
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'بريدة')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'بريدة')
                                                             echo "selected"; ?> value="بريدة">بريدة
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'القصيم')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'القصيم')
                                                             echo "selected"; ?> value="القصيم">القصيم
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'الباحة')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'الباحة')
                                                             echo "selected"; ?> value="الباحة">الباحة
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'الدمام')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'الدمام')
                                                             echo "selected"; ?> value="الدمام">الدمام
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'الظهران')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'الظهران')
                                                             echo "selected"; ?> value="الظهران">الظهران
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'الدوادمي')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'الدوادمي')
                                                             echo "selected"; ?> value="الدوادمي">الدوادمي
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'جزر فرسان')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'جزر فرسان')
                                                             echo "selected"; ?> value="جزر فرسان">جزر فرسان
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'القريات')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'القريات')
                                                             echo "selected"; ?> value="القريات">القريات
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'القويعية')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'القويعية')
                                                             echo "selected"; ?> value="القويعية">القويعية
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'حرمة')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'حرمة')
                                                             echo "selected"; ?> value="حرمة">حرمة
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'حائل')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'حائل')
                                                             echo "selected"; ?> value="حائل">حائل
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'حوطة بني تميم')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'حوطة بني تميم')
                                                             echo "selected"; ?> value="حوطة بني تميم">حوطة بني تميم
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'الهفوف')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'الهفوف')
                                                             echo "selected"; ?> value="الهفوف">الهفوف
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'حفر الباطن')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'حفر الباطن')
                                                             echo "selected"; ?> value="حفر الباطن">حفر الباطن
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'جبل أم الرؤوس')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'جبل أم الرؤوس')
                                                             echo "selected"; ?> value="جبل أم الرؤوس">جبل أم الرؤوس
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'الجوف')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'الجوف')
                                                             echo "selected"; ?> value="الجوف">الجوف
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'جيزان')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'جيزان')
                                                             echo "selected"; ?> value="جيزان">جيزان
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'الجبيل')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'الجبيل')
                                                             echo "selected"; ?> value="الجبيل">الجبيل
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'الخفجي')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'الخفجي')
                                                             echo "selected"; ?> value="الخفجي">الخفجي
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'الخرج')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'الخرج')
                                                             echo "selected"; ?> value="الخرج">الخرج
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'الخبر')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'الخبر')
                                                             echo "selected"; ?> value="الخبر">الخبر
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'أملج')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'أملج')
                                                             echo "selected"; ?> value="أملج">أملج
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'القطيف')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'القطيف')
                                                             echo "selected"; ?> value="القطيف">القطيف
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'القنفذة')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'القنفذة')
                                                             echo "selected"; ?> value="القنفذة">القنفذة
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'رأس التنورة')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'رأس التنورة')
                                                             echo "selected"; ?> value="رأس التنورة">رأس التنورة
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'سكاكا')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'سكاكا')
                                                             echo "selected"; ?> value="سكاكا">سكاكا
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'شرورة')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'شرورة')
                                                             echo "selected"; ?> value="شرورة">شرورة
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'شقرا')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'شقرا')
                                                             echo "selected"; ?> value="شقرا">شقرا
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'العلا')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'العلا')
                                                             echo "selected"; ?> value="العلا">العلا
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'عنيزة')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'عنيزة')
                                                             echo "selected"; ?> value="عنيزة">عنيزة
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'وادي الدواسر')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'وادي الدواسر')
                                                             echo "selected"; ?> value="وادي الدواسر">وادي الدواسر
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'ينبع')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'ينبع')
                                                             echo "selected"; ?> value="ينبع">ينبع
                                                 </option>
-                                                <option <?php if (isset($_REQUEST['ind_address']) && $_REQUEST['ind_address'] == 'زلفي')
+                                                <option <?php if (isset($_REQUEST['com_place']) && $_REQUEST['com_place'] == 'زلفي')
                                                             echo "selected"; ?> value="زلفي">زلفي
                                                 </option>
                                             </select>
@@ -539,5 +539,11 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
             icon.remove("fa-eye");
             icon.add("fa-eye-slash");
         }
+    }
+</script>
+
+<script>
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
     }
 </script>
