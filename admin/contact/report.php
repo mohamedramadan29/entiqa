@@ -83,9 +83,12 @@
                                                             <label id="name_en"> رقم الهاتف <span> * </span></label>
                                                             <input disabled min="1" class="form-control" type="text" name="wha_order" value="<?php echo $type['mobile'] ?>">
                                                         </div>
-                                                        <div class="box2">
+                                                        <div class="box">
                                                             <label id="name_en">الرسالة<span> * </span></label>
-                                                            <textarea disabled class="form-control"><?php echo $type['message']; ?></textarea>
+                                                            <div style="    border: 1px solid #ccc; background-color: #ececec; border-radius: 3px; padding: 10px;font-size: 16px;color: #5c5959;">
+                                                                <?php echo $type['message']; ?>
+                                                            </div>
+                                                            
                                                         </div>
                                                     </div>
                                                 </div>

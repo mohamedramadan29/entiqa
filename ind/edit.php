@@ -38,6 +38,7 @@ if (isset($_SESSION['ind_id'])) {
             $ind_address = sanitizeInput($_POST["ind_address"]);
             $ind_transfer = sanitizeInput($_POST["ind_transfer"]);
             $ind_english = sanitizeInput($_POST["ind_english"]);
+            $ind_gender = sanitizeInput($_POST['ind_gender']);
             $formerror = [];
             if (empty($ind_name) || empty($ind_birthdate) || empty($ind_email) || empty($ind_phone) || empty($ind_nationality)) {
                 $formerror[] = " من فضلك ادخل المعلومات كاملة ";
@@ -48,7 +49,7 @@ if (isset($_SESSION['ind_id'])) {
             if (empty($ind_name)) {
                 $formerror[] = "  من فضلك ادخل الاسم الخاص بك ";
             }
-            if(strlen($ind_phone) > 20){
+            if (strlen($ind_phone) > 20) {
                 $formerror[] = ' من فضلك ادخل رقم هاتف بشكل صحيح ';
             }
             if (empty($ind_email)) {
@@ -72,7 +73,7 @@ if (isset($_SESSION['ind_id'])) {
             if (empty($formerror)) {
                 $stmt = $connect->prepare("UPDATE ind_register SET
                 ind_name=?,
-                ind_birthdate=?,ind_email=?,ind_phone=?,ind_nationality=?,ind_address=?,ind_transfer=?,
+                ind_birthdate=?,ind_email=?,ind_phone=?,ind_nationality=?,ind_address=?,ind_gender=?,ind_transfer=?,
                 ind_english=? WHERE ind_id=?");
                 $stmt->execute(
                     array(
@@ -82,6 +83,7 @@ if (isset($_SESSION['ind_id'])) {
                         $ind_phone,
                         $ind_nationality,
                         $ind_address,
+                        $ind_gender,
                         $ind_transfer,
                         $ind_english,
                         $_SESSION['ind_id']
@@ -140,7 +142,7 @@ if (isset($_SESSION['ind_id'])) {
                                                 <div class="input-group">
                                                     <div class="custom-file">
                                                         <input type="file" name="image" accept="image/*" class="custom-file-input form-control" id="exampleInputFile">
-                                                        <label class="custom-file-label" for="exampleInputFile"> رفع  </label>
+                                                        <label class="custom-file-label" for="exampleInputFile"> رفع </label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -190,7 +192,7 @@ if (isset($_SESSION['ind_id'])) {
                                         </div>
                                         <div class="box">
                                             <label for="">تاريخ الميلاد <span> * </span></label>
-                                            <?php  $tenYearsAgo = date('Y-m-d', strtotime('-15 years')); ?>
+                                            <?php $tenYearsAgo = date('Y-m-d', strtotime('-15 years')); ?>
                                             <input type="date" min="1900-01-01" max="<?php echo $tenYearsAgo; ?>" class="form-control" name="ind_birthdate" value="<?php echo $ind_data['ind_birthdate']; ?>">
                                         </div>
                                         <div class="box">
@@ -362,6 +364,18 @@ if (isset($_SESSION['ind_id'])) {
                                                             echo "selected"; ?> value="نعم">نعم </option>
                                                 <option <?php if ($ind_data["ind_transfer"] == "لا")
                                                             echo "selected"; ?> value="لا">لا</option>
+                                            </select>
+                                        </div>
+                                        <div class="box">
+                                            <label for=""> الجنس <span> * </span></label>
+                                            <select oninvalid="setCustomValidityArabic(this,'من فضلك حدد الجنس')" oninput="resetCustomValidity(this)" required id="ind_gender2" class="form-control select" name="ind_gender">
+                                                <option value=""> -- الجنس *--</option>
+                                                <option <?php if ($ind_data["ind_gender"] == "ذكر")
+                                                            echo "selected"; ?> value="ذكر">ذكر
+                                                </option>
+                                                <option <?php if ($ind_data["ind_gender"] == "انثي")
+                                                            echo "selected"; ?> value="انثي">انثي
+                                                </option>
                                             </select>
                                         </div>
                                     </div>

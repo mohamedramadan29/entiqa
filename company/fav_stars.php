@@ -24,7 +24,7 @@ if (isset($_SESSION['com_id'])) {
         $stmt->execute(array($_SESSION['com_id']));
         $com_data = $stmt->fetch();
         ?>
-        <div class="star_person" style="background-color: #fff;">
+        <div class="star_person" style="background-color: #fbfbfb;">
             <div class="container">
                 <div class="data">
                     <div class="row">
@@ -217,7 +217,7 @@ if (isset($_SESSION['com_id'])) {
                             <?php
                             }
                             foreach ($alluser as $user) { ?>
-                                <div class="col-lg-3">
+                                <div class="col-lg-3 col-6">
                                     <div class="info">
                                         <?php
                                         if ($user['ind_image'] == "") {

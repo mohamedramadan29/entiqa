@@ -16,7 +16,7 @@ include 'init.php'; ?>
     </div>
     <!-- Get Company Information  -->
 
-    <div class="star_person" style="background-color: #fff;">
+    <div class="star_person" style="background-color: #fbfbfb;">
         <div class="container">
             <div class="data">
                 <div class="row">
@@ -194,7 +194,7 @@ include 'init.php'; ?>
                     $count = $stmt->rowCount();
                     if ($count > 0) {
                         foreach ($alluser as $user) { ?>
-                            <div class="col-lg-3">
+                            <div class="col-lg-3 col-6">
                                 <div class="info">
                                     <?php
                                     if ($user['ind_image'] == "") {

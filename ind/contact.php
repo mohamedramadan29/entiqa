@@ -22,16 +22,32 @@ include 'init.php'; ?>
     <?php
     if (isset($_POST["send_message"])) {
       $formerror = [];
-      $first_name = $_POST["first_name"];
-      $last_name = $_POST["last_name"];
-      $email = $_POST["email"];
-      $mobile = $_POST["mobile"];
-      $message = $_POST["message"];
+      $first_name = sanitizeInput($_POST["first_name"]);
+      $last_name = sanitizeInput($_POST["last_name"]);
+      $email = sanitizeInput($_POST["email"]);
+      $mobile = sanitizeInput($_POST["mobile"]);
+      $message = sanitizeInput($_POST["message"]);
       if (empty($first_name) || empty($last_name) || empty($email) || empty($mobile) || empty($message)) {
         $formerror[] = 'من فضلك ادخل المعلومات كاملة';
       }
       if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $formerror[] = " يجب إدخال عنوان بريد إلكتروني صالح ";
+      } elseif (strlen($email) > 50) {
+        $formerror[] = "طول البريد الإلكتروني يجب أن لا يتجاوز 50 حرفًا";
+      } elseif (!preg_match('/^[a-zA-Z0-9.@]+$/', $email)) {
+        $formerror[] = "البريد الإلكتروني يجب أن يحتوي على أحرف وأرقام ورموز صحيحة فقط";
+      } elseif (strpos($email, '..') !== false) {
+        $formerror[] = "البريد الإلكتروني يحتوي على أحرف غير صالحة";
+      }
+
+      if (strlen($mobile) > 20 || !is_numeric($mobile)) {
+        $formerror[] = ' رقم الهاتف يجب أن يكون أقل من 20 رقم ويحتوي على أرقام فقط ';
+      }
+      if (strlen($first_name) > 50) {
+        $formerror[] = 'الاسم الاول يجب ان يكون اقل من  50 حرف ';
+      }
+      if (strlen($last_name) > 50) {
+        $formerror[] = 'الاسم الاخير يجب ان يكون اقل من  50 حرف ';
       }
       if (empty($formerror)) {
         $stmt = $connect->prepare("INSERT INTO contact (first_name, last_name , email , mobile , message ,date ) VALUES 
@@ -46,22 +62,21 @@ include 'init.php'; ?>
             'zdate' => date("Y-m-d"),
           )
         );
-      }
-      if ($stmt) { ?>
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-        <script>
-          new swal({
-            title: " شكرا لك   !",
-            text: " تم ارسال رسالتك بنجاح   سوف نتواصل معك في اقرب وقت ممكن ",
-            icon: "success",
-            button: "اغلاق",
-          });
-        </script>
-        <?php header('refresh:1;url=contact'); ?>
-        <!-- <div class="alert alert-success"> تم ارسال رسالتك بنجاح ,
-          سوف نتواصل معك في اقرب وقت ممكن </div> -->
+        if ($stmt) { ?>
+          <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+          <script>
+            new swal({
+              title: " شكرا لك   !",
+              text: " تم ارسال رسالتك بنجاح   سوف نتواصل معك في اقرب وقت ممكن ",
+              icon: "success",
+              button: "اغلاق",
+            });
+          </script>
+          <?php header('refresh:1;url=contact'); ?>
+          <!-- <div class="alert alert-success"> تم ارسال رسالتك بنجاح ,
+            سوف نتواصل معك في اقرب وقت ممكن </div> -->
         <?php
-
+        }
       } else {
         foreach ($formerror as $error) {
         ?>
@@ -90,7 +105,7 @@ include 'init.php'; ?>
               </div>
               <div class="col-md-6">
                 <div class="form-wrap">
-                  <input required class="form-input form-control" id="contact-email" type="email" name="email" placeholder="البريد الألكتروني  *">
+                  <input required maxlength="50" class="form-input form-control" id="contact-email" type="email" name="email" placeholder="البريد الألكتروني  *">
                 </div>
               </div>
               <div class="col-md-6">

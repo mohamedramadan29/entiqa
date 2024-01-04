@@ -98,6 +98,7 @@ if (isset($_SESSION['com_id'])) {
                         </div>
                     <?php
                     } else {
+
                     ?>
                         <div class="chat_reason">
                             <h2>معلومات</h2>
@@ -105,8 +106,8 @@ if (isset($_SESSION['com_id'])) {
                                 <p>تواصل مع المستخدم بشان طلب التعاقد</p>
 
                                 <?php
-                                $stmt = $connect->prepare("SELECT * FROM contract_complete WHERE company_id=? AND ind_id=?");
-                                $stmt->execute(array($_SESSION["com_id"], $user_data['ind_id']));
+                                $stmt = $connect->prepare("SELECT * FROM contract_complete WHERE ind_id=?");
+                                $stmt->execute(array($user_data['ind_id']));
                                 $count = $stmt->rowCount();
 
                                 // check if this contract canceled before or not 
@@ -172,7 +173,7 @@ if (isset($_SESSION['com_id'])) {
 
                                     /////////////////////////////// الغائ الاتفاق 
                                 ?>
-                                    <div class="alert alert-danger"> تم الغاء الاتفاق مع المتدرب من قبل  <i class="fa fa-error"></i></div>
+                                    <div class="alert alert-danger"> تم الغاء الاتفاق مع المتدرب من قبل <i class="fa fa-error"></i></div>
                                     <div class="chat_com_option">
                                         <div class="company_review">
                                             <?php
@@ -182,7 +183,7 @@ if (isset($_SESSION['com_id'])) {
                                             $count_review = $stmt->rowCount();
                                             if ($count_review > 0) {
                                             ?>
-                                            <p> تقيمك لمنصه انتقاء </p>
+                                                <p> تقيمك لمنصه انتقاء </p>
                                                 <div class="alert alert-success"> <?php echo $review_data['com_review']; ?> </div>
                                             <?php
                                             } else {
@@ -294,31 +295,46 @@ if (isset($_SESSION['com_id'])) {
                                         <?php
                                         $price = 1;
                                         if (isset($_POST['send_con_compelete'])) {
-                                            $stmt = $connect->prepare("INSERT INTO contract_complete (company_id,
-                                            ind_id,con_com_price) VALUES (:zcom_id,:zind_id,:zprice)");
-                                            $stmt->execute(array(
-                                                'zcom_id' => $_SESSION['com_id'],
-                                                'zind_id' =>  $user_data['ind_id'],
-                                                'zprice' => $price
-                                            ));
-                                            if ($stmt) {
-                                                $stmt = $connect->prepare("SELECT * FROM company_register WHERE com_id=?");
-                                                $stmt->execute(array($_SESSION['com_id']));
-                                                $com_data = $stmt->fetch();
-                                                $count = $stmt->rowCount();
+                                            $formerror = [];
+                                            $stmt = $connect->prepare("SELECT * FROM contract_complete WHERE ind_id = ?");
+                                            $stmt->execute(array($user_data['ind_id']));
+                                            $count_before_contract = $stmt->rowCount();
+                                            if ($count_before_contract > 0) {
+                                                $formerror[] = 'هذا المتدرب متعاقد بالفعل مع شركه';
+                                            }
+                                            if ($empt($formerror)) {
+                                                $stmt = $connect->prepare("INSERT INTO contract_complete (company_id,
+                                                ind_id,con_com_price) VALUES (:zcom_id,:zind_id,:zprice)");
+                                                $stmt->execute(array(
+                                                    'zcom_id' => $_SESSION['com_id'],
+                                                    'zind_id' =>  $user_data['ind_id'],
+                                                    'zprice' => $price
+                                                ));
+                                                if ($stmt) {
+                                                    $stmt = $connect->prepare("SELECT * FROM company_register WHERE com_id=?");
+                                                    $stmt->execute(array($_SESSION['com_id']));
+                                                    $com_data = $stmt->fetch();
+                                                    $count = $stmt->rowCount();
 
-                                                $com_balance = $com_data['com_balance'];
-                                                $new_com_balance = $com_balance - $price;
-                                                if ($count > 0) {
-                                                    $stmt = $connect->prepare("UPDATE company_register SET com_balance=? WHERE com_id=?");
-                                                    $stmt->execute(array($new_com_balance, $_SESSION['com_id']));
-                                                }
-                                                $stmt = $connect->prepare("UPDATE ind_register SET ind_status=3 WHERE ind_id=?");
-                                                $stmt->execute(array($user_data['ind_id']));
+                                                    $com_balance = $com_data['com_balance'];
+                                                    $new_com_balance = $com_balance - $price;
+                                                    if ($count > 0) {
+                                                        $stmt = $connect->prepare("UPDATE company_register SET com_balance=? WHERE com_id=?");
+                                                        $stmt->execute(array($new_com_balance, $_SESSION['com_id']));
+                                                    }
+                                                    $stmt = $connect->prepare("UPDATE ind_register SET ind_status=3 WHERE ind_id=?");
+                                                    $stmt->execute(array($user_data['ind_id']));
                                         ?>
-                                                <div class="alert alert-success"> رااائع !! تم تاكيد الاتفاق مع المتدرب </div>
+                                                    <div class="alert alert-success"> رااائع !! تم تاكيد الاتفاق مع المتدرب </div>
+                                                <?php
+                                                    header("refresh:3;url=profile");
+                                                }
+                                            } else {
+                                                foreach ($formerror as $error) {
+                                                ?>
+                                                    <div class="alert alert-info"><?php echo $error; ?></div>
                                         <?php
-                                                header("refresh:3;url=profile");
+                                                }
                                             }
                                         }
                                         ?>

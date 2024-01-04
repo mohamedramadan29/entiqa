@@ -53,11 +53,17 @@ if (isset($_SESSION['com_id'])) {
             if (empty($com_num)) {
                 $formerror[] = "    فضلك ادخل  رقم السجل التجاري     ";
             }
-           
+
             if (empty($com_email)) {
                 $formerror[] = " يجب اضافة البريد الالكتروني  ";
             } elseif (!filter_var($com_email, FILTER_VALIDATE_EMAIL)) {
                 $formerror[] = " يجب إدخال عنوان بريد إلكتروني صالح ";
+            } elseif (strlen($com_email) > 254) {
+                $formerror[] = "طول البريد الإلكتروني يجب أن لا يتجاوز 254 حرفًا";
+            } elseif (!preg_match('/^[a-zA-Z0-9.@]+$/', $com_email)) {
+                $formerror[] = "البريد الإلكتروني يجب أن يحتوي على أحرف وأرقام ورموز صحيحة فقط";
+            } elseif (strpos($com_email, '..') !== false) {
+                $formerror[] = "البريد الإلكتروني يحتوي على أحرف غير صالحة";
             }
             if (strlen($com_phone) > 20) {
                 $formerror[] = ' من فضلك ادخل رقم هاتف بشكل صحيح ';
@@ -76,6 +82,16 @@ if (isset($_SESSION['com_id'])) {
                 $formerror[] = 'رقم الهاتف مستخدم من قبل ';
             }
 
+
+            if (strlen($com_num) > 20 || strlen($com_num) < 5 || !is_numeric($com_num)) {
+                $formerror[] = ' رقم السجل التجاري يجب ان يكون اكثر من 5 ارقام واقل من 20 رقم ويحتوي علي ارقام فقط  ';
+            }
+            if (strlen($com_active) > 200 || strlen($com_active) < 5) {
+                $formerror[] = 'يجب ان يتم ادخال نشاط الشركه بشكل صحيح يجب ان يكون اكبر من 5 احرف واقل من 200 حرف';
+            }
+            if (strlen($com_braches) > 100) {
+                $formerror[] = 'فروع الشركه يجب ان تكون اقل من 100 حرف';
+            }
 
             $stmt = $connect->prepare("SELECT * FROM company_register WHERE com_num=? AND com_id !=?");
             $stmt->execute(array($com_num, $_SESSION['com_id']));
@@ -229,7 +245,7 @@ if (isset($_SESSION['com_id'])) {
                                                 </div>
                                                 <div class="box">
                                                     <label for=""> عدد أيام الأجازة الأسبوعية <span> * </span> </label>
-                                                    <input min="0" required oninvalid="setCustomValidityArabic(this,'من فضلك حدد ايام الأجازة الأسبوعية')" oninput="resetCustomValidity(this)" class="form-control" id="com_weekend_num" type="number" placeholder="عدد أيام الأجازة الأسبوعية " name="com_weekend_num" value="<?php echo $com_data['com_weekend_num']; ?>">
+                                                    <input min="0" max="7" required oninvalid="setCustomValidityArabic(this,'من فضلك حدد ايام الأجازة الأسبوعية')" oninput="resetCustomValidity(this)" class="form-control" id="com_weekend_num" type="number" placeholder="عدد أيام الأجازة الأسبوعية " name="com_weekend_num" value="<?php echo $com_data['com_weekend_num']; ?>">
                                                 </div>
                                                 <div class="box">
                                                     <label for=""> نوع العمل <span> * </span> </label>
@@ -245,7 +261,7 @@ if (isset($_SESSION['com_id'])) {
                                                 </div>
                                                 <div class="box">
                                                     <label for=""> العمولة المقدرة <span> * </span></label>
-                                                    <input min="0" required oninvalid="setCustomValidityArabic(this,'من فضلك ادخل العمولة المقدرة')" oninput="resetCustomValidity(this)" class="form-control" id="com_commission" type="number" placeholder="العمولة المقدرة " name="com_commission" value="<?php echo $com_data['com_commission']; ?>">
+                                                    <input min="0" max="100" required oninvalid="setCustomValidityArabic(this,'من فضلك ادخل العمولة المقدرة')" oninput="resetCustomValidity(this)" class="form-control" id="com_commission" type="number" placeholder="العمولة المقدرة " name="com_commission" value="<?php echo $com_data['com_commission']; ?>">
                                                 </div>
                                             </div>
                                         </div>

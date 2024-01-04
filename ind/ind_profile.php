@@ -49,6 +49,13 @@ if (isset($_SESSION['ind_id'])) {
                                 <div class="info_header d-none">
                                     <h2> معلومات عن المتدرب </h2>
                                 </div>
+                                <?php
+                                if (!empty($ind_data['video'])) {
+                                    echo "<video src=porfile_videos/" . $ind_data['video'] . "  width='100%' height='300' 
+style='border:1px solid black;border-radius:20px;' controls/></video>";
+                                }
+                                ?>
+
                                 <div class="info_data">
                                     <div class="data1 d-none">
                                         <h4> نبذة عن المتدرب </h4>

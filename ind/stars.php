@@ -17,7 +17,7 @@ if (isset($_SESSION['ind_id'])) {
             </div>
         </div>
 
-        <div class="star_person" style="background-color: #fff;">
+        <div class="star_person" style="background-color: #fbfbfb;">
             <div class="container">
                 <div class="data">
                     <div class="row">
