@@ -2,11 +2,11 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $formerror = [];
     $admin_id = $_POST['admin_id'];
-    $admin_email = $_POST['admin_email'];
-    $admin_name = $_POST['admin_name'];
-    if (!empty($_POST['admin_password'])) {
-        $password = $_POST['admin_password'];
-        $confirm_password = $_POST['confirm_password'];
+    $admin_email = sanitizeInput($_POST['admin_email']);
+    $admin_name = sanitizeInput($_POST['admin_name']);
+    if (!empty(sanitizeInput($_POST['admin_password']))) {
+        $password = sanitizeInput($_POST['admin_password']);
+        $confirm_password = sanitizeInput($_POST['confirm_password']);
         if (strlen($password) < 8) {
             $formerror[] = 'كلمة المرور يجب ان تكون اكبر من او تساوي 8 احرف وارقام';
         }

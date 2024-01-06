@@ -19,7 +19,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="myform">
-                            <form class="form-group insert ajax_form" action="main.php?dir=service_team&page=add" method="POST" autocomplete="on" enctype="multipart/form-data">
+                            <form class="form-group insert ajax_form" action="main.php?dir=service_team&page=add" method="POST" autocomplete="off" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="box2">
@@ -108,7 +108,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="myform">
-                                            <form class="form-group insert ajax_form" action="main.php?dir=service_team&page=edit" method="POST" autocomplete="on" enctype="multipart/form-data">
+                                            <form class="form-group insert ajax_form" action="main.php?dir=service_team&page=edit" method="POST" autocomplete="off" enctype="multipart/form-data">
                                                 <input type="hidden" name="id" value="<?php echo $type['id'] ?>">
                                                 <div class="row">
                                                     <div class="col-lg-12">

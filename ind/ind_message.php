@@ -236,27 +236,45 @@ if (isset($_SESSION['ind_id'])) {
                                     }
                                 }
                                 ?>
-                                <div class="company_review">
-                                    <form action="" method="post">
-                                        <textarea required placeholder="من فضلك اكتب تقيمك للمنصة" name="com_review" id="" class="form-control"></textarea>
-                                        <input class="btn btn-primary" name="send_review" type="submit" value="   ارسال التقيم  ">
-                                    </form>
-                                    <?php
-                                    if (isset($_POST['send_review'])) {
-                                        $review = $_POST['com_review'];
-                                        $stmt = $connect->prepare("INSERT INTO ind_review (ind_id, ind_review) VALUES (:zind_id,:zind_review)");
-                                        $stmt->execute(array(
-                                            "zind_id" => $_SESSION['ind_id'],
-                                            "zind_review" => $review,
-                                        ));
-                                        if ($stmt) {
-                                    ?>
-                                            <div class="alert alert-success"> شكرا لك علي تقيمك لمنصة انتقاء </div>
-                                    <?php
+                                <?php
+                                $stmt = $connect->prepare("SELECT * FROM ind_review WHERE ind_id=? AND com_id = ? ORDER BY rev_id DESC LIMIT 1");
+                                $stmt->execute(array($_SESSION['ind_id'], $com_data['com_id']));
+                                $review_data = $stmt->fetch();
+                                $count_review = $stmt->rowCount();
+                                if ($count_review > 0) {
+                                ?>
+                                    <div class="alert alert-success"> <?php echo $review_data['ind_review']; ?> </div>
+                                <?php
+                                } else {
+                                ?>
+                                    <div class="company_review">
+                                        <form action="" method="post">
+                                            <textarea required placeholder="من فضلك اكتب تقييمك للمنصة" name="com_review" id="" class="form-control"></textarea>
+                                            <input class="btn btn-primary" name="send_review" type="submit" value="   ارسال التقييم  ">
+                                        </form>
+                                        <?php
+                                        if (isset($_POST['send_review'])) {
+                                            $review = $_POST['com_review'];
+                                            $stmt = $connect->prepare("INSERT INTO ind_review (ind_id,com_id, ind_review) VALUES (:zind_id,:zcom_id,:zind_review)");
+                                            $stmt->execute(array(
+                                                "zind_id" => $_SESSION['ind_id'],
+                                                "zcom_id" => $com_data['com_id'],
+                                                "zind_review" => $review,
+                                            ));
+                                            if ($stmt) {
+                                                header("Location:ind_message.php?other=" . $other_person);
+                                        ?>
+                                                <div class="alert alert-success"> شكرا لك علي تقييمك لمنصة انتقاء </div>
+                                        <?php
+                                            }
                                         }
-                                    }
-                                    ?>
-                                </div>
+                                        ?>
+                                    </div>
+                                <?php
+
+                                }
+                                ?>
+
                             </div>
                             </div>
                         </div>
@@ -382,5 +400,3 @@ if (isset($_SESSION['ind_id'])) {
         }, 1000);
     });
 </script>
-
-

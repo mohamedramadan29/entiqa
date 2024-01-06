@@ -20,7 +20,7 @@ if (isset($_GET['rev_id'])) {
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb">
 
-                    <li class="breadcrumb-item active" aria-current="page"> تعديل تقيم الشركة </li>
+                    <li class="breadcrumb-item active" aria-current="page"> تعديل تقييم الشركة </li>
                 </ol>
             </nav>
         </div>

@@ -81,10 +81,9 @@
                                                                 <span> * </span> </label>
                                                             <input class="form-control" type="password" name="confirm_password" value="">
                                                         </div>
-
                                                     </div>
                                                     <div class="box submit_box">
-                                                        <input class="btn btn-outline-primary btn-sm" name="" type="submit" value="  تعديل القسم   ">
+                                                        <input class="btn btn-outline-primary btn-sm" name="" type="submit" value=" تعديل  ">
                                                     </div>
                                                 </div>
                                             </form>

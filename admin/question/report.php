@@ -123,7 +123,7 @@
 
                                         </div>
                                         <div class="box submit_box">
-                                            <input class="btn btn-outline-primary btn-sm" name="add_car" type="submit" value=" اضافه سوال">
+                                            <input class="btn btn-outline-primary btn-sm" name="add_car" type="submit" value=" إضافة سؤال ">
                                         </div>
                                     </div>
                                 </div>
@@ -168,7 +168,7 @@
                             ?>
                             <td>
                                 <a class="btn btn-primary btn-sm" href="main.php?dir=question&page=view&ques_id=<?php echo $type['ques_id']; ?> ">
-                                    مشاهدة <i class="fa fa-edit"></i>
+                                    مشاهدة <i class="fa fa-eye"></i>
                                 </a>
                                 <a class="confirm btn btn-danger btn-sm" href="main.php?dir=question&page=delete&ques_id=<?php echo $type['ques_id']; ?> ">
                                     حذف <i class="fa fa-trash"></i>

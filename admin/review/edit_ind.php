@@ -19,7 +19,7 @@ if (isset($_GET['rev_id'])) {
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb">
 
-                    <li class="breadcrumb-item active" aria-current="page"> تعديل تقيم الفرد </li>
+                    <li class="breadcrumb-item active" aria-current="page"> تعديل تقييم الفرد </li>
                 </ol>
             </nav>
         </div>
@@ -89,7 +89,7 @@ if (isset($_GET['rev_id'])) {
 
                                 </div>
                                 <div class="box2">
-                                    <label id="name"> الفرد
+                                    <label id="name">  المتدرب
                                         <span> * </span> </label>
                                     <input readonly required class="form-control" type="text" name="ind_id" value="<?php echo $type['ind_name'] ?>">
                                 </div>

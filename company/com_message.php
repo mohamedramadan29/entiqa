@@ -104,14 +104,11 @@ if (isset($_SESSION['com_id'])) {
                             <h2>معلومات</h2>
                             <div class="info">
                                 <p>تواصل مع المستخدم بشان طلب التعاقد</p>
-
                                 <?php
                                 $stmt = $connect->prepare("SELECT * FROM contract_complete WHERE ind_id=?");
                                 $stmt->execute(array($user_data['ind_id']));
                                 $count = $stmt->rowCount();
-
                                 // check if this contract canceled before or not 
-
                                 $stmt = $connect->prepare("SELECT * FROM contract_cancel WHERE company_id=? AND ind_id=?");
                                 $stmt->execute(array($_SESSION["com_id"], $user_data['ind_id']));
                                 $count_cancel = $stmt->rowCount();
@@ -131,8 +128,8 @@ if (isset($_SESSION['com_id'])) {
                                             } else {
                                             ?>
                                                 <form action="" method="post">
-                                                    <textarea required minlength="5" placeholder="من فضلك اكتب تقيمك للمنصة" name="com_review" id="" class="form-control"></textarea>
-                                                    <input class="btn btn-primary" name="send_review" type="submit" value="   ارسال التقيم  ">
+                                                    <textarea required minlength="5" placeholder="من فضلك اكتب تقييمك للمنصة" name="com_review" id="" class="form-control"></textarea>
+                                                    <input class="btn btn-primary" name="send_review" type="submit" value="   ارسال التقييم  ">
                                                 </form>
                                                 <?php
                                                 if (isset($_POST['send_review'])) {
@@ -189,8 +186,8 @@ if (isset($_SESSION['com_id'])) {
                                             } else {
                                             ?>
                                                 <form action="" method="post">
-                                                    <textarea required minlength="5" placeholder="من فضلك اكتب تقيمك للمنصة" name="com_review" id="" class="form-control"></textarea>
-                                                    <input class="btn btn-primary" name="send_review" type="submit" value="   ارسال التقيم  ">
+                                                    <textarea required minlength="5" placeholder="من فضلك اكتب تقييمك للمنصة" name="com_review" id="" class="form-control"></textarea>
+                                                    <input class="btn btn-primary" name="send_review" type="submit" value="   ارسال التقييم  ">
                                                 </form>
                                                 <?php
                                                 if (isset($_POST['send_review'])) {
@@ -409,8 +406,8 @@ if (isset($_SESSION['com_id'])) {
                                             } else {
                                             ?>
                                                 <form action="" method="post">
-                                                    <textarea required minlength="5" placeholder="من فضلك اكتب تقيمك للمنصة" name="com_review" id="" class="form-control"></textarea>
-                                                    <input class="btn btn-primary" name="send_review" type="submit" value="   ارسال التقيم  ">
+                                                    <textarea required minlength="5" placeholder="من فضلك اكتب تقييمك للمنصة" name="com_review" id="" class="form-control"></textarea>
+                                                    <input class="btn btn-primary" name="send_review" type="submit" value="   ارسال التقييم  ">
                                                 </form>
                                                 <?php
                                                 if (isset($_POST['send_review'])) {

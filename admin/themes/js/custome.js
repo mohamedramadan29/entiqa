@@ -116,6 +116,8 @@ $(document).ready(function () {
     $("#lnk-review").addClass("active menu-is-opening menu-open");
     if (window.location.href.indexOf("com_review") != -1) {
       $("#lnk-rep-review").addClass("active-tab");
+    }else if(window.location.href.indexOf("edit_com") != -1){
+      $("#lnk-rep-review").addClass("active-tab");
     } else {
       $("#lnk-rep-review2").addClass("active-tab");
     }
