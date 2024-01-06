@@ -58,15 +58,15 @@ if (isset($_SESSION['com_id'])) {
                 $formerror[] = " يجب اضافة البريد الالكتروني  ";
             } elseif (!filter_var($com_email, FILTER_VALIDATE_EMAIL)) {
                 $formerror[] = " يجب إدخال عنوان بريد إلكتروني صالح ";
-            } elseif (strlen($com_email) > 254) {
-                $formerror[] = "طول البريد الإلكتروني يجب أن لا يتجاوز 254 حرفًا";
+            } elseif (strlen($com_email) > 100) {
+                $formerror[] = "طول البريد الإلكتروني يجب أن لا يتجاوز 100 حرفًا";
             } elseif (!preg_match('/^[a-zA-Z0-9.@]+$/', $com_email)) {
                 $formerror[] = "البريد الإلكتروني يجب أن يحتوي على أحرف وأرقام ورموز صحيحة فقط";
             } elseif (strpos($com_email, '..') !== false) {
                 $formerror[] = "البريد الإلكتروني يحتوي على أحرف غير صالحة";
             }
-            if (strlen($com_phone) > 20) {
-                $formerror[] = ' من فضلك ادخل رقم هاتف بشكل صحيح ';
+            if (!is_numeric($com_phone) || strlen($com_phone) < 8 || strlen($com_phone) > 20) {
+                $formerror[] = 'من فضلك، أدخل رقم هاتف صحيح بين 8 و 20 رقمًا.';
             }
             $stmt = $connect->prepare("SELECT * FROM company_register WHERE com_email=? AND com_id !=?");
             $stmt->execute(array($com_email, $_SESSION['com_id']));

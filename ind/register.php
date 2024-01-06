@@ -46,17 +46,24 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                             if (empty($ind_username)) {
                                 $formerror[] = "  من فضلك ادخل الاسم الخاص بك ";
                             }
-                            if (strlen($ind_username) > 16) {
-                                $formerror[] = 'اسم المستخدم يجب ان يكون اقل من 16 حرف';
+                            if (strlen($ind_username) > 50) {
+                                $formerror[] = 'اسم المستخدم يجب ان يكون اقل من 50 حرف';
                             }
 
                             if (!preg_match('/^[a-zA-Z]+$/', $ind_username)) {
                                 $formerror[] = ' يجب ان تكون الحروف المستخدمة فى اسم المتخدم حروف انجليزية فقط ';
                             }
+
                             if (empty($ind_email)) {
-                                $formerror[] = " يجب إدخال البريد الإلكتروني ";
+                                $formerror[] = " يجب اضافة البريد الالكتروني  ";
                             } elseif (!filter_var($ind_email, FILTER_VALIDATE_EMAIL)) {
                                 $formerror[] = " يجب إدخال عنوان بريد إلكتروني صالح ";
+                            } elseif (strlen($ind_email) > 100) {
+                                $formerror[] = "طول البريد الإلكتروني يجب أن لا يتجاوز 100 حرفًا";
+                            } elseif (!preg_match('/^[a-zA-Z0-9.@]+$/', $ind_email)) {
+                                $formerror[] = "البريد الإلكتروني يجب أن يحتوي على أحرف وأرقام ورموز صحيحة فقط";
+                            } elseif (strpos($ind_email, '..') !== false) {
+                                $formerror[] = "البريد الإلكتروني يحتوي على أحرف غير صالحة";
                             }
                             if (empty($ind_password)) {
                                 $formerror[] = " يجب اضافة  كلمة المرور    ";
@@ -75,7 +82,9 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                             if (!preg_match("/^[\p{Arabic}\p{Latin}\s]+$/u", $ind_nationality)) {
                                 $formerror[] = 'من فضلك أدخل الجنسية بشكل صحيح';
                             }
-
+                            if (!is_numeric($ind_phone) || strlen($ind_phone) < 8 || strlen($ind_phone) > 20) {
+                                $formerror[] = 'من فضلك، أدخل رقم هاتف صحيح بين 8 و 20 رقمًا.';
+                            }
 
                             if (
                                 empty($ind_username) || empty($ind_name) || empty($ind_birthdate) || empty($ind_email) || empty($ind_phone)
@@ -220,7 +229,7 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                                 <h2> حساب فرد جديد </h2>
                                 <div class="col-lg-6">
                                     <div class="box">
-                                        <input pattern="[a-zA-Z]+" minlength="5" maxlength="16" oninvalid="setCustomValidityArabic(this,'يجب ان تكون الحروف المستخدمة فى اسم المتخدم حروف انجليزية فقط')" oninput="resetCustomValidity(this)" placeholder="اسم المستخدم * " required class="form-control" id="ind_username" type="text" name="ind_username" value="<?php if (isset($_REQUEST['ind_username'])) {
+                                        <input pattern="[a-zA-Z]+" minlength="5" maxlength="50" oninvalid="setCustomValidityArabic(this,'يجب ان تكون الحروف المستخدمة فى اسم المتخدم حروف انجليزية فقط')" oninput="resetCustomValidity(this)" placeholder="اسم المستخدم * " required class="form-control" id="ind_username" type="text" name="ind_username" value="<?php if (isset($_REQUEST['ind_username'])) {
                                                                                                                                                                                                                                                                                                                                                                         echo $_REQUEST['ind_username'];
                                                                                                                                                                                                                                                                                                                                                                     } ?>">
                                         <small class="ind_username text-danger"> </small>

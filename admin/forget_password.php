@@ -62,6 +62,12 @@
                                 $stmt->execute(array($randomString, $randomString, $data['admin_name']));
                                 $to_email = $data['admin_email'];
                                 $to_name = $data['admin_name'];
+                            } else {
+                ?>
+                                <script>
+                                    alert('لا يوجد سجل بهذه البيانات');
+                                </script>
+                            <?php
                             }
                         } elseif ($permision == 'services') {
                             $stmt = $connect->prepare(
@@ -75,6 +81,12 @@
                                 $stmt->execute(array($randomString, $randomString, $data['name']));
                                 $to_email = $data['email'];
                                 $to_name = $data['name'];
+                            } else {
+                            ?>
+                                <script>
+                                    alert('لا يوجد سجل بهذه البيانات');
+                                </script>
+                            <?php
                             }
                         } elseif ($permision == 'coash') {
                             $stmt = $connect->prepare(
@@ -88,6 +100,12 @@
                                 $stmt->execute(array($randomString, $randomString, $data['co_name']));
                                 $to_email = $data['co_email'];
                                 $to_name = $data['co_name'];
+                            } else {
+                            ?>
+                                <script>
+                                    alert('لا يوجد سجل بهذه البيانات');
+                                </script>
+                            <?php
                             }
                         }
                         $mail = new PHPMailer(true);
@@ -115,15 +133,13 @@
                             $mail->AltBody = 'This is the plain text message body for non-HTML mail clients.';
                             // إرسال البريد الإلكتروني
                             $mail->send();
-                        } catch (Exception $e) {
-                            echo "حدث خطأ في إرسال البريد الإلكتروني: {$mail->ErrorInfo}";
-                        }
-                        if ($stmt) {
-                ?>
+                            ?>
                             <li class="alert alert-success"> تم ارسال كلمة المرور الجديدة علي الايميل الخاص بك ( <?php echo $to_email; ?> ) </li>
-
                         <?php
                             header('refresh:4;url=index');
+                        } catch (Exception $e) {
+                            // {$mail->ErrorInfo}
+                            echo "حدث خطأ في إرسال البريد الإلكتروني";
                         }
                     } else { ?>
                         <ul>
@@ -160,7 +176,7 @@
                                         <option value="coash"> المدرب </option>
                                     </select>
                                 </div>
-                                 
+
                                 <button class="btn btn-primary" name="forget_password" type="submit"> تاكيد </button>
                             </form>
                         </div>

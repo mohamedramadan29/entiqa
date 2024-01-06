@@ -12,7 +12,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Almarai&display=swap" rel="stylesheet">
+
   <link href="<?php echo $css; ?>bootstrap.rtl.min.css" rel="stylesheet">
+  
   <link href="<?php echo $css; ?>select2.min.css" rel="stylesheet">
   <link href="<?php echo $css; ?>slick.css" rel="stylesheet">
   <link href="<?php echo $css; ?>slick-theme.css" rel="stylesheet">

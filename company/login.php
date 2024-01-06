@@ -108,12 +108,8 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                         if ($com_data['active_status'] == 1) {
                             // إذا تم تحديد خانة "تذكرني"، قم بضبط الكوكيز
                             if (isset($_POST['remember_me'])) {
-                                $cookie_name = "remember_user";
-                                $cookie_value = $com_email; // قم بتغيير القيمة إلى ما تريد الاحتفاظ به
-                                $cookie_expiry = time() + (86400 * 30); // الكوكيز سينتهي بعد 30 يومًا
-
-                                // ضبط الكوكيز
-                                setcookie($cookie_name, $cookie_value, $cookie_expiry, "/");
+                                setcookie('email', $com_email, time() + (86400 * 30));
+                                setcookie('pass', $password, time() + (86400 * 30));
                             }
                             $_SESSION['com_id'] = $com_data['com_id'];
                             $_SESSION['com_username'] = $com_data['com_username'];
@@ -156,12 +152,16 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                             <div class="row row-10">
                                 <div class="col-md-12">
                                     <div class="box">
-                                        <input autocomplete="off" value="<?php if (isset($_REQUEST['com_email'])) echo $_REQUEST['com_email']; ?>" class="form-control" id="contact-last-name" type="text" name="com_email" required placeholder=" اسم المستخدم او  البريد الالكتروني ">
+                                        <input autocomplete="off" value="<?php if (isset($_COOKIE['email'])) {
+                                                                                echo $_COOKIE['email'];
+                                                                            } ?>" class="form-control" id="contact-last-name" type="text" name="com_email" required placeholder=" اسم المستخدم او  البريد الالكتروني ">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="box">
-                                        <input autocomplete="off" class="form-control" id="password" type="password" name="password" required placeholder="كلمة المرور ">
+                                        <input autocomplete="off" class="form-control" id="password" type="password" value="<?php if (isset($_COOKIE['pass'])) {
+                                                                                                                                echo $_COOKIE['pass'];
+                                                                                                                            } ?>" name="password" required placeholder="كلمة المرور ">
                                     </div>
                                 </div>
                                 <div class="d-flex align-items-center justify-content-between">

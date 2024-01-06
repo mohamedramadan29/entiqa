@@ -49,8 +49,8 @@ if (isset($_SESSION['ind_id'])) {
             if (empty($ind_name)) {
                 $formerror[] = "  من فضلك ادخل الاسم الخاص بك ";
             }
-            if (strlen($ind_phone) > 20) {
-                $formerror[] = ' من فضلك ادخل رقم هاتف بشكل صحيح ';
+            if (!is_numeric($ind_phone) || strlen($ind_phone) < 8 || strlen($ind_phone) > 20) {
+                $formerror[] = 'من فضلك، أدخل رقم هاتف صحيح بين 8 و 20 رقمًا.';
             }
             if (empty($ind_email)) {
                 $formerror[] = " يجب اضافة البريد الالكتروني  ";

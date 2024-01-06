@@ -1511,9 +1511,9 @@ nav .profile_item .profile_links li a i {
     border-radius: 6px;
     background-color: #e4e7eb;
     border-radius: 6px;
-    width: 450px;
+    /* width: 450px; */
     color: #4a4a4a;
-    max-width: 338px;
+    max-width: 450px;
 
 }
 
@@ -1605,7 +1605,7 @@ nav .profile_item .profile_links li a i {
 
 .chat_section form .message_text input[type=file] {
     height: 45px;
-    width: 400px;
+    max-width: 400px;
     text-align: center;
     margin: auto;
     margin-top: 20px;
@@ -2626,7 +2626,8 @@ li .notification span {
 }
 
 .register_form .login input::placeholder {
-    font-size: 15px;
+    /* font-size: 15px; */
+    padding: 10px;
 }
 
 @media(max-width:991px) {
@@ -2756,16 +2757,33 @@ li .notification span {
 .password_eye {
     position: relative;
 }
-.password_eye span{
+
+.password_eye span {
     position: absolute;
     top: 6px;
     left: 10px;
     cursor: pointer;
     font-size: 17px;
 }
+
 .password_eye span i {
-   
+
     color: #939393;
     font-size: 18px;
-    
+
+}
+
+/* Remove Numbers  arrow */
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    appearance: none;
+}
+
+@media(max-width:991px) {
+    nav .profile_item .profile_links, nav .notification_items .notification_links {
+        left: -20px;
+    }
 }

@@ -30,12 +30,12 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                     $ind_email = $com_data['ind_email'];
                     $ind_username = $com_data['ind_username'];
                     $ind_name = $com_data['ind_name'];
-// Generate a unique activation code 
-$activationCode = rand(1, 55555);
+                    // Generate a unique activation code 
+                    $activationCode = rand(1, 55555);
                     $stmt = $connect->prepare("UPDATE ind_register SET active_status_code = ? WHERE ind_username=?");
-                    $stmt->execute(array($activationCode,$ind_username));
+                    $stmt->execute(array($activationCode, $ind_username));
 
-                    
+
 
 
 
@@ -111,11 +111,8 @@ $activationCode = rand(1, 55555);
                         if ($com_data['active_status'] == 1) {
                             // إذا تم تحديد خانة "تذكرني"، قم بضبط الكوكيز
                             if (isset($_POST['remember_me'])) {
-                                $cookie_name = "remember_user";
-                                $cookie_value = $com_email; // قم بتغيير القيمة إلى ما تريد الاحتفاظ به
-                                $cookie_expiry = time() + (86400 * 30); // الكوكيز سينتهي بعد 30 يومًا
-                                // ضبط الكوكيز
-                                setcookie($cookie_name, $cookie_value, $cookie_expiry, "/");
+                                setcookie('email', $com_email, time() + (86400 * 30));
+                                setcookie('pass', $password, time() + (86400 * 30));
                             }
                             $_SESSION['ind_id'] = $com_data['ind_id'];
                             $_SESSION['ind_username'] = $com_data['ind_username'];
@@ -155,12 +152,16 @@ $activationCode = rand(1, 55555);
                                 <h2> تسجيل دخول </h2>
                                 <div class="col-md-12">
                                     <div class="box">
-                                        <input autocomplete="off" class="form-control" id="contact-last-name" type="text" name="com_email" value="<?php if (isset($_REQUEST['com_email'])) echo $_REQUEST['com_email']; ?>" placeholder=' اسم المستخدم او  البريد الالكتروني '>
+                                        <input autocomplete="off" class="form-control" id="contact-last-name" type="text" name="com_email" value="<?php if (isset($_COOKIE['email'])) {
+                                                                                                                                                        echo $_COOKIE['email'];
+                                                                                                                                                    } ?>" placeholder=' اسم المستخدم او  البريد الالكتروني '>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="box">
-                                        <input autocomplete="off" class="form-control" id="password" type="password" name="password" placeholder="كلمة المرور">
+                                        <input autocomplete="off" class="form-control" id="password" type="password" name="password" value="<?php if (isset($_COOKIE['pass'])) {
+                                                                                                                                                echo $_COOKIE['pass'];
+                                                                                                                                            } ?>" placeholder="كلمة المرور">
                                     </div>
                                 </div>
                                 <div class="d-flex align-items-center justify-content-between">
