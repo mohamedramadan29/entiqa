@@ -70,3 +70,73 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 }
+?>
+
+<div class="container customer_report">
+    <div class="data">
+        <div class="bread">
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+
+                    <li class="breadcrumb-item active" aria-current="page"> تعديل العضو </li>
+                </ol>
+            </nav>
+        </div>
+        <?php
+        $member_id = $_GET['member'];
+        $stmt = $connect->prepare('SELECT * FROM service_team WHERE id = ?');
+        $stmt->execute(array($member_id));
+        $type = $stmt->fetch();
+        ?>
+        <div class="card">
+            <div class="card-body">
+                <div class="myform">
+                    <form class="form-group insert ajax_form" action="" method="POST" autocomplete="off" enctype="multipart/form-data">
+                        <input type="hidden" name="id" value="<?php echo $type['id'] ?>">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="box2">
+                                    <label id="name"> الاسم
+                                        <span> * </span> </label>
+                                    <input required minlength="5" maxlength="50" class="form-control" type="text" name="name" value="<?php echo $type['name']; ?>">
+                                </div>
+                                <div class="box2 show_hide_password">
+                                    <label id="name"> كلمه المرور القديمه
+                                        <span> * </span> </label>
+                                    <input class="form-control" type="password" name="password" value="<?php echo $type['password']; ?>" id="password<?php echo $type['id'] ?>">
+                                    <span onclick="togglePasswordVisibility('password<?php echo $type['id'] ?>', this)" class="fa fa-eye-slash show_eye eye_icon"></span>
+                                </div>
+                                <div class="box2 show_hide_password">
+                                    <label id="name"> تعديل كلمة المرور
+                                        <span> * </span> </label>
+                                    <input class="form-control" type="password" name="password" value="" id="passwordedit1">
+                                    <span onclick="togglePasswordVisibility('passwordedit1', this)" class="fa fa-eye-slash show_eye eye_icon"></span>
+                                </div>
+                                <div class="box2">
+                                    <label id="name_en"> البريد الالكتروني <span> * </span></label>
+                                    <input required class="form-control" type="email" name="email" value=" <?php echo $type['email']; ?>">
+                                </div>
+                                <div class="box2 show_hide_password">
+                                    <label id="name"> تأكيد كلمة المرور
+                                        <span> * </span> </label>
+                                    <input class="form-control" type="password" name="confirm_password" value="" id="passwordedit2">
+                                    <span onclick="togglePasswordVisibility('passwordedit2', this)" class="fa fa-eye-slash show_eye eye_icon"></span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                </div>
+                <input class="btn btn-outline-primary btn-sm" name="add_car" type="submit" value="تعديل">
+                </form>
+            </div>
+        </div>
+
+
+        <!-- END RECORD TO EDIT NEW RECORD  -->
+
+
+    </div>
+</div>
+</div>
+</div>

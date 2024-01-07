@@ -3,7 +3,7 @@
         <div class="bread">
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    
+
                     <li class="breadcrumb-item active" aria-current="page"> اعضاء فريق الخدمة </li>
                 </ol>
             </nav>
@@ -27,19 +27,21 @@
                                                 <span> * </span> </label>
                                             <input minlength="5" maxlength="50" required class="form-control" type="text" name="name">
                                         </div>
-                                        <div class="box2">
+                                        <div class="box2 show_hide_password">
                                             <label id="name"> كلمة المرور
                                                 <span> * </span> </label>
-                                            <input required class="form-control" type="password" name="password">
+                                            <input required class="form-control" type="password" name="password" id="password">
+                                            <span onclick="togglePasswordVisibility('password', this)" class="fa fa-eye-slash show_eye eye_icon"></span>
                                         </div>
                                         <div class="box2">
                                             <label id="name_en"> البريد الالكتروني <span> * </span></label>
                                             <input required class="form-control" type="email" name="email">
                                         </div>
-                                        <div class="box2">
+                                        <div class="box2 show_hide_password">
                                             <label id="name"> تأكيد كلمة المرور
                                                 <span> * </span> </label>
-                                            <input required class="form-control" type="password" name="confirm_password" value="">
+                                            <input required class="form-control" type="password" name="confirm_password" value="" id="password2">
+                                            <span onclick="togglePasswordVisibility('password2', this)" class="fa fa-eye-slash show_eye eye_icon"></span>
                                         </div>
 
                                         <div class="box submit_box">
@@ -90,9 +92,7 @@
                             <td><?php echo $type['name']; ?> </td>
                             <td><?php echo $type['email']; ?> </td>
                             <td>
-                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editrecord<?php echo $type['id']; ?>">
-                                    تعديل <i class="fa fa-edit"></i>
-                                </button>
+                                <a href="main.php?dir=service_team&page=edit&member=<?php echo $type['id']; ?>" class="btn btn-primary btn-sm"> تعديل <i class="fa fa-edit"></i> </a>
                                 <a class="confirm btn btn-danger btn-sm" href="main.php?dir=service_team&page=delete&id=<?php echo $type['id']; ?> ">
                                     حذف <i class="fa fa-trash"></i>
                                 </a>
@@ -117,10 +117,17 @@
                                                                 <span> * </span> </label>
                                                             <input required minlength="5" maxlength="50" class="form-control" type="text" name="name" value="<?php echo $type['name']; ?>">
                                                         </div>
-                                                        <div class="box2">
+                                                        <div class="box2 show_hide_password">
+                                                            <label id="name"> كلمه المرور القديمه
+                                                                <span> * </span> </label>
+                                                            <input class="form-control" type="password" name="password" value="<?php echo $type['password']; ?>" id="password<?php echo $type['id'] ?>">
+                                                            <span onclick="togglePasswordVisibility('password<?php echo $type['id'] ?>', this)" class="fa fa-eye-slash show_eye eye_icon"></span>
+                                                        </div>
+                                                        <div class="box2 show_hide_password">
                                                             <label id="name"> تعديل كلمة المرور
                                                                 <span> * </span> </label>
-                                                            <input class="form-control" type="password" name="password" value="">
+                                                            <input class="form-control" type="password" name="password" value="" id="password22">
+                                                            <span onclick="togglePasswordVisibility('password22', this)" class="fa fa-eye-slash show_eye eye_icon"></span>
                                                         </div>
                                                         <div class="box2">
                                                             <label id="name_en"> البريد الالكتروني <span> * </span></label>

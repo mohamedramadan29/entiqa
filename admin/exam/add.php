@@ -122,10 +122,10 @@
                                         <option> -- اختر الدفعه -- </option>
                                         <?php
                                         if (isset($_SESSION['coash_id'])) {
-                                            $stmt = $connect->prepare("SELECT * FROM batches WHERE batch_coach=? AND batch_status !='تم التأهيل بنجاح'");
+                                            $stmt = $connect->prepare("SELECT * FROM batches WHERE batch_coach=? AND batch_status ='قيد التدريب'");
                                             $stmt->execute(array($_SESSION['coash_id']));
                                         } else {
-                                            $stmt = $connect->prepare("SELECT * FROM batches WHERE batch_status !='تم التأهيل بنجاح'");
+                                            $stmt = $connect->prepare("SELECT * FROM batches WHERE batch_status ='قيد التدريب'");
                                             $stmt->execute();
                                         }
                                         $allcoa = $stmt->fetchAll();

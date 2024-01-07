@@ -47,8 +47,15 @@ if (isset($_GET['batch'])) {
                         $formerror[] = 'يجب ان يكون الاسم اقل من 50 حرف ';
                     }
                     $date_now = date("Y-m-d");
-                    if ($batch_start < $date_now) {
-                        $formerror[]  = ' لا يجب ان يكون تاريخ بداية الدفعة اقل من تاريخ اليوم  ';
+                    // if ($batch_start < $date_now) {
+                    //     $formerror[]  = ' لا يجب ان يكون تاريخ بداية الدفعة اقل من تاريخ اليوم  ';
+                    // }
+                    // check if the batch name found before ort not 
+                    $stmt = $connect->prepare("SELECT * FROM batches WHERE batch_name = ? AND batch_id !=?");
+                    $stmt->execute(array($batch_name, $batch_id));
+                    $count = $stmt->rowCount();
+                    if ($count > 0) {
+                        $formerror[] = 'اسم الدفعه موجود من قبل من فضلك ادخل اسم جديد ';
                     }
                     if (empty($formerror)) {
                         $stmt = $connect->prepare("UPDATE batches SET batch_name=?,batch_coach=?,batch_start=?,
@@ -115,13 +122,13 @@ if (isset($_GET['batch'])) {
                                 <div class="box2">
                                     <label id="name"> اقل عدد
                                         <span> * </span> </label>
-                                    <input required class="form-control" type="number" name="batch_min" value="<?php echo $type['batch_min']; ?>">
+                                    <input required min="1" class="form-control" type="number" name="batch_min" value="<?php echo $type['batch_min']; ?>">
                                 </div>
 
                                 <div class="box2">
                                     <label id="name"> اكثر عدد
                                         <span> * </span> </label>
-                                    <input required class="form-control" type="number" name="batch_max" value="<?php echo $type['batch_max']; ?>">
+                                    <input required min="1" class="form-control" type="number" name="batch_max" value="<?php echo $type['batch_max']; ?>">
                                 </div>
                                 <div class="box2">
                                     <select required class="form-control select" name="batch_status">
@@ -129,7 +136,7 @@ if (isset($_GET['batch'])) {
                                         <option <?php if ($type['batch_status'] == 'استقطاب') echo "selected" ?> value="استقطاب">استقطاب</option>
                                         <?php
                                         $date_now = date("Y-m-d");
-                                        if (($date_now > $type['batch_start']) && ($type['ind_num'] > $type['batch_min'])) { ?>
+                                        if (($date_now >= $type['batch_start']) && ($type['ind_num'] >= $type['batch_min'])) { ?>
                                             <option <?php if ($type['batch_status'] == 'قيد التدريب') echo "selected" ?> value="قيد التدريب">قيد التدريب </option>
                                             <option <?php if ($type['batch_status'] == 'تم التأهيل بنجاح') echo "selected" ?> value="تم التأهيل بنجاح">تم التأهيل بنجاح </option>
                                         <?php

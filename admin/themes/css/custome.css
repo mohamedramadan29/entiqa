@@ -1187,10 +1187,10 @@
  /*START MAIN REPORT HEADER*/
 
  .dropdown-menu.show {
-  display: block;
-  position: absolute !important;
-  right: -160%;
-  overflow: hidden; 
+   display: block;
+   position: absolute !important;
+   right: -160%;
+   overflow: hidden;
  }
 
  .dropdown-item {
@@ -2456,6 +2456,17 @@
    display: none;
  }
 
- .swal2-container .select2-container{
-  display: none !important;
+ .swal2-container .select2-container {
+   display: none !important;
+ }
+
+ .show_hide_password {
+   position: relative;
+ }
+
+ .show_hide_password .eye_icon {
+   position: absolute;
+   top: 36px;
+   left: 0;
+   color: #7e7e7e;
  }

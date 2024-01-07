@@ -13,12 +13,12 @@
             <div class="card-body">
                 <?php if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     if (isset($_POST['add_car'])) {
-                        $batch_name =   $_POST['batch_name'];
-                        $batch_coash =  $_POST['batch_coash'];
-                        $batch_status = $_POST['batch_status'];
-                        $batch_start = $_POST['batch_start'];
-                        $batch_min = $_POST['batch_min'];
-                        $batch_max = $_POST['batch_max'];
+                        $batch_name =  sanitizeInput($_POST['batch_name']);
+                        $batch_coash = sanitizeInput($_POST['batch_coash']);
+                        $batch_status = sanitizeInput($_POST['batch_status']);
+                        $batch_start = sanitizeInput($_POST['batch_start']);
+                        $batch_min = sanitizeInput($_POST['batch_min']);
+                        $batch_max = sanitizeInput($_POST['batch_max']);
                         $date = date("Y-m-d");
                         /// More Validation To Show Error
                         $formerror = [];

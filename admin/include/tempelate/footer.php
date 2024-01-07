@@ -56,6 +56,39 @@
     }
   </script>
 
+  <!-- To Show Hide Password -->
+  <script>
+    function togglePasswordVisibility(inputId, iconElement) {
+      var passwordInput = document.getElementById(inputId);
+      var icon = iconElement.classList;
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        icon.remove("fa-eye-slash");
+        icon.add("fa-eye");
+      } else {
+        passwordInput.type = "password";
+        icon.remove("fa-eye");
+        icon.add("fa-eye-slash");
+      }
+    }
+  </script>
+
+<script>
+    function togglePasswordVisibility2(inputId, iconElement) {
+      var passwordInput = document.getElementById(inputId);
+      var icon = iconElement.classList;
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        icon.remove("fa-eye-slash");
+        icon.add("fa-eye");
+      } else {
+        passwordInput.type = "password";
+        icon.remove("fa-eye");
+        icon.add("fa-eye-slash");
+      }
+    }
+  </script>
+
   </div>
   </div>
 

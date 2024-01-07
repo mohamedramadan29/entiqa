@@ -219,7 +219,7 @@
                                                                 </div>
                                                                 <div class="box2">
                                                                     <label id="name_en"> الهاتف <span> * </span></label>
-                                                                    <input required minlength="8" maxlength="20" class="form-control" type="text" name="co_phone" value="<?php echo $type['co_phone']; ?>">
+                                                                    <input required minlength="8" maxlength="20" class="form-control" type="number" name="co_phone" value="<?php echo $type['co_phone']; ?>">
                                                                 </div>
                                                                 <div class="box2">
                                                                     <label id="name"> تأكيد كلمة المرور

@@ -41,6 +41,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
 
+    if (!is_numeric($co_phone) || strlen($co_phone) < 8 || strlen($co_phone) > 20) {
+        $formerror[] = 'من فضلك، أدخل رقم هاتف صحيح بين 8 و 20 رقمًا.';
+    }
+
+    if (empty($co_email)) {
+        $formerror[] = " يجب اضافة البريد الالكتروني  ";
+    } elseif (!filter_var($co_email, FILTER_VALIDATE_EMAIL)) {
+        $formerror[] = " يجب إدخال عنوان بريد إلكتروني صالح ";
+    } elseif (strlen($co_email) > 100) {
+        $formerror[] = "طول البريد الإلكتروني يجب أن لا يتجاوز 100 حرفًا";
+    } elseif (!preg_match('/^[a-zA-Z0-9.@]+$/', $co_email)) {
+        $formerror[] = "البريد الإلكتروني يجب أن يحتوي على أحرف وأرقام ورموز صحيحة فقط";
+    } elseif (strpos($co_email, '..') !== false) {
+        $formerror[] = "البريد الإلكتروني يحتوي على أحرف غير صالحة";
+    }
+
     $stmt = $connect->prepare("SELECT * FROM coshes WHERE co_name=? AND co_id !=?");
     $stmt->execute(array($co_name, $co_id));
     $name_count = $stmt->rowCount();
