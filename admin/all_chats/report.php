@@ -185,7 +185,7 @@ if (isset($_SESSION['com_id'])) {
                                         <!-- ------------------------------------------------------------------------------------------------------------------------->
                                         <div>
                                             <?php echo $message['msg']; ?></div>
-                                        <span> <i class="fa fa-clock-o"></i> <?php echo $message['date']; ?> </span>
+                                        <span> <i class="fa fa-clock-o"></i> <?php echo formatTimeDifference($message['date']); ?> </span>
                                     </div>
                                 </div>
                             </a>

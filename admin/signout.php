@@ -1,11 +1,13 @@
 <?php
 session_start();
-if (isset($_SESSION['username'])) {
-    unset($_SESSION['username']);
+if (isset($_SESSION['admin_session'])) {
+    unset($_SESSION['admin_session']);
 }
-if (isset($_SESSION['com_id'])) {
-    unset($_SESSION['com_id']);
+if (isset($_SESSION['serv_name'])) {
+    unset($_SESSION['serv_name']);
 }
-header('location:index.php');
+if (isset($_SESSION['coash_id'])) {
+    unset($_SESSION['coash_id']);
+}
+header('location:index');
 session_destroy();
-?>

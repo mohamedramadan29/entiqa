@@ -14,6 +14,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             'uploads/' . $ind_certificate_uploaded
         );
     }
+
+    if (!empty($_FILES['ind_certificate']['name'])) {
+        $allowed_extensions = array('pdf'); // قائمة بالامتدادات المسموح بها للفيديو
+
+        $ind_certificate_name = $_FILES['ind_certificate']['name'];
+        $ind_certificate_name = str_replace(' ', '', $ind_certificate_name);
+        $ind_certificate_temp = $_FILES['ind_certificate']['tmp_name'];
+        $ind_certificate_type = $_FILES['ind_certificate']['type'];
+        $ind_certificate_size = $_FILES['ind_certificate']['size'];
+        $ind_certificate_uploaded = time() . '_' . $ind_certificate_name;
+    }
+
+
+
+
+
+
     // check if it the same batch or not
     $stmt = $connect->prepare("SELECT * FROM ind_register WHERE ind_id = ?");
     $stmt->execute(array($ind_id));
@@ -21,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user_batch = $user_data['ind_batch'];
     if ($user_batch != $ind_batch) {
         $stmt = $connect->prepare("UPDATE ind_register SET ind_batch=?,ind_status=?,date_change_status=? WHERE ind_id=?");
-        $stmt->execute([$ind_batch, $ind_status,$date_now, $ind_id]);
+        $stmt->execute([$ind_batch, $ind_status, $date_now, $ind_id]);
         // باقي انقص واحد من الدفعه القديمة 
         $stmt = $connect->prepare("SELECT * FROM batches WHERE batch_id=?");
         $stmt->execute(array($user_batch));
@@ -39,17 +56,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->execute(array($ind_num, $ind_batch));
     } else {
         $stmt = $connect->prepare("UPDATE ind_register SET ind_status=?,date_change_status=? WHERE ind_id=?");
-        $stmt->execute([$ind_status,$date_now, $ind_id]);
+        $stmt->execute([$ind_status, $date_now, $ind_id]);
     }
 
-    if (!empty($_FILES['ind_certificate']['tmp_name'])) {
-        $ind_certificate_uploaded = time() . '_' . $ind_certificate_name;
-        move_uploaded_file(
-            $ind_certificate_temp,
-            'uploads/' . $ind_certificate_uploaded
-        );
-        $stmt = $connect->prepare("UPDATE ind_register SET ind_certificate=? WHERE ind_id=?");
-        $stmt->execute([$ind_certificate_uploaded, $ind_id]);
+    if (!empty($_FILES['ind_certificate']['name'])) {
+
+        // حصول على الامتداد
+        $file_extension = strtolower(pathinfo($ind_certificate_uploaded, PATHINFO_EXTENSION));
+
+        // التحقق من أن الامتداد مسموح به
+        if (in_array($file_extension, $allowed_extensions)) {
+            move_uploaded_file(
+                $ind_certificate_temp,
+                'uploads/' . $ind_certificate_uploaded
+            );
+
+            $stmt = $connect->prepare("UPDATE ind_register SET ind_certificate=? WHERE ind_id=?");
+            $stmt->execute([$ind_certificate_uploaded, $ind_id]);
+        } else {
+?>
+            <script>
+                alert("  من فضلك اختر ملف من نوع [  'pdf' ]");
+            </script>
+        <?php
+
+        }
     }
     if ($stmt) {
         if (isset($ind_batch)) {
@@ -83,7 +114,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if ($ind_status_old != $ind_status) {
                     // update ind status
                     $stmt = $connect->prepare("UPDATE change_status_notification SET change_status = ?, status_show = 0 ,date=? WHERE ind_id = ?");
-                    $stmt->execute(array($ind_status, date("Y-m-d"),$ind_id));
+                    $stmt->execute(array($ind_status, date("Y-m-d"), $ind_id));
                 }
             } else {
                 // Insert New Notification
@@ -98,7 +129,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
 
-?>
+        ?>
         <div class="container">
             <div class="alert-success">
                 تم تعديل المتدرب بنجاح

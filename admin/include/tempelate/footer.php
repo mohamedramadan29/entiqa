@@ -44,6 +44,28 @@
     }
   </script>
 
+  <script>
+    function checkFileTypePdf() {
+      var fileInput = document.getElementById('customFile');
+      var allowedTypes = ['application/pdf'];
+      for (var i = 0; i < fileInput.files.length; i++) {
+        var fileType = fileInput.files[i].type;
+
+        if (allowedTypes.indexOf(fileType) === -1) {
+          // نوع الملف غير مسموح
+          alert(' نوع الملف يجب ان يكون pdf فقط ');
+
+          // إعادة تعيين قيمة الملف بعد تأخير قصير
+          setTimeout(function() {
+            fileInput.value = '';
+          }, 100);
+
+          return;
+        }
+      }
+    }
+  </script>
+
 
   <!--  Customize Required Message -->
   <script>
@@ -73,21 +95,6 @@
     }
   </script>
 
-<script>
-    function togglePasswordVisibility2(inputId, iconElement) {
-      var passwordInput = document.getElementById(inputId);
-      var icon = iconElement.classList;
-      if (passwordInput.type === "password") {
-        passwordInput.type = "text";
-        icon.remove("fa-eye-slash");
-        icon.add("fa-eye");
-      } else {
-        passwordInput.type = "password";
-        icon.remove("fa-eye");
-        icon.add("fa-eye-slash");
-      }
-    }
-  </script>
 
   </div>
   </div>

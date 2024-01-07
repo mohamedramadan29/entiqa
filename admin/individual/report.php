@@ -107,11 +107,16 @@
                                     <i class="fa fa-edit"></i>
                                 </button>
                                 <?php
-                                if (isset($_SESSION['admin_session'])) { ?>
-                                    <!--                                    <a class="confirm btn btn-danger btn-sm" href="main.php?dir=individual&page=delete&ind_id=--><?php //echo $type['ind_id']; 
-                                                                                                                                                                            ?><!-- ">-->
-                                    <!--                                        <i class="fa fa-trash"></i>-->
-                                    <!--                                    </a>-->
+                                if (isset($_SESSION['admin_session'])) {
+                                    if ($type['ind_payment_charge'] != 'CAPTURED') {
+                                ?>
+                                        <a class="confirm btn btn-danger btn-sm" href="main.php?dir=individual&page=delete&ind_id=<?php echo $type['ind_id']; ?>">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                    <?php
+                                    }
+                                    ?>
+
                                 <?php
                                 } ?>
                                 <a class="btn btn-info btn-sm" href="main.php?dir=chat&page=chat&ind_username=<?php echo $type['ind_username']; ?>" id="chatLink">
@@ -154,7 +159,7 @@
                                                             <input readonly class="form-control" type="text" name="ind_mobile" value="<?php echo $type['ind_phone'] ?>">
                                                         </div>
                                                         <div class="box2">
-                                                            <label id="name_en"> منطقة السكن  <span> * </span></label>
+                                                            <label id="name_en"> منطقة السكن <span> * </span></label>
                                                             <input readonly class="form-control" type="text" name="ind_mobile" value="<?php echo $type['ind_address'] ?>">
                                                         </div>
                                                         <div class="box2">
@@ -223,7 +228,8 @@
                                                             <label id="ind_certificate"> الشهادة الخاصة بالمتدرب </label>
 
                                                             <div class="custom-file">
-                                                                <input type="file" name="ind_certificate" class="form-control" id="customFile" onchange="checkFileSize()">
+                                                                <input type="file" name="ind_certificate" class="form-control" id="customFile" onchange="checkFileSize(),checkFileTypePdf()" accept=".pdf">
+
                                                                 <!-- <input type="file" name="message_attachment[]" multiple class="custom-file-input" id="customFile" aria-label="اختيار ملفات" onchange="checkFileSize()"> 
                         <label class="custom-file-label" for="customFile" id="fileLabel">اختيار ملفات</label>  -->
                                                             </div>

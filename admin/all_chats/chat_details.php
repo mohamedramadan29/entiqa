@@ -1,4 +1,3 @@
-
 <?php
 $pagetitle = 'تواصل معنا';
 ob_start();
@@ -91,7 +90,7 @@ $ind_data = $stmt->fetch();*/
                         </div>
                         <div class="message_info">
                             <p class="sender_name"> <a href="main.php?dir=com_chat&page=chat&com_username=<?php echo $message['from_person'] ?>"> <?php echo $message["from_person"]; ?></a></p>
-                            <p class="sender_time"> <?php echo $message['date']; ?> </p>
+                            <p class="sender_time"> <?php echo formatTimeDifference($message['date']); ?> </p>
                             <p class="sender_m_data"> <?php echo $message['msg']; ?>
                             </p>
                             <p class="sender_m_data"> <a target="_blank" href="uploads/<?php echo $message['msg_files'] ?>"><?php echo $message['msg_files'] ?></a> </p>
@@ -113,7 +112,7 @@ $ind_data = $stmt->fetch();*/
                         </div>
                         <div class="message_info">
                             <p class="sender_name"> <a href="main.php?dir=chat&page=chat&ind_username=<?php echo $message['from_person'] ?>"> <?php echo $message["from_person"]; ?></a></p>
-                            <p class="sender_time"> <?php echo date("h:i:sa"); ?> </p>
+                            <p class="sender_time"> <?php echo formatTimeDifference($message['date']); ?> </p>
                             <p class="sender_m_data"> <?php echo $message['msg'];  ?>
                             </p>
                             <p class="sender_m_data"> <a target="_blank" href="uploads/<?php echo $message['msg_files'] ?>"><?php echo $message['msg_files'] ?></a> </p>
@@ -128,4 +127,3 @@ $ind_data = $stmt->fetch();*/
         </div>
     </div>
 </div>
- 
