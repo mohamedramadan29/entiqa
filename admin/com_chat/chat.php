@@ -40,7 +40,7 @@ $stmt->execute();
                     <input id="to_person" type="hidden" name="to_person" value="<?php echo $com_username; ?>">
                     <textarea name="message_data" id="msg"></textarea>
                     <div class="custom-file">
-                        <input type="file" name="message_attachment[]" multiple class="form-control" id="customFile" onchange="checkFileSize()">
+                        <input type="file" name="message_attachment[]" multiple class="form-control" id="customFile" onchange="checkFileType(),checkFileSize()" accept="image/*, .pdf">
                         <!-- <input type="file" name="message_attachment[]" multiple class="custom-file-input" id="customFile" aria-label="اختيار ملفات" onchange="checkFileSize()"> 
                         <label class="custom-file-label" for="customFile" id="fileLabel">اختيار ملفات</label>  -->
                     </div>
@@ -54,7 +54,7 @@ $stmt->execute();
                             document.querySelector('.custom-file-label').textContent = fileNames.join(', ');
                         });
                     </script>
-                    <button type="submit" class="btn btn-primary"> ارسال <i class="fa fa-paper-plane"></i></button>
+                    <button type="submit" class="btn btn-primary" id="submit_button"> ارسال <i class="fa fa-paper-plane"></i></button>
                 </div>
             </form>
         </div>
@@ -77,9 +77,12 @@ $stmt->execute();
     $(document).ready(function($) {
         // قائمة لتخزين معلومات الملفات المختارة
         let selectedFiles = [];
+
         $('#ajax-form').submit(function(e) {
             e.preventDefault();
             let formData = new FormData(this);
+            var submitButton = document.getElementById('submit_button');
+            submitButton.setAttribute('disabled', 'disabled');
             $.ajax({
                 type: "POST",
                 url: "main_ajax.php?dir=chat&page=add",
@@ -90,10 +93,12 @@ $stmt->execute();
                     $("#msg").val('');
                     $("#customFile").val('');
                     $("#fileLabel").text('اختيار ملفات');
+                    submitButton.removeAttribute('disabled');
                     $("#demo").load();
                     // إزالة جميع الملفات من القائمة بعد الرفع
                     selectedFiles = [];
                     updateFileList();
+
                     $("#fileDeleteButton").remove();
                 }
             });

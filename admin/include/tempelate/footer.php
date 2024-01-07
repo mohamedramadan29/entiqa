@@ -45,6 +45,29 @@
   </script>
 
   <script>
+    function checkFileType() {
+      var fileInput = document.getElementById('customFile');
+      var allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/png', 'application/pdf'];
+
+      for (var i = 0; i < fileInput.files.length; i++) {
+        var fileType = fileInput.files[i].type;
+
+        if (allowedTypes.indexOf(fileType) === -1) {
+          // نوع الملف غير مسموح
+          alert('يرجى اختيار ملف صورة أو ملف PDF فقط.');
+
+          // إعادة تعيين قيمة الملف بعد تأخير قصير
+          setTimeout(function() {
+            fileInput.value = '';
+          }, 100);
+
+          return;
+        }
+      }
+    }
+  </script>
+
+  <script>
     function checkFileTypePdf() {
       var fileInput = document.getElementById('customFile');
       var allowedTypes = ['application/pdf'];

@@ -39,7 +39,7 @@
                         $_SESSION['admin_name'] = $data['admin_name'];
                         $_SESSION['admin_session'] = $data['admin_name'];
                         $_SESSION['token_compare'] = $data['session_token']; // inserted into db
-                        
+
 
                         header('Location:main.php?dir=dashboard&page=dashboard');
                         exit();
@@ -96,7 +96,7 @@
                             <div class="text-center mb-5">
                                 <h3 class="text-uppercase">لوحة الادمن<strong></strong></h3>
                             </div>
-                            <form action="#" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                            <form action="#" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" autocomplete="off">
                                 <div class="form-group first">
                                     <label for="username">اسم المستخدم او البريد الألكتروني</label>
                                     <input required name="comname" type="text" class="form-control" placeholder="  " id="username">

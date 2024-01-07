@@ -124,12 +124,12 @@ if (isset($_POST['add_car'])) {
                                 <div class="box2">
                                     <label id="name"> تاريخ نشر الاختبار علي المنصة
                                         <span> * </span> </label>
-                                    <input min="<?php echo date('Y-m-d'); ?>" required class="form-control" type="date" name="ex_date_publish" value="<?php echo $type['ex_date_publish'] ?>">
+                                    <input required class="form-control" type="date" name="ex_date_publish" value="<?php echo $type['ex_date_publish'] ?>">
                                 </div>
                                 <div class="box2">
                                     <label id="name_en"> نوع الاختبار <span> * </span></label>
                                     <select required class="form-control" name="ex_type">
-                                        <option> -- اختر توع الاختبار -- </option>
+                                        <option value=""> -- اختر توع الاختبار -- </option>
                                         <option <?php if ($type['ex_type'] == 'قصير') echo "selected"; ?> value="قصير"> قصير </option>
                                         <option <?php if ($type['ex_type'] == 'نهائي') echo "selected"; ?> value="نهائي"> نهائي </option>
                                         <option <?php if ($type['ex_type'] == 'تحديد المستوي') echo "selected"; ?> value="تحديد المستوي"> تحديد المستوي </option>
@@ -138,7 +138,7 @@ if (isset($_POST['add_car'])) {
                                 <div class="box2">
                                     <label id="name_en"> اختر الدفعه <span> * </span></label>
                                     <select required class="form-control" name="ex_batch_num">
-                                        <option> -- اختر رقم الدفعه -- </option>
+                                        <option value=""> -- اختر رقم الدفعه -- </option>
                                         <?php
                                         if (isset($_SESSION['coash_id'])) {
                                             $stmt = $connect->prepare("SELECT * FROM batches WHERE batch_coach=?");

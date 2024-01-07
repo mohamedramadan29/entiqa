@@ -10,15 +10,12 @@
         <div class="card">
             <div class="card-body">
                 <?php if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-
                     $ex_title = sanitizeInput($_POST['ex_title']);
                     $ex_total_question = sanitizeInput($_POST['ex_total_question']);
-                    $ex_time = $_POST["ex_time"];
-                    $ex_date_publish = $_POST["ex_date_publish"];
-
-                    $ex_type = $_POST["ex_type"];
-                    $ex_batch_num =  $_POST['ex_batch_num'];
+                    $ex_time = sanitizeInput($_POST["ex_time"]);
+                    $ex_date_publish = sanitizeInput($_POST["ex_date_publish"]);
+                    $ex_type = sanitizeInput($_POST["ex_type"]);
+                    $ex_batch_num = sanitizeInput($_POST['ex_batch_num']);
                     $date_now = date("Y-m-d");
                     if (isset($_SESSION['coash_id'])) {
                         $coash_id = $_SESSION['coash_id'];
@@ -32,6 +29,12 @@
                     $formerror = [];
                     if (empty($ex_title)) {
                         $formerror[] = '  من فضلك ادخل عنوان الاختبار  ';
+                    }
+                    if (empty($ex_type)) {
+                        $formerror[] = ' من فضلك ادخل نوع الاختبار ';
+                    }
+                    if (empty($ex_batch_num)) {
+                        $formerror[] = ' من فضلك حدد الدفعه ';
                     }
                     if (!preg_match("/^[\p{Arabic}\p{Latin}\s]+$/u", $ex_title)) {
                         $formerror[] = ' من فضلك ادخل العنوان بالشكل الصحيح ';
@@ -108,8 +111,8 @@
                                 </div>
                                 <div class="box2">
                                     <label id="name_en"> نوع الاختبار <span> * </span></label>
-                                    <select required class="form-control" name="ex_type">
-                                        <option> -- اختر توع الاختبار -- </option>
+                                    <select required class="form-control select2" name="ex_type">
+                                        <option value=""> -- اختر توع الاختبار -- </option>
                                         <option value="قصير"> قصير </option>
                                         <option value="نهائي"> نهائي </option>
                                         <option value="تحديد المستوي"> تحديد المستوي </option>
@@ -119,7 +122,7 @@
                                 <div class="box2">
                                     <label id="name_en"> اختر الدفعه <span> * </span></label>
                                     <select required class="form-control" name="ex_batch_num">
-                                        <option> -- اختر الدفعه -- </option>
+                                        <option value=""> -- اختر الدفعه -- </option>
                                         <?php
                                         if (isset($_SESSION['coash_id'])) {
                                             $stmt = $connect->prepare("SELECT * FROM batches WHERE batch_coach=? AND batch_status ='قيد التدريب'");

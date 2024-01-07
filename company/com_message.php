@@ -98,7 +98,6 @@ if (isset($_SESSION['com_id'])) {
                         </div>
                     <?php
                     } else {
-
                     ?>
                         <div class="chat_reason">
                             <h2>معلومات</h2>
@@ -407,7 +406,7 @@ if (isset($_SESSION['com_id'])) {
                                             ?>
                                                 <form action="" method="post">
                                                     <textarea required minlength="5" placeholder="من فضلك اكتب تقييمك للمنصة" name="com_review" id="" class="form-control"></textarea>
-                                                    <input class="btn btn-primary" name="send_review" type="submit" value="   ارسال التقييم  ">
+                                                    <input id="submit_button" class="btn btn-primary" name="send_review" type="submit" value="   ارسال التقييم  ">
                                                 </form>
                                                 <?php
                                                 if (isset($_POST['send_review'])) {

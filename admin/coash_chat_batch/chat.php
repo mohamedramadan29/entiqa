@@ -16,7 +16,7 @@ $stmt->execute(array($_SESSION['coash_id'], $ind_username));
             <div class="bread">
                 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        
+
                         <li class="breadcrumb-item active" aria-current="page"> تواصل مع المتدرب </li>
                     </ol>
                 </nav>
@@ -25,7 +25,7 @@ $stmt->execute(array($_SESSION['coash_id'], $ind_username));
         </div>
         <div class="form" id="send_message">
             <form action="javascript:void(0)" class="form-group insert ajax_form" id="ajax-form" method="POST" autocomplete="on" enctype="multipart/form-data">
-                <div class="message_text"> 
+                <div class="message_text">
 
                     <input type="hidden" id="ind_username" value="<?php echo $ind_username; ?>">
                     <input type="hidden" id="admin_name" value="<?php echo $admin_name ?>">
@@ -33,7 +33,7 @@ $stmt->execute(array($_SESSION['coash_id'], $ind_username));
                     <input id="to_person" type="hidden" name="to_person" value="<?php echo $ind_data['ind_username']; ?>">
                     <textarea name="message_data" id="msg"></textarea>
                     <div class="custom-file">
-                        <input type="file" name="message_attachment[]" multiple class="form-control" id="customFile" onchange="checkFileSize()">
+                        <input type="file" name="message_attachment[]" multiple class="form-control" id="customFile" onchange="checkFileType(),checkFileSize()" accept="image/*, .pdf">
                         <!-- <input type="file" name="message_attachment[]" multiple class="custom-file-input" id="customFile" aria-label="اختيار ملفات" onchange="checkFileSize()"> 
                         <label class="custom-file-label" for="customFile" id="fileLabel">اختيار ملفات</label>  -->
                     </div>
@@ -47,7 +47,7 @@ $stmt->execute(array($_SESSION['coash_id'], $ind_username));
                             document.querySelector('.custom-file-label').textContent = fileNames.join(', ');
                         });
                     </script>
-                    <button type="submit" class="btn btn-primary"> ارسال <i class="fa fa-paper-plane"></i></button>
+                    <button type="submit" class="btn btn-primary" id="submit_button"> ارسال <i class="fa fa-paper-plane"></i></button>
                 </div>
             </form>
         </div>
@@ -68,9 +68,12 @@ $stmt->execute(array($_SESSION['coash_id'], $ind_username));
     $(document).ready(function($) {
         // قائمة لتخزين معلومات الملفات المختارة
         let selectedFiles = [];
+
         $('#ajax-form').submit(function(e) {
             e.preventDefault();
             let formData = new FormData(this);
+            var submitButton = document.getElementById('submit_button');
+            submitButton.setAttribute('disabled', 'disabled');
             $.ajax({
                 type: "POST",
                 url: "main.php?dir=coash_chat_batch&page=add",
@@ -81,9 +84,11 @@ $stmt->execute(array($_SESSION['coash_id'], $ind_username));
                     $("#msg").val('');
                     $("#customFile").val('');
                     $("#fileLabel").text('اختيار ملفات');
+                    submitButton.removeAttribute('disabled');
                     $("#demo").load();
                     // إزالة جميع الملفات من القائمة بعد الرفع
                     selectedFiles = [];
+
                     updateFileList();
                     $("#fileDeleteButton").remove();
                 }

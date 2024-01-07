@@ -12,7 +12,6 @@ $inds_data = $stmt->fetchAll();
             <div class="bread">
                 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                     <ol class="breadcrumb">
-
                         <li class="breadcrumb-item active" aria-current="page"> تواصل مع الدفعه </li>
                     </ol>
                 </nav>
@@ -25,7 +24,7 @@ $inds_data = $stmt->fetchAll();
                     <input type="hidden" id="batch_id" name="batch_id" value="<?php echo $batch_id; ?>">
                     <textarea name="message_data" id="msg"></textarea>
                     <div class="custom-file">
-                        <input type="file" name="message_attachment[]" multiple class="form-control" id="customFile" onchange="checkFileSize()">
+                        <input type="file" name="message_attachment[]" multiple class="form-control" id="customFile" onchange="checkFileType(),checkFileSize()" accept="image/*, .pdf">
                         <!-- <input type="file" name="message_attachment[]" multiple class="custom-file-input" id="customFile" aria-label="اختيار ملفات" onchange="checkFileSize()"> 
                         <label class="custom-file-label" for="customFile" id="fileLabel">اختيار ملفات</label>  -->
                     </div>
@@ -39,7 +38,7 @@ $inds_data = $stmt->fetchAll();
                             document.querySelector('.custom-file-label').textContent = fileNames.join(', ');
                         });
                     </script>
-                    <button type="submit" class="btn btn-primary"> ارسال <i class="fa fa-paper-plane"></i></button>
+                    <button type="submit" id="submit_button" class="btn btn-primary"> ارسال <i class="fa fa-paper-plane"></i></button>
                 </div>
             </form>
         </div>
@@ -61,9 +60,12 @@ $inds_data = $stmt->fetchAll();
     $(document).ready(function($) {
         // قائمة لتخزين معلومات الملفات المختارة
         let selectedFiles = [];
+
         $('#ajax-form').submit(function(e) {
             e.preventDefault();
             let formData = new FormData(this);
+            var submitButton = document.getElementById('submit_button');
+            submitButton.setAttribute('disabled', 'disabled');
             let batch_id = $("#batch_id").val();
             $.ajax({
                 type: "POST",
@@ -75,10 +77,12 @@ $inds_data = $stmt->fetchAll();
                     $("#msg").val('');
                     $("#customFile").val('');
                     $("#fileLabel").text('اختيار ملفات');
+                    submitButton.removeAttribute('disabled');
                     $("#demo").load();
                     // إزالة جميع الملفات من القائمة بعد الرفع
                     selectedFiles = [];
                     updateFileList();
+
                     $("#fileDeleteButton").remove();
                 }
             });

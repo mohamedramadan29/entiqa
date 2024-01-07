@@ -68,11 +68,16 @@
                                                         <div class="box2">
                                                             <label id="name"> الاسم الاول
                                                                 <span> * </span> </label>
-                                                            <input disabled required class="form-control" type="text" name="wha_name" value="<?php echo $type['first_name'] ?>">
+                                                            
+                                                            <div style="border: 1px solid #ccc; background-color: #ececec; border-radius: 3px; padding: 5px;font-size: 16px;color: #5c5959;word-wrap: break-word;">
+                                                                <?php echo $type['first_name']; ?>
+                                                            </div>
                                                         </div>
                                                         <div class="box2">
                                                             <label id="name_en"> الاسم الاخير<span> * </span></label>
-                                                            <input disabled class="form-control" type="text" name="wha_name_en" value="<?php echo $type['last_name'] ?>">
+                                                            <div style="border: 1px solid #ccc; background-color: #ececec; border-radius: 3px; padding: 5px;font-size: 16px;color: #5c5959;word-wrap: break-word;">
+                                                                <?php echo $type['last_name']; ?>
+                                                            </div>
                                                         </div>
                                                         <div class="box2">
                                                             <label id="name_en">البريد الالكروني<span> * </span></label>
@@ -85,7 +90,7 @@
                                                         </div>
                                                         <div class="box">
                                                             <label id="name_en">الرسالة<span> * </span></label>
-                                                            <div style="    border: 1px solid #ccc; background-color: #ececec; border-radius: 3px; padding: 10px;font-size: 16px;color: #5c5959;">
+                                                            <div style="border: 1px solid #ccc; background-color: #ececec; border-radius: 3px; padding: 10px;font-size: 16px;color: #5c5959;word-wrap: break-word;">
                                                                 <?php echo $type['message']; ?>
                                                             </div>
                                                             
