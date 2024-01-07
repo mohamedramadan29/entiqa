@@ -116,7 +116,7 @@ $count_rev = $stmt->rowCount();
 if ($count_rev > 0) {
 ?>
     <div class="testmonails">
-        <div class='overlay' style="background-color: rgba(0, 0, 0, 0.3);">
+        <div class='overlay'>
             <div class="container">
                 <div class="data">
                     <h3> اراء عملائنا </h3>

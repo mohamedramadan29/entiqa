@@ -8,6 +8,40 @@
                 </ol>
             </nav>
         </div>
+        <?php
+        if (isset($_SESSION['success_message'])) {
+            $message = $_SESSION['success_message'];
+            unset($_SESSION['success_message']);
+        ?>
+            <?php
+            ?>
+            <script src="plugins/jquery/jquery.min.js"></script>
+            <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
+            <script>
+                $(function() {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: '<?php echo $message; ?>',
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
+                })
+            </script>
+            <?php
+        } elseif (isset($_SESSION['error_messages'])) {
+            $formerror = $_SESSION['error_messages'];
+            foreach ($formerror as $error) {
+            ?>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert" style="max-width: 800px; margin:20px">
+                    <?php echo $error; ?>
+                    <button style="font-size: 13px; top:-3px;" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+        <?php
+            }
+            unset($_SESSION['error_messages']);
+        }
+        ?>
         <!-------------------------- START NEW WHATSAPP MEMEBER------------------------->
         <!-- Content Row -->
         <!-- START MODEL TO ADD NEW RECORD  -->

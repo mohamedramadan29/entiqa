@@ -104,14 +104,14 @@ include 'init.php'; ?>
 <!-- START NEW TESTMONAILS  -->
 <?php
  $stmt = $connect->prepare('SELECT * FROM ind_review 
- INNER JOIN ind_register ON ind_review.ind_id = ind_register.ind_id ');
+ INNER JOIN ind_register ON ind_review.ind_id = ind_register.ind_id WHERE rev_show = 1');
  $stmt->execute();
 $allrev = $stmt->fetchAll();
 $count_rev = $stmt->rowCount();
 if ($count_rev > 0) {
 ?>
     <div class="testmonails">
-        <div class='overlay' style="background-color: rgba(0, 0, 0, 0.3);">
+        <div class='overlay'>
             <div class="container">
                 <div class="data">
                     <h3> اراء عملائنا </h3>
@@ -136,7 +136,7 @@ if ($count_rev > 0) {
                                         </div>
                                     </div>
                                     <div class="card-text" style=" width: 100%; word-wrap: break-word;">
-                                        <p style="word-break: break-word;"> <?php echo $rev['com_review'] ?> </p>
+                                        <p style="word-break: break-word;"> <?php echo $rev['ind_review'] ?> </p>
                                     </div>
                                 </div>
                             </div>

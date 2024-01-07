@@ -2435,6 +2435,7 @@ li .notification span {
     font-size: 15px;
     color: #222222;
     line-height: 2;
+    margin-bottom: 10px;
 }
 
 .testmonails h4 {
@@ -2466,7 +2467,7 @@ li .notification span {
 .person_testmon .card {
     display: initial;
     border: none;
-    padding: 15px;
+    padding: 10px;
     background-color: #fff !important;
 }
 

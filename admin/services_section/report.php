@@ -4,7 +4,7 @@
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                      
-                    <li class="breadcrumb-item active" aria-current="page"> مشاهدة مدربين لم يتم تسجيلهم في دفعات </li>
+                    <li class="breadcrumb-item active" aria-current="page">  مشاهدة متدربين لم يتم تسجيلهم في دفعات  </li>
                 </ol>
             </nav>
         </div>

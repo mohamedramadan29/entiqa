@@ -1,3 +1,18 @@
+  <?php
+
+    if (isset($_SESSION['serv_name'])) {
+        $serve_name = $_SESSION['serv_name'];
+        $stmt = $connect->prepare("SELECT * FROM service_team WHERE name = ? LIMIT 1");
+        $stmt->execute(array($serve_name));
+        $count = $stmt->rowCount();
+        if ($count > 0) {
+        } else {
+            header("Location:signout");
+        }
+    }
+
+    ?>
+
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
@@ -111,7 +126,7 @@
                       <a href="#" class="nav-link nav-link2">
                           <i class="fa-solid fa-images color2"></i>
                           <p>
-متدربين جدد                              <i class="right fas fa-angle-left "></i>
+                              متدربين جدد <i class="right fas fa-angle-left "></i>
                           </p>
                       </a>
                       <ul class="nav nav-treeview">

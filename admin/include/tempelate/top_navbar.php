@@ -65,7 +65,7 @@
                             ?>
                             <div class="media" style="margin-bottom: 15px;">
                                 <div class="media-body" style="padding: 10px; padding-bottom: 5px;">
-                                    <a style="text-align: right; text-decoration: none; color: #111;" href="main.php?dir=chat&page=chat&ind_username=<?php echo $message_noti['from_person']; ?>">
+                                    <a style="text-align: right; text-decoration: none; color: #111;">
                                         <h3 class="dropdown-item-title">
                                             لا يوجد رسائل جديدة
                                         </h3>

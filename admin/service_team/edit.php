@@ -38,6 +38,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($count_coash_mail > 0) {
         $formerror[] = 'البريد الألكتروني مستخدم بالفعل في قسم المدربين من فضلك اختر بريد الكتروني جديد ';
     }
+    // check if email or user_name is used in individual
+    $stmt = $connect->prepare("SELECT * FROM ind_register WHERE ind_email = ?");
+    $stmt->execute(array($email));
+    $count_ind_mails = $stmt->rowCount();
+    if ($count_ind_mails > 0) {
+        $formerror[] = 'البريد الألكتروني مستخدم بالفعل في قسم المتدربين من فضلك اختر بريد الكتروني جديد ';
+    }
+
+    // check if email or user_name is used in company
+    $stmt = $connect->prepare("SELECT * FROM company_register WHERE com_email = ?");
+    $stmt->execute(array($email));
+    $count_com_mails = $stmt->rowCount();
+    if ($count_com_mails > 0) {
+        $formerror[] = 'البريد الألكتروني مستخدم بالفعل في قسم الشركات من فضلك اختر بريد الكتروني جديد ';
+    }
     // check the user name in the coashes members
     $stmt = $connect->prepare("SELECT * FROM coshes WHERE co_name=?");
     $stmt->execute(array($name));
@@ -52,10 +67,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt = $connect->prepare("UPDATE service_team SET password=? WHERE id=?");
             $stmt->execute([$password, $id]);
         }
-        if ($stmt) { ?>
+        if ($stmt) {
+            $_SESSION['success_message'] = " تم التعديل بنجاح  ";
+?>
             <div class="container">
                 <div class="alert-success">
                     تم تعديل المدرب بنجاح
+
                     <?php
                     header('Location:main.php?dir=service_team&page=report');
                     ?>
@@ -64,6 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php }
     } else {
         foreach ($formerror as $errors) {
+            $_SESSION['error_messages'] = $formerror;
             echo "<div class='alert alert-danger danger_message'>" .
                 $errors .
                 '</div>';

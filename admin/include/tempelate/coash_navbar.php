@@ -1,12 +1,16 @@
   <?php
-    $stmt = $connect->prepare("SELECT * FROM coshes WHERE co_id = ?");
-    $stmt->execute(array($_SESSION['coash_id']));
-    $coash_count = $stmt->rowCount();
-    if ($coash_count > 0) {
-    } else {
-        header("Location:index");
-        exit();
+
+    if (isset($_SESSION['coash_id'])) {
+        $coash_id = $_SESSION['coash_id'];
+        $stmt = $connect->prepare("SELECT * FROM coshes WHERE co_id = ? LIMIT 1");
+        $stmt->execute(array($coash_id));
+        $count = $stmt->rowCount();
+        if ($count > 0) {
+        } else {
+            header("Location:signout");
+        }
     }
+
     ?>
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">

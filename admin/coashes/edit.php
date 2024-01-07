@@ -141,7 +141,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="alert-success">
                     تم تعديل المدرب بنجاح
                     <?php
-                    $_SESSION['success_message'] = " تمت الأضافة بنجاح  ";
+                    $_SESSION['success_message'] = " تم التعديل بنجاح  ";
                     header("Location:main.php?dir=coashes&page=report");
 
                     ?>
@@ -150,9 +150,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php }
     } else {
         foreach ($formerror as $errors) {
+            $_SESSION['error_messages'] = $formerror;
+
             echo "<div class='alert alert-danger danger_message'>" .
                 $errors .
                 '</div>';
         }
+        header("Location:main.php?dir=coashes&page=report");
     }
 }

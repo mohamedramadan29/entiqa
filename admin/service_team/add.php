@@ -7,7 +7,7 @@
             $email =  sanitizeInput($_POST['email']);
             /// More Validation To Show Error
             $formerror = [];
-            if(empty($email)){
+            if (empty($email)) {
                 $formerror[] = 'من فضلك ادخل البريد الألكتروني';
             }
             if (strlen($password) < 8) {
@@ -45,6 +45,22 @@
                 $formerror[] = 'اسم المستخدم مستخدم بالفعل في قسم المدربين من فضلك اختر اسم جديد ';
             }
 
+            // check if email or user_name is used in individual
+            $stmt = $connect->prepare("SELECT * FROM ind_register WHERE ind_email = ?");
+            $stmt->execute(array($email));
+            $count_ind_mails = $stmt->rowCount();
+            if ($count_ind_mails > 0) {
+                $formerror[] = 'البريد الألكتروني مستخدم بالفعل في قسم المتدربين من فضلك اختر بريد الكتروني جديد ';
+            }
+
+            // check if email or user_name is used in company
+            $stmt = $connect->prepare("SELECT * FROM company_register WHERE com_email = ?");
+            $stmt->execute(array($email));
+            $count_com_mails = $stmt->rowCount();
+            if ($count_com_mails > 0) {
+                $formerror[] = 'البريد الألكتروني مستخدم بالفعل في قسم الشركات من فضلك اختر بريد الكتروني جديد ';
+            }
+
             if (empty($name)) {
                 $formerror[] = 'من فضلك ادخل الاسم';
             }
@@ -57,7 +73,9 @@
                     'zemail' => $email,
                     'zpassword' => $password,
                 ]);
-                if ($stmt) { ?>
+                if ($stmt) {
+                    $_SESSION['success_message'] = " تمت الأضافة بنجاح  ";
+    ?>
                  <div class="alert-success ">
                      تم اضافة عضو جديد بنجاح
 
@@ -68,6 +86,8 @@
  <?php }
             } else {
                 foreach ($formerror as $errors) {
+                    $_SESSION['error_messages'] = $formerror;
+                    header('Location:main.php?dir=service_team&page=report');
                     echo "<div class='alert alert-danger danger_message'>" .
                         $errors .
                         '</div>';
