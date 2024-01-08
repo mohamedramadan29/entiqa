@@ -72,3 +72,13 @@ foreach ($allmessage as $message) {
 <?php
 }
 ?>
+
+<script>
+    $(window).on('load', function() {
+        // انتظر حتى يتم تحميل الصفحة بالكامل ثم قم بالتمرير إلى العنصر
+        var target = $('#send_message');
+        if (target.length) {
+            $('html, body').scrollTop(target.offset().top);
+        }
+    });
+</script>

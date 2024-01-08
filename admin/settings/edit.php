@@ -31,12 +31,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt = $connect->prepare("UPDATE admin SET session_token = ? WHERE admin_id = ?");
             $stmt->execute(array($newSessionToken, $admin_id));
             $_SESSION['new_pass'] = $newSessionToken;
+
+            /////////////////
+            header("LOCATION:signout");
 ?>
             <div class="container">
                 <div class="alert-success">
                     تم تعديل القسم بنجاح
                     <?php
-                    header('LOCATION:main.php?dir=settings&page=report');
+                    // header('LOCATION:main.php?dir=settings&page=report');
                     ?>
                 </div>
             </div>

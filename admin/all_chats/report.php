@@ -121,7 +121,7 @@ if (isset($_SESSION['com_id'])) {
                     } else {
                         $stmt = $connect->prepare("
                         SELECT t1.to_person, t1.from_person, t1.chat_id, t1.msg, t1.send_type, t1.date,t1.admin_noti,
-                         com.com_image as com_img  
+                        com.com_image as com_img  
                         FROM chat t1
                         LEFT JOIN company_register com ON
                     (t1.to_person = com.com_username or t1.from_person = com.com_username)

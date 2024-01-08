@@ -63,21 +63,12 @@ if ($stmt) {
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<script>
-    $(document).ready(function() {
-        // انتقل إلى الشات عند فتح الصفحة
-        var target = $('#send_message');
-        if (target.length) {
-            $('html, body').scrollTop(target.offset().top);
-        }
-    });
-</script>
+
 <!-- to insert message -->
 <script>
     $(document).ready(function($) {
         // قائمة لتخزين معلومات الملفات المختارة
         let selectedFiles = [];
-
         $('#ajax-form').submit(function(e) {
             e.preventDefault();
             let formData = new FormData(this);
@@ -171,5 +162,31 @@ if ($stmt) {
                 }
             });
         }, 1000);
+        // انتظر حتى يتم تحميل الصفحة بالكامل ثم قم بالتمرير إلى العنصر
+        var target = $('#send_message');
+        if (target.length) {
+            $('html, body').scrollTop(target.offset().top);
+        }
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        // انتقل إلى الشات عند فتح الصفحة
+        var target = $('#send_message');
+        if (target.length) {
+            $('html, body').scrollTop(target.offset().top);
+        }
+    });
+</script>
+
+
+<script>
+    $(window).on('load', function() {
+        // انتظر حتى يتم تحميل الصفحة بالكامل ثم قم بالتمرير إلى العنصر
+        var target = $('#send_message');
+        if (target.length) {
+            $('html, body').scrollTop(target.offset().top);
+        }
     });
 </script>
