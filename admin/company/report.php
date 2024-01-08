@@ -1,3 +1,9 @@
+<?php 
+if(isset($_SESSION['admin_session']) || isset($_SESSION['serv_name'])){
+
+?>
+
+
 <div class="container customer_report">
     <div class="data">
         <div class="bread">
@@ -161,9 +167,7 @@
                                 <!-- <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#viewrecord<?php echo $type['com_id']; ?>">
                                     <i class="fa fa-eye"></i>
                                 </button> -->
-                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editrecord<?php echo $type['com_id']; ?>">
-                                    <i class="fa fa-edit"></i>
-                                </button>
+
                                 <?php
                                 if (isset($_SESSION['admin_session'])) {
                                     if ($type['com_status'] != 1) {
@@ -171,8 +175,13 @@
                                         <a class="confirm btn btn-danger btn-sm" href="main.php?dir=company&page=delete&com_id=<?php echo $type['com_id']; ?> ">
                                             <i class="fa fa-trash"></i>
                                         </a>
-                                <?php
+                                    <?php
                                     }
+                                    ?>
+                                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editrecord<?php echo $type['com_id']; ?>">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                <?php
                                 }
                                 ?>
                                 <a class="btn btn-info btn-sm" href="main.php?dir=com_chat&page=chat&com_username=<?php echo $type['com_username']; ?> ">
@@ -394,3 +403,11 @@
     </div>
 </div>
 </div>
+
+<?php 
+
+}else{
+    header("Location:index");
+}
+
+?>

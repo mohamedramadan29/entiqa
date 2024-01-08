@@ -1,6 +1,8 @@
 <?php
 ob_start();
 $pagetitle = 'الرئيسية';
+if(isset($_SESSION['admin_session'])){
+
 ?>
 <div class="container dashboard">
     <div class="bread bread_dasha">
@@ -229,11 +231,7 @@ $pagetitle = 'الرئيسية';
                     </div>
                 </a>
             </div>
-
-
-
-
-
+            
             <div class="col-lg-3 col-6">
                 <a href="main.php?dir=all_chats&page=report">
                     <div class="info info10">
@@ -293,4 +291,8 @@ $pagetitle = 'الرئيسية';
 
 
 <?php ob_end_flush();
+
+}else{
+    header("Location:signout");
+}
 ?>

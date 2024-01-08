@@ -1,4 +1,10 @@
 <?php
+
+if (!isset($_SESSION['admin_session']) && !isset($_SESSION['coash_id'])) {
+    header("Location:index");
+}
+
+
 if (isset($_GET['exam_id'])) {
     $exam_id = $_GET['exam_id'];
     $stmt = $connect->prepare("SELECT * FROM exam WHERE ex_id = ?");

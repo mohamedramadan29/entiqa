@@ -1,6 +1,7 @@
 <?php
 ob_start();
 $pagetitle = ' الرئيسية  ';
+if(isset($_SESSION['coash_id'])){
 
 $stmt = $connect->prepare("SELECT * FROM coshes WHERE co_id = ?");
 $stmt->execute(array($_SESSION['coash_id']));
@@ -45,4 +46,9 @@ if ($coash_count > 0) {
 
 
 <?php ob_end_flush();
+
+}else{
+   
+    header("Location:signout");
+}
 ?>

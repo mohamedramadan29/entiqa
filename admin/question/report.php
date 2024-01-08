@@ -1,3 +1,12 @@
+<?php
+
+if (!isset($_SESSION['admin_session']) && !isset($_SESSION['coash_id'])) {
+    header("Location:index");
+}
+
+
+?>
+
 <div class="container customer_report">
     <div class="data">
         <div class="bread">

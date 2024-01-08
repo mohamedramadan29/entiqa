@@ -22,6 +22,12 @@ if (isset($_SESSION['com_id'])) {
     $stmt->execute(array($_SESSION["com_id"]));
     $com_data = $stmt->fetch();
 }
+
+
+if (!isset($_SESSION['admin_session']) && !isset($_SESSION['serv_name'])) {
+    header("Location:index");
+}
+
 ?>
 <div class="container customer_report">
     <div class="data">

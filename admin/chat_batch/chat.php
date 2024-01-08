@@ -1,4 +1,7 @@
 <?php
+if (!isset($_SESSION['admin_session']) && !isset($_SESSION['serv_name'])) {
+    header("Location:index");
+}
 $batch_id = $_GET['batch_id'];
 $admin_id = $_SESSION['coash_id'];
 $admin_name = 'admin';

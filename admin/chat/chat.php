@@ -1,4 +1,9 @@
 <?php
+
+if (!isset($_SESSION['admin_session']) && !isset($_SESSION['serv_name'])) {
+    header("Location:index");
+}
+
 $ind_username = $_GET['ind_username'];
 $stmt = $connect->prepare(" SELECT ind_image from  ind_register  WHERE ind_username = '$ind_username'  ");
 $stmt->execute();

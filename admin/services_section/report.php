@@ -1,10 +1,20 @@
+<?php
+
+
+
+if (!isset($_SESSION['admin_session']) && !isset($_SESSION['serv_name'])) {
+    header("Location:index");
+}
+
+?>
+
 <div class="container customer_report">
     <div class="data">
         <div class="bread">
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                     
-                    <li class="breadcrumb-item active" aria-current="page">  مشاهدة متدربين لم يتم تسجيلهم في دفعات  </li>
+
+                    <li class="breadcrumb-item active" aria-current="page"> مشاهدة متدربين لم يتم تسجيلهم في دفعات </li>
                 </ol>
             </nav>
         </div>
@@ -56,7 +66,7 @@
                                 <?php
                                 } else {
                                 ?>
-                                    <span class="badge badge-danger"> انتظر الدفع لتتمكن من التسجيل  </span>
+                                    <span class="badge badge-danger"> انتظر الدفع لتتمكن من التسجيل </span>
                                 <?php
                                 } ?>
 
@@ -197,7 +207,7 @@
                                                             <input disabled required class="form-control" type="text" name="ind_name" value="<?php echo $type['ind_name'] ?>">
                                                         </div>
                                                         <div class="box2">
-                                                            <label id="name"> اسم المستخدم 
+                                                            <label id="name"> اسم المستخدم
                                                                 <span> * </span> </label>
                                                             <input disabled required class="form-control" type="text" name="ind_name" value="<?php echo $type['ind_username'] ?>">
                                                         </div>
@@ -206,7 +216,7 @@
                                                             <input disabled class="form-control" type="text" name="ind_email" value="<?php echo $type['ind_email'] ?>">
                                                         </div>
                                                         <div class="box2">
-                                                            <label id="name_en"> رقم الهاتف   <span> * </span></label>
+                                                            <label id="name_en"> رقم الهاتف <span> * </span></label>
                                                             <input disabled class="form-control" type="text" name="ind_birthdate" value="<?php echo $type['ind_phone'] ?>">
                                                         </div>
 

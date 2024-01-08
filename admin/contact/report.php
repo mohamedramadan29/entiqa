@@ -1,3 +1,10 @@
+<?php
+if (!isset($_SESSION['admin_session']) && !isset($_SESSION['serv_name'])) {
+    header("Location:index");
+}
+
+?>
+
 <div class="container customer_report">
     <div class="data">
         <div class="bread">
@@ -45,9 +52,16 @@
                                 <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#viewrecord<?php echo $type['con_id']; ?>">
                                     مشاهدة <i class="fa fa-eye"></i>
                                 </button>
-                                <a class="confirm btn btn-danger btn-sm" href="main.php?dir=contact&page=delete&con_id=<?php echo $type['con_id']; ?> ">
-                                    حذف <i class="fa fa-trash"></i>
-                                </a>
+                                <?php
+                                if (isset($_SESSION['admin_session'])) {
+                                ?>
+                                    <a class="confirm btn btn-danger btn-sm" href="main.php?dir=contact&page=delete&con_id=<?php echo $type['con_id']; ?> ">
+                                        حذف <i class="fa fa-trash"></i>
+                                    </a>
+                                <?php
+                                }
+                                ?>
+
                             </td>
                         </tr> <?php
                                 ?>
@@ -68,7 +82,7 @@
                                                         <div class="box2">
                                                             <label id="name"> الاسم الاول
                                                                 <span> * </span> </label>
-                                                            
+
                                                             <div style="border: 1px solid #ccc; background-color: #ececec; border-radius: 3px; padding: 5px;font-size: 16px;color: #5c5959;word-wrap: break-word;">
                                                                 <?php echo $type['first_name']; ?>
                                                             </div>
@@ -93,7 +107,7 @@
                                                             <div style="border: 1px solid #ccc; background-color: #ececec; border-radius: 3px; padding: 10px;font-size: 16px;color: #5c5959;word-wrap: break-word;">
                                                                 <?php echo $type['message']; ?>
                                                             </div>
-                                                            
+
                                                         </div>
                                                     </div>
                                                 </div>

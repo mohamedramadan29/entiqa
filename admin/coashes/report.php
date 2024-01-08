@@ -184,10 +184,15 @@
                                         ?>
                                         <?php
                                         if ($count_batch > 0) {
+                                            if (isset($_SESSION['admin_session']) || isset($_SESSION['coash_id'])) {
                                         ?>
-                                            <a class="btn btn-warning btn-sm" href="main.php?dir=coashes&page=view_batches&co_id=<?php echo $type['co_id']; ?> ">
-                                                مشاهدة الدفعات <i class="fa fa-edit"></i>
-                                            </a>
+                                                <a class="btn btn-warning btn-sm" href="main.php?dir=coashes&page=view_batches&co_id=<?php echo $type['co_id']; ?> ">
+                                                    مشاهدة الدفعات <i class="fa fa-edit"></i>
+                                                </a>
+                                            <?php
+                                            }
+                                            ?>
+
                                         <?php
                                         }
                                         ?>
