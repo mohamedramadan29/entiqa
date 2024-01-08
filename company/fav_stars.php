@@ -23,6 +23,16 @@ if (isset($_SESSION['com_id'])) {
         $stmt = $connect->prepare("SELECT * FROM company_register WHERE com_id=?");
         $stmt->execute(array($_SESSION['com_id']));
         $com_data = $stmt->fetch();
+
+
+
+        // get the subscribe amount for company
+
+        /* get the subsciption payment */
+        $stmt = $connect->prepare("SELECT * FROM subscribe LIMIT 1");
+        $stmt->execute();
+        $sub_data = $stmt->fetch();
+        $ind_sub_amount = $sub_data['company_subscribe'];
         ?>
         <div class="star_person" style="background-color: #fbfbfb;">
             <div class="container">
@@ -211,9 +221,9 @@ if (isset($_SESSION['com_id'])) {
                                     الادارة </div>
                             <?php
                             }
-                            if ($com_data['com_balance'] < 1) { ?>
+                            if ($com_data['com_balance'] < $ind_sub_amount) { ?>
                                 <div class="alert alert-info col-12"> لا يمكنك مشاهدة تفاصيل المتدرب حتي يتم شحن الرصيد الخاص بك اقل
-                                    مبلغ هو <strong> 1 ريال </strong> وانتظر التفعيل من الادارة </div>
+                                    مبلغ هو <strong> <?php echo $ind_sub_amount ?> ريال </strong> </div>
                             <?php
                             }
                             foreach ($alluser as $user) { ?>

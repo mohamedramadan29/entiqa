@@ -1,9 +1,0 @@
-[26-Jun-2023 12:47:58 America/New_York] PHP Warning:  Undefined array key "com_id" in /home/entifkut/public_html/company/payment/callback.php on line 39
-[26-Jun-2023 12:47:58 America/New_York] PHP Warning:  Undefined array key "com_id" in /home/entifkut/public_html/company/payment/callback.php on line 41
-[26-Jun-2023 12:47:58 America/New_York] PHP Warning:  Trying to access array offset on value of type bool in /home/entifkut/public_html/company/payment/callback.php on line 43
-[26-Jun-2023 12:48:23 America/New_York] PHP Warning:  Undefined array key "com_id" in /home/entifkut/public_html/company/payment/callback.php on line 39
-[26-Jun-2023 12:48:23 America/New_York] PHP Warning:  Undefined array key "com_id" in /home/entifkut/public_html/company/payment/callback.php on line 41
-[26-Jun-2023 12:48:23 America/New_York] PHP Warning:  Trying to access array offset on value of type bool in /home/entifkut/public_html/company/payment/callback.php on line 43
-[26-Jun-2023 12:49:28 America/New_York] PHP Warning:  Undefined array key "com_id" in /home/entifkut/public_html/company/payment/callback.php on line 39
-[26-Jun-2023 12:49:28 America/New_York] PHP Warning:  Undefined array key "com_id" in /home/entifkut/public_html/company/payment/callback.php on line 41
-[26-Jun-2023 12:49:28 America/New_York] PHP Warning:  Trying to access array offset on value of type bool in /home/entifkut/public_html/company/payment/callback.php on line 43

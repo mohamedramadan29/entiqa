@@ -5,6 +5,8 @@ session_start();
 $com_navbar = 'com';
 if (isset($_SESSION['com_id'])) {
 
+
+
     $com_id = $_SESSION['com_id'];
     $com_username = $_SESSION['com_username'];
     include 'init.php';
@@ -29,6 +31,16 @@ if (isset($_SESSION['com_id'])) {
     $stmt = $connect->prepare("UPDATE chat SET com_noti=1 WHERE 
         com_noti=0 AND from_person=?");
     $stmt->execute(array($_GET["other"]));
+
+
+
+    // get the subscribe amount for company
+
+    /* get the subsciption payment */
+    $stmt = $connect->prepare("SELECT * FROM subscribe LIMIT 1");
+    $stmt->execute();
+    $sub_data = $stmt->fetch();
+    $ind_sub_amount = $sub_data['company_subscribe'];
 ?>
     <div class="chat_section">
         <div class="container">
@@ -300,12 +312,12 @@ if (isset($_SESSION['com_id'])) {
                                             <div class="com_contract">
                                                 <form action="" method="POST">
                                                     <?php
-                                                    if ($com_data['com_balance'] < 1) { ?>
-                                                        <div class="alert alert-info"> لا يوجد لديك رصيد كافي لاتمام التعاقد مع المتردب من فضلك يجب عليك شحن الرصيد اولا </div>
+                                                    if ($com_data['com_balance'] < $ind_sub_amount) { ?>
+                                                        <div class="alert alert-info">  لا يوجد لديك رصيد كافي لاتمام التعاقد مع المتدرب من فضلك يجب عليك شحن الرصيد اولا مبلغ التعاقد هو <?php echo $ind_sub_amount; ?> ريال سعودي </div>
                                                     <?php
                                                     } else { ?>
                                                         <p> هل انت متاكد من اتمام التعاقد مع المتدرب ...............
-                                                            وخصم المبلغ المتفق علية وهو 950 ريال من الرصيد الخاص بك علي المنصة </p>
+                                                            وخصم المبلغ المتفق علية وهو <?php echo $ind_sub_amount ?> ريال من الرصيد الخاص بك علي المنصة </p>
                                                         <input class="btn btn-primary" name="send_con_compelete" type="submit" value="  ارسال التاكيد">
                                                     <?php
                                                     }
@@ -314,7 +326,7 @@ if (isset($_SESSION['com_id'])) {
                                             </div>
                                         </div>
                                         <?php
-                                        $price = 1;
+                                        $price = $ind_sub_amount;
                                         if (isset($_POST['send_con_compelete'])) {
                                             $formerror = [];
                                             $stmt = $connect->prepare("SELECT * FROM contract_complete WHERE ind_id = ?");
