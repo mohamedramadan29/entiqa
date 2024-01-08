@@ -1590,12 +1590,12 @@ nav .profile_item .profile_links li a i {
 }
 
 .chat_section form .message_text .send_attachment {
-
     border-radius: 3px;
     font-size: 16px;
     color: #3e3c3c;
     background: none;
     border: 1px solid #a3a1a1;
+    margin-top: 15px;
 }
 
 .chat_section form .message_text .send_attachment:hover {
@@ -1615,7 +1615,28 @@ nav .profile_item .profile_links li a i {
     outline: none !important;
     box-shadow: none !important;
 }
-
+.chat_section form .message_text .send_attachments_div{
+    display: none;
+    position: relative;
+}
+.chat_section form .message_text .send_attachments_div label{
+display: block;
+width: 100%;
+background-color: #fafafa;
+color: #000;
+padding: 8px;
+border: 1px solid #e6e6e6;
+border-radius: 5px;
+}
+.chat_section form .message_text .send_attachments_div span{
+    
+}
+.chat_section form .message_text .send_attachments_div span i{
+    left: 15px;
+    top: 0;
+    font-size: 25px;
+    position: absolute !important;
+}
 .chat_section .chat_reason {
     background-color: #fff;
     padding: 20px;

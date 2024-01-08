@@ -40,7 +40,7 @@
   })
 
   $(".message_text .send_attachment").click(function () {
-    $('.message_text input[type=file]').toggle();
+    $('.send_attachments_div').toggle();
   });
 
   $(".document_button").click(function () {

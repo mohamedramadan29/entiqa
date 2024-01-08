@@ -4,6 +4,7 @@ include "../connect.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // credit gallary 
+
     $file = '';
     $file_tmp = '';
     $location = "";
@@ -15,7 +16,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $file_tmp = $_FILES['message_attachment']['tmp_name'][$key];
             move_uploaded_file($file_tmp, $uploadplace . $file);
             $location .= $file . ",";
-           
         }
     } else {
         $location = '';
@@ -62,7 +62,7 @@ VALUES(:znoti_title,:znoti_perspn,:znoti_com,:zsender)");
 ?>
         
 <?php
-echo "Goood";
+            echo "Goood";
         }
     }
 }
