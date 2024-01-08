@@ -258,28 +258,39 @@ if (isset($_SESSION['com_id'])) {
                                             <form action="" method="POST">
                                                 <div class="box">
                                                     <label for="">تاريخ ووقت المقابلة</label>
-                                                    <input name="interview_date" type="text" class="form-control" id="interviewDate" required />
+                                                    <input required name="interview_date" type="text" class="form-control" id="interviewDate" />
                                                 </div>
                                                 <input class="btn btn-primary" name="send_interview" type="submit" value="  ارسال التوقيت للمتدرب">
                                             </form>
                                         </div>
                                         <?php
                                         if (isset($_POST['send_interview'])) {
+                                            $formerror = [];
                                             $to_person =  $user_data['ind_id'];
-                                            $date = $_POST['interview_date'];
-
-                                            $stmt = $connect->prepare("INSERT INTO interview_notificaion (noti_title,noti_person_link,noti_com_link,interview_date)
-                                    VALUES(:znoti_title,:znoti_perspn,:znoti_com,:zdate)");
-                                            $stmt->execute(array(
-                                                "znoti_title" => "  طلب مقابلة شخصية ",
-                                                "znoti_perspn" => $to_person,
-                                                "znoti_com" => $_SESSION['com_id'],
-                                                "zdate" => $date,
-                                            ));
-                                            if ($stmt) { ?>
-                                                <div class="alert alert-success"> <i class="fa fa-check"></i> تم ارسال الموعد بنجاح </div>
+                                            $date = sanitizeInput($_POST['interview_date']);
+                                            if (empty($date)) {
+                                                $formerror[] = 'من فضلك حدد تاريخ ووقت المقابله ';
+                                            }
+                                            if (empty($formerror)) {
+                                                $stmt = $connect->prepare("INSERT INTO interview_notificaion (noti_title,noti_person_link,noti_com_link,interview_date)
+                                                VALUES(:znoti_title,:znoti_perspn,:znoti_com,:zdate)");
+                                                $stmt->execute(array(
+                                                    "znoti_title" => "  طلب مقابلة شخصية ",
+                                                    "znoti_perspn" => $to_person,
+                                                    "znoti_com" => $_SESSION['com_id'],
+                                                    "zdate" => $date,
+                                                ));
+                                                if ($stmt) { ?>
+                                                    <div class="alert alert-success"> <i class="fa fa-check"></i> تم ارسال الموعد بنجاح </div>
+                                                <?php
+                                                    header("location:com_message?other=" . $other_person);
+                                                }
+                                            } else {
+                                                foreach ($formerror as $error) {
+                                                ?>
+                                                    <div class="alert alert-danger"> <?php echo $error; ?> </div>
                                         <?php
-                                                header("location:com_message?other=" . $other_person);
+                                                }
                                             }
                                         }
                                         ?>

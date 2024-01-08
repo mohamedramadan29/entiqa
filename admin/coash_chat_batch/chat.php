@@ -32,10 +32,10 @@ $stmt->execute(array($_SESSION['coash_id'], $ind_username));
                     <input type="hidden" id="ind_img" value="<?php echo $ind_img ?>">
                     <input id="to_person" type="hidden" name="to_person" value="<?php echo $ind_data['ind_username']; ?>">
                     <textarea name="message_data" id="msg"></textarea>
-                    <div class="custom-file">
+                    <div class="send_attachments_div">
+                        <label for="customFile" style="cursor: pointer;"> اختر المرفقات [pdf \ images] </label>
+                        <span> <i class="fa fa-upload"></i> </span>
                         <input type="file" name="message_attachment[]" multiple class="form-control" id="customFile" onchange="checkFileType(),checkFileSize()" accept="image/*, .pdf">
-                        <!-- <input type="file" name="message_attachment[]" multiple class="custom-file-input" id="customFile" aria-label="اختيار ملفات" onchange="checkFileSize()"> 
-                        <label class="custom-file-label" for="customFile" id="fileLabel">اختيار ملفات</label>  -->
                     </div>
                     <div id="fileListContainer">
                         <!-- ستظهر هنا قائمة الملفات المختارة -->
