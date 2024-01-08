@@ -256,6 +256,10 @@ if ($count_Admin > 0) {
                                 <i class="far fa-circle nav-icon color3"></i>
                                 <p>تعديل بيانات الأدمن </p>
                             </a>
+                            <a href="main.php?dir=subscribe_payment&page=report" class="nav-link">
+                                <i class="far fa-circle nav-icon color3"></i>
+                                <p> اشتركات الفرد والشركه </p>
+                            </a>
                         </li>
                     </ul>
                 </li>

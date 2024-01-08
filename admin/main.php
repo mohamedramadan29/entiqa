@@ -232,6 +232,16 @@ if (isset($_SESSION['admin_session'])) {
         } elseif ($dir == 'service_team' && $page == 'report') {
             include 'service_team/report.php';
         }
+        // START SUBSCRIBE PAYMENT
+        if ($dir == 'subscribe_payment' && $page == 'add') {
+            include 'subscribe_payment/add.php';
+        } elseif ($dir == 'subscribe_payment' && $page == 'edit') {
+            include 'subscribe_payment/edit.php';
+        } elseif ($dir == 'subscribe_payment' && $page == 'delete') {
+            include 'subscribe_payment/delete.php';
+        } elseif ($dir == 'subscribe_payment' && $page == 'report') {
+            include 'subscribe_payment/report.php';
+        }
         ?>
     </div>
 </div>
