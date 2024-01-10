@@ -166,8 +166,12 @@ include 'init.php'; ?>
 
 <!-- END TESTMONAILS -->
 <?php
-
 include $tem . "footer.php";
-
-
 ?>
+
+
+<script>
+  if (window.history.replaceState) {
+    window.history.replaceState(null, null, window.location.href);
+  }
+</script>

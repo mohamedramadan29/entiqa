@@ -72,7 +72,7 @@ include 'init.php'; ?>
               button: "اغلاق",
             });
           </script>
-          <?php header('refresh:1;url=contact'); ?>
+          <?php header('refresh:2;url=contact'); ?>
           <!-- <div class="alert alert-success"> تم ارسال رسالتك بنجاح ,
             سوف نتواصل معك في اقرب وقت ممكن </div> -->
         <?php
@@ -171,3 +171,10 @@ include $tem . "footer.php";
 
 
 ?>
+
+
+<script>
+  if (window.history.replaceState) {
+    window.history.replaceState(null, null, window.location.href);
+  }
+</script>

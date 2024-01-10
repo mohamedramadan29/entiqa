@@ -85,8 +85,8 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                     if (empty($com_num)) {
                         $formerror[] = " يجب ادخال السجل التجاري الخاص بالشركه ";
                     }
-                    if (strlen($com_num) > 20 || strlen($com_num) < 5 || !is_numeric($com_num)) {
-                        $formerror[] = ' رقم السجل التجاري يجب ان يكون اكثر من 5 ارقام واقل من 20 رقم ويحتوي علي ارقام فقط  ';
+                    if (strlen($com_num) > 20 || strlen($com_num) < 5 || !is_numeric($com_num) || $com_num < 1) {
+                        $formerror[] = ' رقم السجل التجاري يجب ان يكون اكثر من 5 ارقام واقل من 20 رقم ويحتوي علي ارقام صحيحه فقط  ';
                     }
                     if (strlen($com_active) > 200 || strlen($com_active) < 5) {
                         $formerror[] = 'يجب ان يتم ادخال نشاط الشركه بشكل صحيح يجب ان يكون اكبر من 5 احرف واقل من 200 حرف';

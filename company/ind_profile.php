@@ -5,14 +5,19 @@ session_start();
 $com_navbar = 'com';
 include 'init.php';
 if (isset($_SESSION['com_id'])) {
-
+    // get the company subscribe 
+    $stmt = $connect->prepare("SELECT * FROM subscribe");
+    $stmt->execute();
+    $subscribe_balance = $stmt->fetch();
+    $company_sub = $subscribe_balance['company_subscribe'];
     // check if this company active or not active 
     $stmt = $connect->prepare("SELECT * FROM company_register WHERE com_id = ?");
     $stmt->execute(array($_SESSION['com_id']));
     $company_data = $stmt->fetch();
-    $active_status = $company_data['com_status'];
+    $com_status = $company_data['com_status'];
     $com_balance = $company_data['com_balance'];
-    if ($active_status == 0 || $com_balance == 0) {
+    $active_status = $company_data['active_status'];
+    if ($com_status == 0 || $com_balance < $company_sub || $active_status == 0) {
         header('Location:index');
         exit();
     }

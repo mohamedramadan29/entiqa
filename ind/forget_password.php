@@ -13,13 +13,13 @@ include 'init.php';
                 <?php
                 $email = $_SESSION['mail'];
                 ?>
-                <div class="box">
-                    <input class="form-control passwordinput" type="password" name="password"
-                        placeholder="كلمة مرور جديدة ">
+                <div class="box password_eye">
+                    <input class="form-control passwordinput" type="password" name="password" id="password" placeholder="كلمة مرور جديدة ">
+                    <span onclick="togglePasswordVisibility('password', this)" class="fa fa-eye-slash show_eye password_show_icon"></span>
                 </div>
-                <div class="box">
-                    <input class="form-control passwordinput" type="password" name="confirm_password"
-                        placeholder="تأكيد كلمة المرور">
+                <div class="box password_eye">
+                    <input class="form-control passwordinput" type="password" id="password2" name="confirm_password" placeholder="تأكيد كلمة المرور">
+                    <span onclick="togglePasswordVisibility('password2', this)" class="fa fa-eye-slash show_eye password_show_icon"></span>
                 </div>
                 <div class="box">
                     <button type="submit" class="btn btn-primary"> تحديث </button>
@@ -50,13 +50,13 @@ include 'init.php';
                         mail($to_email, $subject, $body, $headers);
                         unset($_SESSION['mail']);
                         header('Location:login');
-                        ?>
+            ?>
                         <div class="container">
                             <div class="alert alert-success text-center mt-2 fw-bold"> تم تعديل كلمة المرور بنجاح
                                 <a class="login_forget" href="ind_login.php"> | تسجيل دخول </a>
                             </div>
                         </div>
-                        <?php
+                    <?php
                     }
                 } else {
                     foreach ($formerror as $error) { ?>
@@ -64,10 +64,9 @@ include 'init.php';
                             <i class="fa fa-close"></i>
                             <?php echo $error; ?>
                         </div>
-                        <?php
+            <?php
                     }
                 }
-
             }
             ?>
         </div>
@@ -78,3 +77,18 @@ include $tem . "footer.php";
 ob_end_flush();
 
 ?>
+<script>
+    function togglePasswordVisibility(inputId, iconElement) {
+        var passwordInput = document.getElementById(inputId);
+        var icon = iconElement.classList;
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            icon.remove("fa-eye-slash");
+            icon.add("fa-eye");
+        } else {
+            passwordInput.type = "password";
+            icon.remove("fa-eye");
+            icon.add("fa-eye-slash");
+        }
+    }
+</script>
