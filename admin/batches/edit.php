@@ -98,22 +98,35 @@ if (isset($_GET['batch'])) {
                                         <span> * </span> </label>
                                     <input required class="form-control" type="text" name="batch_name" value="<?php echo $type['batch_name']; ?>">
                                 </div>
-                                <div class="box2">
-                                    <label id="name_en"> المدرب <span> * </span></label>
-                                    <select class="form-control" name="batch_coash">
-                                        <?php
-                                        $stmt = $connect->prepare("SELECT * FROM coshes");
-                                        $stmt->execute();
-                                        $allcoa = $stmt->fetchAll();
-                                        foreach ($allcoa as $coa) {
-                                        ?>
-                                            <option <?php if ($type['batch_coach'] == $coa['co_id'])  echo 'selected'; ?> value="<?php echo $coa['co_id'] ?>"><?php echo $coa['co_name']; ?></option>
-                                        <?php
-                                        }
-                                        ?>
-                                        <option> </option>
-                                    </select>
-                                </div>
+                                <?php
+
+                                if (!isset($_SESSION['coash_id'])) {
+                                ?>
+                                    <div class="box2">
+                                        <label id="name_en"> المدرب <span> * </span></label>
+                                        <select class="form-control" name="batch_coash">
+                                            <?php
+                                            $stmt = $connect->prepare("SELECT * FROM coshes");
+                                            $stmt->execute();
+                                            $allcoa = $stmt->fetchAll();
+                                            foreach ($allcoa as $coa) {
+                                            ?>
+                                                <option <?php if ($type['batch_coach'] == $coa['co_id'])  echo 'selected'; ?> value="<?php echo $coa['co_id'] ?>"><?php echo $coa['co_name']; ?></option>
+                                            <?php
+                                            }
+                                            ?>
+                                            <option> </option>
+                                        </select>
+                                    </div>
+                                <?php
+
+                                } else {
+                                ?>
+                                    <input type="hidden" name="batch_coash" value="<?php echo $_SESSION['coash_id'] ?>">
+                                <?php
+                                }
+                                ?>
+
                                 <div class="box2">
                                     <label id="name"> بداية انطلاق الدفعه
                                         <span> * </span> </label>

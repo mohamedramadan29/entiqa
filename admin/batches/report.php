@@ -13,7 +13,7 @@
             <div class="card-header">
                 <div class="add_new_record">
                     <?php
-                    if (isset($_SESSION['admin_id'])) {
+                    if (isset($_SESSION['admin_id']) || isset($_SESSION['coash_id'])) {
                     ?>
                         <a href="main.php?dir=batches&page=add" type="button" class="btn btn-primary btn-sm">
                             اضف دفعه جديدة <i class="fa fa-plus"></i>
@@ -73,13 +73,13 @@
                                         <?php
                                         // if (!isset($_SESSION['coash_id'])) {
                                         ?>
-
+                                        <a type="button" class="btn btn-primary btn-sm" href="main.php?dir=batches&page=edit&batch=<?php echo $type['batch_id'] ?>">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
                                         <?php
                                         if (isset($_SESSION['admin_session'])) {
                                         ?>
-                                            <a type="button" class="btn btn-primary btn-sm" href="main.php?dir=batches&page=edit&batch=<?php echo $type['batch_id'] ?>">
-                                                <i class="fa fa-edit"></i>
-                                            </a>
+
                                             <a class="confirm btn btn-danger btn-sm" href="main.php?dir=batches&page=delete&batch_id=<?php echo $type['batch_id']; ?> ">
                                                 <i class="fa fa-trash"></i>
                                             </a>
