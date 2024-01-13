@@ -82,7 +82,7 @@ if (isset($_GET['rev_id'])) {
                                     <label id="name"> عرض التقييم في الموقع
                                         <span> * </span> </label>
                                     <select required class="form-control" name="rev_show" id="">
-                                        <option value=""> -- اختر -- </option>
+                                       
                                         <option <?php if ($type['rev_show'] == 1) echo "selected"; ?> value="1"> نعم </option>
                                         <option <?php if ($type['rev_show'] == 0) echo "selected"; ?> value="0" value="0"> لا </option>
                                     </select>

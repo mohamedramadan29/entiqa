@@ -56,6 +56,7 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                         <?php
                         $date_now = date("Y-m-d");
                         if ($user_status == null || $user_status == -1 || $user_status == 0) {
+                            
                             $stmt = $connect->prepare("SELECT * FROM exam WHERE ex_batch_num=? AND ex_date_publish <= ?");
                             $stmt->execute(array($batch_id, $date_now));
                         } else {
