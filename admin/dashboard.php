@@ -296,3 +296,10 @@ if(isset($_SESSION['admin_session'])){
     header("Location:signout");
 }
 ?>
+
+<script>
+history.pushState(null, null, location.href);
+window.onpopstate = function () {
+  history.go(1);
+};
+</script>

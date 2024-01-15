@@ -5,19 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $ind_status = $_POST['ind_status'];
     $date_now = date("Y-m-d");
     if (!empty($_FILES['ind_certificate']['name'])) {
-        $ind_certificate_name = $_FILES['ind_certificate']['name'];
-        $ind_certificate_temp = $_FILES['ind_certificate']['tmp_name'];
-        $ind_certificate_type = $_FILES['ind_certificate']['type'];
-        $ind_certificate_uploaded = time() . '_' . $ind_certificate_name;
-        move_uploaded_file(
-            $ind_certificate_temp,
-            'uploads/' . $ind_certificate_uploaded
-        );
-    }
-
-    if (!empty($_FILES['ind_certificate']['name'])) {
         $allowed_extensions = array('pdf'); // قائمة بالامتدادات المسموح بها للفيديو
-
         $ind_certificate_name = $_FILES['ind_certificate']['name'];
         $ind_certificate_name = str_replace(' ', '', $ind_certificate_name);
         $ind_certificate_temp = $_FILES['ind_certificate']['tmp_name'];
@@ -25,12 +13,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $ind_certificate_size = $_FILES['ind_certificate']['size'];
         $ind_certificate_uploaded = time() . '_' . $ind_certificate_name;
     }
-
-
-
-
-
-
     // check if it the same batch or not
     $stmt = $connect->prepare("SELECT * FROM ind_register WHERE ind_id = ?");
     $stmt->execute(array($ind_id));

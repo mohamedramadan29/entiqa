@@ -68,12 +68,12 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                             if (empty($ind_password)) {
                                 $formerror[] = " يجب اضافة  كلمة المرور    ";
                             }
-                            if (strlen($ind_password) < 8 || !preg_match('/[A-Za-z]/', $ind_password) || !preg_match('/\d/', $ind_password)) {
-                                $formerror[] = "كلمة المرور يجب أن تكون أكثر من 8 أحرف وأرقام وتحتوي على حروف وأرقام";
+                            if (strlen($ind_password) < 8 || !preg_match('/^[a-zA-Z0-9!@#$%^&*()_+]+$/', $ind_password) || !preg_match('/\d/', $ind_password)) {
+                                $formerror[] = "كلمة المرور يجب أن تحتوي على الأحرف الإنجليزية والأرقام والرموز الخاصة.";
                             }
                             // يسمح بالأحرف الإنجليزية (كبيرة وصغيرة) والأرقام
-                            if (!preg_match('/^[a-zA-Z0-9]+$/', $ind_password)) {
-                                $formerror[] = 'كلمة المرور يجب أن تحتوي على الأحرف الإنجليزية والأرقام فقط.';
+                            if (!preg_match('/^[a-zA-Z0-9!@#$%^&*()_+]+$/', $ind_password)) {
+                                $formerror[] = "كلمة المرور يجب أن تحتوي على الأحرف الإنجليزية والأرقام والرموز الخاصة.";
                             }
 
                             if ($ind_password !== $confirm_password) {
@@ -242,9 +242,9 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                                         <small class="ind_email text-danger"> </small>
                                     </div>
                                     <div class="box password_eye">
-                                        <input pattern="[a-zA-Z0-9]+" oninvalid="setCustomValidityArabic(this,' كلمه المرور يحب الا تحتوي علي احرف عربيه ')" oninput="resetCustomValidity(this)" placeholder="كلمة المرور * " required class="form-control" type="password" id="password" name="ind_password" value="<?php if (isset($_REQUEST['ind_password'])) {
-                                                                                                                                                                                                                                                                                                                            echo $_REQUEST['ind_password'];
-                                                                                                                                                                                                                                                                                                                        } ?>">
+                                        <input pattern="[a-zA-Z0-9]+" oninvalid="setCustomValidityArabic(this,'  كلمه المرور يجب ان لا تقل عن 8 احرف وارقام وعلامات خاصه  ')" oninput="resetCustomValidity(this)" placeholder="كلمة المرور * " required class="form-control" type="password" id="password" name="ind_password" value="<?php if (isset($_REQUEST['ind_password'])) {
+                                                                                                                                                                                                                                                                                                                                            echo $_REQUEST['ind_password'];
+                                                                                                                                                                                                                                                                                                                                        } ?>">
 
                                         <span onclick="togglePasswordVisibility('password', this)" class="fa fa-eye-slash show_eye password_show_icon"></span>
 
