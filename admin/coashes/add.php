@@ -68,6 +68,12 @@
         if ($email_count > 0) {
             $formerror[] = ' البريد الألكتروني مستخدم بالفعل من فضلك ادخل بريد الكتروني جديد ';
         }
+        $stmt = $connect->prepare("SELECT * FROM ind_register WHERE ind_email=?");
+        $stmt->execute(array($co_email));
+        $email_count_ind = $stmt->rowCount();
+        if ($email_count_ind > 0) {
+            $formerror[] = ' البريد الألكتروني مستخدم بالفعل من فضلك ادخل بريد الكتروني جديد ';
+        }
         $stmt = $connect->prepare("SELECT * FROM coshes WHERE co_phone=?");
         $stmt->execute(array($co_phone));
         $phone_count = $stmt->rowCount();

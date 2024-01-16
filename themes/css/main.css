@@ -2800,9 +2800,21 @@ li .notification span {
 input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
     -webkit-appearance: none;
-    -moz-appearance: textfield;
+    -moz-appearance: textfield !important;
     appearance: none;
 }
+
+/* Remove Numbers arrow */
+input[type='number'] {
+    -moz-appearance: textfield; /* Firefox */
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 
 @media(max-width:991px) {
     nav .profile_item .profile_links, nav .notification_items .notification_links {

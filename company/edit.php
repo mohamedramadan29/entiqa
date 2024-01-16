@@ -77,11 +77,25 @@ if (isset($_SESSION['com_id'])) {
 
             $stmt = $connect->prepare("SELECT * FROM company_register WHERE com_phone=? AND com_id !=?");
             $stmt->execute(array($com_phone, $_SESSION['com_id']));
-            $count_mails = $stmt->rowCount();
-            if ($count_mails > 0) {
+            $count_phones = $stmt->rowCount();
+            if ($count_phones > 0) {
                 $formerror[] = 'رقم الهاتف مستخدم من قبل ';
             }
-
+            // check in individuals 
+            $stmt = $connect->prepare("SELECT * FROM ind_register WHERE ind_phone=?");
+            $stmt->execute(array($com_phone));
+            $data = $stmt->fetch();
+            $count_phones = $stmt->rowCount();
+            if ($count_phones > 0) {
+                $formerror[] = " رقم الهاتف مستخدم من قبل ";
+            }
+            $stmt = $connect->prepare("SELECT * FROM ind_register WHERE ind_email=?");
+            $stmt->execute(array($com_email));
+            $data = $stmt->fetch();
+            $count_ind_mails = $stmt->rowCount();
+            if ($count_ind_mails > 0) {
+                $formerror[] = "  البريد الالكتروني مستخدم بالفعل من فضلك ادخل بريد الكتروني جديد ";
+            }
 
             if (strlen($com_num) > 20 || strlen($com_num) < 5 || !is_numeric($com_num)) {
                 $formerror[] = ' رقم السجل التجاري يجب ان يكون اكثر من 5 ارقام واقل من 20 رقم ويحتوي علي ارقام فقط  ';

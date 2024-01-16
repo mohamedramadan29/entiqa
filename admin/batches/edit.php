@@ -29,13 +29,13 @@ if (isset($_GET['batch'])) {
             <div class="card-body">
                 <?php
                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                    $batch_id = $_POST['batch_id'];
-                    $batch_name = $_POST['batch_name'];
-                    $batch_coash =  $_POST['batch_coash'];
-                    $batch_start = $_POST['batch_start']; // 2023-11-25
-                    $batch_min = $_POST['batch_min'];
-                    $batch_max = $_POST['batch_max'];
-                    $batch_status = $_POST['batch_status'];
+                    $batch_id = sanitizeInput($_POST['batch_id']);
+                    $batch_name = sanitizeInput($_POST['batch_name']);
+                    $batch_coash = sanitizeInput($_POST['batch_coash']);
+                    $batch_start = sanitizeInput($_POST['batch_start']); // 2023-11-25
+                    $batch_min = sanitizeInput($_POST['batch_min']);
+                    $batch_max = sanitizeInput($_POST['batch_max']);
+                    $batch_status = sanitizeInput($_POST['batch_status']);
                     $formerror = [];
                     if (empty($batch_name) || empty($batch_coash) || empty($batch_status) || empty($batch_start) || empty($batch_min) || empty($batch_max)) {
                         $formerror[] = 'من فضلك ادخل المعلومات كاملة';
@@ -95,7 +95,7 @@ if (isset($_GET['batch'])) {
                                 <div class="box2">
                                     <label id="name"> اسم الدفعه
                                         <span> * </span> </label>
-                                    <input required class="form-control" type="text" name="batch_name" value="<?php echo $type['batch_name']; ?>">
+                                    <input maxlength="50" required class="form-control" type="text" name="batch_name" value="<?php echo $type['batch_name']; ?>">
                                 </div>
                                 <?php
 

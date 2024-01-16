@@ -32,7 +32,7 @@
                             $formerror[] = 'من فضلك ادخل المعلومات كاملة';
                         }
                         if ($batch_start < $date) {
-                            $formerror[]  = ' يجب اختيار تاريخ بداية الدفعه بالشكل الصحيح  ';
+                            $formerror[]  = 'لا يجب ان يكون تاريخ بداية الدفعة اقل من تاريخ اليوم';
                         }
                         // check if the batch name found before ort not 
                         $stmt = $connect->prepare("SELECT * FROM batches WHERE batch_name = ?");
@@ -96,7 +96,6 @@
                                     <input maxlength="50" required class="form-control" type="text" name="batch_name">
                                 </div>
                                 <?php
-
                                 if (!isset($_SESSION['coash_id'])) {
                                 ?>
                                     <div class="box2">

@@ -25,15 +25,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (!empty($password)) {
             $stmt = $connect->prepare("UPDATE admin SET admin_password=? WHERE admin_id=?");
             $stmt->execute([$password, $admin_id]);
+            if ($stmt) {
+                $newSessionToken = generateNewSessionToken();
+                $stmt = $connect->prepare("UPDATE admin SET session_token = ? WHERE admin_id = ?");
+                $stmt->execute(array($newSessionToken, $admin_id));
+                $_SESSION['new_pass'] = $newSessionToken;
+                /////////////////
+                header("LOCATION:signout");
+            }
         }
         if ($stmt) {
-            $newSessionToken = generateNewSessionToken();
-            $stmt = $connect->prepare("UPDATE admin SET session_token = ? WHERE admin_id = ?");
-            $stmt->execute(array($newSessionToken, $admin_id));
-            $_SESSION['new_pass'] = $newSessionToken;
 
-            /////////////////
-            header("LOCATION:signout");
 ?>
             <div class="container">
                 <div class="alert-success">

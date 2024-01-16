@@ -67,6 +67,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($name_count > 0) {
         $formerror[] = 'اسم المدرب موجود من قبل من فضلك ادخل اسم جديد ';
     }
+    $stmt = $connect->prepare("SELECT * FROM ind_register WHERE ind_email=?");
+    $stmt->execute(array($co_email));
+    $email_count_ind = $stmt->rowCount();
+    if ($email_count_ind > 0) {
+        $formerror[] = ' البريد الألكتروني مستخدم بالفعل من فضلك ادخل بريد الكتروني جديد ';
+    }
     $stmt = $connect->prepare("SELECT * FROM coshes WHERE co_email=? AND co_id !=?");
     $stmt->execute(array($co_email, $co_id));
     $email_count = $stmt->rowCount();

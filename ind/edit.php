@@ -70,6 +70,20 @@ if (isset($_SESSION['ind_id'])) {
             if ($count_phones > 0) {
                 $formerror[] = ' رقم الهاتف مستخدم من قبل  ';
             }
+            // check in company
+            $stmt = $connect->prepare("SELECT * FROM company_register WHERE com_email=?");
+            $stmt->execute(array($ind_email));
+            $count_mails = $stmt->rowCount();
+            if ($count_mails > 0) {
+                $formerror[] = 'البريد الألكتروني مستخدم من قبل من فضلك ادخل بريد الكتروني جديد';
+            }
+
+            $stmt = $connect->prepare("SELECT * FROM company_register WHERE com_phone=?");
+            $stmt->execute(array($ind_phone));
+            $count_phones = $stmt->rowCount();
+            if ($count_phones > 0) {
+                $formerror[] = 'رقم الهاتف مستخدم من قبل ';
+            }
             if (empty($formerror)) {
                 $stmt = $connect->prepare("UPDATE ind_register SET
                 ind_name=?,

@@ -119,7 +119,7 @@ if (!isset($_SESSION['admin_session']) && !isset($_SESSION['coash_id'])) {
                                 </div>
                                 <div class="box2">
                                     <label id="name_en"> نوع الاختبار <span> * </span></label>
-                                    <select required class="form-control select2" name="ex_type">
+                                    <select required class="form-control" name="ex_type" oninvalid="setCustomValidityArabic(this,' حدد نوع الاختبار ')" oninput="resetCustomValidity(this)" >
                                         <option value=""> -- اختر توع الاختبار -- </option>
                                         <option value="قصير"> قصير </option>
                                         <option value="نهائي"> نهائي </option>

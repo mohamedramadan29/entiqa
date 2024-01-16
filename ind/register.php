@@ -101,6 +101,13 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                             if ($count > 0) {
                                 $formerror[] = "  البريد الالكتروني مستخدم بالفعل من فضلك ادخل بريد الكتروني جديد ";
                             }
+                            $stmt = $connect->prepare("SELECT * FROM coshes WHERE co_email=?");
+                            $stmt->execute(array($ind_email));
+                            $data = $stmt->fetch();
+                            $count_coash_email = $stmt->rowCount();
+                            if ($count_coash_email > 0) {
+                                $formerror[] = "  البريد الالكتروني مستخدم بالفعل من فضلك ادخل بريد الكتروني جديد ";
+                            }
                             $stmt = $connect->prepare("SELECT * FROM ind_register WHERE ind_phone=?");
                             $stmt->execute(array($ind_phone));
                             $data = $stmt->fetch();
@@ -127,6 +134,13 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                             $data = $stmt->fetch();
                             $count = $stmt->rowCount();
                             if ($count > 0) {
+                                $formerror[] = " اسم المستخدم موجود بالفعل من فضلك ادخل اسم مستخدم جديد ";
+                            }
+                            $stmt = $connect->prepare("SELECT * FROM company_register WHERE com_username=?");
+                            $stmt->execute(array($ind_username));
+                            $data = $stmt->fetch();
+                            $count_com_username = $stmt->rowCount();
+                            if ($count_com_username > 0) {
                                 $formerror[] = " اسم المستخدم موجود بالفعل من فضلك ادخل اسم مستخدم جديد ";
                             }
                             if (empty($formerror)) {
@@ -417,7 +431,7 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
 
 
                                     <div class="box">
-                                        <input oninvalid="setCustomValidityArabic(this,'من فضلك ادخل رقم الهاتف')" oninput="resetCustomValidity(this)" placeholder="رقم الهاتف *" required class="form-control" id="ind_phone" type="number" minlength="8" maxlength="20" name="ind_phone" value="<?php if (isset($_REQUEST['ind_phone'])) {
+                                        <input pattern="\d+" title="يجب أن يحتوي هذا الحقل على أرقام فقط" oninvalid="setCustomValidityArabic(this,'من فضلك ادخل رقم الهاتف')" oninput="resetCustomValidity(this)" placeholder="رقم الهاتف *" required class="form-control" id="ind_phone" type="number" minlength="8" maxlength="20" name="ind_phone" value="<?php if (isset($_REQUEST['ind_phone'])) {
                                                                                                                                                                                                                                                                                                         echo $_REQUEST['ind_phone'];
                                                                                                                                                                                                                                                                                                     } ?>">
                                     </div>

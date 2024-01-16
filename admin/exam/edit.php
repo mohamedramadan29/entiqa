@@ -134,7 +134,7 @@ if (isset($_POST['add_car'])) {
                                 </div>
                                 <div class="box2">
                                     <label id="name_en"> نوع الاختبار <span> * </span></label>
-                                    <select required class="form-control" name="ex_type">
+                                    <select required class="form-control" name="ex_type" oninvalid="setCustomValidityArabic(this,' حدد نوع الاختبار ')" oninput="resetCustomValidity(this)">
                                         <option value=""> -- اختر توع الاختبار -- </option>
                                         <option <?php if ($type['ex_type'] == 'قصير') echo "selected"; ?> value="قصير"> قصير </option>
                                         <option <?php if ($type['ex_type'] == 'نهائي') echo "selected"; ?> value="نهائي"> نهائي </option>

@@ -24,7 +24,7 @@ if (isset($_SESSION['com_id'])) {
 }
 
 
-if (!isset($_SESSION['admin_session']) && !isset($_SESSION['serv_name'])) {
+if (!isset($_SESSION['admin_session'])) {
     header("Location:index");
 }
 
