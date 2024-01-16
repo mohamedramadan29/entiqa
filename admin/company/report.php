@@ -230,7 +230,7 @@ if(isset($_SESSION['admin_session']) || isset($_SESSION['serv_name'])){
                                                         </div>
                                                         <div class="box2">
                                                             <label class="form-label" for="com_name">نشاط الشركة</label>
-                                                            <input disabled class="form-control" id="com_name" type="text" name="com_name" value="<?php echo $type['com_active'] ?>">
+                                                            <textarea disabled class="form-control" id="com_name" type="text" name="com_name"><?php echo $type['com_active'] ?></textarea>
                                                         </div>
                                                         <div class="box2">
                                                             <label class="form-label" for="com_name">مقر الشركه</label>

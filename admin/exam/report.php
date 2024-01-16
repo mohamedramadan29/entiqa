@@ -78,6 +78,7 @@ if (!isset($_SESSION['admin_session']) && !isset($_SESSION['coash_id'])) {
                                 <th> اسم الدفعه </th>
                                 <th> نوع الاختبار </th>
                                 <th> زمن الاختبار </th>
+                                <th> تاريخ نشر الاختبار </th>
                                 <th> </th>
                             </tr>
                         </thead>
@@ -107,6 +108,7 @@ if (!isset($_SESSION['admin_session']) && !isset($_SESSION['coash_id'])) {
                                             ?> </td>
                                     <td> <?php echo $type['ex_type']; ?> </td>
                                     <td> <?php echo $type['ex_time']; ?> </td>
+                                    <td> <?php echo $type['ex_date_publish']; ?> </td>
                                     <?php
                                     ?>
                                     <td>
@@ -118,9 +120,23 @@ if (!isset($_SESSION['admin_session']) && !isset($_SESSION['coash_id'])) {
                                         </button>
                                         <a class="btn btn-info btn-sm" href="main.php?dir=question&page=report&ex_id=<?php echo $type['ex_id']; ?> ">
                                             اسئلة الاختبار <i class="fa fa-dashboard"></i>
-                                            <a class="confirm btn btn-danger btn-sm" href="main.php?dir=exam&page=delete&ex_id=<?php echo $type['ex_id']; ?> ">
-                                                حذف <i class="fa fa-trash"></i>
-                                            </a>
+                                            <?php
+                                            // check if the number question equal the numbers in exam question 
+                                            $stmt = $connect->prepare("SELECT * FROM question WHERE exam_id = ?");
+                                            $stmt->execute(array($type['ex_id']));
+                                            $question_number = $stmt->rowCount();
+                                          
+                                            if (($type['ex_date_publish'] <= date("Y-m-d")) && ($question_number == $type['ex_total_question'])) {
+                                            } else {
+                                            ?>
+                                                <a class="confirm btn btn-danger btn-sm" href="main.php?dir=exam&page=delete&ex_id=<?php echo $type['ex_id']; ?> ">
+                                                    حذف <i class="fa fa-trash"></i>
+                                                </a>
+                                            <?php
+                                            }
+
+                                            ?>
+
                                     </td>
                                 </tr>
                                 <!-- END RECORD TO EDIT NEW RECORD  -->

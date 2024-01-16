@@ -36,12 +36,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 ?>
         <div class="container">
-            <div class="alert-success">
-                تم تعديل حالة الشركه بنجاح
-                <?php // header('refresh:3,url=main.php?dir=city&page=report'); 
-                header('Location:main.php?dir=company&page=report');
-                ?>
-            </div>
+            <script src="plugins/jquery/jquery.min.js"></script>
+            <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
+            <script>
+                $(function() {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: ' تم التعديل بنجاح  ',
+                        showConfirmButton: false,
+                        timer: 2000
+                    }).then(() => {
+                        window.location.href = 'main.php?dir=company&page=report';
+                    });
+                })
+            </script>
+
         </div>
 
 <?php }

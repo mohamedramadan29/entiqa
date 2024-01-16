@@ -242,7 +242,7 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                                         <small class="ind_email text-danger"> </small>
                                     </div>
                                     <div class="box password_eye">
-                                        <input pattern="[a-zA-Z0-9]+" oninvalid="setCustomValidityArabic(this,'  كلمه المرور يجب ان لا تقل عن 8 احرف وارقام وعلامات خاصه  ')" oninput="resetCustomValidity(this)" placeholder="كلمة المرور * " required class="form-control" type="password" id="password" name="ind_password" value="<?php if (isset($_REQUEST['ind_password'])) {
+                                        <input pattern="^[a-zA-Z0-9!@#$%^&*()_+]+$" oninvalid="setCustomValidityArabic(this,'  كلمه المرور يجب ان لا تقل عن 8 احرف وارقام وعلامات خاصه  ')" oninput="resetCustomValidity(this)" placeholder="كلمة المرور * " required class="form-control" type="password" id="password" name="ind_password" value="<?php if (isset($_REQUEST['ind_password'])) {
                                                                                                                                                                                                                                                                                                                                             echo $_REQUEST['ind_password'];
                                                                                                                                                                                                                                                                                                                                         } ?>">
 

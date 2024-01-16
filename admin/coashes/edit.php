@@ -1,8 +1,8 @@
 <?php
 
-if(!isset($_SESSION['admin_session'])){
+if (!isset($_SESSION['admin_session'])) {
     header("Location:index");
- }
+}
 //Import PHPMailer classes into the global namespace
 //These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
@@ -30,8 +30,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // يسمح بالأحرف الإنجليزية (كبيرة وصغيرة) والأرقام
-        if (!preg_match('/^[a-zA-Z0-9]+$/', $co_password)) {
-            $formerror[] = 'كلمة المرور يجب أن تحتوي على الأحرف الإنجليزية والأرقام فقط.';
+        if (!preg_match('/^[a-zA-Z0-9!@#$%^&*()_+]+$/', $co_password)) {
+            $formerror[] = "كلمة المرور يجب أن تحتوي على الأحرف الإنجليزية والأرقام والرموز الخاصة.";
         }
     }
 

@@ -89,7 +89,7 @@ if (!isset($_SESSION['admin_session']) && !isset($_SESSION['coash_id'])) {
                                     }
                                 }
                             </script>
-                            <form class="form-group" action="main_ajax.php?dir=question&page=add" method="POST" autocomplete="on" enctype="multipart/form-data">
+                            <form class="form-group" action="main.php?dir=question&page=add" method="POST" autocomplete="on" enctype="multipart/form-data">
                                 <div class="row">
                                     <input type="hidden" name="exam_id" value="<?php echo $exam_id; ?>">
                                     <div class="col-lg-12">

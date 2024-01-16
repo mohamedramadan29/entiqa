@@ -65,7 +65,9 @@
                                             title: 'تمت الاضافه بنجاح',
                                             showConfirmButton: false,
                                             timer: 2000
-                                        })
+                                        }).then(() => {
+                                            window.location.href = 'main.php?dir=batches&page=report';
+                                        });
                                     })
                                 </script>
                                 <?php

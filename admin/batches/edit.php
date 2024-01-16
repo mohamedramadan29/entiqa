@@ -72,9 +72,8 @@ if (isset($_GET['batch'])) {
                                         title: 'تم التعديل بنجاح',
                                         showConfirmButton: false,
                                         timer: 2000
-                                    }).then(function() {
-                                        // Redirect using JavaScript after the success message
-                                        <?php echo "window.location.href = 'main.php?dir=batches&page=edit&batch=$batch_id';"; ?>
+                                    }).then(() => {
+                                        window.location.href = 'main.php?dir=batches&page=report';
                                     });
                                 });
                             </script>

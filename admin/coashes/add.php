@@ -30,9 +30,8 @@
             $formerror[] = ' يجب ان تكون الحروف المستخدمة فى  الاسم حروف انجليزية فقط ';
         }
 
-        // يسمح بالأحرف الإنجليزية (كبيرة وصغيرة) والأرقام
-        if (!preg_match('/^[a-zA-Z0-9]+$/', $co_password)) {
-            $formerror[] = 'كلمة المرور يجب أن تحتوي على الأحرف الإنجليزية والأرقام فقط.';
+        if (!preg_match('/^[a-zA-Z0-9!@#$%^&*()_+]+$/', $co_password)) {
+            $formerror[] = "كلمة المرور يجب أن تحتوي على الأحرف الإنجليزية والأرقام والرموز الخاصة.";
         }
 
         if (strlen($co_password) < 8) {
@@ -166,8 +165,11 @@
                 }
                 // END SEND MAIL //////////////////////////////////////
                 ?>
-             <div class="alert alert-success"> تمت الاضافه بنجاح </div>
+             <?php
+                $_SESSION['success_message'] = ' تم اضافة مدرب جديد بنجاح';
+                ?>
              <div class="alert-success ">
+
                  تم اضافة مدرب جديد بنجاح
                  <?php
                     header("Location:main.php?dir=coashes&page=report");
@@ -204,7 +206,7 @@
                                  <div class="box2">
                                      <label id="name"> كلمة المرور
                                          <span> * </span> </label>
-                                     <input pattern="[a-zA-Z0-9]+" required oninvalid="setCustomValidityArabic(this,' كلمه المرور يحب الا تحتوي علي احرف عربيه ')" oninput="resetCustomValidity(this)" minlength="8" maxlength="20" class="form-control" type="password" name="co_password">
+                                     <input pattern="^[a-zA-Z0-9!@#$%^&*()_+]+$" required oninvalid="setCustomValidityArabic(this,'كلمة المرور يجب أن تحتوي على الأحرف الإنجليزية والأرقام والرموز الخاصة.')" oninput="resetCustomValidity(this)" minlength="8" maxlength="20" class="form-control" type="password" name="co_password">
                                  </div>
                                  <div class="box2">
                                      <label id="name_en"> الهاتف <span> * </span></label>

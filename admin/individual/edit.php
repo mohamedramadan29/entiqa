@@ -1,5 +1,6 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $formerror  = [];
     $ind_id = $_POST['ind_id'];
     $ind_batch = $_POST['ind_batch'];
     $ind_status = $_POST['ind_status'];
@@ -40,28 +41,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt = $connect->prepare("UPDATE ind_register SET ind_status=?,date_change_status=? WHERE ind_id=?");
         $stmt->execute([$ind_status, $date_now, $ind_id]);
     }
-
     if (!empty($_FILES['ind_certificate']['name'])) {
-
         // حصول على الامتداد
         $file_extension = strtolower(pathinfo($ind_certificate_uploaded, PATHINFO_EXTENSION));
-
         // التحقق من أن الامتداد مسموح به
         if (in_array($file_extension, $allowed_extensions)) {
             move_uploaded_file(
                 $ind_certificate_temp,
                 'uploads/' . $ind_certificate_uploaded
             );
-
             $stmt = $connect->prepare("UPDATE ind_register SET ind_certificate=? WHERE ind_id=?");
             $stmt->execute([$ind_certificate_uploaded, $ind_id]);
         } else {
+            $formerror[] = ' من فضلك اختر ملف من نوع ["pdf"]';
+            $_SESSION['error_messages'] = $formerror;
+            header("Location:main.php?dir=individual&page=report");
 ?>
-            <script>
-                alert("  من فضلك اختر ملف من نوع [  'pdf' ]");
-            </script>
         <?php
-
         }
     }
     if ($stmt) {
@@ -101,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             } else {
                 // Insert New Notification
                 $stmt = $connect->prepare("INSERT INTO change_status_notification (ind_id, change_status,status_show,date)
-                 VALUES (:zind_id,:zchange_stats,:zstatus,:zdate)");
+                VALUES (:zind_id,:zchange_stats,:zstatus,:zdate)");
                 $stmt->execute(array(
                     'zind_id' => $ind_id,
                     'zchange_stats' => $ind_status,
@@ -110,15 +106,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 ));
             }
         }
-
         ?>
         <div class="container">
-            <div class="alert-success">
-                تم تعديل المتدرب بنجاح
-                <?php
-                header("Location:main.php?dir=individual&page=report");
-                ?>
-            </div>
+            <script src="plugins/jquery/jquery.min.js"></script>
+            <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
+            <script>
+                $(function() {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: ' تم التعديل بنجاح  ',
+                        showConfirmButton: false,
+                        timer: 2000
+                    }).then(() => {
+                        window.location.href = 'main.php?dir=individual&page=report';
+                    });
+                })
+            </script>
+
         </div>
 <?php }
 }

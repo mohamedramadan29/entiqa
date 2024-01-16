@@ -47,8 +47,6 @@
             if ($question_number >= $question_number_in_exam) {
                 $formerror[] = 'لا يمكن اضافة عدد اسئلة اخري لهذا الأختبار ';
             }
-
-
             if (empty($formerror)) {
                 $stmt = $connect->prepare("INSERT INTO question (exam_id,ques_ques)
                 VALUES (:zexam_id,:zques_ques)");
@@ -75,16 +73,11 @@
                         ));
                     }
                     $_SESSION['success_message'] = " تمت الأضافة بنجاح  ";
-
                     // check if the number question equal the numbers in exam question 
                     $stmt = $connect->prepare("SELECT * FROM question WHERE exam_id = ?");
                     $stmt->execute(array($exam_id));
                     $question_number = $stmt->rowCount();
-
                     if ($question_number == $question_number_in_exam) {
-
-                        echo "Gooood";
-
                         // send notification to traineer
                         $stmt = $connect->prepare("SELECT * FROM ind_register WHERE ind_batch=? AND (ind_status IS NULL OR ind_status = -1 OR ind_status = 0)");
                         $stmt->execute(array($ex_batch_num));
@@ -92,9 +85,7 @@
                         $allind = $stmt->fetchAll();
                         $countallind = $stmt->rowCount();
                         if ($countallind > 0) {
-                            echo "Neww Goood";
                         } else {
-                            echo "noot";
                         }
                         foreach ($allind as $inddata) {
                             // insert new exam noti in exam notification 
@@ -111,28 +102,17 @@
                             $body = " اهلا بك  " . $inddata['ind_username'] . " لديك اختبار جديد علي منصة انتقاء  ";
                             $body .= " في تاريخ  " . $ex_date_publish;
                             $headers = "From: test@entiqa.online";
-                            mail($to_email, $subject, $body, $headers);
+                            mail($to_email, $asubject, $body, $headers);
                         }
                     }
-
                     header('LOCATION:main.php?dir=question&page=report&ex_id=' . $exam_id);
-    ?>
-                 <div class="alert-success ">
-                     تم اضافة سوال جديد بنجاح
-                     <?php
-                        // header('LOCATION:main.php?dir=question&page=report&ex_id=' . $exam_id);
-                        ?>
-                 </div>
-
-
-             <?php
                 }
             } else {
                 $_SESSION['error_messages'] = $formerror;
                 header('LOCATION:main.php?dir=question&page=report&ex_id=' . $exam_id);
                 exit();
                 foreach ($formerror as $error) {
-                ?>
+    ?>
                  <div class="alert alert-danger"> <?php echo $error; ?> </div>
  <?php
                 }
