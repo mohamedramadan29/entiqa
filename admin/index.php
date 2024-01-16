@@ -153,12 +153,12 @@ if (isset($_SESSION['admin_session'])) {
 if (isset($_SESSION['serv_name'])) {
     unset($_SESSION['serv_name']);
 }
-session_destroy();
+// session_destroy();
 
 ?>
 
 <script>
-  if (window.history.replaceState) {
-    window.history.replaceState(null, null, window.location.href);
-  }
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
 </script>

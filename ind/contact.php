@@ -40,8 +40,8 @@ include 'init.php'; ?>
         $formerror[] = "البريد الإلكتروني يحتوي على أحرف غير صالحة";
       }
 
-      if (strlen($mobile) > 20 || !is_numeric($mobile)) {
-        $formerror[] = ' رقم الهاتف يجب أن يكون أقل من 20 رقم ويحتوي على أرقام فقط ';
+      if (!is_numeric($mobile) || strlen($mobile) < 8 || strlen($mobile) > 20) {
+        $formerror[] = 'من فضلك، أدخل رقم هاتف صحيح بين 8 و 20 رقمًا.';
       }
       if (strlen($first_name) > 50) {
         $formerror[] = 'الاسم الاول يجب ان يكون اقل من  50 حرف ';
@@ -115,7 +115,7 @@ include 'init.php'; ?>
               </div>
               <div class="col-12">
                 <div class="form-wrap">
-                  <textarea required minlength="20" maxlength="400" class="form-input form-control" id="contact-message" name="message" placeholder=" رسالتك *"></textarea>
+                  <textarea required oninvalid="setCustomValidityArabic(this,' يجب ان يكون اقل عدد من الاحرف ٢٠ حرف واكثر عدد هو  ٤٠٠  حرف')" oninput="resetCustomValidity(this)" minlength="20" maxlength="400" class="form-input form-control" id="contact-message" name="message" placeholder=" رسالتك *"></textarea>
                 </div>
               </div>
               <button class="button button-size-1 button-block button-primary" type="submit" name="send_message">ارسال</button>

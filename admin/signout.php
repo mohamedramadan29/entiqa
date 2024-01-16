@@ -10,4 +10,4 @@ if (isset($_SESSION['coash_id'])) {
     unset($_SESSION['coash_id']);
 }
 header('location:index');
-session_destroy();
+// session_destroy();

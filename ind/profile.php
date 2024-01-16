@@ -99,21 +99,25 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                             ?>
                             <div class="info_header">
                                 <?php
-                                if (isset($_SESSION['ind_id'])) { ?>
-                                    <form action="" method="post">
-                                        <button name="update_profile_status" type="submit" class="btn btn-outline-danger"> تحديث حالة </button>
-                                    </form>
-                                    <a href="edit" class="btn btn-primary"> تعديل <i class="fa fa-edit"></i></a>
+                                $stmt = $connect->prepare("SELECT * FROM ind_register WHERE ind_id=?");
+                                $stmt->execute(array($_SESSION['ind_id']));
+                                $ind_data = $stmt->fetch();
+                                if (isset($_SESSION['ind_id'])) {
+                                    if ($ind_data['ind_status'] != null && $ind_data['ind_status'] != 0) {
+                                ?>
+                                        <form action="" method="post">
+                                            <button name="update_profile_status" type="submit" class="btn btn-outline-danger"> تحديث حالة </button>
+                                        </form>
+                                        <a href="edit" class="btn btn-primary"> تعديل <i class="fa fa-edit"></i></a>
                                 <?php
+                                    }
                                 }
                                 ?>
                                 <!-- -------------------------------------------------------------------------------------------------------------------------->
                             </div>
                             <?php
 
-                            $stmt = $connect->prepare("SELECT * FROM ind_register WHERE ind_id=?");
-                            $stmt->execute(array($_SESSION['ind_id']));
-                            $batch_data = $stmt->fetch();
+
                             if (!empty($ind_data['video'])) {
                                 echo "<video src=../ind/porfile_videos/" . $ind_data['video'] . "  width='100%' height='300' 
                                     style='border:1px solid black;border-radius:20px;' controls/></video>";

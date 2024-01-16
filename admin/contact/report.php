@@ -95,7 +95,7 @@ if (!isset($_SESSION['admin_session']) && !isset($_SESSION['serv_name'])) {
                                                         </div>
                                                         <div class="box2">
                                                             <label id="name_en">البريد الالكروني<span> * </span></label>
-                                                            <input disabled min="1" class="form-control" type="text" name="wha_order" value="<?php echo $type['email'] ?>">
+                                                            <textarea disabled min="1" class="form-control" type="text" name="wha_order"><?php echo $type['email'] ?></textarea>
                                                         </div>
 
                                                         <div class="box2">

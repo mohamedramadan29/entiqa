@@ -7,4 +7,4 @@ if (isset($_SESSION['ind_id'])) {
     unset($_SESSION['ind_id']);
 }
 header("location:../index");
-session_destroy();
+// session_destroy();
