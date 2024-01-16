@@ -1,7 +1,7 @@
 <?php
-if (!isset($_SESSION['admin_session']) || !isset($_SESSION['coash_id'])) {
-    header("Location:index");
-}
+// if (!isset($_SESSION['admin_session']) || !isset($_SESSION['coash_id'])) {
+//     header("Location:index");
+// }
 
 ?>
 

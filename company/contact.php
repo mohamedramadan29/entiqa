@@ -108,7 +108,7 @@ include 'init.php'; ?>
               </div>
               <div class="col-md-6">
                 <div class="form-wrap">
-                  <input required maxlength="50" class="form-input form-control" id="contact-email" type="email" name="email" placeholder="البريد الألكتروني  *">
+                  <input required oninvalid="setCustomValidityArabic(this,' من فضلك ادخل البريد الالكتروني بشكل صحيح  ')" oninput="resetCustomValidity(this)" maxlength="50" class="form-input form-control" id="contact-email" type="email" name="email" placeholder="البريد الألكتروني *">
                 </div>
               </div>
               <div class="col-md-6">

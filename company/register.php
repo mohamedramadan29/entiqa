@@ -293,7 +293,7 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                                         </div>
 
                                         <div class="box">
-                                            <input min="1" required oninvalid="setCustomValidityArabic(this,'من فضلك ادخل رقم السجل التجاري ')" oninput="resetCustomValidity(this)" class="form-control" id="com_num" type="number" placeholder="* رقم السجل التجاري  " name="com_num" value="<?php if (isset($_REQUEST['com_num'])) {
+                                            <input min="1" required oninvalid="setCustomValidityArabic(this,'من فضلك ادخل رقم السجل التجاري  بشكل صحيح')" oninput="resetCustomValidity(this)" class="form-control" id="com_num" type="number" placeholder="* رقم السجل التجاري  " name="com_num" value="<?php if (isset($_REQUEST['com_num'])) {
                                                                                                                                                                                                                                                                                         echo $_REQUEST['com_num'];
                                                                                                                                                                                                                                                                                     } ?>">
                                         </div>
@@ -309,12 +309,12 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                                             </select>
                                         </div>
                                         <div class="box">
-                                            <input min="1" required oninvalid="setCustomValidityArabic(this,'من فضلك ادخل الراتب المقدر ')" oninput="resetCustomValidity(this)" class="form-control" id="com_salary" type="number" placeholder=" [ريال سعودي] * الراتب المقدر  " name="com_salary" value="<?php if (isset($_REQUEST['com_salary'])) {
+                                            <input min="1" required oninvalid="setCustomValidityArabic(this,'من فضلك ادخل الراتب المقدر بشكل صحيح')" oninput="resetCustomValidity(this)" class="form-control" id="com_salary" type="number" placeholder=" [ريال سعودي] * الراتب المقدر  " name="com_salary" value="<?php if (isset($_REQUEST['com_salary'])) {
                                                                                                                                                                                                                                                                                                 echo $_REQUEST['com_salary'];
                                                                                                                                                                                                                                                                                             } ?>">
                                         </div>
                                         <div class="box">
-                                            <input max="100" min="0" required oninvalid="setCustomValidityArabic(this,'من فضلك ادخل العمولة المقدرة')" oninput="resetCustomValidity(this)" class="form-control" id="com_commission" type="number" placeholder=" [ % ]  *   العمولة المقدرة " name="com_commission" value="<?php if (isset($_REQUEST['com_commission'])) {
+                                            <input max="100" min="0" required oninvalid="setCustomValidityArabic(this,'   من فضلك ادخل العمولة المقدرة  بشكل صحيح ')" oninput="resetCustomValidity(this)" class="form-control" id="com_commission" type="number" placeholder=" [ % ]  *   العمولة المقدرة " name="com_commission" value="<?php if (isset($_REQUEST['com_commission'])) {
                                                                                                                                                                                                                                                                                                             echo $_REQUEST['com_commission'];
                                                                                                                                                                                                                                                                                                         } ?>">
                                         </div>
@@ -495,7 +495,7 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                                                                                                                                                                                                                                                                                         } ?>">
                                         </div>
                                         <div class="box">
-                                            <input min="1" required oninvalid="setCustomValidityArabic(this,'من فضلك ادخل عدد الشفتات')" oninput="resetCustomValidity(this)" class="form-control" id="com_work_libs" type="number" name="com_work_libs" placeholder="* عدد الشفتات " value="<?php if (isset($_REQUEST['com_work_libs'])) {
+                                            <input min="1" required oninvalid="setCustomValidityArabic(this,' من فضلك ادخل عدد الشفتات بشكل صحيح  ')" oninput="resetCustomValidity(this)" class="form-control" id="com_work_libs" type="number" name="com_work_libs" placeholder="* عدد الشفتات " value="<?php if (isset($_REQUEST['com_work_libs'])) {
                                                                                                                                                                                                                                                                                         echo $_REQUEST['com_work_libs'];
                                                                                                                                                                                                                                                                                     } ?>">
                                         </div>

@@ -133,7 +133,7 @@
     flatpickr("#interviewDate", {
         enableTime: true,
         dateFormat: "Y-m-d H:i",
-        minDate: "today",
+        minDate: new Date(),
         time_24hr: true
     });
 </script>

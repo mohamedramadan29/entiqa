@@ -1,5 +1,13 @@
 <?php
 session_start();
+// Function to sanitize input
+function sanitizeInput($input)
+{
+    // Use appropriate sanitization or validation techniques based on your requirements
+    $sanitizedInput = htmlspecialchars(trim($input));
+    return $sanitizedInput;
+}
+
 include "../connect.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -26,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $from_person = $_SESSION['com_username'];
     $to_person = $_POST['to_person'];
     $send_type = 'com';
-    $message_content = $_POST['message_data'];
+    $message_content = sanitizeInput($_POST['message_data']);
     $message_content = htmlspecialchars_decode($message_content);
     $message_content = preg_replace('/\b(https?|ftp|file):\/\/[^\s<>\[\]]+/', '<a href="$0" target="_blank">$0</a>', $message_content);
     $formerror = [];

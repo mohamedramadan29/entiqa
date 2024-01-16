@@ -6,7 +6,7 @@ if (isset($_SESSION['ind_id'])) {
     $ind_navabar = 'ind';
 }
 if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
-    include 'init_prevent.php';
+    include 'init.php';
     $ind_id = $_SESSION['ind_id'];
     if (isset($_GET['ind_id'])) {
         $ind_id = $_GET['ind_id'];
@@ -19,7 +19,7 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
         $stmt->execute(array($ind_id, $exam_id));
         $countregister = $stmt->rowCount();
         if ($countregister > 0) {
-            header("Location:exam");
+            header("refresh:1s;URL:exam");
         } else {
             $stmt = $connect->prepare("INSERT INTO ind_exams_login (ind_id,exam_id) VALUES (:zind_id,:zexam_id)");
             $stmt->execute(array(

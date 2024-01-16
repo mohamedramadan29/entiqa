@@ -23,7 +23,7 @@ if ($other_person == "admin") {
 $stmt = $connect->prepare("SELECT * FROM company_register WHERE com_id=?");
 $stmt->execute(array($_SESSION["com_id"]));
 $com_data = $stmt->fetch();
-$stmt = $connect->prepare("SELECT * FROM chat WHERE to_person = ? AND from_person = ? OR to_person= ?  AND from_person= ?  ORDER BY chat_id");
+$stmt = $connect->prepare("SELECT * FROM chat WHERE (to_person = ? AND from_person = ?) OR (to_person = ? AND from_person = ?) ORDER BY chat_id");
 $stmt->execute(array($com_username, $other_person, $other_person, $com_username));
 $allmessage = $stmt->fetchAll();
 foreach ($allmessage as $message) {

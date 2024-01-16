@@ -1,5 +1,13 @@
 <?php
 session_start();
+// Function to sanitize input
+function sanitizeInput($input)
+{
+    // Use appropriate sanitization or validation techniques based on your requirements
+    $sanitizedInput = htmlspecialchars(trim($input));
+    return $sanitizedInput;
+}
+
 include "../connect.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // credit gallary 
@@ -32,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $batch_id = null;
     }
     $send_type = 'ind';
-    $message_content = $_POST['message_data'];
+    $message_content = sanitizeInput($_POST['message_data']);
     $message_content = htmlspecialchars_decode($message_content);
     $message_content = preg_replace('/\b(https?|ftp|file):\/\/[^\s<>\[\]]+/', '<a href="$0" target="_blank">$0</a>', $message_content);
     $formerror = [];
@@ -67,7 +75,7 @@ VALUES(:znoti_title,:znoti_perspn,:znoti_com,:zsender)");
             ));
 ?> 
 <?php
-           
+
         }
     }
 }

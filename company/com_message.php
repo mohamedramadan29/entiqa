@@ -311,7 +311,7 @@ if (isset($_SESSION['com_id'])) {
                                                 <form action="" method="POST">
                                                     <?php
                                                     if ($com_data['com_balance'] < $ind_sub_amount) { ?>
-                                                        <div class="alert alert-info">  لا يوجد لديك رصيد كافي لاتمام التعاقد مع المتدرب من فضلك يجب عليك شحن الرصيد اولا مبلغ التعاقد هو <?php echo $ind_sub_amount; ?> ريال سعودي </div>
+                                                        <div class="alert alert-info"> لا يوجد لديك رصيد كافي لاتمام التعاقد مع المتدرب من فضلك يجب عليك شحن الرصيد اولا مبلغ التعاقد هو <?php echo $ind_sub_amount; ?> ريال سعودي </div>
                                                     <?php
                                                     } else { ?>
                                                         <p> هل انت متاكد من اتمام التعاقد مع المتدرب ...............
@@ -333,7 +333,7 @@ if (isset($_SESSION['com_id'])) {
                                             if ($count_before_contract > 0) {
                                                 $formerror[] = 'هذا المتدرب متعاقد بالفعل مع شركه';
                                             }
-                                            if ($empt($formerror)) {
+                                            if (empty($formerror)) {
                                                 $stmt = $connect->prepare("INSERT INTO contract_complete (company_id,
                                                 ind_id,con_com_price) VALUES (:zcom_id,:zind_id,:zprice)");
                                                 $stmt->execute(array(
@@ -495,7 +495,7 @@ if (isset($_SESSION['com_id'])) {
     $company_data = $stmt->fetch();
     $active_status = $company_data['com_status'];
     $com_balance = $company_data['com_balance'];
-    if ($active_status == 0 || $com_balance == 0 && $other_person !='admin') {
+    if ($active_status == 0 || $com_balance == 0 && $other_person != 'admin') {
         header('Location:index');
         exit();
     }
