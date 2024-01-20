@@ -47,7 +47,7 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                         $formerror[] = 'اسم المستخدم يجب ان يكون اقل من 50 حرف';
                     }
                     if (!preg_match('/^[a-zA-Z]+$/', $com_username)) {
-                        $formerror[] = ' يجب ان تكون الحروف المستخدمة فى اسم المتخدم حروف انجليزية فقط ';
+                        $formerror[] = ' يجب ان تكون الحروف المستخدمة فى اسم المستخدم حروف انجليزية فقط ';
                     }
                     if (empty($com_name)) {
                         $formerror[] = " يجب اضافة اسم الشركه  ";

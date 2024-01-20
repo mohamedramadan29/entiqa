@@ -270,7 +270,7 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                                                                                                                                                                                                                                                                                 } ?>">
                                         <span onclick="togglePasswordVisibility('password2', this)" class="fa fa-eye-slash show_eye password_show_icon"></span>
                                     </div>
-                                    <div class="box">
+                                    <div class="box" id="birthdate">
                                         <?php $tenYearsAgo = date('Y-m-d', strtotime('-15 years')); ?>
                                         <input required placeholder="تاريخ الميلاد *" class="form-control" id="ind_birthdate" type="date" name="ind_birthdate" min="1900-01-01" max="<?php echo $tenYearsAgo; ?>" value="<?php if (isset($_REQUEST['ind_birthdate'])) {
                                                                                                                                                                                                                                 echo $_REQUEST['ind_birthdate'];

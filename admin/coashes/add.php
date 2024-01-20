@@ -148,23 +148,6 @@
                     $mail->send();
                     $_SESSION['mail'] = $co_email;
     ?>
-
-                 <!-- <script src="plugins/jquery/jquery.min.js"></script>
-                     <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
-                     <script>
-                         $(function() {
-                             Swal.fire({
-                                 position: 'center',
-                                 icon: 'success',
-                                 title: ' تمت الاضافه بنجاح ',
-                                 showConfirmButton: false,
-                                 timer: 2000
-                             }).then(function() {
-                                 // Redirect using JavaScript after the success message
-                                 window.location.href = 'main.php?dir=coashes&page=report';
-                             });
-                         });
-                     </script> -->
              <?php
                 } catch (Exception $e) {
                     echo "حدث خطأ في إرسال البريد الإلكتروني: {$mail->ErrorInfo}";

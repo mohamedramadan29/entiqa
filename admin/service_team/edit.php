@@ -60,6 +60,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($count_coash_mail > 0) {
         $formerror[] = 'اسم المستخدم مستخدم بالفعل في قسم المدربين من فضلك اختر اسم جديد ';
     }
+
+    if (strlen($name) > 50) {
+        $formerror[] = 'اسم المستخدم يجب ان يكون اقل من 50 حرف';
+    }
+    if (!preg_match('/^[a-zA-Z]+$/', $name)) {
+        $formerror[] = ' يجب ان تكون الحروف المستخدمة فى اسم المستخدم حروف انجليزية فقط ';
+    }
+
     if (empty($formerror)) {
         $stmt = $connect->prepare("UPDATE service_team SET name=?,email=? WHERE id=?");
         $stmt->execute([$name, $email, $id]);

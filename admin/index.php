@@ -141,9 +141,7 @@
 if (isset($_SESSION['username'])) {
     unset($_SESSION['username']);
 }
-if (isset($_SESSION['com_id'])) {
-    unset($_SESSION['com_id']);
-}
+
 if (isset($_SESSION['coash_id'])) {
     unset($_SESSION['coash_id']);
 }

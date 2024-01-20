@@ -100,7 +100,7 @@ if (isset($_GET['batch'])) {
                                 <div class="box2">
                                     <label id="name"> اسم الدفعه
                                         <span> * </span> </label>
-                                    <input maxlength="50" required class="form-control" type="text" name="batch_name" value="<?php echo $type['batch_name']; ?>">
+                                    <input required class="form-control" type="text" name="batch_name" value="<?php echo $type['batch_name']; ?>">
                                 </div>
                                 <?php
 

@@ -1615,28 +1615,31 @@ nav .profile_item .profile_links li a i {
     outline: none !important;
     box-shadow: none !important;
 }
-.chat_section form .message_text .send_attachments_div{
+
+.chat_section form .message_text .send_attachments_div {
     display: none;
     position: relative;
 }
-.chat_section form .message_text .send_attachments_div label{
-display: block;
-width: 100%;
-background-color: #fafafa;
-color: #000;
-padding: 8px;
-border: 1px solid #e6e6e6;
-border-radius: 5px;
+
+.chat_section form .message_text .send_attachments_div label {
+    display: block;
+    width: 100%;
+    background-color: #fafafa;
+    color: #000;
+    padding: 8px;
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
 }
-.chat_section form .message_text .send_attachments_div span{
-    
-}
-.chat_section form .message_text .send_attachments_div span i{
+
+.chat_section form .message_text .send_attachments_div span {}
+
+.chat_section form .message_text .send_attachments_div span i {
     left: 15px;
     top: 0;
     font-size: 25px;
     position: absolute !important;
 }
+
 .chat_section .chat_reason {
     background-color: #fff;
     padding: 20px;
@@ -2806,7 +2809,8 @@ input[type='number']::-webkit-outer-spin-button {
 
 /* Remove Numbers arrow */
 input[type='number'] {
-    -moz-appearance: textfield; /* Firefox */
+    -moz-appearance: textfield;
+    /* Firefox */
 }
 
 input[type='number']::-webkit-inner-spin-button,
@@ -2820,4 +2824,21 @@ input[type='number']::-webkit-outer-spin-button {
     nav .profile_item .profile_links, nav .notification_items .notification_links {
         left: -20px;
     }
+}
+
+#birthdate {
+    position: relative;
+}
+
+#birthdate input {
+    text-align: left;
+}
+
+#birthdate::after {
+    content: ' تاريخ الميلاد ';
+    position: absolute;
+    top: 8px;
+    right: 39px;
+    font-size: 16px;
+    color: #5a5a5a;
 }

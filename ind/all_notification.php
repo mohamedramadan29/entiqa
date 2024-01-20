@@ -291,21 +291,22 @@ if (isset($_SESSION['ind_id'])) {
                 <?php
                 }
                 /////////////////////////////// START EXAMS NOTIFICATION //////////////////
-                // get ind batch_id
-                $stmt = $connect->prepare("SELECT * FROM ind_register WHERE ind_id=?");
+                $stmt = $connect->prepare("SELECT * FROM exam_noti WHERE ind_id = ? AND status = 0 ");
                 $stmt->execute(array($_SESSION['ind_id']));
-                $ind_data = $stmt->fetch();
-                $batch_id = $ind_data['ind_batch'];
-                $stmt = $connect->prepare("SELECT * FROM exam WHERE ex_batch_num=?");
-                $stmt->execute(array($batch_id));
-                $allexam = $stmt->fetchAll();
-                $exam_data = $stmt->fetch();
-                $count_exam = $stmt->rowCount();
-                if ($count_exam > 0) {
+                $allexamnoti = $stmt->fetchAll();
+                $countexamnoti = $stmt->rowCount();
+                if ($countexamnoti > 0) {
                 ?>
                     <h6 style="color: #6a6868;font-size: 19px;padding: 20px;"> الأختبارات علي المنصة </h6>
                     <?php
-                    foreach ($allexam as $exam) {
+
+                    $exam_count2 = 1;
+
+                    foreach ($allexamnoti as $examnoti) {
+                        $stmt = $connect->prepare("SELECT * FROM exam WHERE ex_id=?");
+                        $stmt->execute(array($examnoti['ex_id']));
+                        //$allexam = $stmt->fetchAll();
+                        $exam_data = $stmt->fetch();
                     ?>
                         <a href="exam" class="message_link">
                             <div class="message_data">
@@ -313,12 +314,12 @@ if (isset($_SESSION['ind_id'])) {
                                     <img src="../images/avatar.png" alt="">
                                 </div>
                                 <div class="info">
-                                    <p> <?php echo $exam['ex_type']; ?> </p>
-                                    <p> <?php echo $exam['ex_title']; ?> </p>
+                                    <p> <?php echo $exam_data['ex_type']; ?> </p>
+                                    <p> <?php echo $exam_data['ex_title']; ?> </p>
                                     <span> <i class="fa fa-clock-o"></i>
                                         في تاريخ
                                         <?php
-                                        $exam['ex_date_publish'];
+                                        echo  $exam_data['ex_date_publish'];
                                         ?>
                                     </span>
                                 </div>
@@ -326,15 +327,14 @@ if (isset($_SESSION['ind_id'])) {
                         </a>
                     <?php
                     }
-                    ?>
-                <?php
                 }
+
                 /////////////////////////////// END EXAMS NOTIFICATION /////////////
                 if (
                     $interview_noti_count == 0 && $end_contract_noti_count == 0 && $compelete_contract_noti_count == 0 &&
                     $exam_count == 0 && $batch_noti == 0 && $ind_status_count == 0 && $congrate_status_count == 0
                 ) {
-                ?>
+                    ?>
                     <div class="">
                         <p style="padding: 20px; font-size: 18px;"> لا يوجد لديك اشعارات جديدة في
                             الوقت الحالي </p>
