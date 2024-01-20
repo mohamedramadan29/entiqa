@@ -1,4 +1,9 @@
 <?php
+ if (isset($_SESSION['admin_session']) || isset($_SESSION['coash_id'])) {
+
+ }else{
+    header("Location:index");
+ }
 if (isset($_GET['batch'])) {
     $batch_id = $_GET['batch'];
     $stmt = $connect->prepare('SELECT * FROM batches

@@ -146,7 +146,7 @@ if (isset($_SESSION['admin_session']) || isset($_SESSION['serv_name'])) {
                                 <td>
 
                                     <?php
-                                    if (isset($_SESSION['admin_session'])) {
+                                    if (isset($_SESSION['admin_session']) || isset($_SESSION['serv_name'])) {
                                         if ($type['ind_payment_charge'] != 'CAPTURED') {
                                     ?>
                                             <a class="confirm btn btn-danger btn-sm" href="main.php?dir=individual&page=delete&ind_id=<?php echo $type['ind_id']; ?>">
