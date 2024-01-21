@@ -65,8 +65,16 @@ if (isset($_SESSION['com_id'])) {
             } elseif (strpos($com_email, '..') !== false) {
                 $formerror[] = "البريد الإلكتروني يحتوي على أحرف غير صالحة";
             }
-            if (!is_numeric($com_phone) || strlen($com_phone) < 8 || strlen($com_phone) > 20) {
-                $formerror[] = 'من فضلك، أدخل رقم هاتف صحيح بين 8 و 20 رقمًا.';
+            // if (!is_numeric($com_phone) || strlen($com_phone) < 8 || strlen($com_phone) > 20) {
+            //     $formerror[] = 'من فضلك، أدخل رقم هاتف صحيح بين 8 و 20 رقمًا.';
+            // }
+            if (!is_numeric($com_phone) || !ctype_digit($com_phone)) {
+                $formerror[] = 'من فضلك، أدخل رقم هاتف صحيح.';
+            } else {
+                // تحقق من أن الرقم يتبع الصيغة السعودية (يبدأ بـ 05 ويكون طوله 10 أرقام)
+                if (!preg_match('/^05[0-9]{8}$/', $com_phone)) {
+                    $formerror[] = 'من فضلك، أدخل رقم هاتف صحيح بصيغة سعودية.';
+                }
             }
             $stmt = $connect->prepare("SELECT * FROM company_register WHERE com_email=? AND com_id !=?");
             $stmt->execute(array($com_email, $_SESSION['com_id']));

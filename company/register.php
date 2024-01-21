@@ -95,8 +95,16 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                     if (strlen($com_braches) > 100) {
                         $formerror[] = 'فروع الشركه يجب ان تكون اقل من 100 حرف';
                     }
-                    if (!is_numeric($com_phone) || strlen($com_phone) < 8 || strlen($com_phone) > 20) {
-                        $formerror[] = 'من فضلك، أدخل رقم هاتف صحيح بين 8 و 20 رقمًا.';
+                    // if (!is_numeric($com_phone) || strlen($com_phone) < 8 || strlen($com_phone) > 20) {
+                    //     $formerror[] = 'من فضلك، أدخل رقم هاتف صحيح بين 8 و 20 رقمًا.';
+                    // }
+                    if (!is_numeric($com_phone) || !ctype_digit($com_phone)) {
+                        $formerror[] = 'من فضلك، أدخل رقم هاتف صحيح.';
+                    } else {
+                        // تحقق من أن الرقم يتبع الصيغة السعودية (يبدأ بـ 05 ويكون طوله 10 أرقام)
+                        if (!preg_match('/^05[0-9]{8}$/', $com_phone)) {
+                            $formerror[] = 'من فضلك، أدخل رقم هاتف صحيح بصيغة سعودية.';
+                        }
                     }
                     if (
                         empty($com_name) || empty($com_name_en) || empty($com_username) || empty($com_email) ||
@@ -113,7 +121,7 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                     if ($count > 0) {
                         $formerror[] = " اسم المستخدم للشركة مستخدم بالفعل من فضلك ادخل اسم جديد ";
                     }
-                     $stmt = $connect->prepare("SELECT * FROM ind_register WHERE ind_username=?");
+                    $stmt = $connect->prepare("SELECT * FROM ind_register WHERE ind_username=?");
                     $stmt->execute(array($com_username));
                     $data = $stmt->fetch();
                     $count_com_username = $stmt->rowCount();
@@ -264,8 +272,8 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                                     <div class="col-lg-6">
                                         <div class="box">
                                             <input pattern="[a-zA-Z]+" minlength="5" maxlength="50" required oninvalid="setCustomValidityArabic(this,'يجب ان تكون الحروف المستخدمة فى اسم المستخدم حروف انجليزية فقط')" oninput="resetCustomValidity(this)" class="form-input" id="com_username" type="text" placeholder="   اسم المستخدم  (مطابق لاسم الشركه)  *   " name="com_username" value="<?php if (isset($_REQUEST['com_username'])) {
-                                                                                                                                                                                                                                                                                                                                                                                                    echo $_REQUEST['com_username'];
-                                                                                                                                                                                                                                                                                                                                                                                                } ?>">
+                                                                                                                                                                                                                                                                                                                                                                                                        echo $_REQUEST['com_username'];
+                                                                                                                                                                                                                                                                                                                                                                                                    } ?>">
                                         </div>
                                         <div class="box">
                                             <input required oninvalid="setCustomValidityArabic(this,'من فضلك ادخل البريد الألكتروني')" oninput="resetCustomValidity(this)" autocomplete="off" class="form-control" id="contact-email" placeholder="البريد الالكتروني * " type="email" name="com_email" value="<?php if (isset($_REQUEST['com_email'])) {
@@ -275,8 +283,8 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                                         <div class="box">
 
                                             <input pattern="\d+" title="يجب أن يحتوي هذا الحقل على أرقام فقط" required oninvalid="setCustomValidityArabic(this,' من فضلك ادخل رقم الهاتف بشكل صحيح  ')" oninput="resetCustomValidity(this)" class="form-control" id="com_phone" type="number" minlength="8" maxlength="20" name="com_phone" placeholder=" *  رقم الهاتف  " value="<?php if (isset($_REQUEST['com_phone'])) {
-                                                                                                                                                                                                                                                                                                                echo $_REQUEST['com_phone'];
-                                                                                                                                                                                                                                                                                                            } ?>">
+                                                                                                                                                                                                                                                                                                                                                                                        echo $_REQUEST['com_phone'];
+                                                                                                                                                                                                                                                                                                                                                                                    } ?>">
                                         </div>
                                         <div class="box password_eye">
                                             <input required pattern="^[a-zA-Z0-9!@#$%^&*()_+]+$" oninvalid="setCustomValidityArabic(this,'  كلمه المرور يجب ان لا تقل عن 8 احرف وارقام وعلامات خاصه   ')" oninput="resetCustomValidity(this)" class="form-input" id="password" type="password" placeholder="كلمة المرور * " name="password" value="<?php if (isset($_REQUEST['password'])) {
@@ -294,8 +302,8 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
 
                                         <div class="box">
                                             <input min="1" required oninvalid="setCustomValidityArabic(this,'من فضلك ادخل رقم السجل التجاري  بشكل صحيح')" oninput="resetCustomValidity(this)" class="form-control" id="com_num" type="number" placeholder="* رقم السجل التجاري  " name="com_num" value="<?php if (isset($_REQUEST['com_num'])) {
-                                                                                                                                                                                                                                                                                        echo $_REQUEST['com_num'];
-                                                                                                                                                                                                                                                                                    } ?>">
+                                                                                                                                                                                                                                                                                                            echo $_REQUEST['com_num'];
+                                                                                                                                                                                                                                                                                                        } ?>">
                                         </div>
                                         <div class="box">
                                             <select required oninvalid="setCustomValidityArabic(this,' من فضلك حدد نوع العمل ')" oninput="resetCustomValidity(this)" class="form-control" id="com_work_type" name="com_work_type">
@@ -310,13 +318,13 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                                         </div>
                                         <div class="box">
                                             <input min="1" required oninvalid="setCustomValidityArabic(this,'من فضلك ادخل الراتب المقدر بشكل صحيح')" oninput="resetCustomValidity(this)" class="form-control" id="com_salary" type="number" placeholder=" [ريال سعودي] * الراتب المقدر  " name="com_salary" value="<?php if (isset($_REQUEST['com_salary'])) {
-                                                                                                                                                                                                                                                                                                echo $_REQUEST['com_salary'];
-                                                                                                                                                                                                                                                                                            } ?>">
+                                                                                                                                                                                                                                                                                                                        echo $_REQUEST['com_salary'];
+                                                                                                                                                                                                                                                                                                                    } ?>">
                                         </div>
                                         <div class="box">
                                             <input max="100" min="0" required oninvalid="setCustomValidityArabic(this,'   من فضلك ادخل العمولة المقدرة  بشكل صحيح ')" oninput="resetCustomValidity(this)" class="form-control" id="com_commission" type="number" placeholder=" [ % ]  *   العمولة المقدرة " name="com_commission" value="<?php if (isset($_REQUEST['com_commission'])) {
-                                                                                                                                                                                                                                                                                                            echo $_REQUEST['com_commission'];
-                                                                                                                                                                                                                                                                                                        } ?>">
+                                                                                                                                                                                                                                                                                                                                                echo $_REQUEST['com_commission'];
+                                                                                                                                                                                                                                                                                                                                            } ?>">
                                         </div>
 
                                     </div>
@@ -496,8 +504,8 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                                         </div>
                                         <div class="box">
                                             <input min="1" required oninvalid="setCustomValidityArabic(this,' من فضلك ادخل عدد الشفتات بشكل صحيح  ')" oninput="resetCustomValidity(this)" class="form-control" id="com_work_libs" type="number" name="com_work_libs" placeholder="* عدد الشفتات " value="<?php if (isset($_REQUEST['com_work_libs'])) {
-                                                                                                                                                                                                                                                                                        echo $_REQUEST['com_work_libs'];
-                                                                                                                                                                                                                                                                                    } ?>">
+                                                                                                                                                                                                                                                                                                                echo $_REQUEST['com_work_libs'];
+                                                                                                                                                                                                                                                                                                            } ?>">
                                         </div>
                                         <div class="box">
                                             <input min='1' max="7" pattern="\d+" title="يجب أن يحتوي هذا الحقل على أرقام فقط" required oninvalid="setCustomValidityArabic(this,' من فضلك حدد ايام الأجازة الأسبوعية بشكل صحيح')" oninput="resetCustomValidity(this)" class="form-control" id="com_weekend_num" type="number" placeholder="* عدد أيام الأجازة الأسبوعية " name="com_weekend_num" value="<?php if (isset($_REQUEST['com_weekend_num'])) {

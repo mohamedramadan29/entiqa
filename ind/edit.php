@@ -49,8 +49,16 @@ if (isset($_SESSION['ind_id'])) {
             if (empty($ind_name)) {
                 $formerror[] = "  من فضلك ادخل الاسم الخاص بك ";
             }
-            if (!is_numeric($ind_phone) || strlen($ind_phone) < 8 || strlen($ind_phone) > 20) {
-                $formerror[] = 'من فضلك، أدخل رقم هاتف صحيح بين 8 و 20 رقمًا.';
+            // if (!is_numeric($ind_phone) || strlen($ind_phone) < 8 || strlen($ind_phone) > 20) {
+            //     $formerror[] = 'من فضلك، أدخل رقم هاتف صحيح بين 8 و 20 رقمًا.';
+            // }
+            if (!is_numeric($ind_phone) || !ctype_digit($ind_phone)) {
+                $formerror[] = 'من فضلك، أدخل رقم هاتف صحيح.';
+            } else {
+                // تحقق من أن الرقم يتبع الصيغة السعودية (يبدأ بـ 05 ويكون طوله 10 أرقام)
+                if (!preg_match('/^05[0-9]{8}$/', $ind_phone)) {
+                    $formerror[] = 'من فضلك، أدخل رقم هاتف صحيح بصيغة سعودية.';
+                }
             }
             if (empty($ind_email)) {
                 $formerror[] = " يجب اضافة البريد الالكتروني  ";

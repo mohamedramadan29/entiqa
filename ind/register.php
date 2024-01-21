@@ -82,8 +82,17 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                             if (!preg_match("/^[\p{Arabic}\p{Latin}\s]+$/u", $ind_nationality)) {
                                 $formerror[] = 'من فضلك أدخل الجنسية بشكل صحيح';
                             }
-                            if (!is_numeric($ind_phone) || strlen($ind_phone) < 8 || strlen($ind_phone) > 20) {
-                                $formerror[] = 'من فضلك، أدخل رقم هاتف صحيح بين 8 و 20 رقمًا.';
+                            // if (!is_numeric($ind_phone) || strlen($ind_phone) < 8 || strlen($ind_phone) > 20) {
+                            //     $formerror[] = 'من فضلك، أدخل رقم هاتف صحيح بين 8 و 20 رقمًا.';
+                            // }
+                            // تحقق من أن القيمة هي رقم وأنها تحتوي على أحرف رقمية فقط
+                            if (!is_numeric($ind_phone) || !ctype_digit($ind_phone)) {
+                                $formerror[] = 'من فضلك، أدخل رقم هاتف صحيح.';
+                            } else {
+                                // تحقق من أن الرقم يتبع الصيغة السعودية (يبدأ بـ 05 ويكون طوله 10 أرقام)
+                                if (!preg_match('/^05[0-9]{8}$/', $ind_phone)) {
+                                    $formerror[] = 'من فضلك، أدخل رقم هاتف صحيح بصيغة سعودية.';
+                                }
                             }
 
                             if (
@@ -257,8 +266,8 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                                     </div>
                                     <div class="box password_eye">
                                         <input pattern="^[a-zA-Z0-9!@#$%^&*()_+]+$" oninvalid="setCustomValidityArabic(this,'  كلمه المرور يجب ان لا تقل عن 8 احرف وارقام وعلامات خاصه  ')" oninput="resetCustomValidity(this)" placeholder="كلمة المرور * " required class="form-control" type="password" id="password" name="ind_password" value="<?php if (isset($_REQUEST['ind_password'])) {
-                                                                                                                                                                                                                                                                                                                                            echo $_REQUEST['ind_password'];
-                                                                                                                                                                                                                                                                                                                                        } ?>">
+                                                                                                                                                                                                                                                                                                                                                        echo $_REQUEST['ind_password'];
+                                                                                                                                                                                                                                                                                                                                                    } ?>">
 
                                         <span onclick="togglePasswordVisibility('password', this)" class="fa fa-eye-slash show_eye password_show_icon"></span>
 
@@ -432,8 +441,8 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
 
                                     <div class="box">
                                         <input pattern="\d+" title="يجب أن يحتوي هذا الحقل على أرقام فقط" oninvalid="setCustomValidityArabic(this,'من فضلك ادخل رقم الهاتف')" oninput="resetCustomValidity(this)" placeholder="رقم الهاتف *" required class="form-control" id="ind_phone" type="number" minlength="8" maxlength="20" name="ind_phone" value="<?php if (isset($_REQUEST['ind_phone'])) {
-                                                                                                                                                                                                                                                                                                        echo $_REQUEST['ind_phone'];
-                                                                                                                                                                                                                                                                                                    } ?>">
+                                                                                                                                                                                                                                                                                                                                                                    echo $_REQUEST['ind_phone'];
+                                                                                                                                                                                                                                                                                                                                                                } ?>">
                                     </div>
 
                                     <div class="box">
