@@ -92,7 +92,7 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                                                     <button class="exam_done btn" style="color:#fff;background-color: #F16583;position:absolute;top: 30%;left: 36%;"> تم الاختبار بنجاح </button>
                                                 <?php
                                                 } elseif ($countregister > 0) { ?>
-                                                    <button class="exam_done btn" style="color:#fff;background-color: #F16583;position:absolute;top: 30%;left: 36%;"> تم مشاهده الاختبار من قبل </button>
+                                                    <button class="exam_done btn" style="color:#fff;background-color: #F16583;position:absolute;top: 30%;left: 25%;"> تم مشاهده الاختبار من قبل </button>
                                                 <?php
                                                 } else {
 

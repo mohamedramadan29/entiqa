@@ -6,7 +6,7 @@ if (isset($_SESSION['ind_id'])) {
     $ind_navabar = 'ind';
 }
 if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
-    include 'init.php';
+    include 'init_prevent.php';
     $ind_id = $_SESSION['ind_id'];
     if (isset($_GET['ind_id'])) {
         $ind_id = $_GET['ind_id'];
@@ -108,7 +108,7 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                                         ?>
                                         <hr>
                                         <br>
-                                        <button name="send_response" type="submit" class="btn" style="background-color: #F16583; color:#fff;margin: auto;display: block;"> ارسال اتمام الاختبار <i class="fa fa-send"></i> </button>
+                                        <button name="send_response" onclick="finishTest()" type="submit" class="btn" style="background-color: #F16583; color:#fff;margin: auto;display: block;"> ارسال اتمام الاختبار <i class="fa fa-send"></i> </button>
                                     </form>
                                     <?php
                                     if ($_SERVER["REQUEST_METHOD"] == 'POST') {
@@ -217,7 +217,7 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
     // ابدأ العد التنازلي
     startTimer();
 </script>
-<script>
+<!-- <script>
     window.onload = function() {
         if (performance.navigation.type == 1) {
             alert(' لقد قمت باعادة تحميل الصفحة :) ');
@@ -225,9 +225,9 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
             // يمكنك هنا تنفيذ أي شيء تريده عند إعادة تحميل الصفحة
         }
     };
-</script>
+</script> -->
 
-
+<!-- 
 <script>
     if (history.pushState) {
         //Chrome and modern browsers
@@ -239,4 +239,4 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
         //IE
         history.forward();
     }
-</script>
+</script> -->

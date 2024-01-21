@@ -31,6 +31,23 @@
     window.history.forward();
   </script>
 
+  <!-- JavaScript code to prevent page reload and exit -->
+  <script>
+    var canLeavePage = false;
+
+
+    window.onbeforeunload = function() {
+      if (!canLeavePage) {
+        return "سيتم فقدان البيانات غير المحفوظة. هل أنت متأكد؟";
+      }
+    };
+
+    // تحديث المتغير للسماح بمغادرة الصفحة بعد انتهاء الاختبار
+    function finishTest() {
+      canLeavePage = true;
+    }
+  </script>
+
 </head>
 
 <body>
