@@ -45,10 +45,10 @@ if (isset($_SESSION['com_id'])) {
                     "id" => "src_all"
                 ],
                 "post" => [
-                    "url" => "http://entiqa.online/entiqa_new222/company/payment/payment"
+                    "url" => "http://entiqa.online/test3/company/payment/payment"
                 ],
                 "redirect" => [
-                    "url" => "http://entiqa.online/entiqa_new222/company/payment/callback"
+                    "url" => "http://entiqa.online/test3/company/payment/callback"
                 ],
                 "metadata" => [
                     "udf1" => "Metadata 1"
