@@ -136,6 +136,16 @@ style='border:1px solid black;border-radius:20px;' controls/></video>";
                                 <div class="document_section document_section2">
                                     <button class="start_chat btn btn-primary" class="btn btn-success"> <a href="com_message.php?other=<?php echo $username ?>"> طلب التفاوض مع المتدرب </a> <i class="fa fa-paper-plane"></i> </button>
                                 </div>
+                                <?php
+                                if (isset($ind_data['ind_certificate']) && $ind_data['ind_certificate'] != null) { ?>
+                                    <div class="document_section document_certificate">
+                                        <h6> شهادة المتدرب المعتمدة من المنصة </h6>
+
+                                        <a target="_blank" href="../admin/uploads/<?php echo $ind_data['ind_certificate'] ?>" class="btn btn-warning btn-sm"> مشاهدة الشهادة </a>
+                                    </div>
+                                    <?php
+                                }
+                                ?>
                             <?php
                             }
                             ?>

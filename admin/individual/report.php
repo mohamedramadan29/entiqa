@@ -223,7 +223,7 @@ if (isset($_SESSION['admin_session']) || isset($_SESSION['serv_name'])) {
                                                             <div class="box2">
                                                                 <label id="name_en"> الدفعه<span> * </span></label>
                                                                 <?php
-                                                                $stmt = $connect->prepare("SELECT * FROM batches WHERE ind_num < batch_max");
+                                                                $stmt = $connect->prepare("SELECT * FROM batches WHERE ind_num <= batch_max");
                                                                 $stmt->execute();
                                                                 $allbatches = $stmt->fetchAll();
                                                                 ?>

@@ -23,7 +23,7 @@ if (isset($_SESSION['com_id'])) {
     }
     if (isset($_GET['username'])) {
         $username = $_GET['username'];
-?>
+        ?>
         <div class="profile_hero">
             <div class="overlay">
                 <div class="container">
@@ -36,13 +36,13 @@ if (isset($_SESSION['com_id'])) {
                         $stmt->execute(array($username));
                         $ind_data_image = $stmt->fetch();
                         if ($ind_data_image['ind_image'] != '') {
-                        ?>
+                            ?>
                             <img src="../ind_images_upload/<?php echo $ind_data_image['ind_image'] ?>" alt="">
-                        <?php
+                            <?php
                         } else {
-                        ?>
+                            ?>
                             <img src="../images/avatar.png" alt="">
-                        <?php
+                            <?php
                         }
                         ?>
                     </div>
@@ -80,10 +80,10 @@ company_id=? AND ind_id=?");
                                             } else { ?>
 
                                         <div class="alert alert-info" role="alert"> لا يوجد نبذة مختصرة عن المتدرب</div>
-                                    <?php
-                                            }
-                                    ?>
-                                    </p>
+                                        <?php
+                                        }
+                                        ?>
+                                        </p>
                                     </div>
                                     <!-- --------------------------------------------------------------------------------------------------------------------- -->
                                     <!-- --------------------------------------------------------------------------------------------------------------------- -->
@@ -100,8 +100,6 @@ company_id=? AND ind_id=?");
                                     ?>
 
 
-
-
                                     <!-- --------------------------------------------------------------------------------------------------------------------- -->
                                     <!-- --------------------------------------------------------------------------------------------------------------------- -->
                                     <!-- --------------------------------------------------------------------------------------------------------------------- -->
@@ -113,7 +111,7 @@ company_id=? AND ind_id=?");
                                             <br>
                                             <table class="table">
                                                 <tr>
-                                                    <th> الاسم ثلاثي </th>
+                                                    <th> الاسم ثلاثي</th>
                                                     <th> <?php echo $ind_data['ind_name']; ?> </th>
                                                 </tr>
                                                 <tr>
@@ -122,7 +120,7 @@ company_id=? AND ind_id=?");
                                                         <?php
                                                         if ($ind_data['ind_batch'] == 0) { ?>
                                                             لم يتم التسجيل في دفعه الي الان
-                                                        <?php
+                                                            <?php
                                                         } else {
                                                             $stmt = $connect->prepare("SELECT * FROM batches WHERE batch_id = ?");
                                                             $stmt->execute(array($ind_data['ind_batch']));
@@ -133,29 +131,29 @@ company_id=? AND ind_id=?");
                                                     </th>
                                                 </tr>
                                                 <tr>
-                                                    <th> تاريخ الميلاد </th>
+                                                    <th> تاريخ الميلاد</th>
                                                     <th> <?php echo $ind_data['ind_birthdate']; ?> </th>
                                                 </tr>
                                                 <tr>
-                                                    <th> الجنسية </th>
+                                                    <th> الجنسية</th>
                                                     <th> <?php echo $ind_data['ind_nationality']; ?> </th>
                                                 </tr>
                                                 <tr>
-                                                    <th> منطقة السكن الحالي </th>
+                                                    <th> منطقة السكن الحالي</th>
                                                     <th> <?php echo $ind_data['ind_address']; ?> </th>
                                                 </tr>
                                                 <tr>
-                                                    <th> امكانية التنقل </th>
+                                                    <th> امكانية التنقل</th>
                                                     <th> <?php echo $ind_data['ind_transfer']; ?> </th>
                                                 </tr>
                                                 <tr>
-                                                    <th> مهارة اللغه الأنجليزية </th>
+                                                    <th> مهارة اللغه الأنجليزية</th>
                                                     <th>
                                                         <?php echo $ind_data['ind_english']; ?>
                                                     </th>
                                                 </tr>
                                                 <tr>
-                                                    <th> الجنس </th>
+                                                    <th> الجنس</th>
                                                     <th>
                                                         <?php echo $ind_data['ind_gender']; ?>
                                                     </th>
@@ -180,95 +178,135 @@ company_id=? AND ind_id=?");
                             </div>
                             <?php
                             if (isset($_SESSION['com_id'])) {
-                            ?>
+                                ?>
                                 <div class="document_section document_section2">
-                                    <button style=" margin-top:70px" class="start_chat btn btn-primary" class="btn btn-success"> <a href="com_message.php?other=<?php echo $username ?>"> طلب التفاوض مع المتدرب </a> <i class="fa fa-paper-plane"></i> </button>
+                                    <button style=" margin-top:70px" class="start_chat btn btn-primary"
+                                            class="btn btn-success"><a
+                                                href="com_message.php?other=<?php echo $username ?>"> طلب التفاوض مع
+                                            المتدرب </a> <i class="fa fa-paper-plane"></i></button>
                                 </div>
-                            <?php
+                                <?php
+                                if (isset($ind_data['ind_certificate']) && $ind_data['ind_certificate'] != null) { ?>
+                                    <div class="document_section document_certificate">
+                                        <h6> شهادة المتدرب المعتمدة من المنصة </h6>
+
+                                        <a target="_blank"
+                                           href="../admin/uploads/<?php echo $ind_data['ind_certificate'] ?>"
+                                           class="btn btn-warning btn-sm"> مشاهدة الشهادة </a>
+                                    </div>
+                                    <?php
+                                }
+                                ?>
+                                <?php
                             }
                             ?>
                             <div class="data2">
                                 <h4 style="color:#000; font-size:25px; margin-top:80px">الاختبارات</h4>
                                 <div>
-                                    <p style="color: #000; font-size:18px; margin-bottom:10px;margin-top:10px;">درجة تقييم
+                                    <p style="color: #000; font-size:18px; margin-bottom:10px;margin-top:10px;">درجة
+                                        تقييم
                                         الأختبار النهائي </p>
 
                                     <div class="progress1" style="display: flex;">
                                         <?php if (!empty($ind_data['ind_final_exam'])) {
-                                        ?>
-                                            <meter type="range" style="width: 500px;height: 30px;border-radius: 30px;background-color: white;-shadow: 3px 4px 5px 0px rgba(204 185 185 / .75);" min="0" max="100" id="customRange2" value="<?php echo $ind_data['ind_final_exam']; ?>"></meter>
-                                            <label style="font-weight: bold;color: #000;margin-right: 10px;" for=""> <?php echo $ind_data['ind_final_exam']; ?> </label>
-                                        <?php
+                                            ?>
+                                            <meter type="range"
+                                                   style="width: 500px;height: 30px;border-radius: 30px;background-color: white;-shadow: 3px 4px 5px 0px rgba(204 185 185 / .75);"
+                                                   min="0" max="100" id="customRange2"
+                                                   value="<?php echo $ind_data['ind_final_exam']; ?>"></meter>
+                                            <label style="font-weight: bold;color: #000;margin-right: 10px;"
+                                                   for=""> <?php echo $ind_data['ind_final_exam']; ?> </label>
+                                            <?php
                                         } else { ?>
                                             <span class="badge badge-info" style="background-color: #626274;"> لم يتم الاختبار </span>
-                                        <?php
+                                            <?php
                                         }
                                         ?>
                                     </div>
                                 </div>
                                 <div>
-                                    <p style="color: #000; font-size:18px; margin-bottom:10px;margin-top:10px;"> درجة الأختبارات
+                                    <p style="color: #000; font-size:18px; margin-bottom:10px;margin-top:10px;"> درجة
+                                        الأختبارات
                                         القصيرة </p>
                                     <div class="progress1" style="display: flex;">
                                         <?php if (!empty($ind_data['ind_sub_exam'])) {
-                                        ?>
-                                            <meter type="range" style="width: 500px;height: 30px;border-radius: 30px;background-color: white;-shadow: 3px 4px 5px 0px rgba(204 185 185 / .75);" min="0" max="100" id="customRange2" value="<?php echo $ind_data['ind_sub_exam']; ?>"></meter>
-                                            <label style="font-weight: bold;color: #000;margin-right: 10px;" for=""> <?php echo $ind_data['ind_sub_exam']; ?> </label>
-                                        <?php
+                                            ?>
+                                            <meter type="range"
+                                                   style="width: 500px;height: 30px;border-radius: 30px;background-color: white;-shadow: 3px 4px 5px 0px rgba(204 185 185 / .75);"
+                                                   min="0" max="100" id="customRange2"
+                                                   value="<?php echo $ind_data['ind_sub_exam']; ?>"></meter>
+                                            <label style="font-weight: bold;color: #000;margin-right: 10px;"
+                                                   for=""> <?php echo $ind_data['ind_sub_exam']; ?> </label>
+                                            <?php
                                         } else { ?>
                                             <span class="badge badge-info" style="background-color: #626274;"> لم يتم الاختبار </span>
-                                        <?php
+                                            <?php
                                         }
                                         ?>
                                     </div>
                                 </div>
                                 <div>
-                                    <p style="color: #000; font-size:18px; margin-bottom:10px;margin-top:10px;"> درجة الأداء و
+                                    <p style="color: #000; font-size:18px; margin-bottom:10px;margin-top:10px;"> درجة
+                                        الأداء و
                                         التطبيق </p>
 
                                     <div class="progress1" style="display: flex;">
                                         <?php if (!empty($ind_data['ind_exer_exam'])) {
-                                        ?>
-                                            <meter type="range" style="width: 500px;height: 30px;border-radius: 30px;background-color: white;-shadow: 3px 4px 5px 0px rgba(204 185 185 / .75);" min="0" max="100" id="customRange2" value="<?php echo $ind_data['ind_exer_exam']; ?>"></meter>
-                                            <label style="font-weight: bold;color: #000;margin-right: 10px;" for=""> <?php echo $ind_data['ind_exer_exam']; ?> </label>
-                                        <?php
+                                            ?>
+                                            <meter type="range"
+                                                   style="width: 500px;height: 30px;border-radius: 30px;background-color: white;-shadow: 3px 4px 5px 0px rgba(204 185 185 / .75);"
+                                                   min="0" max="100" id="customRange2"
+                                                   value="<?php echo $ind_data['ind_exer_exam']; ?>"></meter>
+                                            <label style="font-weight: bold;color: #000;margin-right: 10px;"
+                                                   for=""> <?php echo $ind_data['ind_exer_exam']; ?> </label>
+                                            <?php
                                         } else { ?>
                                             <span class="badge badge-info" style="background-color: #626274;"> لم يتم الاختبار </span>
-                                        <?php
+                                            <?php
                                         }
                                         ?>
                                     </div>
                                 </div>
                                 <div>
-                                    <p style="color: #000; font-size:18px; margin-bottom:10px;margin-top:10px;"> درجة الحضور
+                                    <p style="color: #000; font-size:18px; margin-bottom:10px;margin-top:10px;"> درجة
+                                        الحضور
                                     </p>
 
                                     <div class="progress1" style="display: flex;">
                                         <?php if (!empty($ind_data['ind_attend'])) {
-                                        ?>
-                                            <meter type="range" style="width: 500px;height: 30px;border-radius: 30px;background-color: white;-shadow: 3px 4px 5px 0px rgba(204 185 185 / .75);" min="0" max="100" id="customRange2" value="<?php echo $ind_data['ind_attend']; ?>"></meter>
-                                            <label style="font-weight: bold;color: #000;margin-right: 10px;" for=""> <?php echo $ind_data['ind_attend']; ?> </label>
-                                        <?php
+                                            ?>
+                                            <meter type="range"
+                                                   style="width: 500px;height: 30px;border-radius: 30px;background-color: white;-shadow: 3px 4px 5px 0px rgba(204 185 185 / .75);"
+                                                   min="0" max="100" id="customRange2"
+                                                   value="<?php echo $ind_data['ind_attend']; ?>"></meter>
+                                            <label style="font-weight: bold;color: #000;margin-right: 10px;"
+                                                   for=""> <?php echo $ind_data['ind_attend']; ?> </label>
+                                            <?php
                                         } else { ?>
                                             <span class="badge badge-info" style="background-color: #626274;"> لم يتم الاختبار </span>
-                                        <?php
+                                            <?php
                                         }
                                         ?>
                                     </div>
                                 </div>
                                 <div>
-                                    <p style="color: #000; font-size:18px; margin-bottom:10px;margin-top:10px;"> النسبة النهائية
+                                    <p style="color: #000; font-size:18px; margin-bottom:10px;margin-top:10px;"> النسبة
+                                        النهائية
                                     </p>
 
                                     <div class="progress1" style="display: flex;">
                                         <?php if (!empty($ind_data['ind_degree_percen'])) {
-                                        ?>
-                                            <meter type="range" style="width: 500px;height: 30px;border-radius: 30px;background-color: white;-shadow: 3px 4px 5px 0px rgba(204 185 185 / .75);" min="0" max="100" id="customRange2" value="<?php echo $ind_data['ind_degree_percen']; ?>"></meter>
-                                            <label style="font-weight: bold;color: #000;margin-right: 10px;" for=""> <?php echo $ind_data['ind_degree_percen']; ?> </label>
-                                        <?php
+                                            ?>
+                                            <meter type="range"
+                                                   style="width: 500px;height: 30px;border-radius: 30px;background-color: white;-shadow: 3px 4px 5px 0px rgba(204 185 185 / .75);"
+                                                   min="0" max="100" id="customRange2"
+                                                   value="<?php echo $ind_data['ind_degree_percen']; ?>"></meter>
+                                            <label style="font-weight: bold;color: #000;margin-right: 10px;"
+                                                   for=""> <?php echo $ind_data['ind_degree_percen']; ?> </label>
+                                            <?php
                                         } else { ?>
                                             <span class="badge badge-info" style="background-color: #626274;"> لم يتم الاختبار </span>
-                                        <?php
+                                            <?php
                                         }
                                         ?>
                                     </div>
@@ -282,7 +320,7 @@ company_id=? AND ind_id=?");
             </div>
         </div>
 
-<?php
+        <?php
 
         include $tem . "footer.php";
     } else {

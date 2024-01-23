@@ -326,7 +326,8 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                         if (isset($ind_data['ind_certificate']) && $ind_data['ind_certificate'] != null) { ?>
                             <div class="document_section document_certificate">
                                 <h6> شهادة المتدرب المعتمدة من المنصة </h6>
-                                <img src="../admin/uploads/<?php echo $ind_data['ind_certificate'] ?>">
+
+                                <a target="_blank" href="../admin/uploads/<?php echo $ind_data['ind_certificate'] ?>" class="btn btn-warning btn-sm"> مشاهدة الشهادة </a>
                             </div>
                         <?php
                         }
