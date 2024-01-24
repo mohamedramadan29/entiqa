@@ -6,7 +6,7 @@ if (isset($_SESSION['ind_id'])) {
     $ind_navabar = 'ind';
 }
 if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
-    include 'init_prevent.php';
+    include 'init.php';
     $ind_id = $_SESSION['ind_id'];
     if (isset($_GET['ind_id'])) {
         $ind_id = $_GET['ind_id'];
@@ -18,8 +18,12 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
         $stmt = $connect->prepare("SELECT * FROM ind_exams_login WHERE ind_id = ? AND exam_id = ?");
         $stmt->execute(array($ind_id, $exam_id));
         $countregister = $stmt->rowCount();
-        if ($countregister > 0) {
-            header("refresh:1s;URL:exam");
+        // check if the user submitted before or not 
+        $stmt = $connect->prepare("SELECT * FROM question_answer WHERE user_id = ? AND exam_id = ?");
+        $stmt->execute(array($ind_id, $exam_id));
+        $count_answer = $stmt->rowCount();
+        if ($countregister > 0 && $count_answer > 0) {
+            header("Location:exam");
         } else {
             $stmt = $connect->prepare("INSERT INTO ind_exams_login (ind_id,exam_id) VALUES (:zind_id,:zexam_id)");
             $stmt->execute(array(
@@ -46,9 +50,28 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                     <h2 style="color: #000;"> بداية الاختبار </h2>
                     <div class="examination_timer">
                         <?php
-                        $time = 60 * $exam_time;
+                        // // تحديد وقت بدء الاختبار إذا لم يكن معرفًا بالفعل
+                        // if (!isset($_SESSION['start_time'])) {
+                        //     $_SESSION['start_time'] = time();
+                        // }
+                        // $time = 60 * $exam_time;
+
+                        // $startTime = $_SESSION['start_time'];
+                        // $currentTime = time();
+                        // $elapsedTime = $currentTime - $startTime;
+                        // $timeLimit = $time;
+
+                        // تحديد وقت بدء الاختبار إذا لم يكن معرفًا بالفعل
+                        if (!isset($_SESSION['start_time'])) {
+                            $_SESSION['start_time'] = time();
+                        }
+
+                        $timeLimit = $exam_time * 60; // تحويل الوقت إلى ثواني
+                        $elapsedTime = max(0, time() - $_SESSION['start_time']); // استخدم max للتأكد من أن القيمة لا تكون أقل من صفر
+
+                        $remainingTime = max(0, $timeLimit - $elapsedTime); // استخدم max للتأكد من أن القيمة لا تكون أقل من صفر
                         ?>
-                        <div id="CountDownTimer" data-timer="<?php echo $time; ?>" style="width: 500px; height: 250px;"></div>
+                        <div id="CountDownTimer" data-timer="<?php echo $remainingTime; ?>" style="width: 500px; height: 250px;"></div>
                         <!-- <p class="notes"> اذا لم يتم الانتهاء من الاختبار في الوقت المحدد لم يحتسب لك نتيجة الاختبار </p> -->
                     </div>
                 </div>
@@ -175,7 +198,7 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
 
 
 <?php
-
+    // session_destroy();
     include $tem . "footer.php";
 } else {
     header('Location:../index.php');
@@ -196,7 +219,7 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
 </script>
 
 <script>
-    const examTime = <?php echo $time; ?>;
+    const examTime = <?php echo $remainingTime; ?>;
     let remainingTime = examTime;
     let timerInterval;
 
@@ -206,17 +229,22 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
 
             if (remainingTime <= 0) {
                 clearInterval(timerInterval);
-                alert(" انتهي وقت الأختبار سوف يتم اعتماد الاجابات الخاصة بك  ");
-                document.getElementById("send_response_form").submit();
-                // window.location.href = "رابط صفحة الامتحان";
+                alert("انتهى وقت الاختبار، سيتم اعتماد الإجابات الخاصة بك.");
 
+                // إرسال النموذج
+                document.getElementById("send_response_form").submit();
+                // تأخير تغيير موقع الصفحة بعد الإعلان
+                setTimeout(function() {
+                    window.location.href = "exam";
+                }, 1000); // تأخير لمدة 1 ثانية
             }
-        }, 1000);
+        }, 4000);
     }
 
     // ابدأ العد التنازلي
     startTimer();
 </script>
+
 <!-- <script>
     window.onload = function() {
         if (performance.navigation.type == 1) {

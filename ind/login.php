@@ -63,7 +63,7 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                         $mail->Subject = 'تفعيل الحساب الخاص بك  ';
                         $mail->Body = " <p style='font-size:18px; font-family:inherit'>مرحبا " . $ind_username . ",</p>
                                                     <p style='font-size:18px; font-family:inherit'>شكرا لك على تسجيلك في انتقاء.</p>
-                                                    <a  style='font-size:18px; font-family:inherit' href='https://entiqa.online/test3/ind/activate?active_code=$activationCode' class='btn btn-primary'> أضغط هنا لتفعيل الحساب الخاص بك  </a>
+                                                    <a  style='font-size:18px; font-family:inherit' href='https://entiqa.online/test4/ind/activate?active_code=$activationCode' class='btn btn-primary'> أضغط هنا لتفعيل الحساب الخاص بك  </a>
                                             ";
                         $mail->AltBody = 'This is the plain text message body for non-HTML mail clients.';
                         // إرسال البريد الإلكتروني

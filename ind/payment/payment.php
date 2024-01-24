@@ -47,10 +47,10 @@ if (isset($_SESSION['ind_id'])) {
                     "id" => "src_all"
                 ],
                 "post" => [
-                    "url" => "http://entiqa.online/test3/ind/payment/payment"
+                    "url" => "http://entiqa.online/test4/ind/payment/payment"
                 ],
                 "redirect" => [
-                    "url" => "http://entiqa.online/test3/ind/payment/callback"
+                    "url" => "http://entiqa.online/test4/ind/payment/callback"
                 ],
                 "metadata" => [
                     "udf1" => "Metadata 1"
