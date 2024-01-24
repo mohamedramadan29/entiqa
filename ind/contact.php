@@ -2,7 +2,7 @@
 $pagetitle = 'تواصل معنا';
 ob_start();
 session_start();
-$ind_navabar = 'ind';
+$ind_navbar = 'ind';
 include 'init.php'; ?>
 <div class="contact_hero">
   <div class="overlay">
@@ -20,7 +20,7 @@ include 'init.php'; ?>
       هو ترك بياناتك .بالاسفل وسنقوم بالتواصل معك في اقرب وقت
     </h2>
     <?php
-    if (isset($_POST["send_message"])) {
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $formerror = [];
       $first_name = sanitizeInput($_POST["first_name"]);
       $last_name = sanitizeInput($_POST["last_name"]);
@@ -40,6 +40,9 @@ include 'init.php'; ?>
         $formerror[] = "البريد الإلكتروني يحتوي على أحرف غير صالحة";
       }
 
+      if (strlen($mobile) > 20 || !is_numeric($mobile)) {
+        $formerror[] = ' رقم الهاتف يجب أن يكون أقل من 20 رقم ويحتوي على أرقام فقط ';
+      }
       if (!is_numeric($mobile) || strlen($mobile) < 8 || strlen($mobile) > 20) {
         $formerror[] = 'من فضلك، أدخل رقم هاتف صحيح بين 8 و 20 رقمًا.';
       }
@@ -72,7 +75,7 @@ include 'init.php'; ?>
               button: "اغلاق",
             });
           </script>
-          <?php header('refresh:2;url=contact'); ?>
+          <?php header('refresh:1;url=contact'); ?>
           <!-- <div class="alert alert-success"> تم ارسال رسالتك بنجاح ,
             سوف نتواصل معك في اقرب وقت ممكن </div> -->
         <?php
@@ -91,7 +94,7 @@ include 'init.php'; ?>
       <div class="col-md-10 col-lg-6">
         <!--RD Mailform-->
         <div class="login">
-          <form class="" method="post" action="">
+          <form class="" method="post" action="" id="send_form">
             <div class="row row-10">
               <div class="col-md-6">
                 <div class="form-wrap">
@@ -118,7 +121,7 @@ include 'init.php'; ?>
                   <textarea required oninvalid="setCustomValidityArabic(this,' يجب ان يكون اقل عدد من الاحرف ٢٠ حرف واكثر عدد هو  ٤٠٠  حرف')" oninput="resetCustomValidity(this)" minlength="20" maxlength="400" class="form-input form-control" id="contact-message" name="message" placeholder=" رسالتك *"></textarea>
                 </div>
               </div>
-              <button class="button button-size-1 button-block button-primary" type="submit" name="send_message">ارسال</button>
+              <button class="button button-size-1 button-block button-primary" type="submit" id="send_message" name="send_message">ارسال</button>
 
             </div>
           </form>
@@ -166,13 +169,20 @@ include 'init.php'; ?>
 
 <!-- END TESTMONAILS -->
 <?php
-
 include $tem . "footer.php";
-
-
 ?>
 
-
+<!-- to insert message -->
+<script>
+  $(document).ready(function($) {
+    // قائمة لتخزين معلومات الملفات المختارة
+    let selectedFiles = [];
+    $('#send_form').submit(function() {
+      var submitButton = document.getElementById('send_message');
+      submitButton.setAttribute('disabled', 'disabled');
+    });
+  });
+</script>
 <script>
   if (window.history.replaceState) {
     window.history.replaceState(null, null, window.location.href);

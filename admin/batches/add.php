@@ -31,8 +31,11 @@ if (isset($_SESSION['admin_session']) || isset($_SESSION['coash_id'])) {
                         if ($batch_min >= $batch_max) {
                             $formerror[] = 'يجب ان يكون اكثر عدد اكبر من اقل عدد للدفعه ';
                         }
-                        if (strlen($batch_name) > 50) {
-                            $formerror[] = 'يجب ان يكون الاسم اقل من 50 حرف ';
+                        // if (strlen($batch_name) > 50) {
+                        //     $formerror[] = 'يجب ان يكون الاسم اقل من 50 حرف ';
+                        // }
+                        if (mb_strlen($batch_name, 'UTF-8') > 50) {
+                            $formerror[] = 'يجب أن يكون الاسم أقل من 50 حرف ';
                         }
                         if (empty($batch_name) || empty($batch_coash) || empty($batch_status) || empty($batch_start) || empty($batch_min) || empty($batch_max)) {
                             $formerror[] = 'من فضلك ادخل المعلومات كاملة';
@@ -58,7 +61,7 @@ if (isset($_SESSION['admin_session']) || isset($_SESSION['coash_id'])) {
                                 'zbatch_min' => $batch_min,
                                 'zbatch_max' => $batch_max,
                                 'zbatch_created_at' => $date,
-                                'zind_num'=>0,
+                                'zind_num' => 0,
                                 'zbatch_status' => $batch_status,
                             ]);
                             if ($stmt) { ?>
@@ -100,7 +103,7 @@ if (isset($_SESSION['admin_session']) || isset($_SESSION['coash_id'])) {
                                 <div class="box2">
                                     <label id="name"> اسم الدفعه
                                         <span> * </span> </label>
-                                    <input required class="form-control" type="text" name="batch_name" value="<?php if(isset($_REQUEST['batch_name'])) echo $_REQUEST['batch_name']; ?>">
+                                    <input required class="form-control" type="text" name="batch_name" value="<?php if (isset($_REQUEST['batch_name'])) echo $_REQUEST['batch_name']; ?>">
                                 </div>
                                 <?php
                                 if (!isset($_SESSION['coash_id'])) {
@@ -115,7 +118,7 @@ if (isset($_SESSION['admin_session']) || isset($_SESSION['coash_id'])) {
                                             $allcoa = $stmt->fetchAll();
                                             foreach ($allcoa as $coa) {
                                             ?>
-                                                <option <?php if(isset($_REQUEST['batch_coash']) && ($_REQUEST['batch_coash'] == $coa['co_id'])) echo 'selected' ?> value="<?php echo $coa['co_id'] ?>"><?php echo $coa['co_name']; ?></option>
+                                                <option <?php if (isset($_REQUEST['batch_coash']) && ($_REQUEST['batch_coash'] == $coa['co_id'])) echo 'selected' ?> value="<?php echo $coa['co_id'] ?>"><?php echo $coa['co_name']; ?></option>
                                             <?php
                                             }
                                             ?>
@@ -132,17 +135,17 @@ if (isset($_SESSION['admin_session']) || isset($_SESSION['coash_id'])) {
                                 <div class="box2">
                                     <label id="name"> بداية انطلاق الدفعه
                                         <span> * </span> </label>
-                                    <input required class="form-control" type="date" name="batch_start" value="<?php if(isset($_REQUEST['batch_start'])) echo $_REQUEST['batch_start']; ?>">
+                                    <input required class="form-control" type="date" name="batch_start" value="<?php if (isset($_REQUEST['batch_start'])) echo $_REQUEST['batch_start']; ?>">
                                 </div>
                                 <div class="box2">
                                     <label id="name"> اقل عدد
                                         <span> * </span> </label>
-                                    <input min="1" required class="form-control" type="number" name="batch_min" value="<?php if(isset($_REQUEST['batch_min'])) echo $_REQUEST['batch_min']; ?>">
+                                    <input min="1" required class="form-control" type="number" name="batch_min" value="<?php if (isset($_REQUEST['batch_min'])) echo $_REQUEST['batch_min']; ?>">
                                 </div>
                                 <div class="box2">
                                     <label id="name"> اكثر عدد
                                         <span> * </span> </label>
-                                    <input min="1" required class="form-control" type="number" name="batch_max" value="<?php if(isset($_REQUEST['batch_max'])) echo $_REQUEST['batch_max']; ?>">
+                                    <input min="1" required class="form-control" type="number" name="batch_max" value="<?php if (isset($_REQUEST['batch_max'])) echo $_REQUEST['batch_max']; ?>">
                                 </div>
                                 <div class="box2">
                                     <select required class="form-control select" name="batch_status">

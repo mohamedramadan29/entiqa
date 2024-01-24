@@ -21,16 +21,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $date = $currentDateTime->format("Y-m-d H:i:s");
     $from_person = 'admin';
     $to_person = $_POST['to_person'];
-    $message_content = $_POST['message_data'];
+    $message_content = sanitizeInput($_POST['message_data']);
     $message_content = htmlspecialchars_decode($message_content);
     $message_content = preg_replace('/\b(https?|ftp|file):\/\/[^\s<>\[\]]+/', '<a href="$0" target="_blank">$0</a>', $message_content);
 
     $formerror = [];
-    
+
     if (empty($message_content) && ($location == ',')) {
         $formerror[] = 'من فضلك ادخل محتوي الرساله أو قم بتحميل مرفق';
     }
-    if(empty($formerror)){
+    if (empty($formerror)) {
         $stmt = $connect->prepare("INSERT INTO chat (from_person,to_person, msg,msg_files,date,send_type)
                 VALUES(:zfrom_person,:zto_person,:zmessage,:zmsg_files,:zdate,:zsend_type)");
         $stmt->execute(array(
@@ -44,9 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt) {
             header("LOCATION:main.php?dir=com_chat&page=chat&com_username=" . $_POST['to_person']); ?>
             ?>
-            <?php
+<?php
         }
     }
-
 }
 ?>

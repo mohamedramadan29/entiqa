@@ -1,9 +1,8 @@
 <?php
- if (isset($_SESSION['admin_session']) || isset($_SESSION['coash_id'])) {
-
- }else{
+if (isset($_SESSION['admin_session']) || isset($_SESSION['coash_id'])) {
+} else {
     header("Location:index");
- }
+}
 if (isset($_GET['batch'])) {
     $batch_id = $_GET['batch'];
     $stmt = $connect->prepare('SELECT * FROM batches
@@ -48,8 +47,8 @@ if (isset($_GET['batch'])) {
                     if ($batch_min >= $batch_max) {
                         $formerror[] = 'يجب ان يكون اكثر عدد اكبر من اقل عدد للدفعه ';
                     }
-                    if (strlen($batch_name) > 50) {
-                        $formerror[] = 'يجب ان يكون الاسم اقل من 50 حرف ';
+                    if (mb_strlen($batch_name, 'UTF-8') > 50) {
+                        $formerror[] = 'يجب أن يكون الاسم أقل من 50 حرف ';
                     }
                     $date_now = date("Y-m-d");
                     // if ($batch_start < $date_now) {

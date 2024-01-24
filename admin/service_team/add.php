@@ -1,4 +1,12 @@
  <?php
+    //Import PHPMailer classes into the global namespace
+    //These must be at the top of your script, not inside a function
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\SMTP;
+    use PHPMailer\PHPMailer\Exception;
+
+    require '../ind/mail/vendor/autoload.php';
+    $mail = new PHPMailer(true);
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (isset($_POST['add_car'])) {
             $name = sanitizeInput($_POST['name']);
@@ -60,7 +68,7 @@
             if ($count_com_mails > 0) {
                 $formerror[] = 'البريد الألكتروني مستخدم بالفعل في قسم الشركات من فضلك اختر بريد الكتروني جديد ';
             }
- 
+
 
             if (strlen($name) > 50) {
                 $formerror[] = 'اسم المستخدم يجب ان يكون اقل من 50 حرف';
@@ -78,7 +86,44 @@
                     'zpassword' => $password,
                 ]);
                 if ($stmt) {
-                    $_SESSION['success_message'] = " تمت الأضافة بنجاح  ";
+                    // START SEND MAIL ////////////////////////////////////
+                    //Create an instance; passing `true` enables exceptions
+
+                    try {
+                        // الإعدادات الأساسية لإعداد البريد الإلكتروني
+                        $mail->CharSet = 'UTF-8';
+                        $mail->WordWrap = true;
+                        $mail->isSMTP();
+                        $mail->Host = 'entiqa.online';
+                        $mail->SMTPAuth = true;
+                        $mail->Username = 'test@entiqa.online';
+                        $mail->Password = 'mohamedramadan2930';
+                        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                        //To load the French version
+                        // $mail->setLanguage('ar');
+                        $mail->Port = 587;
+
+                        // مُحتوى الرسالة
+
+                        $mail->setFrom('test@entiqa.online', 'انتقاء');
+                        $mail->addAddress($email, $name);
+                        $mail->Subject = ' معلومات تسجيل الدخول الخاصة بك  كعضو فريق خدمه  علي منصة انتقاء  ';
+                        $mail->Body = " <p style='font-size:18px; font-family:inherit'>مرحبا " . $name . ",</p>
+                                                    <p style='font-size:18px; font-family:inherit'>اسم المستخدم الخاص بك .</p>
+                                                    <p><strong>" . $name . "</strong></p>
+                                                    <p style='font-size:18px; font-family:inherit'>كلمة المرور.</p>
+                                                    <p><strong>" . $password . "</strong></p>
+                                            ";
+                        $mail->AltBody = 'This is the plain text message body for non-HTML mail clients.';
+                        // إرسال البريد الإلكتروني
+                        $mail->send();
+                        $_SESSION['mail'] = $email;
+                    } catch (Exception $e) {
+                        echo "حدث خطأ في إرسال البريد الإلكتروني: {$mail->ErrorInfo}";
+                    }
+                    // END SEND MAIL //////////////////////////////////////
+
+                    $_SESSION['success_message'] = " تمت الأضافة بنجاح ";
     ?>
                  <div class="alert-success ">
                      تم اضافة عضو جديد بنجاح

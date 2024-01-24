@@ -490,15 +490,18 @@ if (isset($_SESSION['com_id'])) {
     </div>
 <?php
     // check if this company active or not active 
-    $stmt = $connect->prepare("SELECT * FROM company_register WHERE com_id = ?");
-    $stmt->execute(array($_SESSION['com_id']));
-    $company_data = $stmt->fetch();
-    $active_status = $company_data['com_status'];
-    $com_balance = $company_data['com_balance'];
-    if ($active_status == 0 || $com_balance == 0 && $other_person != 'admin') {
-        header('Location:index');
-        exit();
+    if ($other_person != 'admin') {
+        $stmt = $connect->prepare("SELECT * FROM company_register WHERE com_id = ?");
+        $stmt->execute(array($_SESSION['com_id']));
+        $company_data = $stmt->fetch();
+        $active_status = $company_data['com_status'];
+        $com_balance = $company_data['com_balance'];
+        if ($active_status == 0 || $com_balance == 0) {
+            header('Location:index');
+            exit();
+        }
     }
+
     include $tem . "footer.php";
 } else {
     header('Location:index.php');

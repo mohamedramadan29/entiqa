@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $date = $currentDateTime->format("Y-m-d H:i:s");
     $from_person = 'admin';
     $to_person = $_POST['to_person'];
-    $message_content = $_POST['message_data'];
+    $message_content = sanitizeInput($_POST['message_data']);
     $message_content = htmlspecialchars_decode($message_content);
     $message_content = preg_replace('/\b(https?|ftp|file):\/\/[^\s<>\[\]]+/', '<a href="$0" target="_blank">$0</a>', $message_content);
 
