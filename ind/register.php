@@ -60,7 +60,7 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                                 $formerror[] = " يجب إدخال عنوان بريد إلكتروني صالح ";
                             } elseif (strlen($ind_email) > 100) {
                                 $formerror[] = "طول البريد الإلكتروني يجب أن لا يتجاوز 100 حرفًا";
-                            } elseif (!preg_match('/^[a-zA-Z0-9.@]+$/', $ind_email)) {
+                            } elseif (!preg_match('/^[a-zA-Z0-9.@ـ\-\_\+\,\']+$/u', $ind_email)) {
                                 $formerror[] = "البريد الإلكتروني يجب أن يحتوي على أحرف وأرقام ورموز صحيحة فقط";
                             } elseif (strpos($ind_email, '..') !== false) {
                                 $formerror[] = "البريد الإلكتروني يحتوي على أحرف غير صالحة";
