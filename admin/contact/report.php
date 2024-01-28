@@ -5,7 +5,7 @@ if (!isset($_SESSION['admin_session']) && !isset($_SESSION['serv_name'])) {
 
 ?>
 
-<div class="container customer_report">
+<div class="container customer_report" style="padding: 0;">
     <div class="data">
         <div class="bread">
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">

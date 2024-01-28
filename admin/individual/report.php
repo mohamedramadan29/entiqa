@@ -221,9 +221,18 @@ if (isset($_SESSION['admin_session']) || isset($_SESSION['serv_name'])) {
                                                                 <input readonly class="form-control" type="text" name="ind_transfer" value="<?php echo $type['ind_transfer'] ?>">
                                                             </div>
                                                             <div class="box2">
-                                                                <label id="name_en"> الدفعه<span> * </span></label>
+                                                                <label id="name_en"> الدفعه الحاليه <span> * </span></label>
                                                                 <?php
-                                                                $stmt = $connect->prepare("SELECT * FROM batches WHERE ind_num <= batch_max");
+                                                                $stmt = $connect->prepare("SELECT * FROM batches WHERE batch_id=?");
+                                                                $stmt->execute(array($type['ind_batch']));
+                                                                $batch_data = $stmt->fetch();
+                                                                ?>
+                                                                <input readonly class="form-control" type="text" name="ind_nationality" value="<?php echo $batch_data['batch_name'] ?>">
+                                                            </div>
+                                                            <div class="box2">
+                                                                <label id="name_en"> تعديل دفعه المتدرب <span> * </span></label>
+                                                                <?php
+                                                                $stmt = $connect->prepare("SELECT * FROM batches WHERE ind_num < batch_max");
                                                                 $stmt->execute();
                                                                 $allbatches = $stmt->fetchAll();
                                                                 ?>
