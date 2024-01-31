@@ -108,22 +108,27 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                                         <form action="" method="post">
                                             <button name="update_profile_status" type="submit" class="btn btn-outline-danger"> تحديث حالة </button>
                                         </form>
-                                        <a href="edit" class="btn btn-primary"> تعديل <i class="fa fa-edit"></i></a>
-                                <?php
+
+                                    <?php
                                     }
+                                    ?>
+                                    <a href="edit" class="btn btn-primary"> تعديل <i class="fa fa-edit"></i></a>
+                                <?php
                                 }
                                 ?>
                                 <!-- -------------------------------------------------------------------------------------------------------------------------->
                             </div>
                             <?php
 
-
                             if (!empty($ind_data['video'])) {
-                                echo "<video src=../ind/porfile_videos/" . $ind_data['video'] . "  width='100%' height='300' 
-                                    style='border:1px solid black;border-radius:20px;' controls/></video>";
+                                // echo "<video src=../ind/porfile_videos/" . $ind_data['video'] . "  width='100%' height='300' 
+                                //     style='border:1px solid black;border-radius:20px;' controls/></video>";
+                                ?>
+                                <a target="_blank" href="user_cv/<?php echo $ind_data['video'] ?>" class="btn btn-warning btn-sm"> مشاهده السيره الذاتيه  </a>
+                                <?php 
                             }
                             ?>
-                            <button type="button" class="btn btn-primary btn-sm" id="change_image" style="margin-right: 20px;"> اضافة فيديو </button>
+                            <button type="button" class="btn btn-primary btn-sm" id="change_image" style="margin-right: 20px;"> اضافه السيره الذاتيه </button>
                             <br>
                             <form class="div_change_image" action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST" enctype="multipart/form-data">
 
@@ -132,8 +137,10 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                                     <div class="form-group">
                                         <div class="input-group">
                                             <div class="custom-file">
-                                                <input id="videoFile" required type="file" name="img" accept="video/*" onchange="checkFileSize()" class="custom-file-input form-control" id="exampleInputFile">
-                                                <label class="custom-file-label" for="exampleInputFile"> رفع الفيديو </label>
+                                                <!-- <input id="videoFile" required type="file" name="img" accept="video/*" onchange="checkFileSize()" class="custom-file-input form-control" id="exampleInputFile"> -->
+                                                <input id="videoFile" required type="file" name="img" accept="application/pdf, .doc, .docx" onchange="checkFileSize()" class="custom-file-input form-control" id="exampleInputFile">
+
+                                                <label class="custom-file-label" for="exampleInputFile"> رف السيره الذاتيه </label>
                                             </div>
                                         </div>
                                     </div>
@@ -141,16 +148,11 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                                 <br>
                                 <button type="submit" name="add_video" class="btn btn-primary btn-sm" style="margin-right: 5px;"> حفظ </button>
                             </form>
-
                             <?php
-
-
-
-
                             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 if (!empty($_FILES['img']['name'])) {
-                                    $allowed_extensions = array('mp4', 'avi', 'mkv', 'mov'); // قائمة بالامتدادات المسموح بها للفيديو
-
+                                    $allowed_extensions =  array('pdf', 'doc', 'docx'); // قائمة بالامتدادات المسموح بها للفيديو
+                                   
                                     $pro_image_name = $_FILES['img']['name'];
                                     $pro_image_name = str_replace(' ', '', $pro_image_name);
                                     $pro_image_temp = $_FILES['img']['tmp_name'];
@@ -165,7 +167,7 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                                     if (in_array($file_extension, $allowed_extensions)) {
                                         move_uploaded_file(
                                             $pro_image_temp,
-                                            'porfile_videos/' . $pro_image_uploaded
+                                            'user_cv/' . $pro_image_uploaded
                                         );
 
                                         $stmt = $connect->prepare("UPDATE ind_register SET video='$pro_image_uploaded' WHERE ind_id = ?");
@@ -174,7 +176,7 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                                     } else {
                             ?>
                                         <script>
-                                            alert("  من فضلك اختر الفيديو بشكل صحيح  من نوع [ 'mp4', 'avi', 'mkv', 'mov' ]");
+                                            alert("  من فضلك اختر السيره الذاتيه بشكل صحيح  من نوع ['pdf', 'doc', 'docx' ]");
                                         </script>
                             <?php
 
@@ -187,7 +189,22 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                             <br>
                             <!-- -------------------------------------------------------------------------------------------------------------------------->
 
-                            <h2> معلومات عن المتدرب </h2>
+                            <h2 style="margin-bottom: 15px; font-size:20px"> معلومات عن المتدرب </h2>
+                            <div class="info_data">
+                                <div class="data1" style="background-color: #F3F3F3;">
+                                    <p>
+                                        <?php
+                                        if (!empty($ind_data['ind_info'])) {
+                                            echo $ind_data['ind_info'];
+                                        } else { ?>
+                                    <div class="alert alert-info" role="alert"> لا يوجد نبذه عن المتدرب </div>
+                                <?php
+                                        }
+                                ?>
+                                </p>
+                                </div>
+                            </div>
+                            <br>
                             <div class="info_data">
                                 <div class="data2">
                                     <br>
@@ -322,7 +339,7 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                         <?php
                         }
                         ?>
-                        <?php
+                        <!-- <?php
                         if (isset($ind_data['ind_certificate']) && $ind_data['ind_certificate'] != null) { ?>
                             <div class="document_section document_certificate">
                                 <h6> شهادة المتدرب المعتمدة من المنصة </h6>
@@ -331,7 +348,7 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                             </div>
                         <?php
                         }
-                        ?>
+                        ?> -->
                         <div class="data2">
                             <h4 style="color:#000; font-size:25px; margin-bottom:20px">الاختبارات</h4>
                             <div>

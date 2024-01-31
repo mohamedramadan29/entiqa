@@ -51,11 +51,30 @@ if (isset($_SESSION['ind_id'])) {
                                 </div>
                                 <?php
                                 if (!empty($ind_data['video'])) {
-                                    echo "<video src=porfile_videos/" . $ind_data['video'] . "  width='100%' height='300' 
-style='border:1px solid black;border-radius:20px;' controls/></video>";
+                                    //                                     echo "<video src=porfile_videos/" . $ind_data['video'] . "  width='100%' height='300' 
+                                    // style='border:1px solid black;border-radius:20px;' controls/></video>";
+                                ?>
+                                    <a target="_blank" href="user_cv/<?php echo $ind_data['video'] ?>" class="btn btn-warning btn-sm"> مشاهده السيره الذاتيه </a>
+                                <br>
+                                <br>
+                                <?php
                                 }
                                 ?>
-
+                                <div class="info_data">
+                                    <div class="data1" style="background-color: #F3F3F3;">
+                                        <p>
+                                            <?php
+                                            if (!empty($ind_data['ind_info'])) {
+                                                echo $ind_data['ind_info'];
+                                            } else { ?>
+                                        <div class="alert alert-info" role="alert"> لا يوجد نبذه عن المتدرب </div>
+                                    <?php
+                                            }
+                                    ?>
+                                    </p>
+                                    </div>
+                                </div>
+                                <br>
                                 <div class="info_data">
                                     <div class="data1 d-none">
                                         <h4> نبذة عن المتدرب </h4>
@@ -143,7 +162,7 @@ style='border:1px solid black;border-radius:20px;' controls/></video>";
 
                                         <a target="_blank" href="../admin/uploads/<?php echo $ind_data['ind_certificate'] ?>" class="btn btn-warning btn-sm"> مشاهدة الشهادة </a>
                                     </div>
-                                    <?php
+                                <?php
                                 }
                                 ?>
                             <?php

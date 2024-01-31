@@ -39,6 +39,7 @@ if (isset($_SESSION['ind_id'])) {
             $ind_transfer = sanitizeInput($_POST["ind_transfer"]);
             $ind_english = sanitizeInput($_POST["ind_english"]);
             $ind_gender = sanitizeInput($_POST['ind_gender']);
+            $ind_info = sanitizeInput($_POST['ind_info']);
             $formerror = [];
             if (empty($ind_name) || empty($ind_birthdate) || empty($ind_email) || empty($ind_phone) || empty($ind_nationality)) {
                 $formerror[] = " من فضلك ادخل المعلومات كاملة ";
@@ -96,7 +97,7 @@ if (isset($_SESSION['ind_id'])) {
                 $stmt = $connect->prepare("UPDATE ind_register SET
                 ind_name=?,
                 ind_birthdate=?,ind_email=?,ind_phone=?,ind_nationality=?,ind_address=?,ind_gender=?,ind_transfer=?,
-                ind_english=? WHERE ind_id=?");
+                ind_english=?,ind_info=? WHERE ind_id=?");
                 $stmt->execute(
                     array(
                         $ind_name,
@@ -108,6 +109,7 @@ if (isset($_SESSION['ind_id'])) {
                         $ind_gender,
                         $ind_transfer,
                         $ind_english,
+                        $ind_info,
                         $_SESSION['ind_id']
                     )
                 );
@@ -219,6 +221,10 @@ if (isset($_SESSION['ind_id'])) {
                                         <div class="box">
                                             <label for="">اسم المستخدم <span> * </span> </label>
                                             <input disabled type="text" class="form-control" name="ind_username" value="<?php echo $ind_data['ind_username']; ?>">
+                                        </div>
+                                        <div class="box">
+                                            <label for=""> نبذه مختصره  </label>
+                                            <textarea required name="ind_info" class="form-control"><?php echo $ind_data['ind_info']; ?></textarea>
                                         </div>
                                         <div class="box">
                                             <label for=""> البريد الالكتروني <span> * </span></label>

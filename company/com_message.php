@@ -47,37 +47,52 @@ if (isset($_SESSION['com_id'])) {
                     <div class="data">
                         <div id="demo"></div>
                         <div class="form">
-                            <form action="javascript:void(0)" class="form-group insert ajax_form" id="ajax-form" method="POST" autocomplete="on" enctype="multipart/form-data">
-                                <div class="message_text">
-                                    <input type="hidden" id="other_person" name="to_person" value="<?php echo $other_person ?>">
-                                    <textarea name="message_data" id="msg"></textarea>
-                                    <div class="send_attachments_div">
-                                        <label for="customFile" style="cursor: pointer;"> اختر المرفقات [pdf \ images] </label>
-                                        <span> <i class="fa fa-upload"></i> </span>
-                                        <input type="file" name="message_attachment[]" multiple class="form-control" id="customFile" onchange="checkFileType(),checkFileSize()" accept="image/*, .pdf">
+                            <?php
+                            // check if this contract canceled before or not 
+                            $stmt = $connect->prepare("SELECT * FROM contract_cancel WHERE company_id=? AND ind_id=?");
+                            $stmt->execute(array($_SESSION["com_id"], $user_data['ind_id']));
+                            $count_cancel = $stmt->rowCount();
+                            if ($count_cancel > 0) {
+                            ?>
+                                <div class="alert alert-danger"> تم الغاء الاتفاق لا يمكن التواصل بعد الان مع المتدرب </div>
+                            <?php
+                            } else {
+                            ?>
+                                <form action="javascript:void(0)" class="form-group insert ajax_form" id="ajax-form" method="POST" autocomplete="on" enctype="multipart/form-data">
+                                    <div class="message_text">
+                                        <input type="hidden" id="other_person" name="to_person" value="<?php echo $other_person ?>">
+                                        <textarea name="message_data" id="msg"></textarea>
+                                        <div class="send_attachments_div">
+                                            <label for="customFile" style="cursor: pointer;"> اختر المرفقات [pdf \ images] </label>
+                                            <span> <i class="fa fa-upload"></i> </span>
+                                            <input type="file" name="message_attachment[]" multiple class="form-control" id="customFile" onchange="checkFileType(),checkFileSize()" accept="image/*, .pdf">
+                                        </div>
+                                        <div class="send_message_button">
+                                            <?php
+                                            if ($other_person == 'admin' || $other_person == 'coash') {
+                                            ?>
+                                                <p class="send_attachment btn btn-primary"> رفع المرفقات <i class="fa fa-file"></i> </p>
+                                            <?php
+                                            }
+                                            ?>
+                                            <button type="submit" class="btn btn-primary" id="submit_button"> ارسال <i class="fa fa-paper-plane"></i></button>
+                                        </div>
+                                        <div id="fileListContainer">
+                                            <!-- ستظهر هنا قائمة الملفات المختارة -->
+                                        </div>
+                                        <script>
+                                            document.querySelector('.custom-file-input').addEventListener('change', function(e) {
+                                                var fileInput = e.target;
+                                                var fileNames = Array.from(fileInput.files).map(file => file.name);
+                                                document.querySelector('.custom-file-label').textContent = fileNames.join(', ');
+                                            });
+                                        </script>
                                     </div>
-                                    <div class="send_message_button">
-                                        <?php
-                                        if ($other_person == 'admin' || $other_person == 'coash') {
-                                        ?>
-                                            <p class="send_attachment btn btn-primary"> رفع المرفقات <i class="fa fa-file"></i> </p>
-                                        <?php
-                                        }
-                                        ?>
-                                        <button type="submit" class="btn btn-primary" id="submit_button"> ارسال <i class="fa fa-paper-plane"></i></button>
-                                    </div>
-                                    <div id="fileListContainer">
-                                        <!-- ستظهر هنا قائمة الملفات المختارة -->
-                                    </div>
-                                    <script>
-                                        document.querySelector('.custom-file-input').addEventListener('change', function(e) {
-                                            var fileInput = e.target;
-                                            var fileNames = Array.from(fileInput.files).map(file => file.name);
-                                            document.querySelector('.custom-file-label').textContent = fileNames.join(', ');
-                                        });
-                                    </script>
-                                </div>
-                            </form>
+                                </form>
+                            <?php
+                            }
+                            ?>
+
                             <?php
                             if ($other_person != 'admin') {
                             ?>
