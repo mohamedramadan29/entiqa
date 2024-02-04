@@ -21,9 +21,9 @@
                                         <li id="index" class="rd-nav-item"><a class="rd-nav-link" href="index">الرئيسية</a>
                                         </li>
                                         <?php if (isset($_SESSION['com_id'])) { ?>
-                                            <li id="stars" class="rd-nav-item"><a class="rd-nav-link" href="stars"> المؤهلين </a>
+                                            <li id="stars" class="rd-nav-item"><a class="rd-nav-link" href="stars"> بائع  </a>
                                             </li>
-                                            <li id="fav" class="rd-nav-item"><a class="rd-nav-link" href="fav_stars"> أفضل المؤهلين </a>
+                                            <li id="fav" class="rd-nav-item"><a class="rd-nav-link" href="fav_stars"> مدير مبيعات  </a>
                                             </li>
                                         <?php
                                         } ?>

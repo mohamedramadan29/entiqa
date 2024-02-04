@@ -264,9 +264,9 @@ if (isset($_SESSION['admin_session']) || isset($_SESSION['serv_name'])) {
                                                                         <option <?php if ($type['ind_status'] == 0)
                                                                                     echo "selected"; ?> value="0"> غير مؤهل </option>
                                                                         <option <?php if ($type['ind_status'] == 1)
-                                                                                    echo "selected"; ?> value="1"> مؤهل </option>
+                                                                                    echo "selected"; ?> value="1"> بائع  </option>
                                                                         <option <?php if ($type['ind_status'] == 2)
-                                                                                    echo "selected"; ?> value="2"> افضل المؤهلين </option>
+                                                                                    echo "selected"; ?> value="2"> مدير مبيعات  </option>
                                                                         <option <?php if ($type['ind_status'] == 3)
                                                                                     echo "selected"; ?> value="3">مؤهلين تم توظيفهم </option>
                                                                     </select>

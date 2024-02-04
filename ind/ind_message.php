@@ -32,9 +32,7 @@ if (isset($_SESSION['ind_id'])) {
         $stmt = $connect->prepare("UPDATE chat SET ind_noti=1 WHERE 
         ind_noti=0 AND from_person=?");
         $stmt->execute(array($_GET["other"]));
-
-
-        /// Update Inter view Notification
+        /// Update Interview Notification
         $stmt = $connect->prepare("UPDATE interview_notificaion SET update_at=? WHERE 
     noti_person_link=? AND noti_com_link=?");
         $stmt->execute(array(date('y-m-d'), $_SESSION['ind_id'], $com_data['com_id']));

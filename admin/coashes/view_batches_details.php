@@ -65,9 +65,9 @@
                                     if ($batch_status != 'تم التأهيل بنجاح') {
                                         if ($exam_num > 0) {
                                     ?>
-                                            <a class="btn btn-primary btn-sm" href="main.php?dir=coashes&page=edit_user&ind_id=<?php echo $ind['ind_id']; ?> ">
+                                            <!-- <a class="btn btn-primary btn-sm" href="main.php?dir=coashes&page=edit_user&ind_id=<?php echo $ind['ind_id']; ?> ">
                                                 تعديل نتائج المتدرب <i class="fa fa-edit"></i>
-                                            </a>
+                                            </a> -->
                                     <?php
                                         }
                                     }

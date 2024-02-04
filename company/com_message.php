@@ -373,7 +373,7 @@ if (isset($_SESSION['com_id'])) {
                                         ?>
                                                     <div class="alert alert-success"> رااائع !! تم تاكيد الاتفاق مع المتدرب </div>
                                                 <?php
-                                                    header("refresh:3;url=profile");
+                                                    //  header("refresh:3;url=profile");
                                                 }
                                             } else {
                                                 foreach ($formerror as $error) {
@@ -631,4 +631,12 @@ if (isset($_SESSION['com_id'])) {
             });
         }, 1000);
     });
+</script>
+
+
+
+<script>
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
 </script>

@@ -2,8 +2,9 @@
 $pagetitle = 'تواصل معنا';
 ob_start();
 session_start();
-$ind_navbar = 'ind';
-include 'init.php'; ?>
+$ind_navabar = 'ind';
+include 'init.php';
+?> 
 <div class="contact_hero">
   <div class="overlay">
     <div class="container">
