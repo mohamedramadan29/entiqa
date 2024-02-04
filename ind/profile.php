@@ -123,9 +123,9 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                             if (!empty($ind_data['video'])) {
                                 // echo "<video src=../ind/porfile_videos/" . $ind_data['video'] . "  width='100%' height='300' 
                                 //     style='border:1px solid black;border-radius:20px;' controls/></video>";
-                                ?>
-                                <a target="_blank" href="user_cv/<?php echo $ind_data['video'] ?>" class="btn btn-warning btn-sm"> مشاهده السيره الذاتيه  </a>
-                                <?php 
+                            ?>
+                                <a target="_blank" href="user_cv/<?php echo $ind_data['video'] ?>" class="btn btn-warning btn-sm"> مشاهده السيره الذاتيه </a>
+                            <?php
                             }
                             ?>
                             <button type="button" class="btn btn-primary btn-sm" id="change_image" style="margin-right: 20px;"> اضافه السيره الذاتيه </button>
@@ -152,7 +152,7 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 if (!empty($_FILES['img']['name'])) {
                                     $allowed_extensions =  array('pdf', 'doc', 'docx'); // قائمة بالامتدادات المسموح بها للفيديو
-                                   
+
                                     $pro_image_name = $_FILES['img']['name'];
                                     $pro_image_name = str_replace(' ', '', $pro_image_name);
                                     $pro_image_temp = $_FILES['img']['tmp_name'];
@@ -340,16 +340,16 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                         }
                         ?>
                         <!-- <?php
-                        if (isset($ind_data['ind_certificate']) && $ind_data['ind_certificate'] != null) { ?>
+                                if (isset($ind_data['ind_certificate']) && $ind_data['ind_certificate'] != null) { ?>
                             <div class="document_section document_certificate">
                                 <h6> شهادة المتدرب المعتمدة من المنصة </h6>
 
                                 <a target="_blank" href="../admin/uploads/<?php echo $ind_data['ind_certificate'] ?>" class="btn btn-warning btn-sm"> مشاهدة الشهادة </a>
                             </div>
                         <?php
-                        }
+                                }
                         ?> -->
-                        <div class="data2">
+                        <!-- <div class="data2">
                             <h4 style="color:#000; font-size:25px; margin-bottom:20px">الاختبارات</h4>
                             <div>
                                 <p style="color: #000; font-size:18px; margin-bottom:10px;margin-top:10px;">درجة تقييم
@@ -436,7 +436,7 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                                 </div>
                             </div>
                             <br>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

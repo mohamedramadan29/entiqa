@@ -214,7 +214,7 @@ company_id=? AND ind_id=?");
                             <?php
                             }
                             ?>
-                            <div class="data2">
+                            <!-- <div class="data2">
                                 <h4 style="color:#000; font-size:25px; margin-top:80px">الاختبارات</h4>
                                 <div>
                                     <p style="color: #000; font-size:18px; margin-bottom:10px;margin-top:10px;">درجة
@@ -306,7 +306,7 @@ company_id=? AND ind_id=?");
                                     </div>
                                 </div>
                                 <br>
-                            </div>
+                            </div> -->
                         </div>
 
                     </div>
