@@ -502,7 +502,7 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                                     <button class="btn btn-primary" type="" name="send_information">فتح حساب</button>
                                 </div>
                             </div>
-
+                            
                             <div class="have_accout">
                                 <p class="text-center">
                                     لديك حساب ؟ <a href="login">سجل دخول الان </a>

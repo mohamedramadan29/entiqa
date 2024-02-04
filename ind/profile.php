@@ -130,6 +130,8 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                             ?>
                             <button type="button" class="btn btn-primary btn-sm" id="change_image" style="margin-right: 20px;"> اضافه السيره الذاتيه </button>
                             <br>
+                            <br>
+                                                
                             <form class="div_change_image" action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST" enctype="multipart/form-data">
 
                                 <!-- <input type="file" id="videoFile" name="img" class="form-control" required style="margin-right:5px;"   onchange="checkFileSize()"> -->
@@ -137,10 +139,11 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                                     <div class="form-group">
                                         <div class="input-group">
                                             <div class="custom-file">
+                                               
                                                 <!-- <input id="videoFile" required type="file" name="img" accept="video/*" onchange="checkFileSize()" class="custom-file-input form-control" id="exampleInputFile"> -->
-                                                <input id="videoFile" required type="file" name="img" accept="application/pdf, .doc, .docx" onchange="checkFileSize()" class="custom-file-input form-control" id="exampleInputFile">
+                                                <input id="videoFile" required type="file" name="img" accept="application/pdf, .doc, .docx" onchange="checkFileSize()" class="custom-file-input form-control">
 
-                                                <label class="custom-file-label" for="exampleInputFile"> رف السيره الذاتيه </label>
+                                                <label class="custom-file-label" for="exampleInputFile"> رفع السيره الذاتيه </label>
                                             </div>
                                         </div>
                                     </div>
@@ -466,9 +469,9 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
         var fileInput = document.getElementById('videoFile');
         if (fileInput.files.length > 0) {
             var fileSize = fileInput.files[0].size; // حجم الملف بالبايت
-            var maxSize = 50 * 1024 * 1024; // 50 ميجابايت بالبايت
+            var maxSize = 5 * 1024 * 1024; // 50 ميجابايت بالبايت
             if (fileSize > maxSize) {
-                alert('حجم الملف يجب ألا يتجاوز 50 ميجابايت');
+                alert('حجم الملف يجب ألا يتجاوز 5 ميجابايت');
                 fileInput.value = ''; // إعادة تعيين قيمة الملف المختار
             }
         }

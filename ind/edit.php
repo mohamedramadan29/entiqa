@@ -41,6 +41,9 @@ if (isset($_SESSION['ind_id'])) {
             $ind_gender = sanitizeInput($_POST['ind_gender']);
             $ind_info = sanitizeInput($_POST['ind_info']);
             $formerror = [];
+            if (strlen($ind_info) > 500) {
+                $formerror[] = 'النبذة التعريفية يجب أن تكون أقل من ٥٠٠ حرف';
+            }
             if (empty($ind_name) || empty($ind_birthdate) || empty($ind_email) || empty($ind_phone) || empty($ind_nationality)) {
                 $formerror[] = " من فضلك ادخل المعلومات كاملة ";
             }
@@ -223,8 +226,8 @@ if (isset($_SESSION['ind_id'])) {
                                             <input disabled type="text" class="form-control" name="ind_username" value="<?php echo $ind_data['ind_username']; ?>">
                                         </div>
                                         <div class="box">
-                                            <label for=""> نبذه مختصره  </label>
-                                            <textarea required name="ind_info" class="form-control"><?php echo $ind_data['ind_info']; ?></textarea>
+                                            <label for=""> نبذه مختصره </label>
+                                            <textarea max='500' required name="ind_info" class="form-control"><?php echo $ind_data['ind_info']; ?></textarea>
                                         </div>
                                         <div class="box">
                                             <label for=""> البريد الالكتروني <span> * </span></label>

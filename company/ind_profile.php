@@ -201,16 +201,16 @@ company_id=? AND ind_id=?");
                                     <button style=" margin-top:70px" class="start_chat btn btn-primary" class="btn btn-success"><a href="com_message.php?other=<?php echo $username ?>"> طلب التفاوض مع
                                             المتدرب </a> <i class="fa fa-paper-plane"></i></button>
                                 </div>
-                                <?php
-                                if (isset($ind_data['ind_certificate']) && $ind_data['ind_certificate'] != null) { ?>
+                                <!-- <?php
+                                        if (isset($ind_data['ind_certificate']) && $ind_data['ind_certificate'] != null) { ?>
                                     <div class="document_section document_certificate">
                                         <h6> شهادة المتدرب المعتمدة من المنصة </h6>
 
                                         <a target="_blank" href="../admin/uploads/<?php echo $ind_data['ind_certificate'] ?>" class="btn btn-warning btn-sm"> مشاهدة الشهادة </a>
                                     </div>
                                 <?php
-                                }
-                                ?>
+                                        }
+                                ?> -->
                             <?php
                             }
                             ?>
