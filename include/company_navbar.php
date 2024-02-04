@@ -150,7 +150,7 @@
                                                 <ul class="profile_links">
                                                     <li> <a href="profile"> <i class="fa fa-user"></i> حساب الشركة </a> </li>
                                                     <li> <a href="all_message"> <i class="fa fa-envelope"></i> الرسائل </a> </li>
-                                                    <li> <a href="balance"> <i class="fa fa-money"></i> الرصيد </a> </li>
+                                                    <!-- <li> <a href="balance"> <i class="fa fa-money"></i> الرصيد </a> </li> -->
                                                     <li> <a href="logout"><i class="fa fa-sign-in"></i> تسجيل خروج </a> </li>
                                                 </ul>
 
@@ -314,7 +314,7 @@
                                         <ul class="profile_links">
                                             <li> <a href="profile"> <i class="fa fa-user"></i> حساب الشركة </a> </li>
                                             <li> <a href="all_message"> <i class="fa fa-envelope"></i> الرسائل </a> </li>
-                                            <li> <a href="balance"> <i class="fa fa-money"></i> الرصيد </a> </li>
+                                            <!-- <li> <a href="balance"> <i class="fa fa-money"></i> الرصيد </a> </li> -->
                                             <li> <a href="logout"><i class="fa fa-sign-in"></i> تسجيل خروج </a> </li>
                                         </ul>
 
