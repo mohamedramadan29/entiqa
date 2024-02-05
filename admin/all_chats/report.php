@@ -140,7 +140,6 @@ if (!isset($_SESSION['admin_session'])) {
                         ORDER BY t1.chat_id DESC
                     ");
                     }
-
                     $stmt->execute();
                     $allmessage = $stmt->fetchAll();
                     $count = $stmt->rowCount();
@@ -164,6 +163,7 @@ if (!isset($_SESSION['admin_session'])) {
                             if ($message['send_type'] == 'ind') {
                                 $c_p = $message['to_person'];
                                 $i_p = $message['from_person'];
+                                $img_type = 'ind';
                             ?>
                                 <h6 style="display: inline-block; padding:5px; color:#646363;background-color: #e4e7eb;border-radius: 10px;">
                                     ( المتدرب:<?php echo $message['from_person']; ?>) ( الشركة :<?php echo $message['to_person']; ?>) </h6>
@@ -171,6 +171,7 @@ if (!isset($_SESSION['admin_session'])) {
                             } elseif ($message['send_type'] == 'com') {
                                 $i_p = $message['to_person'];
                                 $c_p = $message['from_person'];
+                                $img_type = 'com';
                             ?>
                                 <h6 class='<?php if ($admin_show == 0) echo 'bg_red'; ?>' style="display: inline-block; padding:5px; color:#646363;background-color: #e4e7eb;border-radius: 6px;">
                                     ( المتدرب :<?php echo $message['to_person']; ?>) ( الشركة :<?php echo $message['from_person']; ?>) </h6>
@@ -182,10 +183,20 @@ if (!isset($_SESSION['admin_session'])) {
                                     <div class="image">
                                         <?php
                                         $i_src  = "../images/avatar.png";
-                                        if ($message['com_img'] != '') {
-                                            $i_src  = "../ind_images_upload/" . $message['com_img'];
+                                        if ($img_type == 'com') {
+                                            if ($message['com_img'] != '') {
+                                                $i_src  = "../ind_images_upload/" . $message['com_img'];
+                                            } ?>
+                                            <img src="<?php echo $i_src; ?>" alt="">
+                                        <?php
+                                        }elseif($img_type =='ind'){
+                                            if ($message['ind_img'] != '') {
+                                                $i_src  = "../ind_images_upload/" . $message['ind_img'];
+                                            } ?>
+                                            <img src="<?php echo $i_src; ?>" alt="">
+                                            <?php
                                         } ?>
-                                        <img src="<?php echo $i_src; ?>" alt="">
+
                                     </div>
                                     <div class="info">
                                         <!-- ------------------------------------------------------------------------------------------------------------------------->

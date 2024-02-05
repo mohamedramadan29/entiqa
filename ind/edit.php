@@ -41,8 +41,8 @@ if (isset($_SESSION['ind_id'])) {
             $ind_gender = sanitizeInput($_POST['ind_gender']);
             $ind_info = sanitizeInput($_POST['ind_info']);
             $formerror = [];
-            if (strlen($ind_info) > 500) {
-                $formerror[] = 'النبذة التعريفية يجب أن تكون أقل من ٥٠٠ حرف';
+            if (mb_strlen($ind_info, 'UTF-8') > 500) {
+                $formerror[] = 'النبذة التعريفية يجب أن تكون أقل من 500 حرف';
             }
             if (empty($ind_name) || empty($ind_birthdate) || empty($ind_email) || empty($ind_phone) || empty($ind_nationality)) {
                 $formerror[] = " من فضلك ادخل المعلومات كاملة ";

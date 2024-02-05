@@ -53,6 +53,8 @@ if (!isset($_SESSION['admin_session'])) {
                                 </button>
                             </td>
                         </tr> <?php
+
+                        
                                 ?>
                         <!-- START MODEL VIEW  -->
                         <div class="modal fade" id="editrecord<?php echo $type['admin_id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

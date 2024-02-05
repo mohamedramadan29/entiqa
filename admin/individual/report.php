@@ -258,7 +258,7 @@ if (isset($_SESSION['admin_session']) || isset($_SESSION['serv_name'])) {
                                                             if (isset($_SESSION['admin_session'])) {
                                                             ?>
                                                                 <div class="box2">
-                                                                    <label id="name_en"> حالة المتدرب <span> * </span></label>
+                                                                    <label id="name_en">  تصنيف المرشح <span> * </span></label>
                                                                     <select class="form-control select2" name="ind_status">
                                                                         <option value="-1"> -- اختر -- </option>
                                                                         <option <?php if ($type['ind_status'] == 0)

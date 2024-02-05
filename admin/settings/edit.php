@@ -13,6 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($password !== $confirm_password) {
             $formerror[] = 'يجب تاكيد كلمة المرور بشكل صحيح ';
         }
+        
     }
     if (empty($admin_email)) {
         $formerror[] = 'يجب ادخال البريد الألكتروني';

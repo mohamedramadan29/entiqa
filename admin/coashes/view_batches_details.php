@@ -49,14 +49,14 @@
                                     echo $exam_num;
                                 } else {
                                 ?>
-                                    <span class="badge badge-danger"> لا يوجد </span>
+                                    <span class="badge badge-danger"> لا يوجد اختبارات للمتدربين  </span>
                                 <?php
                                 }
                                 ?>
                             </td>
                             <td>
                                 <?php
-                                if (isset($_SESSION['coash_id'])) {
+                                if (isset($_SESSION['coash_id']) || isset($_SESSION['admin_session'])) {
                                 ?>
                                     <a class="btn btn-info btn-sm" href="main.php?dir=coashes&page=view_exam&ind_id=<?php echo $ind['ind_id']; ?> ">
                                         مشاهدة الاختبارات<i class="fa fa-view"></i>
