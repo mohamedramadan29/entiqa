@@ -89,10 +89,12 @@
                         }
                         foreach ($allind as $inddata) {
                             // insert new exam noti in exam notification 
-                            $stmt = $connect->prepare("INSERT INTO exam_noti (ex_id,ind_id) VALUES(:zex_id,:zind_id)");
+                            $stmt = $connect->prepare("INSERT INTO exam_noti (ex_id,ind_id,status,publish_date) VALUES(:zex_id,:zind_id,:zstatus,:zpublish_date)");
                             $stmt->execute(array(
                                 "zex_id" => $exam_id,
                                 'zind_id' => $inddata['ind_id'],
+                                'zstatus'=>0,
+                                'zpublish_date'=> $exam_data['ex_date_publish']
                             ));
 
                             // send mails
