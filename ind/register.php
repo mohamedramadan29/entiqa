@@ -23,8 +23,8 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
         <section class="section section-md">
             <div class="container">
                 <div class="register_form">
-                    <a href="index" class="btn btn-primary" style='background-color:#f16583;
-                 border-color:#f16583;width: 100px;border-radius: 5px;'><i class="fa fa-arrow-right"></i> رجوع
+                    <a href="index" class="btn btn-primary" style='background-color:#e4157e;
+                 border-color:#e4157e;width: 100px;border-radius: 5px;'><i class="fa fa-arrow-right"></i> رجوع
                     </a>
                     <div class="row">
                         <!--RD Mailform-->

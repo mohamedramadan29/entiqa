@@ -2,12 +2,12 @@
     <div class="footer-inner-1">
         <div class="container">
             <div class="row row-40">
-                <div class="col-lg-4">
+                <!-- <div class="col-lg-4">
                     <center><a href="https://entiqa.online/company/index"><img src="../images/main_logo.png" width="30%" height="30%" alt=""></a></center>
                     <p class="footer_about">منصة مختصة بتدريب المتقدمين في مجال الأهم في جميع الشركات لقطاعات التجزئة او
                         الخدمات وهو فريق المبيعات مع الخبراء يتم تدريبهم لتأهيل المتدربين للوظيفة</p>
-                </div>
-                <div class="col-lg-2 col-6">
+                </div> -->
+                <div class="col-lg-4 col-12">
                     <h5> روابط </h5>
                     <ul class="footer-list big">
                         <li><a href="contact">تواصل معنا</a></li>
@@ -15,7 +15,7 @@
                         <li><a href="terms"> الشروط والاحكام </a></li>
                     </ul>
                 </div>
-                <div class="col-lg-4 col-6">
+                <div class="col-lg-4 col-12">
                     <h5> تواصل معنا </h5>
 
                     <ul class="contact-list font-weight-bold">
@@ -24,7 +24,7 @@
                         <li><i class="fa fa-envelope"></i>info@entiqa.co</li>
                     </ul>
                 </div>
-                <div class="col-lg-2 col-6">
+                <div class="col-lg-4 col-12">
                     <h5> تواصل اجتماعي </h5>
                     <ul class='list-unstyled social_icon'>
                         <li> <a href="https://twitter.com/Entiqa_"><i class='fa fa-twitter'></i></a> </li>

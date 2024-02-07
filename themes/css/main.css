@@ -1,5 +1,5 @@
 * {
-    --main-color: #f16583;
+    --main-color: #e4157e;
     --second-color: #516ca9;
 
 }
@@ -109,7 +109,7 @@ input[type=password] {
     padding: 20px;
     text-align: right;
     padding-top: 55px;
-    background-color: #F16583;
+    background-color: #e4157e;
 }
 
 @media (min-width: 768px) {
@@ -797,7 +797,7 @@ START STAR PERSON PAGE
 }
 
 .star_person .data .info .rate span {
-    color: #f16583;
+    color: #e4157e;
 }
 
 .star_person .data .info .rate span i {
@@ -816,8 +816,8 @@ START STAR PERSON PAGE
     font-weight: 500;
     width: 170px;
     color: #fff !important;
-    border-color: #f16583 !important;
-    background-color: #f16583 !important;
+    border-color: #e4157e !important;
+    background-color: #e4157e !important;
     border-radius: 30px;
 }
 
@@ -2476,7 +2476,7 @@ li .notification span {
 
 .swiper-button-next,
 .swiper-rtl .swiper-button-prev {
-    color: #F16583;
+    color: #e4157e;
 }
 
 .swiper-button-next:after,
@@ -2525,12 +2525,12 @@ li .notification span {
     text-align: center;
     line-height: 1;
     font-weight: bold;
-    color: #F16583;
+    color: #e4157e;
 }
 
 .time_circles>div>h4 {
     font-size: 22px !important;
-    color: #F16583;
+    color: #e4157e;
     font-family: 'Almarai', sans-serif !important;
 }
 

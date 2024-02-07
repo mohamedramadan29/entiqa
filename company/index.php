@@ -4,8 +4,8 @@ ob_start();
 session_start();
 $com_navbar = 'com';
 include 'init.php'; ?>
-<div class="contact_hero ind_heroo" style="background-image: url(../images/company_back.jpeg);">
-    <div class="overlay" style="background-color: rgba(0, 0, 0, 0.3);">
+<div class="contact_hero ind_heroo company_index" style="background-image: url(../images/header_index2.jpg);">
+    <div class="overlay" style="background-color: rgba(0, 0, 0, 0.1);">
         <div class="container">
             <div class="data">
                 <h2 style="margin-bottom: 0;"> انتقاء </h2>
@@ -15,7 +15,7 @@ include 'init.php'; ?>
 -->
                 <?php
                 if (!isset($_SESSION['com_id'])) { ?>
-                    <a href="stars" class="btn btn-primary" style="background-color: #F16583;border-color: #F16583; border-radius: 40px;" type="button"> اختر
+                    <a href="stars" class="btn btn-primary" style="background-color: #e4157e;border-color: #e4157e; border-radius: 40px;" type="button"> اختر
                         فريقك </a>
                 <?php
                 }
@@ -25,87 +25,90 @@ include 'init.php'; ?>
     </div>
 </div>
 <!-- Download Our Tax Guide App-->
-<section class="about_us">
+<section class="about_us company_index_about_us">
     <div class="container">
         <div class="row">
-            <h2 class="text-center"> عن انتقاء </h2>
             <div class="col-md-6">
                 <div class="">
-                    <p> هناك تنافس للمنظمات وللشركات في تطوير فريق المبيعات والخدمات لزيادة الإنتاجية ، الا ان انتقاء هو
-                        الطريق المختصر و الأكفأ لجميع القطاعات .
-                        نعرف لك انتقاء على انها منصة لعملية انتقائية للشركات و للمتدربين أيضا لاختيار افضل فرص متاحه و
-                        مناسبه للطرفين
-                        نقوم بجذب الأفراد المهتمين والقادرين على الممارسة و الخوض بالعمل في عالم المبيعات
-                        ولكي يكون المتدرب مؤهلاً و فعالا لابد من وضع استراتيجيات له في تعلم أسس التدريس لهذه المهنة ,
-                        فالمتدربين يتم أنشائهم وتدريبهم وتطويرهم و تأهيلهم من قبل خبراء حاصلين على شهادات عالمية في مجال
-                        المبيعات .
-                        ونعتبر كنقطة وصل بين الطرفين لرفع جودة العمل و مساهمة في تخفيض نسبة البطالة أيضاً .
-                    </p>
+                    <h2> من نحن </h2>
+                    <p> تبحث عن موظف بائع محترف يلائم تطلعاتك؟ </p>
+                    <p> تحتاج لفريق مبيعات خبير لتسويق وبيع منتجاتك باحترافية عالية؟ </p>
+                    <p> ترغب بتطوير أعمالك وزيادة ايراداتك؟ </p>
+                    <p> إنتقاء .. الشريك الأمثل لتطوير أعمالك ومفتاح نجاحك المهني </p>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="video-popup-content">
-                    <video style="border-radius:20px" id="video-frame" width="100%" height="100%" src="../uploads/entiqa.mp4" frameborder="0" controls></video> <!--allowfullscreen-->
+            <div class="col-md-6 video_about_us">
+                <div class="video-popup-content" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <span> <i class="fa fa-play-circle"></i> </span>
+                    <!-- 
+                    <video style="border-radius:20px" id="video-frame" width="100%" height="100%" src="../uploads/entiqa.mp4" frameborder="0" controls></video>   -->
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header"> 
+                            <button type="button" class="btn-close btn btn-danger" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="plyr__video-embed" id="player">
+                                <iframe data-poster="uploads/poster.webp" src="https://www.youtube.com/watch?v=FhSBbvt9FnA&ab_channel=Entiqa" allowfullscreen allowtransparency allow="autoplay"></iframe>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
         </div>
     </div>
 </section>
-<!-- Our Mission-->
-<section class="section bg-default section-md our_goals">
+<!-- Start Berfect Employess  -->
+<div class="berfect_employess">
     <div class="container">
-        <div class="row">
-            <h2 class="text-center" style="color: #F16583;">
-                اهداف انتقاء للشركات
-            </h2>
-            <div class="col-lg-6">
-                <div class="info">
-                    <h3 class="text-center" style="font-size:11px"> للحصول على إنتاج أعلى </h3>
-                    <p> الهدف الأساسي لمنصتنا هو مساعدة الشركات على زيادة معدلات إنتاجها. ندرك بأن الإنتاج يمثل جانبًا مهمًا لأي عمل تجاري ، ويمكن أن تؤدي مستويات الإنتاج المرتفعة إلى زيادة الإيرادات وتحسين رضا العملاء وتعزيز سمعة العلامة التجارية. و لتحقيق هذا الهدف ، نقدم خدمات تعليميه و استشارية لمساعدة الشركات على إنتقاء أفضل فريق مبيعات تم تدريبهم وتأسيسهم تحت أيدي خبراء ، ونقوم بتطوير استراتيجيات التدريب لتحسين عمليات الإنتاج الخاصة بهم. هدفنا هو مساعدة عملائنا على تحقيق النمو والنجاح المستدام من خلال إنتقاء الأفضل دائماً </p>
-                </div>
-            </div>
-            <div class="col-lg-6 ">
-                <img src="../images/entiqa_goal1.png" alt="">
-            </div>
+        <div class="data">
+            <h4> احصل على أفضل موظفي المبيعات المحترفين مع إنتقاء تواصل معنا لنساعدك </h4>
+            <p>
+                إنتقاء ترشح لك أفضل الموظفين المدربين على مهارات البيع الحديث وفق أسس ومناهج عملية احترافية لنكون لك عوناً <br> ونساعدك في تحقيق أهدافك بأفضل الطرق.
+            </p>
         </div>
     </div>
-</section>
+</div>
+<!-- End Berfect Employess   -->
+<!-- Start Pick The Best  -->
+<div class="the_best">
+    <div class="container">
+        <div class="data">
+            <div class="row">
+                <div class="col-lg-6 col-12">
+                    <div class="img_info">
 
-<!-- Our Mission-->
-<section class="section bg-default section-md our_goals">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 ">
-                <img src="../images/entiqa_goal2.png" alt="">
-            </div>
-            <div class="col-lg-6">
-                <div class="info">
-                    <h3 class="text-center"> العثور على المؤهل المطلوب </h3>
-                    <p> العثور على الموهبة المناسبة أمر ضروري لأي عمل تجاري. تقدم منصتنا خدمات ظهور تقييم المؤهلين لمساعدة الشركات على تحديد مستويات المتدربين المميزة في المبيعات . نحن نتفهم أن توظيف الشخص المناسب للوظيفة أمر بالغ الأهمية لضمان سير العمل بسلاسة وكفاءة. لذا تساعدك خدمات تقييم المؤهلين لدينا على اتخاذ قرارات مستنيره . </p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-12">
+                    <div class="info">
+                        <h4> إنتقاء .. انتقي الأفضل </h4>
+                        <p> نعمل لنكون جسراً يصل بين الأفراد والشركات من خلال ترشيح متدربينا لمختلف الشركات التي ترغب برفد كوادرها بموظفي مبيعات محترفين، وبالتالي تحقيق المنفعة لكلا الطرفين. </p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
-<!-- Our Mission-->
-<section class="section bg-default section-md our_goals">
+</div>
+<!-- End Bick The Best   -->
+<!-- Start Why Entiqaa  -->
+<div class="berfect_employess">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="info">
-                    <h3 class="text-center"> تطوير الفريق الخاص بك </h3>
-                    <p> منصة إنتقاء تتفهم أهمية الاستثمار في تطوير الموظفين. لذا نقدم برامج تدريبية متخصصة للموظفين الذين يحتاجون إلى دعم إضافي في أدوارهم لتحسين كفاءتهم والمساهمة في نجاح الأعمال. تغطي برامجنا التدريبية مجموعة من الموضوعات وهي مصممة من خبرائنا المميزين.
-                        نحن نعمل عن كثب مع عملائنا لتحديد المهارات التي يحتاج فيها موظفوهم إلى الدعم لتلبية هذه الاحتياجات. هدفنا هو مساعدة عملائنا على بناء فرق قوية قادرة على دفع نجاح الأعمال من خلال تحسين كفاءة موظفيهم.
-                    </p>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <img src="../images/entiqa_goal3.png" alt="">
-            </div>
+        <div class="data">
+            <h4> لماذا إنتقاء ؟ </h4>
+            <p> تضم انتقاء فريقاً محترفاً من المدربين ذوي الخبرة الواسعة الذين يتمتعون بمعرفة عميقة في مجال المبيعات وتطوير الأعمال <br> لنوفر لعملائنا تدريبات على مستوى عالٍ من الاحترافية والاتقان. </p>
+            <p>
+                كما نعمل على مد يد العون للشركات وتخليص أصحابها من عناء البحث عن موظفي مبيعات محترفين من خلال ترشيح خيرة متدربينا <br> لهم ليتسنى لهم انتقاء الأفضل والأنسب للمنصب الوظيفي المتوفر في شركاتهم.
+            </p>
         </div>
     </div>
-</section>
+</div>
+<!-- End why Entiqaa   -->
 <!-- START NEW TESTMONAILS  -->
 <?php
 $stmt = $connect->prepare('SELECT * FROM company_review 
@@ -115,7 +118,7 @@ $allrev = $stmt->fetchAll();
 $count_rev = $stmt->rowCount();
 if ($count_rev > 0) {
 ?>
-    <div class="testmonails">
+    <div class="testmonails company_testmonails">
         <div class='overlay'>
             <div class="container">
                 <div class="data">
@@ -123,7 +126,6 @@ if ($count_rev > 0) {
                     <!-- Swiper -->
                     <div class="testmon">
                         <?php
-
                         foreach ($allrev as $rev) {
                         ?>
                             <div class="person_testmon">
@@ -161,9 +163,9 @@ if ($count_rev > 0) {
 
 <!-- END NEW TESTMONAILS -->
 <!-- START FAQ SECTION -->
-<div class="faq_section">
+<div class="faq_section faq_question_company">
     <div class="container">
-        <h2 class="text-center" style="color: #F16583;">
+        <h2 class="text-center">
             الأسئلة الشائعة للشركات
         </h2>
         <div class="data">
@@ -291,11 +293,111 @@ if ($count_rev > 0) {
 <!-- END FAQ SECTION -->
 
 <!-- END ENTQA ADVANTAGE  -->
+<!-- START COMPANIES  -->
+<div class="container companieeees">
+    <h4> عملائنا </h4>
+    <div class="responsive">
 
+        <div>
+            <img src="../images/company_logo/com1.png" alt="">
+        </div>
+        <div>
+            <img src="../images/company_logo/com2.png" alt="">
+        </div>
+        <div>
+            <img src="../images/company_logo/com3.png" alt="">
+        </div>
+        <div>
+            <img src="../images/company_logo/com4.png" alt="">
+        </div>
+        <div>
+            <img src="../images/company_logo/com5.png" alt="">
+        </div>
+        <div>
+            <img src="../images/company_logo/com6.png" alt="">
+        </div>
+        <div>
+            <img src="../images/company_logo/com7.png" alt="">
+        </div>
+        <!-- <div>
+            <img src="../images/company_logo/com8.png" alt="">
+        </div> -->
+        <div>
+            <img src="../images/company_logo/com9.png" alt="">
+        </div>
+        <div>
+            <img src="../images/company_logo/com10.png" alt="">
+        </div>
+        <div>
+            <img src="../images/company_logo/com11.png" alt="">
+        </div>
+        <div>
+            <img src="../images/company_logo/com12.png" alt="">
+        </div>
+        <div>
+            <img src="../images/company_logo/com13.png" alt="">
+        </div>
+        <div>
+            <img src="../images/company_logo/com14.png" alt="">
+        </div>
+        <div>
+            <img src="../images/company_logo/com15.png" alt="">
+        </div>
+        <div>
+            <img src="../images/company_logo/com16.png" alt="">
+        </div>
+    </div>
+</div>
 
+<!--  END COMPANIES -->
 
 <?php
 
 
 include $tem . "footer.php";
 ?>
+
+<script>
+    $('.responsive').slick({
+        dots: false,
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        rtl: true,
+        arrows: true,
+        centerMode: true,
+        autoplay: true,
+        autoplaySpeed: 1000,
+        responsive: [{
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    infinite: true,
+                    dots: false
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1
+                }
+            }
+            // You can unslick at a given breakpoint now by adding:
+            // settings: "unslick"
+            // instead of a settings object
+        ]
+    });
+</script>
+<!-- to video -->
+<script>
+    const player = new Plyr('#player');
+</script>
