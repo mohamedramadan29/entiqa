@@ -7,8 +7,8 @@
                     <p class="footer_about">منصة مختصة بتدريب المتقدمين في مجال الأهم في جميع الشركات لقطاعات التجزئة او
                         الخدمات وهو فريق المبيعات مع الخبراء يتم تدريبهم لتأهيل المتدربين للوظيفة</p>
                 </div>
-                <div class="col-lg-4 col-6">
-                    <h5>عن انتقاء </h5>
+                <div class="col-lg-2 col-6">
+                    <h5> روابط </h5>
                     <ul class="footer-list big">
                         <li><a href="contact">تواصل معنا</a></li>
                         <li><a href="privacy_policy">سياسة الخصوصية </a></li>
@@ -17,14 +17,18 @@
                 </div>
                 <div class="col-lg-4 col-6">
                     <h5> تواصل معنا </h5>
+
+                    <ul class="contact-list font-weight-bold">
+                        <li><i class="fa fa-map-marker"></i> الرياض - الملقا - طريق الامام سعود بن فيصل </li>
+                        <li><i class="fa fa-phone"></i> 966597319189+ </li>
+                        <li><i class="fa fa-envelope"></i>info@entiqa.co</li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-6">
+                    <h5> تواصل اجتماعي </h5>
                     <ul class='list-unstyled social_icon'>
                         <li> <a href="https://twitter.com/Entiqa_"><i class='fa fa-twitter'></i></a> </li>
                         <li> <a href="https://www.instagram.com/_entiqa_/"><i class='fa fa-instagram'></i></a></li>
-                    </ul>
-                    <ul class="contact-list font-weight-bold">
-                        <li><i class="fa fa-map-marker"></i> السعودية , جدة</li>
-                        <li><i class="fa fa-phone"></i> 966597319189+ </li>
-                        <li><i class="fa fa-envelope"></i>info@entiqa.online</li>
                     </ul>
                 </div>
             </div>
@@ -63,7 +67,8 @@
 <script src="<?php echo $js; ?>script.js"></script>
 <script src="<?php echo $js; ?>TimeCircles.js"></script>
 <script src="<?php echo $js; ?>sweetalert.min.js"></script>
-
+<!-- nice vide -->
+<script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
 <!-- Custome File   -->
 <script src="<?php echo $js; ?>/bs-custom-file-input.min.js"></script>
 <!-- USe Flat picker To Select Time -->

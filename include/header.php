@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Almarai&display=swap" rel="stylesheet">
 
   <link href="<?php echo $css; ?>bootstrap.rtl.min.css" rel="stylesheet">
-  
+
   <link href="<?php echo $css; ?>select2.min.css" rel="stylesheet">
   <link href="<?php echo $css; ?>slick.css" rel="stylesheet">
   <link href="<?php echo $css; ?>slick-theme.css" rel="stylesheet">
@@ -23,10 +23,14 @@
   <link href="<?php echo $css; ?>style.css" rel="stylesheet">
   <link href="<?php echo $css; ?>com.css" rel="stylesheet">
   <link href="<?php echo $css; ?>main.css" rel="stylesheet">
+  <!-- NICE VIDEO -->
+  <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
   <!-- Flat picker To time  -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link href="<?php echo $css; ?>new_custome.css" rel="stylesheet">
   <link href="<?php echo $css; ?>TimeCircles.css" rel="stylesheet">
+  <link href="<?php echo $css; ?>company_index.css" rel="stylesheet">
+
 
 </head>
 
