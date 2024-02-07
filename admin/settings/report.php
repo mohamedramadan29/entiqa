@@ -23,7 +23,7 @@ if (!isset($_SESSION['admin_session'])) {
                         <th> اسم المستخدم </th>
                         <th> البريد الالكتروني </th>
                         <th> اسم القسم </th>
-                        <th> كلمة المرور </th>
+                        <!-- <th> كلمة المرور </th> -->
                         <th> العمليات </th>
                     </tr>
                 </thead>
@@ -46,7 +46,7 @@ if (!isset($_SESSION['admin_session'])) {
                                     }
 
                                     ?> </td>
-                            <td> <?php echo $type['admin_password']; ?></td>
+                            <!-- <td> <?php echo $type['admin_password']; ?></td> -->
                             <td>
                                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editrecord<?php echo $type['admin_id']; ?>">
                                     <i class="fa fa-edit"></i>

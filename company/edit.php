@@ -231,7 +231,7 @@ if (isset($_SESSION['com_id'])) {
                                         }
                                     }
                                     ?>
-                                    ?>
+                                    
                                 </div>
                                 <form action="" method="POST" class="form-group">
                                     <div class="data1">

@@ -42,14 +42,19 @@
                             <td>
                                 <?php
                                 // get the exams number to check show edit trainer resualt or not 
-                                $stmt = $connect->prepare("SELECT * FROM exam WHERE ex_batch_num = ? AND coash_id = ?");
-                                $stmt->execute(array($batch_id, $_SESSION['coash_id']));
+                                if (isset($_SESSION['coash_id'])) {
+                                    $stmt = $connect->prepare("SELECT * FROM exam WHERE ex_batch_num = ? AND coash_id = ?");
+                                    $stmt->execute(array($batch_id, $_SESSION['coash_id']));
+                                } else {
+                                    $stmt = $connect->prepare("SELECT * FROM exam WHERE ex_batch_num = ?");
+                                    $stmt->execute(array($batch_id));
+                                }
                                 $exam_num = $stmt->rowCount();
                                 if ($exam_num > 0) {
                                     echo $exam_num;
                                 } else {
                                 ?>
-                                    <span class="badge badge-danger"> لا يوجد اختبارات للمتدربين  </span>
+                                    <span class="badge badge-danger"> لا يوجد اختبارات للمتدربين </span>
                                 <?php
                                 }
                                 ?>

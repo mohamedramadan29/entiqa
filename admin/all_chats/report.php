@@ -107,7 +107,7 @@ if (!isset($_SESSION['admin_session'])) {
 
                         if (!empty($indName)) {
                             $sql .= " AND t1.from_person = :indName";
-                            $sql .= " OR t1.to_person = :indName";
+                          //  $sql .= " OR t1.to_person = :indName";
                         }
 
                         $sql .= " ORDER BY t1.chat_id DESC";
@@ -164,6 +164,12 @@ if (!isset($_SESSION['admin_session'])) {
                                 $c_p = $message['to_person'];
                                 $i_p = $message['from_person'];
                                 $img_type = 'ind';
+                                // get the ind message 
+                                $stmt = $connect->prepare("SELECT * FROM ind_register WHERE ind_username = ?");
+                                $stmt->execute(array($message['from_person']));
+                                $ind_data = $stmt->fetch();
+                                $ind_image = $ind_data['ind_image'];
+                                // echo $ind_image;
                             ?>
                                 <h6 style="display: inline-block; padding:5px; color:#646363;background-color: #e4e7eb;border-radius: 10px;">
                                     ( المتدرب:<?php echo $message['from_person']; ?>) ( الشركة :<?php echo $message['to_person']; ?>) </h6>
@@ -182,6 +188,7 @@ if (!isset($_SESSION['admin_session'])) {
                                 <div class="message_data">
                                     <div class="image">
                                         <?php
+                                        
                                         $i_src  = "../images/avatar.png";
                                         if ($img_type == 'com') {
                                             if ($message['com_img'] != '') {
@@ -190,12 +197,15 @@ if (!isset($_SESSION['admin_session'])) {
                                             <img src="<?php echo $i_src; ?>" alt="">
                                         <?php
                                         }elseif($img_type =='ind'){
-                                            if ($message['ind_img'] != '') {
-                                                $i_src  = "../ind_images_upload/" . $message['ind_img'];
+                                            
+                                            if ($ind_image != '') {
+                                                
+                                                $i_src  = "../ind_images_upload/" . $ind_image;
                                             } ?>
                                             <img src="<?php echo $i_src; ?>" alt="">
                                             <?php
                                         } ?>
+
 
                                     </div>
                                     <div class="info">
