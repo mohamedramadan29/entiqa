@@ -45,15 +45,15 @@ include 'init.php';
                                     $mail->CharSet = 'UTF-8';
                                     $mail->WordWrap = true;
                                     $mail->isSMTP();
-                                    $mail->Host = 'entiqa.online';
+                                    $mail->Host = 'entiqa.co';
                                     $mail->SMTPAuth = true;
-                                    $mail->Username = 'test@entiqa.online';
+                                    $mail->Username = 'support@entiqa.co';
                                     $mail->Password = 'mohamedramadan2930';
                                     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 
                                     $mail->Port = 587;
                                     // مُحتوى الرسالة
-                                    $mail->setFrom('test@entiqa.online', 'انتقاء');
+                                    $mail->setFrom('support@entiqa.co', 'انتقاء');
                                     $mail->addAddress($email, $user_name);
                                     $mail->Subject = ' تعديل كلمة المرور ';
                                     $mail->Body = " <p style='font-size:18px; font-family:inherit'> مرحبا ! استعادة كلمة المرور الخاصة بك علي منصة انتقاء " . $user_name . ",</p>

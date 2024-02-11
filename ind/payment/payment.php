@@ -47,17 +47,17 @@ if (isset($_SESSION['ind_id'])) {
                     "id" => "src_all"
                 ],
                 "post" => [
-                    "url" => "http://entiqa.online/test4/ind/payment/payment"
+                    "url" => "https://entiqa.co/ind/payment/payment"
                 ],
                 "redirect" => [
-                    "url" => "http://entiqa.online/test4/ind/payment/callback"
+                    "url" => "https://entiqa.co/ind/payment/callback"
                 ],
                 "metadata" => [
                     "udf1" => "Metadata 1"
                 ]
             ],
             'headers' => [
-                'Authorization' => 'Bearer sk_test_nsgFzA1ulL5432S8YfeENq9U',
+                'Authorization' => 'Bearer sk_live_bhFLinpP5X2jNCc7dZM0ytqY',
                 'accept' => 'application/json',
                 'content-type' => 'application/json',
             ],

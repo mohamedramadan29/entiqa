@@ -4,7 +4,6 @@ ob_start();
 session_start();
 $com_navbar = 'com';
 if (isset($_SESSION['com_id'])) {
-
     $com_id = $_SESSION['com_id'];
     $com_username = $_SESSION['com_username'];
     include 'init.php';

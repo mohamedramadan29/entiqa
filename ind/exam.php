@@ -90,15 +90,15 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                                                 $alluserexam = $stmt->fetchAll();
                                                 $countexam = $stmt->rowCount();
                                                 if ($countexam > 0) { ?>
-                                                    <button class="exam_done btn" style="color:#fff;background-color: #F16583;position:absolute;top: 30%;left: 36%;"> تم الاختبار بنجاح </button>
+                                                    <button class="exam_done btn" style="color:#fff;background-color: var(--main-color);position:absolute;top: 30%;left: 36%;"> تم الاختبار بنجاح </button>
                                                 <?php
                                                 } elseif ($countregister > 0) { ?>
-                                                    <button class="exam_done btn" style="color:#fff;background-color: #F16583;position:absolute;top: 30%;left: 25%;"> تم مشاهده الاختبار من قبل </button>
+                                                    <button class="exam_done btn" style="color:#fff;background-color: var(--main-color);position:absolute;top: 30%;left: 25%;"> تم مشاهده الاختبار من قبل </button>
                                                 <?php
                                                 } else {
 
                                                 ?>
-                                                    <button class="btn" style="color:#fff;background-color: #F16583;position:absolute;top: 30%;left: 36%;">
+                                                    <button class="btn" style="color:#fff;background-color: var(--main-color);position:absolute;top: 30%;left: 36%;">
                                                         <a style="color: #fff;" href="start_exam.php?exam_id=<?php echo $exam['ex_id'];  ?>"> بدء الاختبار <i class="fa fa-play"></i></a>
                                                     </button>
                                                 <?php
@@ -108,8 +108,8 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                                             <div class="exam_info" style="color:#fff; background-color: #fff; padding:10px;border-radius: 0px 0px 10px 10px;">
                                                 <h3> <?php echo $exam['ex_title'] ?> </h3>
                                                 <span class="badge badge-primary bg-primary"> <?php echo $exam['ex_type']; ?> </span>
-                                                <p style="color: #F16583; font-size: 18px;"> وقت الاخنبار : <span style="color:#000;"> <?php echo $exam['ex_time'] ?> دقائق </span> </p>
-                                                <p style="color: #F16583; font-size: 18px;"> عدد الاسئلة : <span style="color:#000;"> <?php echo $exam['ex_total_question'] ?> </span> </p>
+                                                <p style="color: var(--main-color); font-size: 18px;"> وقت الاخنبار : <span style="color:#000;"> <?php echo $exam['ex_time'] ?> دقائق </span> </p>
+                                                <p style="color: var(--main-color); font-size: 18px;"> عدد الاسئلة : <span style="color:#000;"> <?php echo $exam['ex_total_question'] ?> </span> </p>
                                             </div>
                                         </div>
                                     </div>

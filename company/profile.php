@@ -71,7 +71,7 @@ if (isset($_SESSION['com_id'])) {
                         <div class="info" style="background-color: #F3F3F3; border-radius: 20px;">
                             <div class="info_header">
                                 <h2> نبذة عن الشركه </h2>
-                                <a href="edit" style="background-color: #F16583;border-color: #F16583;border-radius: 20px;" class="btn btn-primary"> تعديل <i class="fa fa-pen-alt"></i></a>
+                                <a href="edit" style="background-color: var(--main-color);border-color: var(--main-color);border-radius: 20px;" class="btn btn-primary"> تعديل <i class="fa fa-pen-alt"></i></a>
                                 </button>
 
                             </div>
@@ -124,7 +124,7 @@ if (isset($_SESSION['com_id'])) {
                                         <h2></h2>
 
                                     </div>
-                                    <div class="info_data" style="background: #f16583;padding: 15px;border-radius: 5px;">
+                                    <div class="info_data" style="background: var(--main-color);padding: 15px;border-radius: 5px;">
                                         <ul class="list-unstyled">
                                             <li> <span>
                                                     <?php echo $com_data['com_balance']; ?> <strong> ريال </strong>

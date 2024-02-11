@@ -133,18 +133,18 @@ include 'init.php'; ?>
           <div class="address_section">
             <a href="#location">
               <span> <i class="fa fa-map-marker"></i> </span>
-              <p> السعودية , جدة </p>
+              <p> الرياض - الملقا - طريق الامام سعود بن فيصل   </p>
             </a>
           </div>
           <div class="address_section">
             <a href="tel://+966597319189">
               <span> <i class="fa fa-phone"></i> </span>
-              <p> 966597319189+ </p>
+              <p> +966597319189 </p>
             </a>
           </div>
           <div class="address_section">
             <span> <i class="fa fa-envelope"></i> </span>
-            <p> <a style='color:#3a3737;' href="mailto:info@entiqa.online"> info@entiqa.online </a>
+            <p> <a style='color:#3a3737;' href="mailto:info@entiqa.co"> info@entiqa.co </a>
             </p>
 
           </div>
@@ -163,7 +163,7 @@ include 'init.php'; ?>
 <!-- START MAP  -->
 <div class="map_section" id="location">
   <div class="data">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d950645.7063804097!2d38.65063185000682!3d21.450468415099117!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15c3d01fb1137e59%3A0xe059579737b118db!2sJeddah%20Saudi%20Arabia!5e0!3m2!1sen!2seg!4v1664807540110!5m2!1sen!2seg" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3622.3822545788066!2d46.60556102481633!3d24.78236104837854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2ee39ceb4dff7b%3A0x6c53689789aec723!2z2LfYsdmK2YIg2KfZhNin2YXYp9mFINiz2LnZiNivINio2YYg2YHZiti12YTYjCDYp9mE2YXZhNmC2KfYjCDYp9mE2LHZitin2LYg2KfZhNiz2LnZiNiv2YrYqQ!5e0!3m2!1sar!2seg!4v1707671234280!5m2!1sar!2seg" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
   </div>
 </div>
 

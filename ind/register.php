@@ -23,8 +23,8 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
         <section class="section section-md">
             <div class="container">
                 <div class="register_form">
-                    <a href="index" class="btn btn-primary" style='background-color:#e4157e;
-                 border-color:#e4157e;width: 100px;border-radius: 5px;'><i class="fa fa-arrow-right"></i> رجوع
+                    <a href="index" class="btn btn-primary" style='background-color:var(--main-color);
+                 border-color:var(--main-color);width: 100px;border-radius: 5px;'><i class="fa fa-arrow-right"></i> رجوع
                     </a>
                     <div class="row">
                         <!--RD Mailform-->
@@ -189,9 +189,9 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                                         $mail->CharSet = 'UTF-8';
                                         $mail->WordWrap = true;
                                         $mail->isSMTP();
-                                        $mail->Host = 'entiqa.online';
+                                        $mail->Host = 'entiqa.co';
                                         $mail->SMTPAuth = true;
-                                        $mail->Username = 'test@entiqa.online';
+                                        $mail->Username = 'support@entiqa.co';
                                         $mail->Password = 'mohamedramadan2930';
                                         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                                         //To load the French version
@@ -200,12 +200,12 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
 
                                         // مُحتوى الرسالة
 
-                                        $mail->setFrom('test@entiqa.online', 'انتقاء');
+                                        $mail->setFrom('support@entiqa.co', 'انتقاء');
                                         $mail->addAddress($ind_email, $ind_name);
                                         $mail->Subject = 'تفعيل الحساب الخاص بك  ';
                                         $mail->Body = " <p style='font-size:18px; font-family:inherit'>مرحبا " . $ind_username . ",</p>
                                                     <p style='font-size:18px; font-family:inherit'>شكرا لك على تسجيلك في انتقاء.</p>
-                                                    <a  style='font-size:18px; font-family:inherit' href='https://entiqa.online/test4/ind/activate?active_code=$activationCode' class='btn btn-primary'> أضغط هنا لتفعيل الحساب الخاص بك  </a>
+                                                    <a  style='font-size:18px; font-family:inherit' href='https://entiqa.co/ind/activate?active_code=$activationCode' class='btn btn-primary'> أضغط هنا لتفعيل الحساب الخاص بك  </a>
                                             ";
                                         $mail->AltBody = 'This is the plain text message body for non-HTML mail clients.';
                                         // إرسال البريد الإلكتروني

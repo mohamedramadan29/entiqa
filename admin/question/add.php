@@ -103,7 +103,7 @@
                             $subject = "   اختبار جديد لك علي منصة انتقاء   ";
                             $body = " اهلا بك  " . $inddata['ind_username'] . " لديك اختبار جديد علي منصة انتقاء  ";
                             $body .= " في تاريخ  " . $ex_date_publish;
-                            $headers = "From: test@entiqa.online";
+                            $headers = "From: support@entiqa.co";
                             mail($to_email, $asubject, $body, $headers);
                         }
                     }

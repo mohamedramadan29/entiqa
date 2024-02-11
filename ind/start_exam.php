@@ -131,7 +131,7 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                                         ?>
                                         <hr>
                                         <br>
-                                        <button name="send_response" onclick="finishTest()" type="submit" class="btn" style="background-color: #F16583; color:#fff;margin: auto;display: block;"> ارسال اتمام الاختبار <i class="fa fa-send"></i> </button>
+                                        <button name="send_response" onclick="finishTest()" type="submit" class="btn" style="background-color: var(--main-color); color:#fff;margin: auto;display: block;"> ارسال اتمام الاختبار <i class="fa fa-send"></i> </button>
                                     </form>
                                     <?php
                                     if ($_SERVER["REQUEST_METHOD"] == 'POST') {

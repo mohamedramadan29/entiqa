@@ -19,7 +19,7 @@ include 'init.php'; ?>
                 <a href="company/index">
                     <div class="section2 main_section animate__animated animate__backInRight ">
                         <div class="section_data">
-                            <button class="hover" id="danger" style="background-color:#e4157e;border-radius:6px;border:none;font-size:19px;color:#ffff;padding:50px">
+                            <button class="hover" id="danger" style="background-color:var(--main-color);;border-radius:6px;border:none;font-size:19px;color:#ffff;padding:50px">
                                 <p>
                                     للشركات
 
@@ -34,7 +34,7 @@ include 'init.php'; ?>
                 <a href="ind/index">
                     <div class="section1 main_section animate__animated animate__backInLeft ">
                         <div class="section_data p-6">
-                            <button class="hover" id="danger" style="background-color:#e4157e;border-radius:6px;border:none;font-size:19px;color:#ffff;padding:50px">
+                            <button class="hover" id="danger" style="background-color:var(--main-color);;border-radius:6px;border:none;font-size:19px;color:#ffff;padding:50px">
                                 <p>
                                     للأفراد
                                 </p>

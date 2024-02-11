@@ -1,6 +1,6 @@
 * {
-    --main-color: #516ca9;
-    --second-color: #e4157e;
+    --main-color: #FE0165;
+    --second-color: #FE0165;
 }
 
 .company_navbar .rd-navbar-main-inner {
@@ -10,24 +10,24 @@
 
 
 .company_navbar .banner_top_add li {
-    background: #516ca9;
+    background: var(--main-color);
 }
 
 .company_navbar .rd-navbar-aside-outer a:hover {
-    color: #f16583;
+    color: var(--main-color);
 }
 
 .company_navbar .rd-navbar-info i {
-    color: #516ca9;
+    color: var(--main-color);
 }
 
 .company .swiper-slide .section_data a {
-    color: #516ca9;
+    color: var(--main-color);
 }
 
 .company .button-secondary-text:hover {
-    background-color: #516ca9;
-    border-color: #516ca9;
+    background-color: var(--main-color);
+    border-color: var(--main-color);
 }
 
 .company .swiper-slide .section_data a:hover {
@@ -43,11 +43,11 @@
 }
 
 .company .btn-play span {
-    border-left: 16px solid #516ca9;
+    border-left: 16px solid var(--main-color);
 }
 
 .company .list-marked-2>li::before {
-    color: #516ca9;
+    color: var(--main-color);
 }
 .company .accordion .content p::before{
     border-color: transparent #516ca9 transparent transparent;
@@ -56,25 +56,25 @@
     fill:#516ca9
 }
 .company .owl-nav-classic .owl-nav .owl-prev:hover,.company .owl-nav-classic .owl-nav .owl-next:hover{
-    background: #516ca9;
+    background: var(--main-color);
 }
 
 /* START START PAGE*/
 .company .breadcrumb-item a{
-    color: #516ca9;
+    color: var(--main-color);
 }
 .company .star_person .data .info button{
-    color: #516ca9;
-    border-color: #516ca9;
+    color: var(--main-color);
+    border-color: var(--main-color);
 }
 .company .star_person .data .info button:hover{
-background-color: #516ca9;
+background-color: var(--main-color);
 }
 .company .contact_us .address_section span i{
-    color: #516ca9;
+    color: var(--main-color);
     margin-left: 10px;
 }
 .company .contact_us .address_section p a{
-    color: #516ca9;
+    color: var(--main-color);
 }
  

@@ -45,17 +45,17 @@ if (isset($_SESSION['com_id'])) {
                     "id" => "src_all"
                 ],
                 "post" => [
-                    "url" => "http://entiqa.online/test3/company/payment/payment"
+                    "url" => "https://entiqa.co/company/payment/payment"
                 ],
                 "redirect" => [
-                    "url" => "http://entiqa.online/test3/company/payment/callback"
+                    "url" => "https://entiqa.co/company/payment/callback"
                 ],
                 "metadata" => [
                     "udf1" => "Metadata 1"
                 ]
             ],
             'headers' => [
-                'Authorization' => 'Bearer sk_test_nsgFzA1ulL5432S8YfeENq9U',
+                'Authorization' => 'Bearer sk_live_bhFLinpP5X2jNCc7dZM0ytqY',
                 'accept' => 'application/json',
                 'content-type' => 'application/json',
             ],

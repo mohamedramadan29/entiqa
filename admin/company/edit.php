@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $to_email = $com_data['com_email'];
             $subject = " تفعيل حساب الشركة ";
             $body = "  رااائع !!  لقد تم تفعيل الحساب الخاص بك علي منصة  انتقاء يمكنك الان تكوين الفريق الخاص بك  ";
-            $headers = "From: test@entiqa.online";
+            $headers = "From: support@entiqa.co";
             mail($to_email, $subject, $body, $headers);
         }
 ?>

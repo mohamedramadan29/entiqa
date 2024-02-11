@@ -20,7 +20,7 @@
                     CURLOPT_CUSTOMREQUEST => "GET",
                     CURLOPT_POSTFIELDS => "{}",
                     CURLOPT_HTTPHEADER => array(
-                        "authorization: Bearer sk_test_nsgFzA1ulL5432S8YfeENq9U" // مفتاح الواجهة السري
+                        "authorization: Bearer sk_live_bhFLinpP5X2jNCc7dZM0ytqY" // مفتاح الواجهة السري
                     ),
                 )
             );

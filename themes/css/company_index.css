@@ -1,3 +1,8 @@
+* {
+    --main-color: #FE0165;
+    --second-color: #516ca9;
+
+}
 .company_index {
     height: 100vh;
 }
@@ -16,7 +21,7 @@
 }
 
 .company_index_about_us h2 {
-    color: #e4157e;
+    color: var(--main-color);
     font-size: 30px;
     font-weight: bold;
     margin-bottom: 25px;
@@ -26,6 +31,7 @@
 .company_index_about_us p {
     color: #000;
     font-size: 20px;
+    text-align: justify;
 }
 
 .company_index_about_us .video_about_us {
@@ -101,7 +107,7 @@
 .berfect_employess .data {}
 
 .berfect_employess .data h4 {
-    color: #e4157e;
+    color: var(--main-color);
     font-weight: bold;
     margin-bottom: 20px;
 }
@@ -146,7 +152,7 @@
 .the_best .info {}
 
 .the_best .info h4 {
-    color: #e4157e;
+    color: var(--main-color);
     font-weight: bold;
     margin-bottom: 20px;
     margin-top: 40px;
@@ -180,14 +186,14 @@
 .faq_question_company {}
 
 .faq_question_company h2 {
-    color: #e4157e;
+    color: var(--main-color);
     font-weight: bold;
 }
 
 .faq_question_company {}
 
 .faq_question_company .accordion a::after {
-    color: #e4157e;
+    color: var(--main-color);
 }
 
 .faq_question_company .accordion .content p {
@@ -206,7 +212,7 @@
 .companieeees {}
 
 .companieeees h4 {
-    color: #e4157e;
+    color: var(--main-color);
     font-weight: bold;
     margin-bottom: 20px;
     margin-top: 40px;
@@ -216,7 +222,7 @@
 /* START FOOTER **/
 
 .footer-classic .footer-inner-1 {
-    background-color: #B81869;
+    background-color: var(--main-color);
 }
 
 footer .contact-list li i {

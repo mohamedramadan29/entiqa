@@ -123,9 +123,9 @@
                     $mail->CharSet = 'UTF-8';
                     $mail->WordWrap = true;
                     $mail->isSMTP();
-                    $mail->Host = 'entiqa.online';
+                    $mail->Host = 'entiqa.co';
                     $mail->SMTPAuth = true;
-                    $mail->Username = 'test@entiqa.online';
+                    $mail->Username = 'support@entiqa.co';
                     $mail->Password = 'mohamedramadan2930';
                     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                     //To load the French version
@@ -134,7 +134,7 @@
 
                     // مُحتوى الرسالة
 
-                    $mail->setFrom('test@entiqa.online', 'انتقاء');
+                    $mail->setFrom('support@entiqa.co', 'انتقاء');
                     $mail->addAddress($co_email, $co_name);
                     $mail->Subject = ' معلومات تسجيل الدخول الخاصة بك كمدرب علي منصة انتقاء  ';
                     $mail->Body = " <p style='font-size:18px; font-family:inherit'>مرحبا " . $co_name . ",</p>

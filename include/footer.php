@@ -20,7 +20,7 @@
 
                     <ul class="contact-list font-weight-bold">
                         <li><i class="fa fa-map-marker"></i> الرياض - الملقا - طريق الامام سعود بن فيصل </li>
-                        <li><i class="fa fa-phone"></i> 966597319189+ </li>
+                        <li><i class="fa fa-phone"></i> +966597319189 </li>
                         <li><i class="fa fa-envelope"></i>info@entiqa.co</li>
                     </ul>
                 </div>

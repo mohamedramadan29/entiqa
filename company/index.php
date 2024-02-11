@@ -15,7 +15,7 @@ include 'init.php'; ?>
 -->
                 <?php
                 if (!isset($_SESSION['com_id'])) { ?>
-                    <a href="stars" class="btn btn-primary" style="background-color: #e4157e;border-color: #e4157e; border-radius: 40px;" type="button"> اختر
+                    <a href="stars" class="btn btn-primary" style="background-color: var(--main-color);border-color: var(--main-color); border-radius: 40px;" type="button"> اختر
                         فريقك </a>
                 <?php
                 }
@@ -31,10 +31,10 @@ include 'init.php'; ?>
             <div class="col-md-6">
                 <div class="">
                     <h2> من نحن </h2>
-                    <p> تبحث عن موظف بائع محترف يلائم تطلعاتك؟ </p>
-                    <p> تحتاج لفريق مبيعات خبير لتسويق وبيع منتجاتك باحترافية عالية؟ </p>
-                    <p> ترغب بتطوير أعمالك وزيادة ايراداتك؟ </p>
-                    <p> إنتقاء .. الشريك الأمثل لتطوير أعمالك ومفتاح نجاحك المهني </p>
+                    <p>
+                        منصة انتقائية متخصصة في التدريب والترشيح في مجال المبيعات، نستهدف الشركات و الأفراد المتدربين والمحترفين لاختيار أفضل الفرص المتاحة والمناسبة للطرفين، نقوم بجذب الأفراد المهتمين والقادرين على الممارسة والعمل في مجال المبيعات ومساعدة الشركات على الاستقطاب الأفضل ..
+
+                    </p>
                 </div>
             </div>
             <div class="col-md-6 video_about_us">
@@ -48,12 +48,12 @@ include 'init.php'; ?>
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header"> 
+                        <div class="modal-header">
                             <button type="button" class="btn-close btn btn-danger" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="plyr__video-embed" id="player">
-                                <iframe data-poster="uploads/poster.webp" src="https://www.youtube.com/watch?v=FhSBbvt9FnA&ab_channel=Entiqa" allowfullscreen allowtransparency allow="autoplay"></iframe>
+                                <iframe data-poster="uploads/poster.webp" src="https://www.youtube.com/watch?v=UEEzObfQm_0" allowfullscreen allowtransparency allow="autoplay"></iframe>
                             </div>
                         </div>
                     </div>
@@ -67,16 +67,16 @@ include 'init.php'; ?>
 <div class="berfect_employess">
     <div class="container">
         <div class="data">
-            <h4> احصل على أفضل موظفي المبيعات المحترفين مع إنتقاء تواصل معنا لنساعدك </h4>
+            <h4> أحصل على البائعين </h4>
             <p>
-                إنتقاء ترشح لك أفضل الموظفين المدربين على مهارات البيع الحديث وفق أسس ومناهج عملية احترافية لنكون لك عوناً <br> ونساعدك في تحقيق أهدافك بأفضل الطرق.
+                أحصل على أفضل موظفي المبيعات المحترفين مع إنتقاء عبر منصتنا فأنتقاء هي الطريقة السلسة للتفاوض مع الأفضل نحن نقدم لك المحترفين و المتدربين على مهارات البيع الحديث وفق أسس ومناهج عملية احترافية لنكون لك عوناً ونساعدك في تحقيق أهدافك بأفضل الطرق.
             </p>
         </div>
     </div>
 </div>
 <!-- End Berfect Employess   -->
 <!-- Start Pick The Best  -->
-<div class="the_best">
+<!-- <div class="the_best">
     <div class="container">
         <div class="data">
             <div class="row">
@@ -94,10 +94,10 @@ include 'init.php'; ?>
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <!-- End Bick The Best   -->
 <!-- Start Why Entiqaa  -->
-<div class="berfect_employess">
+<!-- <div class="berfect_employess">
     <div class="container">
         <div class="data">
             <h4> لماذا إنتقاء ؟ </h4>
@@ -107,7 +107,7 @@ include 'init.php'; ?>
             </p>
         </div>
     </div>
-</div>
+</div> -->
 <!-- End why Entiqaa   -->
 <!-- START NEW TESTMONAILS  -->
 <?php
