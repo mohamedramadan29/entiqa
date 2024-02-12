@@ -252,7 +252,7 @@ if ($count_rev > 0) {
                         كم عدد ساعات الحضور للدورة ؟ </a>
                     <div class="content">
                         <p>
-                            40 دقيقة الى 60 دقيقة لمدة 3 اسابيع
+                            مدة التدريب ساعة ونصف يومياً لمدة 14 يوم
                         </p>
                     </div>
                 </div>
@@ -381,7 +381,9 @@ if ($count_rev > 0) {
 <div class="container companieeees">
     <h4> عملائنا </h4>
     <div class="responsive">
-
+        <div>
+            <img src="../images/company_logo/new_com.jpeg" alt="">
+        </div>
         <div>
             <img src="../images/company_logo/com1.png" alt="">
         </div>

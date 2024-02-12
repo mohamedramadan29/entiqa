@@ -482,7 +482,7 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                                                         echo "selected"; ?> value="ذكر">ذكر
                                             </option>
                                             <option <?php if (isset($_REQUEST['ind_gender']) && $_REQUEST['ind_gender'] == 'انثي')
-                                                        echo "selected"; ?> value="انثي">انثي
+                                                        echo "selected"; ?> value="انثي"> انثى
                                             </option>
                                         </select>
                                     </div>

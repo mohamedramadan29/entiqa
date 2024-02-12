@@ -297,7 +297,9 @@ if ($count_rev > 0) {
 <div class="container companieeees">
     <h4> عملائنا </h4>
     <div class="responsive">
-
+        <div>
+            <img src="../images/company_logo/new_com.jpeg" alt="">
+        </div>
         <div>
             <img src="../images/company_logo/com1.png" alt="">
         </div>
@@ -346,6 +348,7 @@ if ($count_rev > 0) {
         <div>
             <img src="../images/company_logo/com16.png" alt="">
         </div>
+
     </div>
 </div>
 

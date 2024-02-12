@@ -1,5 +1,5 @@
 <?php
-$pagetitle = ' المؤهلين  ';
+$pagetitle = ' بائعين المرشحين ';
 ob_start();
 session_start();
 $com_navbar = 'com';
@@ -11,7 +11,7 @@ if (isset($_SESSION['com_id'])) {
             <div class="overlay" style="background-color: rgba(0,0,0,0.3);">
                 <div class="container">
                     <div class="data">
-                        <h2>المؤهلين </h2>
+                        <h2>  بائعين المرشحين </h2>
                     </div>
                 </div>
             </div>
@@ -104,7 +104,7 @@ if (isset($_SESSION['com_id'])) {
 
                                                 <option <?php if (isset($_GET['ind_gender']) && $_GET['ind_gender'] == 'الكل') echo 'selected'; ?> value="الكل">الكل</option>
                                                 <option <?php if (isset($_GET['ind_gender']) && $_GET['ind_gender'] == 'ذكر') echo 'selected'; ?> value="ذكر">ذكر</option>
-                                                <option <?php if (isset($_GET['ind_gender']) && $_GET['ind_gender'] == 'انثي') echo 'selected'; ?> value="انثي">انثي</option>
+                                                <option <?php if (isset($_GET['ind_gender']) && $_GET['ind_gender'] == 'انثي') echo 'selected'; ?> value="انثي"> انثى </option>
                                             </select>
                                         </div>
                                         <div class="col-5">

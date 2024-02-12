@@ -89,7 +89,7 @@ include 'init.php'; ?>
                                            
                                             <option <?php if (isset($_GET['ind_gender']) && $_GET['ind_gender'] == 'الكل') echo 'selected'; ?> value="الكل">الكل</option>
                                             <option <?php if (isset($_GET['ind_gender']) && $_GET['ind_gender'] == 'ذكر') echo 'selected'; ?> value="ذكر">ذكر</option>
-                                            <option <?php if (isset($_GET['ind_gender']) && $_GET['ind_gender'] == 'انثي') echo 'selected'; ?> value="انثي">انثي</option>
+                                            <option <?php if (isset($_GET['ind_gender']) && $_GET['ind_gender'] == 'انثي') echo 'selected'; ?> value="انثي"> انثى </option>
                                         </select>
                                     </div>
                                     <div class="col-5">
