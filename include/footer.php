@@ -29,6 +29,7 @@
                     <ul class='list-unstyled social_icon'>
                         <li> <a href="https://twitter.com/Entiqa_"><i class='fa fa-twitter'></i></a> </li>
                         <li> <a href="https://www.instagram.com/_entiqa_/"><i class='fa fa-instagram'></i></a></li>
+                        <li> <a href="https://www.linkedin.com/company/entiqa-online/?viewAsMember=true"><i class='fa fa-linkedin'></i></a></li>
                     </ul>
                 </div>
             </div>

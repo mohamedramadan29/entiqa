@@ -319,9 +319,9 @@ if ($count_rev > 0) {
         <div>
             <img src="../images/company_logo/com7.png" alt="">
         </div>
-        <!-- <div>
-            <img src="../images/company_logo/com8.png" alt="">
-        </div> -->
+        <div>
+            <img src="../images/company_logo/com81.png" alt="">
+        </div>
         <div>
             <img src="../images/company_logo/com9.png" alt="">
         </div>
