@@ -45,7 +45,7 @@ foreach ($allmessage as $message) {
                     }
                 } else {
                     ?>
-                    <img src="../images/an.jpg" alt="">
+                    <img style="object-position: center; object-fit:cover;" src="../images/annn.jpg" alt="">
                 <?php
                 }
 
