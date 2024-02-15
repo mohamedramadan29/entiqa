@@ -9,7 +9,7 @@ foreach ($allmessage as $message) {
     if ($message["from_person"] == 'coash') { ?>
         <div class="send_message sender_message">
             <div>
-                <img src="uploads/logo.png" alt="">
+                <img src="uploads/message_logo.png" alt="">
             </div>
             <div class="message_info">
                 <p class="sender_name">موسسة انتقاء</p>

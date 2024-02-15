@@ -65,7 +65,7 @@ foreach ($allmessage as $message) {
                 } else {
                     ?>
 
-                    <img src="../images/an.jpg" alt="">
+                    <img src="../images/message_logo.png" alt="">
                 <?php
                 }
 

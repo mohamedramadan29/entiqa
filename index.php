@@ -3,19 +3,18 @@ $pagetitle = 'انتقاء';
 ob_start();
 session_start();
 include 'init.php'; ?>
-
-
 <!--<div class="landing_page" style="background-image: url('images/background.jpeg');opacity: 1;">-->
 <div class="landing_page" style="background-color:white;">
 
     <div style="text-align: center;font-size:25px;color:#fff; margin-top:120px;font-weight:bold" class="">
         <img src="images/main_logo.png" style="width: 240px; height: auto;" alt="">
-
     </div>
-
     <div class="home_section">
         <div class="container">
-            <div class="data">
+            <div class="header">
+            <h3 style="color: #2b2b2b; text-align:center"> الشريك الأفضل لنجاح المبيعات </h3>
+            </div>
+            <div class="data" style="margin-top: 5%;">
                 <a href="company/index">
                     <div class="section2 main_section animate__animated animate__backInRight ">
                         <div class="section_data">

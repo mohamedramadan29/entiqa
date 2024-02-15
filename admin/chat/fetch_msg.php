@@ -16,7 +16,7 @@ foreach ($allmessage as $message) {
     if ($message["from_person"] == $admin_name) { ?>
         <div class="send_message sender_message">
             <div>
-                <img src="uploads/an.jpg" alt="">
+                <img src="uploads/message_logo.png" alt="">
             </div>
             <div class="message_info">
                 <p class="sender_name" style="font-size: 16px;">موسسة انتقاء</p>
