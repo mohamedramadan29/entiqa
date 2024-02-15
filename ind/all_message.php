@@ -52,7 +52,7 @@ if (isset($_SESSION['ind_id'])) {
                                 <div class="message_data">
                                     <div class="image">
                                         <?php
-                                        $i_src  = "../images/an.jpg";
+                                        $i_src  = "../images/message_logo.png";
                                         if ($message['c_img'] != '') {
                                             $i_src  = "../ind_images_upload/" . $message['c_img'];
                                         } ?>

@@ -62,7 +62,7 @@ if (isset($_SESSION['com_id'])) {
                                 <div class="image">
 
 							<?php 
-							$i_src  ="../images/an.jpg" ;
+							$i_src  ="../images/message_logo.png" ;
 							if ( $message['i_img'] != '' ){ $i_src  ="../ind_images_upload/" . $message['i_img'] ; } ?>
                             <img src="<?php echo $i_src;?>" alt="">
                                                </div>
