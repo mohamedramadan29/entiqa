@@ -43,6 +43,21 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                             $ind_english = sanitizeInput($_POST["ind_english"]);
                             $ind_password = sanitizeInput($_POST["ind_password"]);
                             $confirm_password = sanitizeInput($_POST["confirm_password"]);
+                            $marketer_code = sanitizeInput($_POST['marketer_code']);
+                            // get the marketer data
+                            if (!empty($marketer_code)) {
+                                $stmt = $connect->prepare("SELECT * FROM marketers WHERE code = ?");
+                                $stmt->execute(array($marketer_code));
+                                $marketer_count = $stmt->rowCount();
+                                if ($marketer_count > 0) {
+                                    $marketer_data = $stmt->fetch();
+                                    $marketer_id = $marketer_data['id'];
+                                } else {
+                                    $marketer_id = null;
+                                    $formerror[] = ' كود المسوق الخاص بك غير صحيح  ';
+                                }
+                            }
+
                             if (empty($ind_username)) {
                                 $formerror[] = "  من فضلك ادخل الاسم الخاص بك ";
                             }
@@ -94,7 +109,6 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                                     $formerror[] = 'من فضلك، أدخل رقم هاتف صحيح بصيغة سعودية.';
                                 }
                             }
-
                             if (
                                 empty($ind_username) || empty($ind_name) || empty($ind_birthdate) || empty($ind_email) || empty($ind_phone)
                                 || empty($ind_nationality) || empty($ind_address) || empty($ind_gender) || empty($ind_transfer)
@@ -158,10 +172,10 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                                 $stmt = $connect->prepare("INSERT INTO ind_register
                                     (ind_username,ind_password,ind_name,
                                     ind_birthdate,ind_email,ind_phone,ind_nationality,ind_address,ind_gender,ind_transfer,
-                                    ind_english,active_status_code) VALUES 
+                                    ind_english,active_status_code,marketer_id) VALUES 
                                     (:zusername,:zpassword,:zname,:zbirthdate,
                                     :zemail,:zphone,:znationality,:zaddress,:zgender,:ztransfer,
-                                    :zenglish,:zstatus_code)");
+                                    :zenglish,:zstatus_code,:zmarketer_id)");
                                 $stmt->execute(
                                     array(
                                         "zusername" => $ind_username,
@@ -175,15 +189,13 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                                         "zgender" => $ind_gender,
                                         "ztransfer" => $ind_transfer,
                                         "zenglish" => $ind_english,
-                                        "zstatus_code" => $activationCode
+                                        "zstatus_code" => $activationCode,
+                                        "zmarketer_id" => $marketer_id,
                                     )
                                 );
                                 if ($stmt) {
-
-
                                     // START SEND MAIL ////////////////////////////////////
                                     //Create an instance; passing `true` enables exceptions
-
                                     try {
                                         // الإعدادات الأساسية لإعداد البريد الإلكتروني
                                         $mail->CharSet = 'UTF-8';
@@ -290,6 +302,21 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                                                                                                                                                                                                                                                                                 echo $_REQUEST['ind_nationality'];
                                                                                                                                                                                                                                                                             } ?>">
                                     </div>
+                                    <div class="box">
+                                        <input type="checkbox" name="check_radio" id="code_market" onchange="toggleInputVisibility()">
+                                        <label style="position: relative;top: -10px;right: 20px;cursor: pointer;" for="code_market"> هل لديك كود </label>
+                                        <input oninvalid="setCustomValidityArabic(this,'الكود')" oninput="resetCustomValidity(this)" placeholder=" الكود " class="form-control" id="marketer_code" type="text" name="marketer_code" value="<?php if (isset($_REQUEST['marketer_code'])) {
+                                                                                                                                                                                                                                                echo $_REQUEST['marketer_code'];
+                                                                                                                                                                                                                                            } ?>" style="display: none;">
+                                    </div>
+
+                                    <script>
+                                        function toggleInputVisibility() {
+                                            var input = document.getElementById('marketer_code');
+                                            input.style.display = document.getElementById('code_market').checked ? 'block' : 'none';
+                                        }
+                                    </script>
+
 
                                 </div>
                                 <div class="col-lg-6">
@@ -487,6 +514,7 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                                         </select>
                                     </div>
 
+
                                 </div>
                             </div>
                             <div class="row">
@@ -502,7 +530,7 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                                     <button class="btn btn-primary" type="" name="send_information">فتح حساب</button>
                                 </div>
                             </div>
-                            
+
                             <div class="have_accout">
                                 <p class="text-center">
                                     لديك حساب ؟ <a href="login">سجل دخول الان </a>

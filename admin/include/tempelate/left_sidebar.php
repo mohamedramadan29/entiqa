@@ -184,12 +184,11 @@ if ($count_Admin > 0) {
                     <a href="#" class="nav-link nav-link2">
                         <i class="fa-solid fa-envelope color2"></i>
                         <p>
-                            الرسائل
+                            رسائل صفحه تواصل معنا
                             <i class="right fas fa-angle-left "></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-
                         <li class="nav-item" id="lnk-contact">
                             <a href="main.php?dir=contact&page=report" class="nav-link">
                                 <i class="far fa-circle nav-icon color3"></i>
@@ -259,6 +258,24 @@ if ($count_Admin > 0) {
                             <a href="main.php?dir=subscribe_payment&page=report" class="nav-link">
                                 <i class="far fa-circle nav-icon color3"></i>
                                 <p> اشتركات الفرد والشركه </p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item" id="lnk-message">
+                    <a href="#" class="nav-link nav-link2">
+                        <i class="fa-solid fa-envelope color2"></i>
+                        <p>
+                            المسوقين
+                            <i class="right fas fa-angle-left "></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item" id="lnk-marketer">
+                            <a href="main.php?dir=marketers&page=report" class="nav-link">
+                                <i class="far fa-circle nav-icon color3"></i>
+                                <p> مشاهدة جميع المسوقين </p>
                             </a>
                         </li>
                     </ul>

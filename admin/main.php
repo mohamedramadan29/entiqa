@@ -242,6 +242,21 @@ if (isset($_SESSION['admin_session'])) {
         } elseif ($dir == 'subscribe_payment' && $page == 'report') {
             include 'subscribe_payment/report.php';
         }
+
+        // Start Marketer 
+        if ($dir == 'marketers' && $page == 'add') {
+            include 'marketers/add.php';
+        } elseif ($dir == 'marketers' && $page == 'edit') {
+            include 'marketers/edit.php';
+        } elseif ($dir == 'marketers' && $page == 'delete') {
+            include 'marketers/delete.php';
+        } elseif ($dir == 'marketers' && $page == 'report') {
+            include 'marketers/report.php';
+        }
+        elseif ($dir == 'marketers' && $page == 'users') {
+            include 'marketers/users.php';
+        }
+
         ?>
     </div>
 </div>
