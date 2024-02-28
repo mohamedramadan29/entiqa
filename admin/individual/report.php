@@ -62,6 +62,7 @@ if (isset($_SESSION['admin_session']) || isset($_SESSION['serv_name'])) {
                             <th> # </th>
                             <th> الاسم </th>
                             <th>البريد الالكروني</th>
+                            <th> رقم الهاتف  </th>
                             <th> الجنسية </th>
                             <th> تاريخ الميلاد </th>
                             <th>اسم الدفعة</th>
@@ -87,6 +88,9 @@ if (isset($_SESSION['admin_session']) || isset($_SESSION['serv_name'])) {
                                 </td>
                                 <td>
                                     <?php echo $type['ind_email']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $type['ind_phone']; ?>
                                 </td>
                                 <td>
                                     <?php echo $type['ind_nationality']; ?>

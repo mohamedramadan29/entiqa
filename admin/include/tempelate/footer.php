@@ -1,4 +1,4 @@
-  <script src="<?php echo $js; ?>jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
   <script src="<?php echo $js; ?>bootstrap.min.js"></script>
   <!-- overlayScrollbars -->
   <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
@@ -6,7 +6,14 @@
   <!-- END RATING SYSTEM -->
   <script src="https://kit.fontawesome.com/588e070751.js" crossorigin="anonymous"></script>
   <!-- Bootstrap -->
-  <script src="<?php echo $js; ?>datatables.min.js"></script>
+   <!-- <script src="<?php echo $js; ?>datatables.min.js"></script>   -->
+  <script src="https://cdn.datatables.net/2.0.1/js/dataTables.js"></script>
+  <script src="https://cdn.datatables.net/buttons/3.0.0/js/dataTables.buttons.js"></script>
+  <script src="https://cdn.datatables.net/buttons/3.0.0/js/buttons.dataTables.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+  <script src="https://cdn.datatables.net/buttons/3.0.0/js/buttons.html5.min.js"></script>
   <script src="<?php echo $js; ?>select2.min.js"></script>
   <script src="<?php echo $js; ?>custome.js"></script>
   <script src="dist/js/adminlte.js"></script>

@@ -1279,9 +1279,9 @@ textarea.form-control {
     color: #d63031 !important;
   }
 
-  .hiddenprint {
+  /* .hiddenprint {
     display: none !important;
-  }
+  } */
 
   .car_rental_report .com_logo img {
     max-width: 80px;
@@ -1289,9 +1289,9 @@ textarea.form-control {
     border: none !important;
   }
 
-  .data-report button {
+  /* .data-report button {
     display: none !important;
-  }
+  } */
 }
 
 /*/////////////////////////////////////////////*/

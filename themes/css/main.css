@@ -772,6 +772,8 @@ START STAR PERSON PAGE
     display: block;
     border: 1px solid #cbcbcb;
     padding: 1px;
+    object-fit: cover !important;
+    object-position: center !important;
 }
 
 .star_person .data .info h2 {

@@ -1331,9 +1331,9 @@
      color: #d63031 !important;
    }
 
-   .hiddenprint {
+   /* .hiddenprint {
      display: none !important;
-   }
+   } */
 
    .car_rental_report .com_logo img {
      max-width: 80px;
@@ -1341,9 +1341,9 @@
      border: none !important;
    }
 
-   .data-report button {
+   /* .data-report button {
      display: none !important;
-   }
+   } */
  }
 
  /*/////////////////////////////////////////////*/
@@ -1358,9 +1358,9 @@
    height: 40px;
  }
 
- .bootstrap-select.btn-group .dropdown-toggle .caret {
+ /* .bootstrap-select.btn-group .dropdown-toggle .caret {
    display: none !important;
- }
+ } */
 
  .car_rental_report .section_head_last {
    font-size: 14px;

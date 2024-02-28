@@ -28,6 +28,7 @@ if (!isset($_SESSION['admin_session']) && !isset($_SESSION['serv_name'])) {
                     <tr>
                         <th> الاسم </th>
                         <th>البريد الألكتروني</th>
+                        <th> رقم الهاتف </th>
                         <th> الجنسية </th>
                         <th> تاريخ الميلاد </th>
                         <th> حالة الدفع </th>
@@ -42,6 +43,9 @@ if (!isset($_SESSION['admin_session']) && !isset($_SESSION['serv_name'])) {
                     foreach ($alltype as $type) { ?> <tr>
                             <td><?php echo $type['ind_name']; ?> </td>
                             <td><?php echo $type['ind_email']; ?> </td>
+                            <td>
+                                <?php echo $type['ind_phone']; ?>
+                            </td>
                             <td> <?php echo $type['ind_nationality']; ?> </td>
                             <td> <?php echo $type['ind_birthdate']; ?> </td>
                             <td> <?php if ($type['ind_payment_charge'] == 'CAPTURED') {
@@ -73,6 +77,14 @@ if (!isset($_SESSION['admin_session']) && !isset($_SESSION['serv_name'])) {
                                 <a class="btn btn-info btn-sm" href="main.php?dir=chat&page=chat&ind_username=<?php echo $type['ind_username']; ?>" id="chatLink">
                                     <i class="fa fa-comment"></i> تواصل
                                 </a>
+                                <?php if (isset($_SESSION['admin_session'])) {
+                                ?>
+                                    <a class="confirm btn btn-danger btn-sm" href="main.php?dir=services_section&page=delete&ind_id=<?php echo $type['ind_id']; ?>">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                <?php
+                                } ?>
+
                             </td>
                         </tr> <?php
                                 ?>
