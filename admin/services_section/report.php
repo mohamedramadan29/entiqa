@@ -29,8 +29,8 @@ if (!isset($_SESSION['admin_session']) && !isset($_SESSION['serv_name'])) {
                         <th> الاسم </th>
                         <th>البريد الألكتروني</th>
                         <th> رقم الهاتف </th>
-                        <th> الجنسية </th>
-                        <th> تاريخ الميلاد </th>
+                        <!-- <th> الجنسية </th>
+                        <th> تاريخ الميلاد </th> -->
                         <th> حالة الدفع </th>
                         <th> </th>
                     </tr>
@@ -46,8 +46,8 @@ if (!isset($_SESSION['admin_session']) && !isset($_SESSION['serv_name'])) {
                             <td>
                                 <?php echo $type['ind_phone']; ?>
                             </td>
-                            <td> <?php echo $type['ind_nationality']; ?> </td>
-                            <td> <?php echo $type['ind_birthdate']; ?> </td>
+                            <!-- <td> <?php echo $type['ind_nationality']; ?> </td>
+                            <td> <?php echo $type['ind_birthdate']; ?> </td> -->
                             <td> <?php if ($type['ind_payment_charge'] == 'CAPTURED') {
                                     ?>
                                     <span class="badge badge-success"> تم الدفع </span>
