@@ -1107,6 +1107,8 @@ END LOGIN PAGE */
     height: 150px;
     border-radius: 50%;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    object-fit: cover;
+    object-position: center;
 }
 
 .profile_data .data {}
@@ -1346,6 +1348,8 @@ nav .rd-navbar-nav li img {
     height: 50px;
     border-radius: 50%;
     border: 1px solid #ebebeb;
+    object-fit: cover;
+    object-position: center;
 }
 
 nav .profile_item,
@@ -2275,6 +2279,8 @@ li .notification span {
     border-radius: 100%;
     border: 1px solid #ccc;
     padding: 2px;
+    object-fit: cover;
+    object-position: center;
 }
 
 .div_change_image {

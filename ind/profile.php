@@ -297,7 +297,7 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                     </div>
                     <div class="col-lg-5">
                         <div class="document_section">
-                            <p style="color:#000; font-size:25px; margin-bottom:10px; "> حالة المتدرب </p>
+                            <p style="color:#000; font-size:25px; margin-bottom:10px; ">  حالة العضوية</p>
                             <div class="user_status">
                                 <?php
                                 if ($ind_data['ind_payment_charge'] == null) {

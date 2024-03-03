@@ -178,7 +178,7 @@ if ($count_rev > 0) {
                     </div>
                 </div>
             </div>
-            <div class="accordion">
+            <!-- <div class="accordion">
                 <div class="accordion-item">
                     <a> كم قيمة الرسوم للحصول على خدماتكم ؟ </a>
                     <div class="content">
@@ -188,7 +188,7 @@ if ($count_rev > 0) {
                         </p>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="accordion">
                 <div class="accordion-item">
                     <a> كيف هي ضمانة خدماتكم ؟ </a>

@@ -213,7 +213,7 @@ if (isset($_SESSION['ind_id'])) {
                                             <?php echo $user['ind_name']; ?>
                                         </h2>
                                         <div class="rate">
-                                            <div class="review">
+                                            <!-- <div class="review">
                                                 <?php
                                                 $rating = $user['rating_star']; // قيمة النجوم، يجب أن تأتي من مصدر البيانات
                                                 for ($i = 1; $i <= 5; $i++) {
@@ -224,7 +224,7 @@ if (isset($_SESSION['ind_id'])) {
                                                     }
                                                 }
                                                 ?>
-                                            </div>
+                                            </div> -->
                                             <div>
                                                 <p> <span> الجنسية : </span>
                                                     <?php echo $user['ind_nationality']; ?><span> </span>

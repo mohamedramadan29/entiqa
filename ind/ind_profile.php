@@ -99,7 +99,7 @@ if (isset($_SESSION['ind_id'])) {
                                                     <th> الاسم ثلاثي </th>
                                                     <th> <?php echo $ind_data['ind_name']; ?> </th>
                                                 </tr>
-                                                <tr>
+                                                <!-- <tr>
                                                     <th> رقم الدفعه</th>
                                                     <th style="color:rgba(0, 0, 0, 0.5);">
                                                         <?php
@@ -114,7 +114,7 @@ if (isset($_SESSION['ind_id'])) {
                                                         }
                                                         ?>
                                                     </th>
-                                                </tr>
+                                                </tr> -->
                                                 <tr>
                                                     <th> تاريخ الميلاد </th>
                                                     <th> <?php echo $ind_data['ind_birthdate']; ?> </th>
