@@ -10,7 +10,6 @@ use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 
 require 'mail/vendor/autoload.php';
-
 $mail = new PHPMailer(true);
 
 include 'init.php';
@@ -31,7 +30,19 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                     $ind_username = $com_data['ind_username'];
                     $ind_name = $com_data['ind_name'];
                     // Generate a unique activation code 
-                    $activationCode = rand(1, 55555);
+                    //$activationCode = rand(1, 55555);
+                    // قائمة بالرموز التي ترغب في استخدامها
+                    $symbols = '!@#$%^&*()_+[]{}|;:,.<>?';
+
+                    // توليد الرقم العشوائي مع الرموز
+                    $activationCode = '';
+                    for ($i = 0; $i < 6; $i++) {
+                        $activationCode .= mt_rand(0, 9); // أضف رقمًا عشوائيًا
+                        $activationCode .= $symbols[mt_rand(0, strlen($symbols) - 1)]; // أضف رمزًا عشوائيًا
+                    }
+
+                    // اقتصاص الرمز الزائد في نهاية الرمز إذا كان الرمز طويلًا جدًا
+                    $activationCode = substr($activationCode, 0, 6);
                     $stmt = $connect->prepare("UPDATE ind_register SET active_status_code = ? WHERE ind_username=?");
                     $stmt->execute(array($activationCode, $ind_username));
 
@@ -86,8 +97,6 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                     // END SEND MAIL //////////////////////////////////////
                 }
             }
-
-
             if (isset($_POST["send_message"])) {
                 $com_email = sanitizeInput($_POST["com_email"]);
                 $password = sanitizeInput($_POST["password"]);
@@ -113,6 +122,7 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                             $_SESSION['ind_id'] = $com_data['ind_id'];
                             $_SESSION['ind_username'] = $com_data['ind_username'];
                             header('Location:profile');
+
                             exit();
                         } else {
                         ?>
@@ -146,6 +156,21 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                         <form class="login" method="post" action="" autocomplete="off">
                             <div class="row row-10">
                                 <h2> تسجيل دخول </h2>
+                                <?php
+                                if (isset($_SESSION['active_success'])) {
+                                ?>
+                                    <div class="alert alert-success"> <?php echo $_SESSION['active_success']; ?> </div>
+                                <?php
+                                } elseif (isset($_SESSION['active_failed'])) {
+                                ?>
+                                    <div class="alert alert-danger"> <?php echo $_SESSION['active_failed']; ?> </div>
+                                <?php
+
+                                }
+
+                                unset($_SESSION['active_success']);
+                                unset($_SESSION['active_failed']);
+                                ?>
                                 <div class="col-md-12">
                                     <div class="box">
                                         <input autocomplete="off" class="form-control" id="contact-last-name" type="text" name="com_email" value="<?php if (isset($_COOKIE['email'])) {

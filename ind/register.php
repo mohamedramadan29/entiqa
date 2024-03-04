@@ -54,7 +54,7 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                                     $marketer_id = $marketer_data['id'];
                                 } else {
                                     $marketer_id = null;
-                                    $formerror[] = ' كود المسوق الخاص بك غير صحيح  ';
+                                    $formerror[] = ' كود العرض الخاص بك غير صحيح  ';
                                 }
                             }
 
@@ -168,7 +168,18 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                             }
                             if (empty($formerror)) {
                                 // Generate a unique activation code 
-                                $activationCode = rand(1, 55555);
+                                //$activationCode = rand(1, 55555);
+                                // قائمة بالرموز التي ترغب في استخدامها
+                                $symbols = '!@#$%^&*()_+[]{}|;:,.<>?';
+
+                                // توليد الرقم العشوائي مع الرموز
+                                $activationCode = '';
+                                for ($i = 0; $i < 6; $i++) {
+                                    $activationCode .= mt_rand(0, 9); // أضف رقمًا عشوائيًا
+                                    $activationCode .= $symbols[mt_rand(0, strlen($symbols) - 1)]; // أضف رمزًا عشوائيًا
+                                }
+                                // اقتصاص الرمز الزائد في نهاية الرمز إذا كان الرمز طويلًا جدًا
+                                $activationCode = substr($activationCode, 0, 6);
                                 $stmt = $connect->prepare("INSERT INTO ind_register
                                     (ind_username,ind_password,ind_name,
                                     ind_birthdate,ind_email,ind_phone,ind_nationality,ind_address,ind_gender,ind_transfer,
