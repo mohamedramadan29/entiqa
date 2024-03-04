@@ -164,7 +164,20 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                         $formerror[] = " تم التسجيل برقم السجل التجاري من قبل  ";
                     }
                     if (empty($formerror)) {
-                        $activationCode = rand(1, 55555);
+                        //$activationCode = rand(1, 55555);
+
+                        // قائمة بالرموز التي ترغب في استخدامها
+                        $symbols = '!@#$%^&*()_+[]{}|;:,.<>?';
+
+                        // توليد الرقم العشوائي مع الرموز
+                        $activationCode = '';
+                        for ($i = 0; $i < 6; $i++) {
+                            $activationCode .= mt_rand(0, 9); // أضف رقمًا عشوائيًا
+                            $activationCode .= $symbols[mt_rand(0, strlen($symbols) - 1)]; // أضف رمزًا عشوائيًا
+                        }
+
+                        // اقتصاص الرمز الزائد في نهاية الرمز إذا كان الرمز طويلًا جدًا
+                        $activationCode = substr($activationCode, 0, 6);
                         $stmt = $connect->prepare("INSERT INTO company_register
                 (com_name,com_name_en,com_username,
                 com_email,com_phone,com_password ,com_num,com_active, com_place,
