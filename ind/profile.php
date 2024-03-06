@@ -31,7 +31,7 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
         $stmt->execute(array($_SESSION['ind_id']));
     }
 ?>
-    <div class="profile_hero">
+    <div class="profile_hero" style="background-image:url(../uploads/profile_image.jpeg)">
         <div class="overlay">
             <div class="container">
                 <div class="data">

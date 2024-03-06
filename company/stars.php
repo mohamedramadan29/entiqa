@@ -7,7 +7,7 @@ include 'init.php';
 if (isset($_SESSION['com_id'])) {
 ?>
     <div class="company">
-        <div class="contact_hero" style="background-image: url(../images/star_background.jpeg);">
+        <div class="contact_hero" style="">
             <div class="overlay" style="background-color: rgba(0,0,0,0.3);">
                 <div class="container">
                     <div class="data">

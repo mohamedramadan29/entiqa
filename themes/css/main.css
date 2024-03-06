@@ -369,21 +369,21 @@ START SLIDER
 /* Start contact us  */
 
 .contact_hero {
-    background-image: url(../../images/contact.jpeg);
+    background-image: url(../../uploads/another_image.jpeg);
     background-size: cover;
     background-position: center;
-    height: 400px;
+    height: 500px;
     background-attachment: fixed;
     position: relative;
 }
 
 .fav_hero {
-    background-image: url(../../images/fav_header.jpg);
+    background-image: url(../../uploads/another_image.jpeg);
 
 }
 
 .emp_stars {
-    background-image: url(../../images/emp_stars.jpg);
+    background-image: url(../../uploads/another_image.jpeg);
 
 }
 
@@ -1062,7 +1062,7 @@ END LOGIN PAGE */
 
 /* START COMPANY PROFILE PAGE  */
 .profile_hero {
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(../../images/profile.jpeg);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(../../uploads/profile_image.jpeg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
