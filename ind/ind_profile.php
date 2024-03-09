@@ -1,5 +1,5 @@
 <?php
-$pagetitle = '  حساب المتدرب  ';
+$pagetitle = '  حساب المرشح  ';
 ob_start();
 session_start();
 $ind_navabar = 'ind';
@@ -12,7 +12,7 @@ if (isset($_SESSION['ind_id'])) {
             <div class="overlay">
                 <div class="container">
                     <div class="data">
-                        <h2> حساب المتدرب </h2>
+                        <h2> حساب المرشح </h2>
                     </div>
                     <div class="profile_image">
                         <?php
@@ -47,7 +47,7 @@ if (isset($_SESSION['ind_id'])) {
                         <div class="col-lg-7">
                             <div class="info">
                                 <div class="info_header d-none">
-                                    <h2> معلومات عن المتدرب </h2>
+                                    <h2> معلومات عن المرشح </h2>
                                 </div>
                                 <?php
                                 if (!empty($ind_data['video'])) {
@@ -67,7 +67,7 @@ if (isset($_SESSION['ind_id'])) {
                                             if (!empty($ind_data['ind_info'])) {
                                                 echo $ind_data['ind_info'];
                                             } else { ?>
-                                        <div class="alert alert-info" role="alert"> لا يوجد نبذه عن المتدرب </div>
+                                        <div class="alert alert-info" role="alert"> لا يوجد نبذه عن المرشح </div>
                                     <?php
                                             }
                                     ?>
@@ -77,14 +77,14 @@ if (isset($_SESSION['ind_id'])) {
                                 <br>
                                 <div class="info_data">
                                     <div class="data1 d-none">
-                                        <h4> نبذة عن المتدرب </h4>
+                                        <h4> نبذة عن المرشح </h4>
                                         <p>
                                             <?php
                                             if (!empty($ind_data['ind_info'])) {
                                                 echo $ind_data['ind_info'];
                                             } else { ?>
 
-                                        <div class="alert alert-info" role="alert"> لا يوجد نبذة مختصرة عن المتدرب</div>
+                                        <div class="alert alert-info" role="alert"> لا يوجد نبذة مختصرة عن المرشح</div>
                                     <?php
                                             }
                                     ?>
@@ -92,7 +92,7 @@ if (isset($_SESSION['ind_id'])) {
                                     </div>
                                     <div class="info_data">
                                         <div class="data2">
-                                            <h4> معلومات عن المتدرب </h4>
+                                            <h4> معلومات عن المرشح </h4>
                                             <br>
                                             <table class="table">
                                                 <tr>
@@ -140,11 +140,11 @@ if (isset($_SESSION['ind_id'])) {
                         </div>
                         <div class="col-lg-5">
                             <div class="document_section d-none">
-                                <button class=" btn btn-primary">حالة المتدرب</button>
+                                <button class=" btn btn-primary">حالة المرشح</button>
                                 <div class="user_status">
 
                                     <p class="alert alert-primary" role="alert">
-                                        تم تفعيل المتدرب علي المنصة بنجاح
+                                        تم تفعيل المرشح علي المنصة بنجاح
                                     </p>
                                 </div>
 
@@ -153,12 +153,12 @@ if (isset($_SESSION['ind_id'])) {
                             if (isset($_SESSION['com_id'])) {
                             ?>
                                 <div class="document_section document_section2">
-                                    <button class="start_chat btn btn-primary" class="btn btn-success"> <a href="com_message.php?other=<?php echo $username ?>"> طلب التفاوض مع المتدرب </a> <i class="fa fa-paper-plane"></i> </button>
+                                    <button class="start_chat btn btn-primary" class="btn btn-success"> <a href="com_message.php?other=<?php echo $username ?>"> طلب التفاوض مع المرشح </a> <i class="fa fa-paper-plane"></i> </button>
                                 </div>
                                 <?php
                                 if (isset($ind_data['ind_certificate']) && $ind_data['ind_certificate'] != null) { ?>
                                     <div class="document_section document_certificate">
-                                        <h6> شهادة المتدرب المعتمدة من المنصة </h6>
+                                        <h6> شهادة المرشح المعتمدة من المنصة </h6>
 
                                         <a target="_blank" href="../admin/uploads/<?php echo $ind_data['ind_certificate'] ?>" class="btn btn-warning btn-sm"> مشاهدة الشهادة </a>
                                     </div>

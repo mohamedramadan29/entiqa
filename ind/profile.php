@@ -192,7 +192,7 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                             <br>
                             <!-- -------------------------------------------------------------------------------------------------------------------------->
 
-                            <h2 style="margin-bottom: 15px; font-size:20px"> معلومات عن المتدرب </h2>
+                            <h2 style="margin-bottom: 15px; font-size:20px"> معلومات عن المرشح </h2>
                             <div class="info_data">
                                 <div class="data1" style="background-color: #F3F3F3;">
                                     <p>
@@ -200,7 +200,7 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                                         if (!empty($ind_data['ind_info'])) {
                                             echo $ind_data['ind_info'];
                                         } else { ?>
-                                    <div class="alert alert-info" role="alert"> لا يوجد نبذه عن المتدرب </div>
+                                    <div class="alert alert-info" role="alert"> لا يوجد نبذه عن المرشح </div>
                                 <?php
                                         }
                                 ?>
@@ -337,7 +337,7 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                         if (isset($_SESSION['com_id'])) {
                         ?>
                             <div class="document_section">
-                                <button class="start_chat btn btn-primary" class="btn btn-success"> طلب التفاوض مع المتدرب <i class="fa fa-paper-plane"></i> </button>
+                                <button class="start_chat btn btn-primary" class="btn btn-success"> طلب التفاوض مع المرشح <i class="fa fa-paper-plane"></i> </button>
                             </div>
                         <?php
                         }
