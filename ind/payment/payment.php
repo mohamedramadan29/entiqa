@@ -27,7 +27,7 @@ if (isset($_SESSION['ind_id'])) {
                 "currency" => "SAR",
                 "threeDSecure" => true,
                 "save_card" => false,
-                "description" => "الاشتراك كمتدرب في منصة انتقاء",
+                "description" => "الاشتراك  في منصة انتقاء",
                 "reference" => [
                     "transaction" => "txn_01",
                     "order" => "ord_01"
