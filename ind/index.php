@@ -424,6 +424,18 @@ if ($count_rev > 0) {
         <div>
             <img src="../images/company_logo/com16.png" alt="">
         </div>
+        <div>
+            <img src="../images/company_logo/new_com1.png" alt="">
+        </div>
+        <div>
+            <img src="../images/company_logo/new_com2.png" alt="">
+        </div>
+        <div>
+            <img src="../images/company_logo/new_com3.png" alt="">
+        </div>
+        <div>
+            <img src="../images/company_logo/new_com4.png" alt="">
+        </div>
     </div>
 </div>
 
@@ -479,3 +491,11 @@ include $tem . "footer.php";
 <script>
     const player = new Plyr('#player');
 </script>
+
+
+<style>
+    .companieeees .slick-slide img{
+        max-width:240px !important;
+        max-height:130px !important;
+    }
+</style>

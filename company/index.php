@@ -110,56 +110,121 @@ include 'init.php'; ?>
 </div> -->
 <!-- End why Entiqaa   -->
 <!-- START NEW TESTMONAILS  -->
-<?php
-$stmt = $connect->prepare('SELECT * FROM company_review 
-INNER JOIN company_register ON company_review.com_id = company_register.com_id WHERE rev_show = 1 ORDER BY rev_id DESC ');
-$stmt->execute();
-$allrev = $stmt->fetchAll();
-$count_rev = $stmt->rowCount();
-if ($count_rev > 0) {
-?>
-    <div class="testmonails company_testmonails">
-        <div class='overlay'>
-            <div class="container">
-                <div class="data">
-                    <h3> اراء عملائنا </h3>
-                    <!-- Swiper -->
-                    <div class="testmon">
-                        <?php
-                        foreach ($allrev as $rev) {
-                        ?>
-                            <div class="person_testmon">
-                                <div class="card">
-                                    <img src="images/image1.jpg" alt="" srcset="">
-                                    <div class="info" style="display: flex; justify-content: space-between;align-items: center;">
-                                        <div class="info1" style="display: flex; justify-content: flex-start;">
-                                            <div>
-                                                <img src="../images/com (1).png" style="width: 70px; height:70px" alt="">
-                                            </div>
-                                            <div>
-                                                <h4 style="color: #111;font-size: 18px;"> <?php echo $rev['com_name']; ?></h4>
-                                                <p style="color: #F16583;font-size: 14px;margin-top:0;"> <?php echo $rev['com_active']; ?></p>
-                                            </div>
-                                        </div>
+
+<div class="testmonails company_testmonails">
+    <div class='overlay'>
+        <div class="container">
+            <div class="data">
+                <h3> اراء عملائنا </h3>
+                <!-- Swiper -->
+                <div class="testmon">
+                    <div class="person_testmon">
+                        <div class="card">
+                            <img src="images/image1.jpg" alt="" srcset="">
+                            <div class="info" style="display: flex; justify-content: space-between;align-items: center;">
+                                <div class="info1" style="display: flex; justify-content: flex-start;">
+                                    <div>
+                                        <img src="../images/com (1).png" style="width: 70px; height:70px" alt="">
                                     </div>
-                                    <div class="card-text" style=" width: 100%; word-wrap: break-word;">
-                                        <p style="word-break: break-word;"> <?php echo $rev['com_review'] ?> </p>
+                                    <div>
+                                        <h4 style="color: #111;font-size: 18px;"> عبدالله الشلعان </h4>
+                                        <p style="color: #F16583;font-size: 14px;margin-top:0;"> مدير ( شركة الخزائن الرائدة ) </p>
                                     </div>
                                 </div>
                             </div>
-                        <?php
-                        }
-                        ?>
+                            <div class="card-text" style=" width: 100%; word-wrap: break-word;">
+                                <p style="word-break: break-word;"> الخدمة متميزة جداً . حيث كان هناك مرونة عالية في تلبية الاحتياجات ومتابعة وقابلية في تغيير العناصر في حال عدم مناسبتها لعملي . أشكر فريق أنتقاء على التواصل الدائم والمساعدة لتلبية الأحتياج </p>
+                            </div>
+                        </div>
                     </div>
+
+                    <div class="person_testmon">
+                        <div class="card">
+                            <img src="images/image1.jpg" alt="" srcset="">
+                            <div class="info" style="display: flex; justify-content: space-between;align-items: center;">
+                                <div class="info1" style="display: flex; justify-content: flex-start;">
+                                    <div>
+                                        <img src="../images/com (1).png" style="width: 70px; height:70px" alt="">
+                                    </div>
+                                    <div>
+                                        <h4 style="color: #111;font-size: 18px;"> مبارك الدوسري </h4>
+                                        <p style="color: #F16583;font-size: 14px;margin-top:0;"> المدير التنفيذي للتطوير والتشغيل (شركة كارتك ) </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-text" style=" width: 100%; word-wrap: break-word;">
+                                <p style="word-break: break-word;"> تجربة مميزة اختصرت انتقاء علينا رحلة طويلة في البحث والتدريب والتوظيف في المبيعات , فريق إنتقاء متميز ومتابعة الخدمة أكثر من مميزة الف الف شكر </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="person_testmon">
+                        <div class="card">
+                            <img src="images/image1.jpg" alt="" srcset="">
+                            <div class="info" style="display: flex; justify-content: space-between;align-items: center;">
+                                <div class="info1" style="display: flex; justify-content: flex-start;">
+                                    <div>
+                                        <img src="../images/com (1).png" style="width: 70px; height:70px" alt="">
+                                    </div>
+                                    <div>
+                                        <h4 style="color: #111;font-size: 18px;"> فهد الفيصل </h4>
+                                        <p style="color: #F16583;font-size: 14px;margin-top:0;"> المدير التشغيلي ( شركة تميز للألماس) </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-text" style=" width: 100%; word-wrap: break-word;">
+                                <p style="word-break: break-word;"> الحصول على البائع المميز مش سهل أبداً لذا الشكر لإنتقاء والفريق القائم على هذه الخدمة الرائعة . </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="person_testmon">
+                        <div class="card">
+                            <img src="images/image1.jpg" alt="" srcset="">
+                            <div class="info" style="display: flex; justify-content: space-between;align-items: center;">
+                                <div class="info1" style="display: flex; justify-content: flex-start;">
+                                    <div>
+                                        <img src="../images/com (1).png" style="width: 70px; height:70px" alt="">
+                                    </div>
+                                    <div>
+                                        <h4 style="color: #111;font-size: 18px;"> سعد السريع </h4>
+                                        <p style="color: #F16583;font-size: 14px;margin-top:0;"> الشريك المؤسس ( لمؤسسة إي لتنظيم المعارض والمؤتمرات) </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-text" style=" width: 100%; word-wrap: break-word;">
+                                <p style="word-break: break-word;"> فكرة إنتقاء ساعدتنا على الحصول للبائع المحترف و المناسب لتوجهنا و اهدافنا والمطابق لمعاييرنا , خدمة أكثر من رائعة </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="person_testmon">
+                        <div class="card">
+                            <img src="images/image1.jpg" alt="" srcset="">
+                            <div class="info" style="display: flex; justify-content: space-between;align-items: center;">
+                                <div class="info1" style="display: flex; justify-content: flex-start;">
+                                    <div>
+                                        <img src="../images/com (1).png" style="width: 70px; height:70px" alt="">
+                                    </div>
+                                    <div>
+                                        <h4 style="color: #111;font-size: 18px;"> سعد البجادي </h4>
+                                        <p style="color: #F16583;font-size: 14px;margin-top:0;"> المؤسس (شركة إيكو ماستر) </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-text" style=" width: 100%; word-wrap: break-word;">
+                                <p style="word-break: break-word;"> كانت تجربة فريدة وسريعة وحل أمثل لتوظيف بائع محترف الشكر موصول لمنصة انتقاء وجميع القائمين على هذه الخدمة المتميزة </p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-<?php
-}
 
-?>
 
 <!-- END NEW TESTMONAILS -->
 <!-- START FAQ SECTION -->
@@ -200,7 +265,7 @@ if ($count_rev > 0) {
             </div>
             <div class="accordion">
                 <div class="accordion-item">
-                    <a> كيف هو تقييمكم للبائعين  ؟ </a>
+                    <a> كيف هو تقييمكم للبائعين ؟ </a>
                     <div class="content">
                         <p>
                             للمحترفين
@@ -222,7 +287,7 @@ if ($count_rev > 0) {
             </div>
             <div class="accordion">
                 <div class="accordion-item">
-                    <a> كيف اختار أفضل البائعين  ؟
+                    <a> كيف اختار أفضل البائعين ؟
                     </a>
                     <div class="content">
                         <p> يتم مساعدتك مع فريق انتقاء للتوظيف بتقديم المرشحين الموجودين ويتم انتقائهم بناء على معايير المنشأة المطلوبة , ويتم عمل ترتيبات مقابلات الوظيفية حتى يتم إنتقاء الافضل بدون جهد أو اهدار الكثير من الوقت لتحصل عليهم
@@ -348,6 +413,18 @@ if ($count_rev > 0) {
         <div>
             <img src="../images/company_logo/com16.png" alt="">
         </div>
+        <div>
+            <img src="../images/company_logo/new_com1.png" alt="">
+        </div>
+        <div>
+            <img src="../images/company_logo/new_com2.png" alt="">
+        </div>
+        <div>
+            <img src="../images/company_logo/new_com3.png" alt="">
+        </div>
+        <div>
+            <img src="../images/company_logo/new_com4.png" alt="">
+        </div>
 
     </div>
 </div>
@@ -404,3 +481,11 @@ include $tem . "footer.php";
 <script>
     const player = new Plyr('#player');
 </script>
+
+
+<style>
+    .companieeees .slick-slide img {
+        max-width: 240px !important;
+        max-height: 130px !important;
+    }
+</style>

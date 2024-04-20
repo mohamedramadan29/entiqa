@@ -115,7 +115,7 @@ $allrev = $stmt->fetchAll();
 $count_rev = $stmt->rowCount();
 if ($count_rev > 0) {
 ?>
-    <div class="testmonails">
+    <div class="testmonails company_testmonails">
         <div class='overlay'>
             <div class="container">
                 <div class="data">
@@ -123,7 +123,6 @@ if ($count_rev > 0) {
                     <!-- Swiper -->
                     <div class="testmon">
                         <?php
-
                         foreach ($allrev as $rev) {
                         ?>
                             <div class="person_testmon">
