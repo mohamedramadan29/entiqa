@@ -305,8 +305,7 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                                     <p class='alert alert-danger'> تنوية : أنت غير مشترك بعد , يرجى قراءة العقد واتمام عملية الدفع
 
                                     </p>
-
-                                    <a href="payment_terms" class='btn btn-primary' style='background: var(--main-color);border-color: var(--main-color);'>الدفع<i class='fa fa-paypal'></i></a>
+                                    <a href="payment_terms" class='btn btn-primary' style='background: var(--main-color);border-color: var(--main-color);'>   اضغط هنا لحجز مقعد  <i class='fa fa-paypal'></i></a>
                                 <?php
                                 } elseif ($ind_data['ind_payment_charge'] === 'CAPTURED') {
                                 ?>
