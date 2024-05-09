@@ -3,7 +3,14 @@ $pagetitle = ' مشاهدة العقد واتمام الدفع  ';
 ob_start();
 session_start();
 $ind_navabar = 'ind';
-include 'init.php'; ?>
+
+if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
+    include 'init.php';
+} else {
+    header('Location:../index');
+    exit();
+}
+?>
 <div class="contact_hero" style="background-image: url(../images/privacy.png);">
     <div class="overlay" style="background-color: rgba(0, 0, 0, 0.4);">
         <div class="container">

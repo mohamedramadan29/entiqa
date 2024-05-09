@@ -72,11 +72,6 @@ include 'init.php'; ?>
                         } catch (Exception $e) {
                             echo "حدث خطأ في إرسال البريد الإلكتروني: {$mail->ErrorInfo}";
                         }
-                        // $to_email = $email;
-                        // $subject = "استعادة كلمة المرور";
-                        // $body = "الكود الخاص بك هو " . $code . '';
-                        // $headers = "From: info@entiqa.online";
-                        // mail($to_email, $subject, $body, $headers);
                         header('Location:forget_code');
                     }
                 } else {

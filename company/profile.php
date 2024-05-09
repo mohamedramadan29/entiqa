@@ -118,6 +118,19 @@ if (isset($_SESSION['com_id'])) {
                             }
                             ?>
                             <div class="show_balance">
+                                <?php
+                                if (isset($_SESSION['suucess_paymob'])) {
+                                ?>
+                                    <div class="alert alert-info"> <?php echo $_SESSION['suucess_paymob']; ?> </div>
+                                <?php
+                                } elseif (isset($_SESSION['failed_paymob'])) {
+                                ?>
+                                    <div class="alert alert-danger"> <?php echo $_SESSION['failed_paymob']; ?> </div>
+                                <?php
+                                }
+                                unset($_SESSION['suucess_paymob']);
+                                unset($_SESSION['failed_paymob']);
+                                ?>
                                 <div class="info" style="background-color: #F3F3F3;">
                                     <div class="info_header">
                                         <h2>الرصيد الخاص بك </h2>

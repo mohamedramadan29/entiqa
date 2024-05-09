@@ -131,7 +131,7 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                             <button type="button" class="btn btn-primary btn-sm" id="change_image" style="margin-right: 20px;"> اضافه السيره الذاتيه </button>
                             <br>
                             <br>
-                                                
+
                             <form class="div_change_image" action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST" enctype="multipart/form-data">
 
                                 <!-- <input type="file" id="videoFile" name="img" class="form-control" required style="margin-right:5px;"   onchange="checkFileSize()"> -->
@@ -139,7 +139,7 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                                     <div class="form-group">
                                         <div class="input-group">
                                             <div class="custom-file">
-                                               
+
                                                 <!-- <input id="videoFile" required type="file" name="img" accept="video/*" onchange="checkFileSize()" class="custom-file-input form-control" id="exampleInputFile"> -->
                                                 <input id="videoFile" required type="file" name="img" accept="application/pdf, .doc, .docx" onchange="checkFileSize()" class="custom-file-input form-control">
 
@@ -297,15 +297,26 @@ if (isset($_SESSION['ind_id']) || isset($_GET['ind_id'])) {
                     </div>
                     <div class="col-lg-5">
                         <div class="document_section">
-                            <p style="color:#000; font-size:25px; margin-bottom:10px; ">  حالة العضوية</p>
+                            <p style="color:#000; font-size:25px; margin-bottom:10px; "> حالة العضوية</p>
                             <div class="user_status">
                                 <?php
+                                if(isset($_SESSION['suucess_paymob'])){
+                                    ?>
+                                    <div class="alert alert-info"> <?php echo $_SESSION['suucess_paymob']; ?> </div>
+                                    <?php 
+                                }elseif(isset($_SESSION['failed_paymob'])){
+                                    ?>
+                                    <div class="alert alert-danger"> <?php echo $_SESSION['failed_paymob']; ?> </div>
+                                    <?php 
+                                }
+                                unset($_SESSION['suucess_paymob']);
+                                unset($_SESSION['failed_paymob']);
                                 if ($ind_data['ind_payment_charge'] == null) {
                                 ?>
-                                    <p class='alert alert-danger'> تنوية : أنت غير مشترك بعد   
+                                    <p class='alert alert-danger'> تنوية : أنت غير مشترك بعد
 
                                     </p>
-                                    <a href="payment_terms" class='btn btn-primary' style='background: var(--main-color);border-color: var(--main-color);'>   اضغط هنا لحجز مقعد  <i class='fa fa-paypal'></i></a>
+                                    <a href="payment_terms" class='btn btn-primary' style='background: var(--main-color);border-color: var(--main-color);'> اضغط هنا لحجز مقعد <i class='fa fa-paypal'></i></a>
                                 <?php
                                 } elseif ($ind_data['ind_payment_charge'] === 'CAPTURED') {
                                 ?>
