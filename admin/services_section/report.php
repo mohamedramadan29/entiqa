@@ -19,10 +19,23 @@ if (!isset($_SESSION['admin_session']) && !isset($_SESSION['serv_name'])) {
             </nav>
         </div>
 
+        <div>
+            <form method="post" action="">
+                <div class="form-group" style="text-align: right;">
+                    <label> حدد حالة الدفع </label>
+                    <select class='form-control select2' name="pay_status">
+                        <option value=""> -- حدد حالة الدفع -- </option>
+                        <option <?php if (isset($_REQUEST['pay_status']) && $_REQUEST['pay_status'] == 1) echo "selected"; ?> value="1"> تم الدفع </option>
+                        <option <?php if (isset($_REQUEST['pay_status']) && $_REQUEST['pay_status'] == 0) echo "selected"; ?> value="0"> لم يتم الدفع </option>
+                    </select>
+                </div>
 
+                <div>
+                    <button style="width: 120px; text-align:center;float:right" name="pay_filter" type="submit" class="btn btn-primary btn-sm"> بحث </button>
+                </div>
+            </form>
+        </div>
         <div class="table-responsive">
-            <div class="add_new_record">
-            </div>
             <table id="tableone" class="table table-light table-striped table-hover table-bordered">
                 <thead>
                     <tr>
@@ -30,15 +43,23 @@ if (!isset($_SESSION['admin_session']) && !isset($_SESSION['serv_name'])) {
                         <th>البريد الألكتروني</th>
                         <th> رقم الهاتف </th>
                         <th> تاريخ التسجيل </th>
-                        <!-- <th> الجنسية </th>
-                        <th> تاريخ الميلاد </th> -->
                         <th> حالة الدفع </th>
                         <th> </th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    $stmt = $connect->prepare("SELECT * FROM ind_register WHERE ind_batch=0 ORDER BY ind_id DESC");
+                    if (isset($_POST['pay_filter'])) {
+                        $pay_status = $_POST['pay_status'];
+                        if ($pay_status == 1) {
+                            $stmt = $connect->prepare("SELECT * FROM ind_register WHERE ind_batch=0 AND ind_payment_charge = 'CAPTURED' ORDER BY ind_id DESC");
+                        } else {
+                            $stmt = $connect->prepare("SELECT * FROM ind_register WHERE ind_batch=0 AND ind_payment_charge IS NULL ORDER BY ind_id DESC");
+                        }
+                    } else {
+                        $stmt = $connect->prepare("SELECT * FROM ind_register WHERE ind_batch=0 ORDER BY ind_id DESC");
+                    }
+
                     $stmt->execute();
                     $alltype = $stmt->fetchAll();
                     foreach ($alltype as $type) { ?> <tr>
@@ -290,3 +311,10 @@ if (!isset($_SESSION['admin_session']) && !isset($_SESSION['serv_name'])) {
     </div>
 </div>
 </div>
+
+
+<script>
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
+</script>

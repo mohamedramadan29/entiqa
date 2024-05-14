@@ -16,7 +16,7 @@
                 <thead>
                     <tr>
                         <th>الاسم</th>
-                        <th> تاريخ الميلاد </th>
+                        <th> رقم الهاتف  </th>
                         <th> البريد الالكتروني </th>
                         <th>الجنسية</th>
                         <th> العنوان </th>
@@ -30,7 +30,7 @@
                         foreach ($allind as $ind) { ?>
                         <tr>
                             <td><?php echo $ind['ind_name']; ?> </td>
-                            <td><?php echo $ind['ind_birthdate']; ?> </td>
+                            <td><?php echo $ind['ind_phone']; ?> </td>
                             <td> <?php echo $ind['ind_email']; ?> </td>
                             <td> <?php echo $ind['ind_nationality']; ?> </td>
                             <td> <?php echo $ind['ind_address']; ?> </td>
