@@ -44,6 +44,7 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                             $ind_password = sanitizeInput($_POST["ind_password"]);
                             $confirm_password = sanitizeInput($_POST["confirm_password"]);
                             $marketer_code = sanitizeInput($_POST['marketer_code']);
+                            $confirm_email = sanitizeInput($_POST['confirm_email']);
                             // get the marketer data
                             if (!empty($marketer_code)) {
                                 $stmt = $connect->prepare("SELECT * FROM marketers WHERE code = ?");
@@ -68,6 +69,9 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                             if (!preg_match('/^[a-zA-Z]+$/', $ind_username)) {
                                 $formerror[] = ' يجب ان تكون الحروف المستخدمة فى اسم المتخدم حروف انجليزية فقط ';
                             }
+                            if (!preg_match('/^[a-zA-Z0-9]+$/', $ind_username)) {
+                                $formerror[] = 'يجب أن يحتوي اسم المستخدم على أحرف إنجليزية وأرقام فقط، بدون مسافات أو علامات ترقيم.';
+                            }
 
                             if (empty($ind_email)) {
                                 $formerror[] = " يجب اضافة البريد الالكتروني  ";
@@ -79,6 +83,8 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                                 $formerror[] = "البريد الإلكتروني يجب أن يحتوي على أحرف وأرقام ورموز صحيحة فقط";
                             } elseif (strpos($ind_email, '..') !== false) {
                                 $formerror[] = "البريد الإلكتروني يحتوي على أحرف غير صالحة";
+                            } elseif($ind_email !== $confirm_email){
+                                $formerror[] = ' يجب تاكيد البريد الالكتروني بشكل صحيح  ';
                             }
                             if (empty($ind_password)) {
                                 $formerror[] = " يجب اضافة  كلمة المرور    ";
@@ -275,9 +281,9 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
                                 <h2> حساب فرد جديد </h2>
                                 <div class="col-lg-6">
                                     <div class="box">
-                                        <input pattern="[a-zA-Z]+" minlength="4" maxlength="50" oninvalid="setCustomValidityArabic(this,' خطأ ، تاكد من عدم وضع مساحة او علامة ترقيم او احرف اقل من 4 ')" oninput="resetCustomValidity(this)" placeholder="اسم المستخدم * " required class="form-control" id="ind_username" type="text" name="ind_username" value="<?php if (isset($_REQUEST['ind_username'])) {
-                                                                                                                                                                                                                                                                                                                                                                        echo $_REQUEST['ind_username'];
-                                                                                                                                                                                                                                                                                                                                                                    } ?>">
+                                        <input pattern="[a-zA-Z0-9]+" minlength="4" maxlength="50" oninvalid="setCustomValidityArabic(this,' خطأ، يرجى كتابة بالأحرف الإنجليزية أو الأرقام وتأكد من عدم وضع مسافة أو علامة ترقيم أو أحرف أقل من 4 ')" oninput="resetCustomValidity(this)" placeholder="اسم المستخدم *" required class="form-control" id="ind_username" type="text" name="ind_username" value="<?php if (isset($_REQUEST['ind_username'])) {
+                                                                                                                                                                                                                                                                                                                                                                                                                    echo $_REQUEST['ind_username'];
+                                                                                                                                                                                                                                                                                                                                                                                                                } ?>">
                                         <small class="ind_username text-danger"> </small>
                                     </div>
                                     <div class="box">
@@ -287,6 +293,20 @@ if (!isset($_SESSION['com_id']) && !isset($_SESSION['ind_id'])) {
 
                                         <small class="ind_email text-danger"> </small>
                                     </div>
+
+
+                                    <div class="box">
+                                        <input maxlength="100" oninvalid="setCustomValidityArabic(this,'يجب تاكيد البريد الألكتروني')" oninput="resetCustomValidity(this)" placeholder=" تاكيد البريد الالكتروني * " required autocomplete="off" class="form-input" id="confirm_email" type="email" name="confirm_email" value="<?php if (isset($_REQUEST['confirm_email'])) {
+                                                                                                                                                                                                                                                                                                                        echo $_REQUEST['confirm_email'];
+                                                                                                                                                                                                                                                                                                                    } ?>">
+
+                                        <small class="ind_email text-danger"> </small>
+                                    </div>
+
+
+
+
+
                                     <div class="box password_eye">
                                         <input pattern="^[a-zA-Z0-9!@#$%^&*()_+]+$" oninvalid="setCustomValidityArabic(this,'  كلمه المرور يجب ان لا تقل عن 8 احرف وارقام وعلامات خاصه  ')" oninput="resetCustomValidity(this)" placeholder="كلمة المرور * " required class="form-control" type="password" id="password" name="ind_password" value="<?php if (isset($_REQUEST['ind_password'])) {
                                                                                                                                                                                                                                                                                                                                                         echo $_REQUEST['ind_password'];
